@@ -228,8 +228,8 @@ export default function IndicadoresBienestar(props:CumplimientoProps){
                                 <AccordionDetails>
                                     {
                                         param.parametros.map((param1:any,key1:number) =>
-                                            <div className={classes.column}>
-                                                <Accordion key={param1.titulo+key1} TransitionProps={{ unmountOnExit: true }}>
+                                            <div className={classes.column} key={param1.titulo+key1}>
+                                                <Accordion  TransitionProps={{ unmountOnExit: true }}>
                                                     <AccordionSummary expandIcon={<ExpandMoreIcon />}
                                                                       aria-controls="panel1a-content"
                                                                       id="panel1a-header"

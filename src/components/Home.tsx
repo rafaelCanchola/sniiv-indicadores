@@ -84,8 +84,8 @@ export default class Home extends Component<any, any> {
                     <Tab label={"Cumplimiento/Avances"}></Tab>
                     <Tab label={"Vivienda"}/>
                 </Tabs>
-                { this.state.value === 0 ? <ObjetivoPNV />:
-                    this.state.value === 1 ?
+                { parseInt(this.state.value) === 0 ? <ObjetivoPNV />:
+                    parseInt(this.state.value) === 1 ?
                     <Fragment>
                         <TotalesCumplimiento data={totales} callBack={handleCallback} periodo={'Trimestral 2021'}
                                              seccion={'totales'} title={'Cumplimiento/Avances'}
@@ -94,32 +94,9 @@ export default class Home extends Component<any, any> {
                                              titleInforme={'Informe Trimestral'} aAxis={'trimestre'}
                                              bAxis={'total'} cAxis={'aCabo'}/>
                         {this.state.trimestre === undefined ? <></> :
-                            this.state.trimestre === 3 ?
-                                <PorcentajeCumplimiento data={cumplimientoPNV3} data2={cumplimientoONAVIPNV3}
-                                                        fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
-                                                        titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                                        periodo={this.state.trimestre + " Trimestre"}
-                                                        titleBar={"Porcentaje de contribución según ONAVI"}
-                                                        titleCifras={"acciones"}
-                                                        titlePie={"Estatus de las acciones según objetivo prioritario"}
-                                                        titlePie2={""} titleRow1={""}
-                                                        titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
-                                                        cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
-                                                        fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
-                                : this.state.trimestre === 2 ?
-                                <PorcentajeCumplimiento data={cumplimientoPNV2} data2={cumplimientoONAVIPNV2}
-                                                        fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
-                                                        titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                                        periodo={this.state.trimestre + " Trimestre"}
-                                                        titleBar={"Porcentaje de contribución según ONAVI"}
-                                                        titleCifras={"acciones"}
-                                                        titlePie={"Estatus de las acciones según objetivo prioritario"}
-                                                        titlePie2={""} titleRow1={""}
-                                                        titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
-                                                        cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
-                                                        fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
-                                : this.state.trimestre === 1 ?
-                                    <PorcentajeCumplimiento data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
+                            parseInt(this.state.trimestre) === 3 ?
+                                <Fragment>
+                                    <PorcentajeCumplimiento data={cumplimientoPNV3} data2={cumplimientoONAVIPNV3}
                                                             fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                                             titleRow={"Porcentaje de cumplimiento según objetivo "}
                                                             periodo={this.state.trimestre + " Trimestre"}
@@ -130,11 +107,41 @@ export default class Home extends Component<any, any> {
                                                             titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
                                                             cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
                                                             fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
+                                    <IndicadoresBienestar />
+                                </Fragment>
+                                : parseInt(this.state.trimestre) === 2 ?
+                                <Fragment>
+                                    <PorcentajeCumplimiento data={cumplimientoPNV2} data2={cumplimientoONAVIPNV2}
+                                                        fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
+                                                        titleRow={"Porcentaje de cumplimiento según objetivo "}
+                                                        periodo={this.state.trimestre + " Trimestre"}
+                                                        titleBar={"Porcentaje de contribución según ONAVI"}
+                                                        titleCifras={"acciones"}
+                                                        titlePie={"Estatus de las acciones según objetivo prioritario"}
+                                                        titlePie2={""} titleRow1={""}
+                                                        titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
+                                                        cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
+                                                        fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
+                                    <IndicadoresBienestar />
+                                </Fragment>
+                                : parseInt(this.state.trimestre) === 1 ?
+                                    <Fragment><PorcentajeCumplimiento data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
+                                                            fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
+                                                            titleRow={"Porcentaje de cumplimiento según objetivo "}
+                                                            periodo={this.state.trimestre + " Trimestre"}
+                                                            titleBar={"Porcentaje de contribución según ONAVI"}
+                                                            titleCifras={"acciones"}
+                                                            titlePie={"Estatus de las acciones según objetivo prioritario"}
+                                                            titlePie2={""} titleRow1={""}
+                                                            titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
+                                                            cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
+                                                            fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
+                                        <IndicadoresBienestar />
+                                    </Fragment>
                                     : <></>
                         }
-                        <IndicadoresBienestar />
                     </Fragment>
-                        :this.state.value === 2 ?
+                        :parseInt(this.state.value) === 2 ?
                         <ViviendaAdecuada data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
                                           fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                           titleRow={"Porcentaje de cumplimiento según objetivo "}
