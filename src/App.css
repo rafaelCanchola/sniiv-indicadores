@@ -1,0 +1,20 @@
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.dc-chart .axis.x .tick text{
+  text-anchor: end;
+  transform: rotate(-60deg) translate(-9px,-10px);
+}
+
+
