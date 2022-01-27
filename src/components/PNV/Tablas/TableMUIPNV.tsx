@@ -41,12 +41,13 @@ const useStyles = makeStyles((theme:Theme) =>
 function TableMUIViv(props: TableProps) {
 
     const dataKeys = Object.keys(props.data);
-    const childKeys = [dataKeys[dataKeys.length-3],dataKeys[dataKeys.length-2],dataKeys[dataKeys.length-1]];
+    const childKeys = [dataKeys[dataKeys.length-4],dataKeys[dataKeys.length-3],dataKeys[dataKeys.length-2],dataKeys[dataKeys.length-1]];
     const variablesMap = props.data[childKeys[0]]["variables"];
     const variableslast = Object.keys(props.data[childKeys[0]])[1];
     const lineaMap = Object.keys(props.data[childKeys[1]]);
     const baseMap = Object.keys(props.data[childKeys[1]][lineaMap[0]]);
     const historicoMap = Object.keys(props.data[childKeys[2]]);
+    const metasMap = Object.keys(props.data[childKeys[3]]);
     const classes = useStyles();
     return (
         <TableContainer component={Paper}>
@@ -138,15 +139,37 @@ function TableMUIViv(props: TableProps) {
                         </TableRow>
                         <TableRow><TableCell align={"center"} className={classes.head} colSpan={10}>{childKeys[2]}</TableCell></TableRow>
                         <TableRow>
+
+                            <TableCell key={'tb0'} className={classes.colHead} align={"center"} colSpan={1}>{""}</TableCell>
                             {historicoMap.map((data:any, keys:number) =>
                                 <TableCell key={data+keys} className={classes.colHead} align={"center"} colSpan={1}>{data}</TableCell>
                             )}
                         </TableRow>
                         <TableRow>
+                            <TableCell key={'tb10'} className={classes.body} align={"center"} colSpan={1}>{""}</TableCell>
                             {historicoMap.map((data:any, keys:number) =>
                                 <TableCell key={data+keys} className={classes.body} align={"center"} colSpan={1}>{props.data[childKeys[2]][data]}</TableCell>
                             )}
                         </TableRow>
+
+                        <TableRow><TableCell align={"center"} className={classes.head} colSpan={10}>{childKeys[3]}</TableCell></TableRow>
+                        <TableRow>
+                            <TableCell key={'tr0'} className={classes.colHead} align={"center"} colSpan={1}>{""}</TableCell>
+                            {metasMap.map((data:any, keys:number) =>
+                                <TableCell key={data+keys} className={classes.colHead} align={"center"} colSpan={2}>{data}</TableCell>
+                            )}
+                            <TableCell key={'tr10'} className={classes.colHead} align={"center"} colSpan={1}>{""}</TableCell>
+
+                        </TableRow>
+                        <TableRow>
+                            <TableCell key={'tc0'} className={classes.body} align={"center"} colSpan={1}>{""}</TableCell>
+                            {metasMap.map((data:any, keys:number) =>
+                                <TableCell key={data+keys} className={classes.body} align={"center"} colSpan={2}>{props.data[childKeys[3]][data]}</TableCell>
+                            )}
+                            <TableCell key={'tc10'} className={classes.body} align={"center"} colSpan={1}>{""}</TableCell>
+
+                        </TableRow>
+
                     </TableBody>
                 </Table>
         </TableContainer>

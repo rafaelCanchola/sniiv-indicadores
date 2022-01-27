@@ -16,24 +16,40 @@ export const fichaPie3 = {
     "Observaciones": "",
     "APLICACIÓN DEL MÉTODO DE CÁLCULO DEL INDICADOR PARA LA OBTENCIÓN DEL VALOR DE LA LÍNEA BASE":
     {
-        "Nombre variable 1":"DEA = Distribución del estatus que guardan las acciones",
-        "Nombre variable 2":"a) Acciones Concluidas",
-        "Nombre variable 3":"b) Acciones en proceso",
-        "Nombre variable 4":"c) Acciones por inciar",
-        "Nombre variable 5":"d) No se realizarán",
-        "Nombre variable 6":"Total de acciones por objetivo",
-        "Valor variable 1": 999,
-        "Valor variable 2": 999,
-        "Valor variable 3": 999,
-        "Valor variable 4": 999,
-        "Valor variable 5": 999,
-        "Valor variable 6": 999,
-        "Fuente de información variable 1": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
-        "Fuente de información variable 2": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
-        "Fuente de información variable 3": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
-        "Fuente de información variable 4": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
-        "Fuente de información variable 5": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
-        "Fuente de información variable 6": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+        "variables":[
+            {
+                "Nombre variable":"DEA = Distribución del estatus que guardan las acciones",
+                "Valor variable": 999,
+                "Fuente de información variable": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+            },
+            {
+                "Nombre variable":"a) Acciones Concluidas",
+                "Valor variable": 999,
+                "Fuente de información variable": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+            },
+            {
+                "Nombre variable":"b) Acciones en proceso",
+                "Valor variable": 999,
+                "Fuente de información variable": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+            },
+            {
+                "Nombre variable":"c) Acciones por inciar",
+                "Valor variable": 999,
+                "Fuente de información variable": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+            },
+
+            {
+                "Nombre variable":"d) No se realizarán",
+                "Valor variable": 999,
+                "Fuente de información variable": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+            },
+
+            {
+                "Nombre variable":"Total de acciones por objetivo",
+                "Valor variable": 999,
+                "Fuente de información variable": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+            },
+        ],
         "Sustitución en método de cálculo del indicador": "DEAa = (999/999)*100=999, DEAb = (999/999)*100=999, DEAc = (999/999)*100=999, DEAd = (999/999)*100=999"
     },
     "VALOR DE LÍNEA BASE Y METAS":

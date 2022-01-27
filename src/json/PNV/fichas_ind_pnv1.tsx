@@ -16,15 +16,23 @@ export const fichaPie = {
     "Observaciones": "",
     "APLICACIÓN DEL MÉTODO DE CÁLCULO DEL INDICADOR PARA LA OBTENCIÓN DEL VALOR DE LA LÍNEA BASE":
     {
-        "Nombre variable 1":"1.-PAO porcentaje de avance del objetivo i",
-        "Nombre variable 2":"2.- TAPCi-n=Es el número total de acciones en proceso o concluidas del objetivo i en el trimestre",
-        "Nombre variable 3":"3.- TAEi-n=Es el número total de acciones establecidas para el objetivo i",
-        "Valor variable 1": 999,
-        "Valor variable 2": 999,
-        "Valor variable 3": 999,
-        "Fuente de información variable 1": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
-        "Fuente de información variable 2": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
-        "Fuente de información variable 3": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+        "variables":[
+            {
+                "Nombre variable":"1.-PAO porcentaje de avance del objetivo i",
+                "Valor variable": 999,
+                "Fuente de información variable": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+            },
+            {
+                "Nombre variable":"2.- TAPCi-n=Es el número total de acciones en proceso o concluidas del objetivo i en el trimestre",
+                "Valor variable": 999,
+                "Fuente de información variable": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+            },
+            {
+                "Nombre variable":"3.- TAEi-n=Es el número total de acciones establecidas para el objetivo i",
+                "Valor variable": 999,
+                "Fuente de información variable": "Informe trimestral de seguimiento al Programa Nacional de Vivienda",
+            },
+        ],
         "Sustitución en método de cálculo del indicador": "PAOi-n=(999/999)*100=999"
     },
     "VALOR DE LÍNEA BASE Y METAS":

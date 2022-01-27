@@ -6,11 +6,8 @@ import Grid from "@material-ui/core/Grid";
 import TableIcon from '@material-ui/icons/TableChart';
 import TuneIcon from '@material-ui/icons/Tune';
 import ReactECharts from "echarts-for-react";
-
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
-
-// @ts-ignore
-import { useTable, usePagination } from 'react-table';
+import TableMUIPNV from "./Tablas/TableMUIPNV";
 
 import conavi from "../../assets/images/conavi.png";
 import fovissste from "../../assets/images/fovissste.png";
@@ -18,8 +15,6 @@ import infonavit from "../../assets/images/infonavit.png";
 import insus from "../../assets/images/insus.png";
 import shf from "../../assets/images/shf.png";
 import sedatu from "../../assets/images/sedatu.png";
-import TableMUI1 from "./Tablas/TableMUI1";
-import TableMUI3 from "./Tablas/TableMUI3";
 
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -78,26 +73,26 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
     const [open3, setOpen3] = useState(false);
     const classes = useStyles();
     const assignColor = (obj:number) =>{
-        if(obj == 1){
+        if(obj === 1){
             return '#dd7671';
-        }else if(obj == 2){
+        }else if(obj === 2){
             return '#f5ce85';
-        }else if(obj == 3){
+        }else if(obj === 3){
             return '#a485c2';
-        }else if(obj == 4){
+        }else if(obj === 4){
             return '#e3a277';
-        }else if(obj == 5){
+        }else if(obj === 5){
             return '#95ce9c';
         }
     }
     const assignStateColor = (obj:string) => {
         if (obj === props.cAxis) {
             return '#ffbf00';
-        } else if (obj == props.eAxis) {
+        } else if (obj === props.eAxis) {
             return '#a7a7a7';
-        } else if (obj == props.bAxis) {
+        } else if (obj === props.bAxis) {
             return '#09a94e';
-        } else if (obj == props.dAxis) {
+        } else if (obj === props.dAxis) {
             return '#ff0000';
         }
     }
@@ -376,15 +371,21 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                             <ReactECharts option={orderPie(props.data,3)} opts={{ renderer: 'svg' }}  />
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={6}>
+                    <Grid item xs={12} sm={12} md={2}>
+
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={4}>
                         <Paper elevation={3} className={classes.paper}>
                             <ReactECharts option={orderPie(props.data,4)} opts={{ renderer: 'svg' }}  />
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={6}>
+                    <Grid item xs={12} sm={12} md={4}>
                         <Paper elevation={3} className={classes.paper}>
                             <ReactECharts option={orderPie(props.data,5)} opts={{ renderer: 'svg' }}  />
                         </Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={2}>
+
                     </Grid>
                 </Grid>
             <Dialog open={open1} onClose={handleClose1} aria-labelledby={'customized-dialog-title'} maxWidth={"xl"}>
@@ -392,10 +393,10 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                     Ficha Técnica
                 </DialogTitle>
                 <DialogContent dividers>
-                    <TableMUI1 data={props.fichaPie}/>
+                    <TableMUIPNV data={props.fichaPie}/>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClose3} color={'primary'}>
+                    <Button autoFocus onClick={handleClose1} color={'primary'}>
                         Cerrar
                     </Button>
                 </DialogActions>
@@ -405,7 +406,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                     Ficha Técnica
                 </DialogTitle>
                 <DialogContent dividers>
-                    <TableMUI3 data={props.fichaPie3}/>
+                    <TableMUIPNV data={props.fichaPie3}/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose3} color={'primary'}>

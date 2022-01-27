@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Tab, Tabs} from "@material-ui/core";
+import {Accordion, AccordionDetails, AccordionSummary, Tab, Tabs} from "@material-ui/core";
 
 import {cumplimientoPNV1} from "../json/PNV/cumplimiento21-1";
 import {cumplimientoPNV2} from "../json/PNV/cumplimiento21-2";
@@ -17,6 +17,13 @@ import TotalesCumplimiento from "./PNV/TotalesCumplimiento";
 import { Fragment } from 'react';
 import ObjetivoPNV from "./PNV/ObjetivoPNV";
 import ViviendaAdecuada from "./PNV/ViviendaAdecuada";
+import Paper from "@material-ui/core/Paper";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Typography from "@material-ui/core/Typography";
+import TableMUIViv from "./PNV/Tablas/TableMUIViv";
+import {indicadorViv1} from "../json/PNV/fichas_ind_v1";
+import Grid from "@material-ui/core/Grid";
+import IndicadoresBienestar from "./PNV/IndicadoresBienestar";
 /*import Fetch from "./Fetch";
 
 const handleApi = async(route:any) => {
@@ -77,8 +84,8 @@ export default class Home extends Component<any, any> {
                     <Tab label={"Cumplimiento/Avances"}></Tab>
                     <Tab label={"Vivienda"}/>
                 </Tabs>
-                { this.state.value == 0 ? <ObjetivoPNV />:
-                    this.state.value == 1 ?
+                { this.state.value === 0 ? <ObjetivoPNV />:
+                    this.state.value === 1 ?
                     <Fragment>
                         <TotalesCumplimiento data={totales} callBack={handleCallback} periodo={'Trimestral 2021'}
                                              seccion={'totales'} title={'Cumplimiento/Avances'}
@@ -87,7 +94,7 @@ export default class Home extends Component<any, any> {
                                              titleInforme={'Informe Trimestral'} aAxis={'trimestre'}
                                              bAxis={'total'} cAxis={'aCabo'}/>
                         {this.state.trimestre === undefined ? <></> :
-                            this.state.trimestre == 3 ?
+                            this.state.trimestre === 3 ?
                                 <PorcentajeCumplimiento data={cumplimientoPNV3} data2={cumplimientoONAVIPNV3}
                                                         fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                                         titleRow={"Porcentaje de cumplimiento según objetivo "}
@@ -99,7 +106,7 @@ export default class Home extends Component<any, any> {
                                                         titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
                                                         cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
                                                         fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
-                                : this.state.trimestre == 2 ?
+                                : this.state.trimestre === 2 ?
                                 <PorcentajeCumplimiento data={cumplimientoPNV2} data2={cumplimientoONAVIPNV2}
                                                         fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                                         titleRow={"Porcentaje de cumplimiento según objetivo "}
@@ -111,7 +118,7 @@ export default class Home extends Component<any, any> {
                                                         titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
                                                         cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
                                                         fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
-                                : this.state.trimestre == 1 ?
+                                : this.state.trimestre === 1 ?
                                     <PorcentajeCumplimiento data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
                                                             fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                                             titleRow={"Porcentaje de cumplimiento según objetivo "}
@@ -125,8 +132,9 @@ export default class Home extends Component<any, any> {
                                                             fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
                                     : <></>
                         }
+                        <IndicadoresBienestar />
                     </Fragment>
-                        :this.state.value == 2 ?
+                        :this.state.value === 2 ?
                         <ViviendaAdecuada data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
                                           fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                           titleRow={"Porcentaje de cumplimiento según objetivo "}
