@@ -416,36 +416,32 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                             <TableIcon fontSize={'large'} onClick={handleClickOpen3}/>
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={4}>
+                    <Grid item xs={12} sm={12} md={1}>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={2}>
                         <Paper elevation={3} className={classes.paper}>
                             <ReactECharts option={orderPie(props.data,1)} opts={{ renderer: 'svg' }}  />
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={4}>
+                    <Grid item xs={12} sm={12} md={2}>
                         <Paper elevation={3} className={classes.paper}>
                             <ReactECharts option={orderPie(props.data,2)} opts={{ renderer: 'svg' }}  />
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={4}>
+                    <Grid item xs={12} sm={12} md={2}>
                         <Paper elevation={3} className={classes.paper}>
                             <ReactECharts option={orderPie(props.data,3)} opts={{ renderer: 'svg' }}  />
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12} md={2}>
-
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4}>
                         <Paper elevation={3} className={classes.paper}>
                             <ReactECharts option={orderPie(props.data,4)} opts={{ renderer: 'svg' }}  />
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={4}>
+                    <Grid item xs={12} sm={12} md={2}>
                         <Paper elevation={3} className={classes.paper}>
                             <ReactECharts option={orderPie(props.data,5)} opts={{ renderer: 'svg' }}  />
                         </Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={2}>
-
                     </Grid>
                 </Grid>
             <Dialog open={open1} onClose={handleClose1} aria-labelledby={'customized-dialog-title'} maxWidth={"xl"}>

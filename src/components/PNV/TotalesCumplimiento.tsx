@@ -139,13 +139,13 @@ export default function TotalesCumplimiento(props:CumplimientoProps){
                     </Grid>
                 </Grid>
                 <Grid container spacing={2} alignItems={'center'} >
-                    <Grid item xs={12} sm={12} md={8} >
+                    <Grid item xs={12} sm={12} md={9} >
                         <Paper elevation={3} className={classes.paper}>
                             <h2>{props.titleBar}</h2>
                             <ReactECharts option={option} onEvents={onEvents} />
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={4} >
+                    <Grid item xs={12} sm={12} md={3} >
                         <Paper elevation={3} className={classes.paper}>
                             <h2>{props.titleTrimestral}</h2>
                             <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"}><img src={pnv2021} className={classes.image} /></a>
