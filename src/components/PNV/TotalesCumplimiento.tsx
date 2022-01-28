@@ -53,7 +53,6 @@ export default function TotalesCumplimiento(props:CumplimientoProps){
     const [reiniciarS, setReiniciarS] = useState(false);
     const classes = useStyles();
     const option = {
-
         xAxis: {
             data: props.data.map((d: AxisChart) => d.trimestre),
             axisLabel: {
