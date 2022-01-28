@@ -132,7 +132,6 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                         position: 'center'
                     },
                     emphasis: {
-
                         itemStyle: {
                             shadowBlur: 5,
                             shadowOffsetX: 0,
@@ -146,8 +145,8 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
         }
 
     }
-    let dataRow = props.data.map((d: AxisChart) =>
-        ({["value"]:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),["itemStyle"]:{"color": assignColor(d[props.hAxis])}}))
+    let dataRow = props.data.map((d: AxisChart,key:number) =>
+        ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),title:key+1,itemStyle:{color: assignColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
         .reverse()
     let labelDataRow = props.data.map((d: AxisChart) => "Objetivo "+d[props.hAxis]).reverse()
     let dataBar = props.data2.map((d: AxisChart) =>
@@ -228,6 +227,64 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
         ],
         color:['#dd7671','#f5ce85','#a485c2','#e3a277','#95ce9c'],
     };
+
+    const GaugeChart = {
+        tooltip: { },
+
+        series: [
+            {
+                type: 'gauge',
+                startAngle: 90,
+                endAngle: -270,
+                pointer: {
+                    show: false
+                },
+                progress: {
+                    show: true,
+                    overlap: false,
+                    roundCap: true,
+                    clip: true,
+                    itemStyle: {
+                        borderWidth: 1,
+                        borderColor: '#464646'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        width: 40
+                    }
+                },
+                splitLine: {
+                    show: false,
+                    distance: 0,
+                    length: 10
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false,
+                    distance: 50
+                },
+                data: dataRow,
+                title: {
+                    fontSize: 14
+                },
+                detail: {
+                    width: 35,
+                    height: 10,
+                    fontSize: 14,
+                    color: 'auto',
+                    borderColor: 'auto',
+                    borderRadius: 20,
+                    borderWidth: 1,
+                    formatter: '{value}%',
+                    offsetCenter: [0,'-40%']
+                },
+
+            }
+        ]
+    }
     const BarChart = {
         tooltip: {},
         yAxis: {
@@ -339,7 +396,10 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                                 <h2>{props.titleRow}</h2>
                                 <h3>{props.periodo}</h3>
                                 <TableIcon fontSize={'large'} onClick={handleClickOpen1}/>
-                                <ReactECharts option={RowChart}  />
+                                <ReactECharts option={GaugeChart}  />
+                                    {
+                                        //<ReactECharts option={RowChart} />
+                                    }
                             </Paper>
                         </Grid>
                         <Grid item xs={12} sm={12} md={7}>
