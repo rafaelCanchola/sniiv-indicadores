@@ -147,7 +147,7 @@ export default function ObjetivoPNV(){
         <div className={classes.root}>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <Paper elevation={3} className={classes.paper}>
+                    <Paper elevation={0} className={classes.paper}>
 
                         <h1>{"¿Qué es el PNV?"}</h1>
 
@@ -163,18 +163,22 @@ export default function ObjetivoPNV(){
                         </Paper>
                     </Paper>
                 </Grid>
-                <Grid item xs={9}>
-                    <Paper elevation={3} className={classes.paper}>
+                <Grid item xs={12} sm={12} md={3} >
+                    <Paper elevation={0} className={classes.paper}>
+                        <h2>{"Programa Nacional de Vivienda"}</h2>
+                        <Paper elevation={3} className={classes.paper}>
+                            <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"}><img src={pnv2021} className={classes.image} /></a>
+                        </Paper>
+                    </Paper>
+                </Grid>
+                <Grid item md={9}>
+                    <Paper elevation={0} className={classes.paper}>
                         <br/>
                         <h3>{"5 objetivos prioritarios"}</h3>
                         <h3>{"113 acciones puntuales"}</h3>
+                        <Paper elevation={3} className={classes.paper}>
                         <ReactECharts option={sankey} />
-                    </Paper>
-                </Grid>
-                <Grid item xs={12} sm={12} md={3} >
-                    <Paper elevation={3} className={classes.paper}>
-                        <h2>{"Programa Nacional de Vivienda"}</h2>
-                        <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"}><img src={pnv2021} className={classes.image} /></a>
+                        </Paper>
                     </Paper>
                 </Grid>
             </Grid>

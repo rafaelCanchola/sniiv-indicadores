@@ -15,6 +15,7 @@ import infonavit from "../../assets/images/infonavit.png";
 import insus from "../../assets/images/insus.png";
 import shf from "../../assets/images/shf.png";
 import sedatu from "../../assets/images/sedatu.png";
+import {colorBrewer} from "../colorBrewer";
 
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -74,15 +75,15 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
     const classes = useStyles();
     const assignColor = (obj:number) =>{
         if(obj === 1){
-            return '#dd7671';
+            return colorBrewer.Objetivos[0];
         }else if(obj === 2){
-            return '#f5ce85';
+            return colorBrewer.Objetivos[1];
         }else if(obj === 3){
-            return '#a485c2';
+            return colorBrewer.Objetivos[2];
         }else if(obj === 4){
-            return '#e3a277';
+            return colorBrewer.Objetivos[3];
         }else if(obj === 5){
-            return '#95ce9c';
+            return colorBrewer.Objetivos[4];
         }
     }
     const assignStateColor = (obj:string) => {
@@ -122,11 +123,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                     type: 'pie',
                     radius: ['30%', '50%'],
                     avoidLabelOverlap: false,
-                    itemStyle: {
-                        borderRadius: 10,
-                        borderColor: '#fff',
-                        borderWidth: 2
-                    },
+
                     label: {
                         show: false,
                         position: 'center'
@@ -141,7 +138,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                     data: mapDatapie.slice(0).sort(function(a,b) {return b.value - a.value;})
                 },
             ],
-            color:['#dd7671','#f5ce85','#a485c2','#e3a277','#95ce9c'],
+            color:colorBrewer.Objetivos,
         }
 
     }
@@ -225,7 +222,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                 data: dataRow
             }
         ],
-        color:['#dd7671','#f5ce85','#a485c2','#e3a277','#95ce9c'],
+        color:colorBrewer.Objetivos,
     };
 
     const GaugeChart = {
@@ -385,37 +382,44 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                 data: dataBar
             },
         ],
-        color:['#dd7671','#f5ce85','#a485c2','#e3a277','#95ce9c'],
+        color:colorBrewer.Objetivos,
     };
 
     return(
         <div className={classes.root}>
                 <Grid container spacing={2} alignItems={'center'} >
                         <Grid item xs={12} sm={12} md={5}>
-                            <Paper elevation={3} className={classes.paper}>
+                            <Paper elevation={0} className={classes.paper}>
                                 <h2>{props.titleRow}</h2>
                                 <h3>{props.periodo}</h3>
                                 <TableIcon fontSize={'large'} onClick={handleClickOpen1}/>
+                                <Paper elevation={3} className={classes.paper}>
                                 <ReactECharts option={GaugeChart}  />
                                     {
                                         //<ReactECharts option={RowChart} />
                                     }
+                                </Paper>
                             </Paper>
                         </Grid>
                         <Grid item xs={12} sm={12} md={7}>
-                            <Paper elevation={3} className={classes.paper}>
+                            <Paper elevation={0} className={classes.paper}>
                                 <h2>{props.titleBar}</h2>
                                 <h3>{props.periodo}</h3>
-                                <ReactECharts option={BarChart} opts={{ renderer: 'svg' }}  />
+                                <br/>
+                                <br/>
+                                <Paper elevation={3} className={classes.paper}>
+                                    <ReactECharts option={BarChart} opts={{ renderer: 'svg' }}  />
+                                </Paper>
                             </Paper>
                         </Grid>
                     <Grid item xs={12} sm={12} md={12}>
-                        <Paper elevation={3} className={classes.paper}>
+                        <Paper elevation={0} className={classes.paper}>
                             <h2>{props.titlePie}</h2>
                             <h3>{props.periodo}</h3>
                             <TableIcon fontSize={'large'} onClick={handleClickOpen3}/>
                         </Paper>
                     </Grid>
+
                     <Grid item xs={12} sm={12} md={1}>
                     </Grid>
                     <Grid item xs={12} sm={12} md={2}>

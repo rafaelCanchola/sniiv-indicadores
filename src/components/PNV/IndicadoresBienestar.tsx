@@ -202,13 +202,13 @@ export default function IndicadoresBienestar(props:CumplimientoProps){
         <div className={classes.root}>
             <Grid container spacing={2} alignItems={'center'} >
                 <Grid item xs={12} sm={12} md={12}>
-                    <Paper elevation={3} className={classes.paper}>
+                    <Paper elevation={0} className={classes.paper}>
                         <h1>{"Indicadores del bienestar"}</h1>
                         <BarCharts data={bienestarCharts} title={bienestarTitles}/>
                     </Paper>
                 </Grid>
             <Grid item xs={12} sm={12} md={12}>
-                <Paper elevation={3} className={classes.paper}>
+                <Paper elevation={0} className={classes.paper}>
                     {
                         bienestar.map((param:any,key:number) =>
                             <Accordion key={param.titulo+key} TransitionProps={{ unmountOnExit: true }}>
