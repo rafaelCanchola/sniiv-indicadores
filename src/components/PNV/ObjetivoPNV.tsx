@@ -171,7 +171,7 @@ export default function ObjetivoPNV(){
                         </Paper>
                     </Paper>
                 </Grid>
-                <Grid item md={9}>
+                <Grid item xs={12} sm={12} md={9}>
                     <Paper elevation={0} className={classes.paper}>
                         <br/>
                         <h3>{"5 objetivos prioritarios"}</h3>
