@@ -20,6 +20,7 @@ interface CardProps{
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
+
     },
     media: {
         height: 0,
@@ -38,22 +39,19 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: red[500],
     },
+    text:{
+        fontSize:10,
+        color:theme.palette.text.secondary,
+    }
 }));
 
 export default function MediaCard(props:CardProps) {
     const classes = useStyles();
     return (
         <Card >
-            <CardHeader
-                avatar={
-                    <Avatar aria-label="avatar" className={classes.avatar}>
-                        Obj
-                    </Avatar>
-                }
-                title={props.title}
-            />
+            <CardHeader avatar={<Avatar aria-label="avatar" className={classes.avatar}>Obj</Avatar>} title={props.title} className={classes.text}/>
             <CardContent>
-                <Typography variant={"body2"}>
+                <Typography className={classes.text} variant={"body2"}>
                     {props.content}
                 </Typography>
 
