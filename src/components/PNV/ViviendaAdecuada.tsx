@@ -36,7 +36,13 @@ import Typography from "@material-ui/core/Typography";
 
 
 import vivienda from "../../assets/images/house-tr.png";
-import pnv2021 from "../../assets/images/pnv2021.png";
+import seguridad from "../../assets/images/seguridad-tr.png";
+import accesibilidad from "../../assets/images/accesibilidad-tr.png";
+import servicios from "../../assets/images/servicios-tr.png";
+import ubicacion from "../../assets/images/ubicacion-tr.png";
+import cultura from "../../assets/images/cultura-tr.png";
+import habitabilidad from "../../assets/images/habitabilidad-tr.png";
+import asequibilidad from "../../assets/images/asequibilidad-tr.png";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -51,7 +57,7 @@ const useStyles = makeStyles((theme:Theme) =>
 
         },
         image:{
-            width:"80%",
+            width:"100%",
             height: "auto"
         }
     })
@@ -121,49 +127,49 @@ export default function ViviendaAdecuada(props:CumplimientoProps){
         {
             num: 1,
             title: "SEGURIDAD EN LA TENENCIA",
-            image:"",
+            image:seguridad,
             more:"",
             size:3,
         },
         {
             num: 2,
             title: "DISPONIBILIDAD DE SERVICIOS",
-            image:"",
+            image:servicios,
             more:"",
             size:3,
         },
         {
             num: 3,
             title: "ASEQUIBILIDAD",
-            image:"",
+            image:asequibilidad,
             more:"",
             size:3,
         },
         {
             num: 4,
             title: "HABITABILIDAD",
-            image:"",
+            image:habitabilidad,
             more:"",
             size:3,
         },
         {
             num: 5,
             title: "ACCESIBILIDAD",
-            image:"",
+            image:accesibilidad,
             more:"",
             size:4,
         },
         {
             num: 6,
             title: "UBICACIÓN",
-            image:"",
+            image:ubicacion,
             more:"",
             size:4,
         },
         {
             num: 7,
             title: "ADECUACIÓN CULTURAL",
-            image:"",
+            image:cultura,
             more:"",
             size:4,
         },
@@ -180,7 +186,7 @@ export default function ViviendaAdecuada(props:CumplimientoProps){
                     </Grid>
                     <Grid item xs={12} sm={12} md={3}>
                         {elementos.slice(0,4).map(card =>
-                            <Paper elevation={3} className={classes.paper}>
+                            <Paper elevation={0} className={classes.paper}>
                                 <CardVivienda obj={card.num} title={card.title} more={card.more} image={card.image}/>
                             </Paper>
                         )}
@@ -192,7 +198,7 @@ export default function ViviendaAdecuada(props:CumplimientoProps){
                     </Grid>
                     <Grid item xs={12} sm={12} md={3}>
                         {elementos.slice(4).map(card =>
-                            <Paper elevation={3} className={classes.paper}>
+                            <Paper elevation={0} className={classes.paper}>
                                 <CardVivienda obj={card.num} title={card.title} more={card.more} image={card.image}/>
                             </Paper>
                         )}

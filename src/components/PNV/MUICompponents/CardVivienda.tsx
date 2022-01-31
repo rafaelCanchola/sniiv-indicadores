@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         flex: '1 0 auto',
     },
     cover: {
-        width: 151,
+        width: "40%",
     },
     controls: {
         display: 'flex',
@@ -64,12 +64,12 @@ export default function CardVivienda(props:CardProps) {
 
                 </div>
             </CardActionArea>
-            {//<CardMedia
-                //      className={classes.cover}
-                //    image={props.image}
-                //   title={props.title}
-                ///>
-            }
+            <CardMedia
+                     className={classes.cover}
+                    image={props.image}
+                   title={props.title}
+                />
+
         </Card>
     );
 }
