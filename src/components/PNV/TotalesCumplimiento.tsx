@@ -8,6 +8,7 @@ import TuneIcon from '@material-ui/icons/Tune';
 import ReactECharts from "echarts-for-react";
 
 import pnv2021 from "../../assets/images/pnv2021.png";
+import trimestral from "../../assets/images/trimestral.png";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -146,7 +147,7 @@ export default function TotalesCumplimiento(props:CumplimientoProps){
                         <Paper elevation={0} className={classes.paper}>
                             <h2>{props.titleTrimestral}</h2>
                             <Paper elevation={3} className={classes.paper}>
-                                <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"}><img src={pnv2021} className={classes.image} /></a>
+                                <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"}><img src={trimestral} className={classes.image} /></a>
                             </Paper>
                         </Paper>
                     </Grid>

@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme:Theme) =>
         image:{
             width:"80%",
             height: "auto"
+        },
+        gauge:{
         }
     })
 );
@@ -227,7 +229,6 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
 
     const GaugeChart = {
         tooltip: { },
-
         series: [
             {
                 type: 'gauge',
@@ -278,7 +279,6 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                     formatter: '{value}%',
                     offsetCenter: [0,'-40%']
                 },
-
             }
         ]
     }
@@ -394,7 +394,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                                 <h3>{props.periodo}</h3>
                                 <TableIcon fontSize={'large'} onClick={handleClickOpen1}/>
                                 <Paper elevation={3} className={classes.paper}>
-                                <ReactECharts option={GaugeChart}  />
+                                <ReactECharts option={GaugeChart} className={classes.gauge} />
                                     {
                                         //<ReactECharts option={RowChart} />
                                     }

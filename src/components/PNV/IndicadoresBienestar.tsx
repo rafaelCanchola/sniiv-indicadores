@@ -183,33 +183,19 @@ export default function IndicadoresBienestar(props:CumplimientoProps){
             ]
         },
     ];
-    const bienestarTitles = bienestar.map((param:any) => param.titulo)
-    const bienestarCharts = bienestar.map((param:any) =>
-        ({
-            yAxis: {
-                data: Object.keys(param.data["SERIE HISTÓRICA DE LA META PARA EL BIENESTAR O PARÁMETRO"]).map((arr:any) => arr),
-                axisLabel: {inside: false, color: '#999'}, axisTick: {show: true}, axisLine: {show: false}, z: 10
-            },
-            xAxis:{axisLine: {show: false}, axisTick: {show: false}, axisLabel: {color: '#999', formatter: (param.data["Unidad de medida"].includes("Porcentaje"))?"{value} %": "{value}"}},
-            visualMap: {orient: 'horizontal', left: 'center', min: (param.data["Unidad de medida"].includes("Porcentaje"))?8:(param.data["Unidad de medida"].includes("Millones"))?300000:1000, max: (param.data["Unidad de medida"].includes("Porcentaje"))?50:(param.data["Unidad de medida"].includes("Millones"))?1500000:10000, dimension: 0, inRange: {color: (param.data["Tendencia esperada"].includes("Descendente"))?['#65B581','#FFCE34','#FD665F']:['#FD665F','#FFCE34','#65B581']}},
-            series: [
-                {type: 'bar', showBackground: true, label:{show:true, position:"right", type:"value", formatter: (data:any) => (param.data["Unidad de medida"].includes("Porcentaje"))?parseInt(data.value) +" %":parseInt(data.value)/1000},
-                    emphasis: {itemStyle: {shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0, 0, 0, 0.5)'}},
-                    data: Object.keys(param.data["SERIE HISTÓRICA DE LA META PARA EL BIENESTAR O PARÁMETRO"]).map((arr:any) => param.data["SERIE HISTÓRICA DE LA META PARA EL BIENESTAR O PARÁMETRO"][arr])
-                }]
-            }));
+
     return(
         <div className={classes.root}>
             <Grid container spacing={2} alignItems={'center'} >
                 <Grid item xs={12} sm={12} md={12}>
                     <Paper elevation={0} className={classes.paper}>
                         <h1>{"Indicadores del bienestar"}</h1>
-                        <BarCharts data={bienestarCharts} title={bienestarTitles}/>
+                        <BarCharts tableData={bienestar}/>
                     </Paper>
                 </Grid>
             <Grid item xs={12} sm={12} md={12}>
                 <Paper elevation={0} className={classes.paper}>
-                    {
+                    {/*
                         bienestar.map((param:any,key:number) =>
                             <Accordion key={param.titulo+key} TransitionProps={{ unmountOnExit: true }}>
                                 <AccordionSummary
@@ -246,7 +232,7 @@ export default function IndicadoresBienestar(props:CumplimientoProps){
                                 </AccordionDetails>
                             </Accordion>
 
-                        )
+                        )*/
                     }
 
                 </Paper>

@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme:Theme) =>
 );
 
 function TableMUIViv(props: TableProps) {
-
     const dataKeys = Object.keys(props.data);
     const childKeys = [dataKeys[dataKeys.length-3],dataKeys[dataKeys.length-2],dataKeys[dataKeys.length-1]];
     const variablesMap = props.data[childKeys[0]]["variables"];
