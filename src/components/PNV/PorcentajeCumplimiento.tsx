@@ -90,13 +90,13 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
     }
     const assignStateColor = (obj:string) => {
         if (obj === props.cAxis) {
-            return '#ffbf00';
+            return colorBrewer.StateColor[0];
         } else if (obj === props.eAxis) {
-            return '#a7a7a7';
+            return colorBrewer.StateColor[1];
         } else if (obj === props.bAxis) {
-            return '#09a94e';
+            return colorBrewer.StateColor[2];
         } else if (obj === props.dAxis) {
-            return '#ff0000';
+            return colorBrewer.StateColor[3];
         }
     }
     const onaIcons = {

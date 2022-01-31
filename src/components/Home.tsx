@@ -29,16 +29,7 @@ import IndicadoresBienestar from "./PNV/IndicadoresBienestar";
 const handleApi = async(route:any) => {
     return await Fetch(route);
 }
-const dashboardAPI = 'api/DashboardAPI/'
-const subsidiosRoute = dashboardAPI + 'getKPIsCONAVI'
-const financiamientosRoute = dashboardAPI + 'getKPIsFinanciamiento'
-const pcuRoute = dashboardAPI + 'getKPIsRegistro'
-const inventarioRoute = dashboardAPI + 'getKPIsInventario'
-
-const pruebaSubsidio = 'api/SubsidiosConavi?anio=2021'
-const pruebaFin = 'api/Financiamientos?anio=2021'
-const pruebaPCU = 'api/RegistroVivienda?anio=2021'
-const pruebaInventa = 'api/InventarioVivienda?anio=2021&mes=06'*/
+*/
 
 export default class Home extends Component<any, any> {
     constructor(props: any) {

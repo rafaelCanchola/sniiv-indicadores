@@ -35,6 +35,9 @@ import TotalesCumplimiento from "./TotalesCumplimiento";
 import Typography from "@material-ui/core/Typography";
 
 
+import vivienda from "../../assets/images/house-tr.png";
+import pnv2021 from "../../assets/images/pnv2021.png";
+
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
         root:{
@@ -170,19 +173,31 @@ export default function ViviendaAdecuada(props:CumplimientoProps){
         <div className={classes.root}>
                 <Grid container spacing={2} alignItems={'center'} >
                     <Grid item xs={12} sm={12} md={12}>
-                        <Paper elevation={3} className={classes.paper}>
+                        <Paper elevation={0} className={classes.paper}>
                             <h1>{"Vivienda Adecuada"}</h1>
                             <h5>{"Indicadores complementarios"}</h5>
                         </Paper>
                     </Grid>
-                    {elementos.map(card =>
-                        //@ts-ignore
-                        <Grid item xs={12} sm={12} md={card.size} key={card.num} >
+                    <Grid item xs={12} sm={12} md={3}>
+                        {elementos.slice(0,4).map(card =>
                             <Paper elevation={3} className={classes.paper}>
                                 <CardVivienda obj={card.num} title={card.title} more={card.more} image={card.image}/>
                             </Paper>
-                        </Grid>)
-                    }
+                        )}
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6}>
+                        <Paper elevation={3} className={classes.paper}>
+                            <img src={vivienda} className={classes.image} />
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={3}>
+                        {elementos.slice(4).map(card =>
+                            <Paper elevation={3} className={classes.paper}>
+                                <CardVivienda obj={card.num} title={card.title} more={card.more} image={card.image}/>
+                            </Paper>
+                        )}
+                    </Grid>
+
                 </Grid>
 
             <Grid container spacing={2} alignItems={'center'} >
