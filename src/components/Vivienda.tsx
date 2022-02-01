@@ -48,6 +48,7 @@ export default class Vivienda extends Component<any, any> {
                                      titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
                                      cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
                                      fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
+                   <br/><br/><br/>
                     </Fragment>
         )
     }

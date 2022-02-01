@@ -104,6 +104,7 @@ export default class Avance extends Component<any, any> {
                                     : <></>
                         }
                         <IndicadoresBienestar />
+                   <br/><br/><br/>
                     </Fragment>
         )
     }

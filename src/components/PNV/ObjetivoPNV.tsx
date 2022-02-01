@@ -194,6 +194,7 @@ export default function ObjetivoPNV(){
                     </Grid>
                 )}
             </Grid>
+            <br/><br/><br/>
         </div>
     )
 }
