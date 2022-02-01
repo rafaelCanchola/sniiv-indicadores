@@ -1,23 +1,14 @@
 import React, {Component} from 'react';
-import {Tab, Tabs} from "@material-ui/core";
 
 import {cumplimientoPNV1} from "../json/PNV/cumplimiento21-1";
-import {cumplimientoPNV2} from "../json/PNV/cumplimiento21-2";
-import {cumplimientoPNV3} from "../json/PNV/cumplimiento21-3";
 import {cumplimientoONAVIPNV1} from "../json/PNV/cumplimientoONAVI21-1";
-import {cumplimientoONAVIPNV2} from "../json/PNV/cumplimientoONAVI21-2";
-import {cumplimientoONAVIPNV3} from "../json/PNV/cumplimientoONAVI21-3";
 import {totales} from "../json/PNV/totalCumplimiento";
 import {fichaPie} from "../json/PNV/fichas_ind_pnv1";
 import {fichaPie3} from "../json/PNV/fichas_ind_pnv3";
 
 
-import PorcentajeCumplimiento from "./PNV/PorcentajeCumplimiento";
-import TotalesCumplimiento from "./PNV/TotalesCumplimiento";
 import { Fragment } from 'react';
-import ObjetivoPNV from "./PNV/ObjetivoPNV";
 import ViviendaAdecuada from "./PNV/ViviendaAdecuada";
-import IndicadoresBienestar from "./PNV/IndicadoresBienestar";
 /*import Fetch from "./Fetch";
 
 const handleApi = async(route:any) => {
@@ -29,7 +20,6 @@ export default class Vivienda extends Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            trimestre: 3,
 
         }
     }
@@ -45,10 +35,6 @@ export default class Vivienda extends Component<any, any> {
     }
 
     render() {
-        const handleCallback = (childData: any) => {
-            this.setState({trimestre: childData});
-        }
-
         return (
                <Fragment>
                    <ViviendaAdecuada data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
