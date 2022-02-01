@@ -25,20 +25,12 @@ const handleApi = async(route:any) => {
 }
 */
 
-export default class Home extends Component<any, any> {
+export default class Avance extends Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            value: 0,
             trimestre: 3,
-            subsidios: [],
-            financiamientos: [],
-            controlSub: false,
-            controlFin: false,
-            pcu: [],
-            inventario: [],
-            controlPcu: false,
-            controlInv: false
+
         }
     }
 
@@ -53,25 +45,12 @@ export default class Home extends Component<any, any> {
     }
 
     render() {
-        const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-            this.setState({value: newValue})
-        }
         const handleCallback = (childData: any) => {
             this.setState({trimestre: childData});
-            console.log(this.state.trimestre)
         }
 
         return (
-            <div>
-                <Tabs value={this.state.value} onChange={handleChange} indicatorColor={"primary"} textColor={"primary"}
-                      centered>
-                    <Tab label={"Objetivo"}/>
-                    <Tab label={"Cumplimiento/Avances"}></Tab>
-                    <Tab label={"Vivienda"}/>
-                </Tabs>
-                { parseInt(this.state.value) === 0 ? <ObjetivoPNV />:
-                    parseInt(this.state.value) === 1 ?
-                    <Fragment>
+               <Fragment>
                         <TotalesCumplimiento data={totales} callBack={handleCallback} periodo={'Trimestral 2021'}
                                              seccion={'totales'} title={'Cumplimiento/Avances'}
                                              titleTrimestral={"Informe Trimestral"} titleCifras={'acciones'}
@@ -126,24 +105,6 @@ export default class Home extends Component<any, any> {
                         }
                         <IndicadoresBienestar />
                     </Fragment>
-                        :parseInt(this.state.value) === 2 ?
-                        <ViviendaAdecuada data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
-                                          fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
-                                          titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                          periodo={this.state.trimestre + " Trimestre"}
-                                          titleBar={"Porcentaje de contribución según ONAVI"}
-                                          titleCifras={"acciones"}
-                                          titlePie={"Estatus de las acciones según objetivo prioritario"}
-                                          titlePie2={""} titleRow1={""}
-                                          titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
-                                          cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
-                                          fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
-                        : <></>
-                }
-
-
-                <br/><br/><br/>
-            </div>
         )
     }
 }
