@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import * as dc from "dc";
 import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import TableIcon from '@material-ui/icons/TableChart';
+import TableIcon from '@material-ui/icons/Toc';
 import TuneIcon from '@material-ui/icons/Tune';
 import ReactECharts from "echarts-for-react";
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
@@ -70,6 +70,12 @@ interface AxisChart{
 }
 
 export default function PorcentajeCumplimiento(props:CumplimientoProps){
+    const [width, setWidth] = useState<number>(window.innerWidth);
+    function handleWindowSizeChange() {setWidth(window.innerWidth);}
+    useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
+
+    const isMobile = width <= 768;
+
     const [modo,setModo] = useState(1);
     const [reiniciarS, setReiniciarS] = useState(false);
     const [open1, setOpen1] = useState(false);
@@ -448,7 +454,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                         </Paper>
                     </Grid>
                 </Grid>
-            <Dialog open={open1} onClose={handleClose1} aria-labelledby={'customized-dialog-title'} maxWidth={"xl"}>
+            <Dialog fullScreen={isMobile} open={open1} onClose={handleClose1} aria-labelledby={'customized-dialog-title'} maxWidth={"md"}>
                 <DialogTitle>
                     Ficha Técnica
                 </DialogTitle>
@@ -461,7 +467,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                     </Button>
                 </DialogActions>
             </Dialog>
-            <Dialog open={open3} onClose={handleClose3} aria-labelledby={'customized-dialog-title'} maxWidth={"xl"}>
+            <Dialog fullScreen={isMobile} open={open3} onClose={handleClose3} aria-labelledby={'customized-dialog-title'} maxWidth={"md"}>
                 <DialogTitle>
                     Ficha Técnica
                 </DialogTitle>

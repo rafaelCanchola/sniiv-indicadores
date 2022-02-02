@@ -1,10 +1,11 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import ReactECharts from "echarts-for-react";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import TableIcon from "@material-ui/icons/InsertChart";
+import ChartIcon from "@material-ui/icons/InsertChart";
+import TableIcon from "@material-ui/icons/Toc";
 import {
     Accordion,
     AccordionDetails,
@@ -102,31 +103,57 @@ const useStyles = makeStyles((theme:Theme) =>
     })
 );
 export default function BarCharts(props:BarProps){
-    const classes = useStyles();
-    const [open1, setOpen1] = useState(false);
-    const [open2, setOpen2] = useState(false);
-    const [open3, setOpen3] = useState(false);
-    const [open4, setOpen4] = useState(false);
-    const [open5, setOpen5] = useState(false);
-    const handleClickOpen1 = () => {setOpen1(!open1);}
-    const handleClickOpen2 = () => {setOpen2(!open2);}
-    const handleClickOpen3 = () => {setOpen3(!open3);}
-    const handleClickOpen4 = () => {setOpen4(!open4);}
-    const handleClickOpen5 = () => {setOpen5(!open5);}
+    const [width, setWidth] = useState<number>(window.innerWidth);
+    function handleWindowSizeChange() {setWidth(window.innerWidth);}
+    useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
 
-    const clicks = [
-        <TableIcon fontSize={'large'} onClick={handleClickOpen1}/>,
-        <TableIcon fontSize={'large'} onClick={handleClickOpen2}/>,
-        <TableIcon fontSize={'large'} onClick={handleClickOpen3}/>,
-        <TableIcon fontSize={'large'} onClick={handleClickOpen4}/>,
-        <TableIcon fontSize={'large'} onClick={handleClickOpen5}/>,
+    const isMobile = width <= 768;
+
+
+    const classes = useStyles();
+    const [openChart1, setOpenChart1] = useState(false);
+    const [openChart2, setOpenChart2] = useState(false);
+    const [openChart3, setOpenChart3] = useState(false);
+    const [openChart4, setOpenChart4] = useState(false);
+    const [openChart5, setOpenChart5] = useState(false);
+    const [openTable1, setOpenTable1] = useState(false);
+    const [openTable2, setOpenTable2] = useState(false);
+    const [openTable3, setOpenTable3] = useState(false);
+    const [openTable4, setOpenTable4] = useState(false);
+    const [openTable5, setOpenTable5] = useState(false);
+    const handleClickOpenChart1 = () => {setOpenChart1(!openChart1);}
+    const handleClickOpenChart2 = () => {setOpenChart2(!openChart2);}
+    const handleClickOpenChart3 = () => {setOpenChart3(!openChart3);}
+    const handleClickOpenChart4 = () => {setOpenChart4(!openChart4);}
+    const handleClickOpenChart5 = () => {setOpenChart5(!openChart5);}
+    const handleClickOpenTable1 = () => {setOpenTable1(!openTable1);}
+    const handleClickOpenTable2 = () => {setOpenTable2(!openTable2);}
+    const handleClickOpenTable3 = () => {setOpenTable3(!openTable3);}
+    const handleClickOpenTable4 = () => {setOpenTable4(!openTable4);}
+    const handleClickOpenTable5 = () => {setOpenTable5(!openTable5);}
+
+    const clickChart = [
+        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart1}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable1}/></Fragment>,
+        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart2}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable2}/></Fragment>,
+        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart3}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable3}/></Fragment>,
+        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart4}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable4}/></Fragment>,
+        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart5}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable5}/></Fragment>,
     ];
-    const clickMap = [
-        {state:open1,func:handleClickOpen1},
-        {state:open2,func:handleClickOpen2},
-        {state:open3,func:handleClickOpen3},
-        {state:open4,func:handleClickOpen4},
-        {state:open5,func:handleClickOpen5},
+
+    const clickChartMap = [
+        {state:openChart1,func:handleClickOpenChart1},
+        {state:openChart2,func:handleClickOpenChart2},
+        {state:openChart3,func:handleClickOpenChart3},
+        {state:openChart4,func:handleClickOpenChart4},
+        {state:openChart5,func:handleClickOpenChart5},
+    ]
+
+    const clickTableMap = [
+        {state:openTable1,func:handleClickOpenTable1},
+        {state:openTable2,func:handleClickOpenTable2},
+        {state:openTable3,func:handleClickOpenTable3},
+        {state:openTable4,func:handleClickOpenTable4},
+        {state:openTable5,func:handleClickOpenTable5},
     ]
     const unidadMedida = "Unidad de medida";
     const tendenciaEsp = "Tendencia esperada";
@@ -169,7 +196,7 @@ export default function BarCharts(props:BarProps){
                                 <h3>{bienestarTitles[key]}</h3>
                                 <h4>{bienestarUnidades[key]}</h4>
                                 <h5>{"Tendencia "+bienestarTendencia[key]}</h5>
-                                {clicks[key]}
+                                {clickChart[key]}
                                 <ReactECharts option={data} />
                             </Paper>
                         </Grid>
@@ -178,58 +205,65 @@ export default function BarCharts(props:BarProps){
             </Grid>
             {
                 props.tableData.map((param:any,key:number) =>
-                        <Dialog open={clickMap[key].state} onClose={clickMap[key].func} aria-labelledby={'customized-dialog-title'} maxWidth={"xl"} key={param.titulo + key}>
+                        <Dialog fullScreen={isMobile} open={clickTableMap[key].state} onClose={clickTableMap[key].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} key={param.titulo + key}>
                             <DialogTitle>
-                                {"Parametros y Fíchas Técnicas de la Meta del Objetivo "+(key+1)}
+                                {"Fícha Técnica de la Meta del Objetivo "+(key+1)}
                             </DialogTitle>
                             <DialogContent dividers>
-                                <Grid container spacing={2} alignItems={'center'} >
-                                {
-                                    param.parametros.map((param1:any,key1:number) => <Grid item xs={12} sm={12} md={6}><Paper elevation={3} className={classes.paper}><h3>{param1.data["Nombre"]}</h3><h4>{param1.data[unidadMedida]}</h4><h5>{"Tendencia "+param1.data[tendenciaEsp]}</h5><ReactECharts option={chartTemplate(param1)}/></Paper></Grid>)
-                                }
-
+                                <Grid container spacing={2}  >
+                                    <Grid item xs={12} sm={12} md={12} key={param.titulo+key}>
+                                        <TableMUIPNV data={param.data}/>
+                                    </Grid>
                                 </Grid>
-                                <Accordion key={param.titulo+key} TransitionProps={{ unmountOnExit: true }}>
-                                    <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography className={classes.typo}>{"Fichas Técnicas del Objetivo "+(key+1)} </Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <TableMUIPNV data={param.data}/>
-                                </AccordionDetails>
-                                <AccordionDetails>
-                                    {
-                                        param.parametros.map((param1:any,key1:number) =>
-                                            <div className={classes.column} key={param1.titulo+key1}>
-                                                <Accordion  TransitionProps={{ unmountOnExit: true }}>
-                                                    <AccordionSummary expandIcon={<ExpandMoreIcon />}
-                                                                      aria-controls="panel1a-content"
-                                                                      id="panel1a-header"
-                                                    >
-                                                        <Typography className={classes.typo}>{param1.titulo}</Typography>
-                                                    </AccordionSummary>
-                                                    <AccordionDetails className={classes.details}>
-                                                        <Typography className={classes.typo}>
-                                                            <TableMUIViv data={param1.data}/>
-                                                        </Typography>
-                                                    </AccordionDetails>
-                                                </Accordion>
-                                            </div>
-
-                                        )
-                                    }
-                                </AccordionDetails>
-                                </Accordion>
                             </DialogContent>
                             <DialogActions>
-                                <Button autoFocus onClick={clickMap[key].func} color={'primary'}>
+                                <Button autoFocus onClick={clickTableMap[key].func} color={'primary'}>
                                     Cerrar
                                 </Button>
                             </DialogActions>
                         </Dialog>
+                )
+            }
+
+            {
+                props.tableData.map((param:any,key:number) =>
+                    <Dialog fullScreen={isMobile} open={clickChartMap[key].state} onClose={clickChartMap[key].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} key={param.titulo + key}>
+                        <DialogTitle>
+                            {"Parametros y Fíchas Técnicas de la Meta del Objetivo "+(key+1)}
+                        </DialogTitle>
+                        <DialogContent dividers>
+                            <Grid container spacing={2} alignItems={'center'} >
+                                {
+                                    param.parametros.map((param1:any,key1:number) => <Grid item xs={12} sm={12} md={6} key={key1+param1.data["Nombre"]}><Paper elevation={3} className={classes.paper}><h3>{param1.data["Nombre"]}</h3><h4>{param1.data[unidadMedida]}</h4><h5>{"Tendencia "+param1.data[tendenciaEsp]}</h5><ReactECharts option={chartTemplate(param1)}/></Paper></Grid>)
+                                }
+                            </Grid>
+                            <Grid container spacing={2}  >
+                                {
+                                    param.parametros.map((param1:any,key1:number) =>
+                                        <Grid item xs={12} sm={12} md={6} key={param1.titulo+key1}>
+                                            <Accordion key={param.titulo+key} TransitionProps={{ unmountOnExit: true }}>
+                                                <AccordionSummary
+                                                    expandIcon={<ExpandMoreIcon />}
+                                                    aria-controls="panel1a-content"
+                                                    id="panel1a-header"
+                                                >
+                                                    <Typography className={classes.typo}>{param1.titulo} </Typography>
+                                                </AccordionSummary>
+                                                <AccordionDetails>
+                                                    <TableMUIViv data={param1.data}/>
+                                                </AccordionDetails>
+                                            </Accordion>
+                                        </Grid>
+                                    )
+                                }
+                            </Grid>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button autoFocus onClick={clickChartMap[key].func} color={'primary'}>
+                                Cerrar
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                 )
             }
             {/*<Dialog open={open1} onClose={handleClickOpen1} aria-labelledby={'customized-dialog-title'} maxWidth={"xl"}>

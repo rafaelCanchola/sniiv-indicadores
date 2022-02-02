@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import {BrowserRouter} from "react-router-dom";
 import {BottomNavigation, BottomNavigationAction, AppBar, alpha} from "@material-ui/core";
 import AssIcon from '@material-ui/icons/AssignmentOutlined'
-import HomeIcon from '@material-ui/icons/HomeOutlined'
+import HomeIcon from '@material-ui/icons/HouseOutlined'
 import AnalyticsIcon from '@material-ui/icons/MultilineChartOutlined'
 import ShowChartIcon from '@material-ui/icons/ShowChart'
 import BarChartIcon from '@material-ui/icons/BarChart'

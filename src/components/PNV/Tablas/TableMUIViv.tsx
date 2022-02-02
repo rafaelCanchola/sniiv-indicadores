@@ -17,19 +17,19 @@ const useStyles = makeStyles((theme:Theme) =>
             backgroundColor: '#bd955c',
             color: theme.palette.common.white,
             fontWeight: "bold",
-            fontSize: 11,
-            padding:5,
+            fontSize: 8,
+            padding:3,
         },
         colHead:{
             backgroundColor: '#dfc9a3',
             color: theme.palette.common.white,
             fontWeight: "bold",
-            fontSize: 11,
-            padding:4,
+            fontSize: 8,
+            padding:3,
         },
         body:{
-            fontSize: 11,
-            padding:4,
+            fontSize: 8,
+            padding:3,
         },
         table:{
         }
@@ -49,7 +49,7 @@ function TableMUIViv(props: TableProps) {
     const classes = useStyles();
     return (
         <TableContainer component={Paper}>
-                <Table size={"medium"} className={classes.table} >
+                <Table className={classes.table} >
                     <TableBody >
                         <TableRow ><TableCell className={classes.head} align={"center"} colSpan={10}>{props.data[dataKeys[0]]}</TableCell></TableRow>
                         <TableRow>
