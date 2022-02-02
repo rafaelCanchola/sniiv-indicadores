@@ -290,6 +290,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
     }
     const BarChart = {
         tooltip: {},
+
         yAxis: {
             axisLabel: {
                 color: '#999',
@@ -364,8 +365,8 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
             data: labelDataBar,
         },
         grid:{
-            left:'7%',
-            right:'7%',
+            left:'6%',
+            right:'5%',
             top:'5%'
         },
         series: [
@@ -394,7 +395,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
     return(
         <div className={classes.root}>
                 <Grid container spacing={2} alignItems={'center'} >
-                        <Grid item xs={12} sm={12} md={5}>
+                        <Grid item xs={12} sm={12} md={4}>
                             <Paper elevation={0} className={classes.paper}>
                                 <h2>{props.titleRow}</h2>
                                 <h3>{props.periodo}</h3>
@@ -407,7 +408,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
                                 </Paper>
                             </Paper>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={7}>
+                        <Grid item xs={12} sm={12} md={8}>
                             <Paper elevation={0} className={classes.paper}>
                                 <h2>{props.titleBar}</h2>
                                 <h3>{props.periodo}</h3>
