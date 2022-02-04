@@ -43,10 +43,13 @@ interface DualBarProps{
 
 export default function DualBarChart(props:DualBarProps){
     const classes = useStyles();
-    console.log(props.label)
-    console.log(props.data)
     const barChart = {
-        tooltip:{},
+        tooltip:{
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            },
+        },
             xAxis: {
                 data: props.label,
                 axisLabel: {
@@ -71,6 +74,7 @@ export default function DualBarChart(props:DualBarProps){
                     show: false
                 },
                 axisLabel: {
+                    show:false,
                     color: '#999',
                     formatter: "{value} "
                 }

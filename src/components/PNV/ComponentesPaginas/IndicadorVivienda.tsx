@@ -9,6 +9,8 @@ import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import TableMUIViv from "../Tablas/TableMUIViv";
 import ReactECharts from "echarts-for-react";
 import DualBarChart from "../Graficas/eCharts/DualBarChart";
+import Waterfall from "../Graficas/eCharts/Waterfall";
+import BarChart from "../Graficas/eCharts/BarChart";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -38,69 +40,6 @@ interface IndicadorViviendaProps {
 
 export function IndicadorVivienda(props:IndicadorViviendaProps){
     const classes = useStyles();
-    const barChart = {
-        xAxis: {
-            data: ['Grietas en techos','Marcos de las puertas','Hundimiento del piso','Filtración de agua','Fractura de columnas','Sistema eléctrico'],
-            axisLabel: {
-                inside: true,
-                color: '#fff'
-            },
-            axisTick: {
-                show: true
-            },
-            axisLine: {
-                show: false
-            },
-            z: 10
-        },
-        yAxis: {
-
-            axisLine: {
-                show: false
-            },
-            axisTick: {
-                show: false
-            },
-            axisLabel: {
-                color: '#999',
-                formatter: "{value} %"
-            }
-        },
-
-        visualMap: {
-            orient: 'horizontal',
-            left: 'center',
-            min: 10,
-            max: 100,
-            dimension: 1,
-            inRange: {
-                color: ['#FD665F','#FFCE34','#65B581']
-            }
-        },
-        series: [
-            {
-                type: 'bar',
-                showBackground: true,
-                label:{
-
-                    show:true,
-                    position:"top",
-                    type:"value",
-                    formatter: (data:any) => parseInt(data.value) +" %",
-
-                },
-
-                emphasis: {
-                    itemStyle: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                },
-                data: [14390038,5725273,5218505,15583020,3729173,31425730]
-            }
-        ]
-    }
 
     return(
 <div className={classes.root}>
@@ -110,7 +49,15 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
                         <DualBarChart title={props.indicador.chartTitle[key]} data={indicadorChart.chart} label={props.indicador.label[key].chartLabel} key={key+props.indicador.titulo}/>
                     )}
                 </Grid>
-            :
+            : props.indicador.tipo === 'waterfall' ?
+                    <Grid container spacing={2}  >
+                        <Waterfall title={props.indicador.chartTitle} data={props.indicador.grafica} label={props.indicador.label} />
+                    </Grid>
+                    :props.indicador.tipo === 'bar' ?
+                        <Grid container spacing={2}  >
+                            <BarChart title={props.indicador.chartTitle} data={props.indicador.grafica} label={props.indicador.label} />
+                        </Grid>
+                        :
                 <Fragment>
                 </Fragment>
             }
