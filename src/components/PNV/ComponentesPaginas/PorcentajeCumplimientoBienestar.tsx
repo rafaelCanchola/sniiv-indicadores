@@ -1,21 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import * as dc from "dc";
 import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import TableIcon from '@material-ui/icons/Toc';
-import TuneIcon from '@material-ui/icons/Tune';
 import ReactECharts from "echarts-for-react";
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
-import TableMUIPNV from "./Tablas/TableMUIPNV";
+import TableMUIPNV from "../Tablas/TableMUIPNV";
 
-import conavi from "../../assets/images/conavi.png";
-import fovissste from "../../assets/images/fovissste.png";
-import infonavit from "../../assets/images/infonavit.png";
-import insus from "../../assets/images/insus.png";
-import shf from "../../assets/images/shf.png";
-import sedatu from "../../assets/images/sedatu.png";
-import {colorBrewer} from "../colorBrewer";
+import conavi from "../../../assets/images/conavi.png";
+import fovissste from "../../../assets/images/fovissste.png";
+import infonavit from "../../../assets/images/infonavit.png";
+import insus from "../../../assets/images/insus.png";
+import shf from "../../../assets/images/shf.png";
+import sedatu from "../../../assets/images/sedatu.png";
+import {colorBrewer} from "../../colorBrewer";
 
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -64,20 +62,17 @@ interface CumplimientoProps {
     hAxis: string;
 }
 
-
 interface AxisChart{
     [x: string]:any;
 }
 
-export default function PorcentajeCumplimiento(props:CumplimientoProps){
+export default function PorcentajeCumplimientoBienestar(props:CumplimientoProps){
     const [width, setWidth] = useState<number>(window.innerWidth);
     function handleWindowSizeChange() {setWidth(window.innerWidth);}
     useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
 
     const isMobile = width <= 768;
 
-    const [modo,setModo] = useState(1);
-    const [reiniciarS, setReiniciarS] = useState(false);
     const [open1, setOpen1] = useState(false);
     const [open3, setOpen3] = useState(false);
     const classes = useStyles();
@@ -114,9 +109,9 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
         SEDATU:sedatu
     }
     const orderPie = (data:any,objective:number) =>{
-        let dataPie = props.data.filter((d: any) => d[props.hAxis] == objective)[0];
-        let reduceDataPie = Object.keys(dataPie).reduce((obj:any,key:any) => {if(key != props.hAxis && key != props.fAxis && key != props.aAxis){obj[key]=dataPie[key]}return obj},{})
-        let mapDatapie = Object.keys(reduceDataPie).map((d:any) => ({["name"]:d,["value"]:reduceDataPie[d],["itemStyle"]:{"color": assignStateColor(d)}}))
+        let dataPie = props.data.filter((d: any) => d[props.hAxis] === objective)[0];
+        let reduceDataPie = Object.keys(dataPie).reduce((obj:any,key:any) => {if(key !== props.hAxis && key !== props.fAxis && key !== props.aAxis){obj[key]=dataPie[key]}return obj},{})
+        let mapDatapie = Object.keys(reduceDataPie).map((d:any) => ({name:d,value:reduceDataPie[d],itemStyle:{color: assignStateColor(d)}}))
         return {
             title: {
                 text: 'Objetivo '+objective,
@@ -155,7 +150,7 @@ export default function PorcentajeCumplimiento(props:CumplimientoProps){
         .reverse()
     let labelDataRow = props.data.map((d: AxisChart) => "Objetivo "+d[props.hAxis]).reverse()
     let dataBar = props.data2.map((d: AxisChart) =>
-        ({["value"]:(d[props.aAxis] == 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),["itemStyle"]:{"color": assignColor(d[props.hAxis])}}))
+        ({value:(d[props.aAxis] === 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),itemStyle:{color: assignColor(d[props.hAxis])}}))
     let labelDataBar = props.data2.map((d: AxisChart) => d[props.gAxis])
 
     const handleClickOpen1 = () => {

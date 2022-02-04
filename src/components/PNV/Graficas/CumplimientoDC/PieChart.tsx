@@ -2,7 +2,6 @@ import React from "react";
 import * as dc from "dc";
 import * as d3 from "d3";
 import { ChartTemplate } from "../../Templates/CumplimientoTemplate";
-import {baseColor} from "../../../BaseColor";
 
 interface AxisNdx {
     [x: string]:any;
@@ -26,7 +25,6 @@ const quarterChartFunc = (divRef, ndx, modoValue,seccion, aAxis, bAxis, cAxis, d
         .legend(dc.legend())
         .label(d=>'')
         .title(d => d.key + '\n' + d3.format((modoValue === 0)?'$,.0f':',.0f')(d.value))
-        .ordinalColors(baseColor)
     return quarterChart
 
 }

@@ -13,7 +13,7 @@ export const indicadorViv1 = {
     "Tendencia esperada": "Descendente",
     "Unidad Responsable de reportar el avance":  "15.- Desarrollo Agrario, Territorial y Urbano\n511 Dirección General de Desarrollo Urbano, Suelo y Vivienda",
     "Método de cálculo": "PVHMR= No tiene acceso a crédito o No tiene recursos\n Por facilidad de poder mudarse\n La mensualidad es menor que una hipoteca\n No le interesa comprar\n Prefiere invertir en su persona (viajes, estudios, negocio)\n Otros motivos\n No sabe/\n Total de viviendas\n*100",
-    "Observaciones": "Los resultados dependen de la publiación de la ENVI de INEGI",
+    "Observaciones": "Los resultados dependen de la publicación de la ENVI de INEGI",
     "APLICACIÓN DEL MÉTODO DE CÁLCULO DEL INDICADOR PARA LA OBTENCIÓN DEL VALOR DE LA LÍNEA BASE":
         {
             "variables":[

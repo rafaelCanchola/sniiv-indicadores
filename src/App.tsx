@@ -1,22 +1,19 @@
 import React from 'react';
 import './App.css';
 import {Link,withRouter,Route} from 'react-router-dom';
-import Home from "./components/Home";
 import {BrowserRouter} from "react-router-dom";
 import {BottomNavigation, BottomNavigationAction, AppBar, alpha} from "@material-ui/core";
 import AssIcon from '@material-ui/icons/AssignmentOutlined'
 import HomeIcon from '@material-ui/icons/HouseOutlined'
 import AnalyticsIcon from '@material-ui/icons/MultilineChartOutlined'
-import ShowChartIcon from '@material-ui/icons/ShowChart'
-import BarChartIcon from '@material-ui/icons/BarChart'
-import MapIcon from '@material-ui/icons/Map';
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import ObjetivoPNV from "./components/PNV/ObjetivoPNV";
-import Avance from './components/Avance';
-import Vivienda from "./components/Vivienda";
+
+import ObjetivoPNV from "./components/PNV/Paginas/ObjetivoPNV";
+import AvanceBienestar from './components/PNV/Paginas/AvanceBienestar';
+import ViviendaAdecuada from "./components/PNV/Paginas/ViviendaAdecuada";
 
 
 
@@ -68,14 +65,14 @@ function App() {
             path:'/avances',
             sidebarName:'-',
             icon:<AnalyticsIcon fontSize={'large'} className={classes.icon}/>,
-            component:Avance,
+            component:AvanceBienestar,
             exact:true
         },
         {
             path:'/vivienda',
             sidebarName:'.',
             icon:<HomeIcon fontSize={'large'} className={classes.icon}/>,
-            component:Vivienda,
+            component:ViviendaAdecuada,
             exact:true
         },
 

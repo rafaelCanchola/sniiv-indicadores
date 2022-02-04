@@ -4,11 +4,9 @@ import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import AutorenewIcon from '@material-ui/icons/Autorenew';
-import TuneIcon from '@material-ui/icons/Tune';
 import ReactECharts from "echarts-for-react";
 
-import pnv2021 from "../../assets/images/pnv2021.png";
-import trimestral from "../../assets/images/trimestral.png";
+import trimestral from "../../../assets/images/trimestral.png";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -49,8 +47,7 @@ interface AxisChart{
     [x: string]:any;
 }
 
-export default function TotalesCumplimiento(props:CumplimientoProps){
-    const [modo,setModo] = useState(1);
+export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
     const [reiniciarS, setReiniciarS] = useState(false);
     const classes = useStyles();
     const option = {
@@ -147,7 +144,7 @@ export default function TotalesCumplimiento(props:CumplimientoProps){
                         <Paper elevation={0} className={classes.paper}>
                             <h2>{props.titleTrimestral}</h2>
                             <Paper elevation={3} className={classes.paper}>
-                                <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"}><img src={trimestral} className={classes.image} /></a>
+                                <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"}><img src={trimestral} className={classes.image} alt={"Reporte trimestral"} /></a>
                             </Paper>
                         </Paper>
                     </Grid>

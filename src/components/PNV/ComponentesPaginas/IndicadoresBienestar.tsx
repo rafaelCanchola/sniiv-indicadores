@@ -15,34 +15,33 @@ import {
     DialogContent,
     DialogTitle
 } from "@material-ui/core";
-import TableMUIPNV from "./Tablas/TableMUIPNV";
+import TableMUIPNV from "../Tablas/TableMUIPNV";
 
-import conavi from "../../assets/images/conavi.png";
-import fovissste from "../../assets/images/fovissste.png";
-import infonavit from "../../assets/images/infonavit.png";
-import insus from "../../assets/images/insus.png";
-import shf from "../../assets/images/shf.png";
-import sedatu from "../../assets/images/sedatu.png";
+import conavi from "../../../assets/images/conavi.png";
+import fovissste from "../../../assets/images/fovissste.png";
+import infonavit from "../../../assets/images/infonavit.png";
+import insus from "../../../assets/images/insus.png";
+import shf from "../../../assets/images/shf.png";
+import sedatu from "../../../assets/images/sedatu.png";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
-import TableMUIViv from "./Tablas/TableMUIViv";
-import {indicadorViv1} from "../../json/PNV/fichas_ind_v1";
-import {ind_b1} from "../../json/Bienestar/fichas_ind_b1";
-import {ind_b2} from "../../json/Bienestar/fichas_ind_b2";
-import {ind_b3} from "../../json/Bienestar/fichas_ind_b3";
-import {ind_b4} from "../../json/Bienestar/fichas_ind_b4";
-import {ind_b5} from "../../json/Bienestar/fichas_ind_b5";
-import {ind_b6} from "../../json/Bienestar/fichas_ind_b6";
-import {ind_b7} from "../../json/Bienestar/fichas_ind_b7";
-import {ind_b8} from "../../json/Bienestar/fichas_ind_b8";
-import {ind_b9} from "../../json/Bienestar/fichas_ind_b9";
-import {ind_b10} from "../../json/Bienestar/fichas_ind_b10";
-import {ind_b11} from "../../json/Bienestar/fichas_ind_b11";
-import {ind_b12} from "../../json/Bienestar/fichas_ind_b12";
-import {ind_b13} from "../../json/Bienestar/fichas_ind_b13";
-import {ind_b14} from "../../json/Bienestar/fichas_ind_b14";
-import {ind_b15} from "../../json/Bienestar/fichas_ind_b15";
-import BarCharts from "./Graficas/eCharts/BarCharts";
+import TableMUIViv from "../Tablas/TableMUIViv";
+import {ind_b1} from "../../../json/Bienestar/fichas_ind_b1";
+import {ind_b2} from "../../../json/Bienestar/fichas_ind_b2";
+import {ind_b3} from "../../../json/Bienestar/fichas_ind_b3";
+import {ind_b4} from "../../../json/Bienestar/fichas_ind_b4";
+import {ind_b5} from "../../../json/Bienestar/fichas_ind_b5";
+import {ind_b6} from "../../../json/Bienestar/fichas_ind_b6";
+import {ind_b7} from "../../../json/Bienestar/fichas_ind_b7";
+import {ind_b8} from "../../../json/Bienestar/fichas_ind_b8";
+import {ind_b9} from "../../../json/Bienestar/fichas_ind_b9";
+import {ind_b10} from "../../../json/Bienestar/fichas_ind_b10";
+import {ind_b11} from "../../../json/Bienestar/fichas_ind_b11";
+import {ind_b12} from "../../../json/Bienestar/fichas_ind_b12";
+import {ind_b13} from "../../../json/Bienestar/fichas_ind_b13";
+import {ind_b14} from "../../../json/Bienestar/fichas_ind_b14";
+import {ind_b15} from "../../../json/Bienestar/fichas_ind_b15";
+import BarCharts from "../Graficas/eCharts/BarCharts";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
 
 

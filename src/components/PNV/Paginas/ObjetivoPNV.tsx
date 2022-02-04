@@ -6,11 +6,11 @@ import AutorenewIcon from '@material-ui/icons/Autorenew';
 import TuneIcon from '@material-ui/icons/Tune';
 import ReactECharts from "echarts-for-react";
 
-import pnv2021 from "../../assets/images/pnv2021.png";
-import CardObjetivo from './MUICompponents/CardObjetivo';
+import pnv2021 from "../../../assets/images/pnv2021.png";
+import CardObjetivo from '../MUIComponents/CardObjetivo';
 
-import {objetivosONAVI} from "../../json/PNV/objetivosONAVI";
-import {colorBrewer} from "../colorBrewer";
+import {objetivosONAVI} from "../../../json/PNV/objetivosONAVI";
+import {colorBrewer} from "../../colorBrewer";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({

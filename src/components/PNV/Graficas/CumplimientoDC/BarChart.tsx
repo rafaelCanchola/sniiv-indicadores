@@ -2,7 +2,6 @@ import React, {Fragment, useState} from "react";
 import * as dc from "dc";
 import { ChartTemplate } from "../../Templates/CumplimientoTemplate";
 import * as d3 from "d3";
-import {baseColor} from "../../../BaseColor";
 
 interface AxisNdx {
     [x: string]:any;
@@ -42,7 +41,6 @@ export default function BarChart(props:ChartProps){
             .barPadding(0.1)
             .controlsUseVisibility(true)
             .colorAccessor( d => d.x == "CONAVI"? 1:2 )
-            .ordinalColors(baseColor)
 
         barChart.yAxis().tickFormat(d3.format('~s'))
         barChart.xAxis().tickFormat(d => d+' Trimestre')
