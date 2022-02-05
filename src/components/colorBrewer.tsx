@@ -306,5 +306,6 @@ export const  colorBrewer = {YlGn: {
     },
     Objetivos:['#dd7671','#f5ce85','#a485c2','#e3a277','#95ce9c'],
     StateColor: ['#e0af1b','#a7a7a7','#158c49','#db1f1f'],
+    ViviendaColor:['#906723','#a3e1cc','#f68175','#fbcb4a','#858e84','#efe6d0'],
 
 }

@@ -2,6 +2,7 @@ import ReactECharts from "echarts-for-react";
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import {colorBrewer} from "../../../colorBrewer";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -60,6 +61,7 @@ export default function Waterfall(props:WaterfallProps){
 
         tooltip: {
         },
+        color:colorBrewer.ViviendaColor,
         grid: {
             left: '3%',
             right: '4%',

@@ -45,10 +45,16 @@ export default function BarChart(props:BarChartProps){
     const classes = useStyles();
 
     const barChart = {
-        tooltip:{},
+        tooltip:{
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            },
+        },
         xAxis: {
-            data: props.label,
+            data: props.label.chartLabel,
             axisLabel: {
+                show:false,
                 inside: true,
                 color: '#fff'
             },
@@ -69,6 +75,7 @@ export default function BarChart(props:BarChartProps){
             },
             axisLabel: {
                 color: '#999',
+                show:false,
             }
         },
 
@@ -77,11 +84,9 @@ export default function BarChart(props:BarChartProps){
                 type: 'bar',
                 showBackground: true,
                 label:{
-
                     show:false,
                     position:"top",
                     type:"value",
-
 
                 },
                 emphasis: {
