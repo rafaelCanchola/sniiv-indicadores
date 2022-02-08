@@ -96,6 +96,7 @@ export default function ObjetivoPNV(){
         series: {
             type: 'sankey',
             layout: 'none',
+            layoutIterations:0,
             emphasis:{focus:'adjacency'},
             data: [
                 {
