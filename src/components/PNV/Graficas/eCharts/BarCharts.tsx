@@ -158,7 +158,6 @@ export default function BarCharts(props:BarProps){
     const unidadMedida = "Unidad de medida";
     const tendenciaEsp = "Tendencia esperada";
     const serieHistorica = "SERIE HISTÓRICA DE LA META PARA EL BIENESTAR O PARÁMETRO";
-    console.log(minValue("Porcentaje"))
 
 
     const chartTemplate = (param: any) =>

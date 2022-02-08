@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import AutorenewIcon from '@material-ui/icons/Autorenew';
-import TuneIcon from '@material-ui/icons/Tune';
 import ReactECharts from "echarts-for-react";
 
 import pnv2021 from "../../../assets/images/pnv2021.png";

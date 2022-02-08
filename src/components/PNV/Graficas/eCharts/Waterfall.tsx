@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {colorBrewer} from "../../../colorBrewer";
+import {randomNumber, waterFallSize} from "../../../../utils/Utils";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -45,23 +46,13 @@ interface WaterfallProps{
 export default function Waterfall(props:WaterfallProps){
     const classes = useStyles();
     const lengthData = props.data.length;
-    const waterArray = []
-    for (let i = 0,j = 1;i < lengthData; i++){
-        if(i === 0 || i === lengthData-1){
-            waterArray[i] = 0;
-        }
-        else{
-            waterArray[i] = 0;
-            for(j = i+1;j < lengthData;j++){
-                waterArray[i] += props.data[j];
-            }
-        }
-    }
+    const waterArray = waterFallSize(props.data,props.data.length)
+
     const option = {
 
         tooltip: {
         },
-        color:colorBrewer.ViviendaColor,
+        color:colorBrewer.ViviendaColor[randomNumber(6)],
         grid: {
             left: '3%',
             right: '4%',

@@ -14,6 +14,7 @@ import insus from "../../../assets/images/insus.png";
 import shf from "../../../assets/images/shf.png";
 import sedatu from "../../../assets/images/sedatu.png";
 import {colorBrewer} from "../../colorBrewer";
+import {assignObjetivosColor, assignStateColor} from "../../../utils/Utils";
 
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -76,30 +77,7 @@ export default function PorcentajeCumplimientoBienestar(props:CumplimientoProps)
     const [open1, setOpen1] = useState(false);
     const [open3, setOpen3] = useState(false);
     const classes = useStyles();
-    const assignColor = (obj:number) =>{
-        if(obj === 1){
-            return colorBrewer.Objetivos[0];
-        }else if(obj === 2){
-            return colorBrewer.Objetivos[1];
-        }else if(obj === 3){
-            return colorBrewer.Objetivos[2];
-        }else if(obj === 4){
-            return colorBrewer.Objetivos[3];
-        }else if(obj === 5){
-            return colorBrewer.Objetivos[4];
-        }
-    }
-    const assignStateColor = (obj:string) => {
-        if (obj === props.cAxis) {
-            return colorBrewer.StateColor[0];
-        } else if (obj === props.eAxis) {
-            return colorBrewer.StateColor[1];
-        } else if (obj === props.bAxis) {
-            return colorBrewer.StateColor[2];
-        } else if (obj === props.dAxis) {
-            return colorBrewer.StateColor[3];
-        }
-    }
+
     const onaIcons = {
         CONAVI:conavi,
         FOVISSSTE:fovissste,
@@ -111,7 +89,7 @@ export default function PorcentajeCumplimientoBienestar(props:CumplimientoProps)
     const orderPie = (data:any,objective:number) =>{
         let dataPie = props.data.filter((d: any) => d[props.hAxis] === objective)[0];
         let reduceDataPie = Object.keys(dataPie).reduce((obj:any,key:any) => {if(key !== props.hAxis && key !== props.fAxis && key !== props.aAxis){obj[key]=dataPie[key]}return obj},{})
-        let mapDatapie = Object.keys(reduceDataPie).map((d:any) => ({name:d,value:reduceDataPie[d],itemStyle:{color: assignStateColor(d)}}))
+        let mapDatapie = Object.keys(reduceDataPie).map((d:any) => ({name:d,value:reduceDataPie[d],itemStyle:{color: assignStateColor(d,props.bAxis,props.cAxis,props.dAxis,props.eAxis)}}))
         return {
             title: {
                 text: 'Objetivo '+objective,
@@ -146,11 +124,11 @@ export default function PorcentajeCumplimientoBienestar(props:CumplimientoProps)
 
     }
     let dataRow = props.data.map((d: AxisChart,key:number) =>
-        ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),title:key+1,itemStyle:{color: assignColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
+        ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),title:key+1,itemStyle:{color: assignObjetivosColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
         .reverse()
     let labelDataRow = props.data.map((d: AxisChart) => "Objetivo "+d[props.hAxis]).reverse()
     let dataBar = props.data2.map((d: AxisChart) =>
-        ({value:(d[props.aAxis] === 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),itemStyle:{color: assignColor(d[props.hAxis])}}))
+        ({value:(d[props.aAxis] === 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),itemStyle:{color: assignObjetivosColor(d[props.hAxis])}}))
     let labelDataBar = props.data2.map((d: AxisChart) => d[props.gAxis])
 
     const handleClickOpen1 = () => {

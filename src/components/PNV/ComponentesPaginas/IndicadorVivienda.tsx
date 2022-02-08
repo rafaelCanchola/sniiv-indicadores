@@ -10,6 +10,7 @@ import TableMUIViv from "../Tablas/TableMUIViv";
 import Waterfall from "../Graficas/eCharts/Waterfall";
 import BarChart from "../Graficas/eCharts/BarChart";
 import {colorBrewer} from "../../colorBrewer";
+import {assignColor} from "../../../utils/Utils";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -44,38 +45,15 @@ interface AxisChart{
 
 export function IndicadorVivienda(props:IndicadorViviendaProps){
     const classes = useStyles();
-    const assignColor = (obj: number) => {
-        switch (obj) {
-            case 0:
-                return colorBrewer.ViviendaColor[0]
-                break;
-            case 1:
-                return colorBrewer.ViviendaColor[1]
-                break;
-            case 2:
-                return colorBrewer.ViviendaColor[2]
-                break;
-            case 3:
-                return colorBrewer.ViviendaColor[3]
-                break;
-            case 4:
-                return colorBrewer.ViviendaColor[4]
-                break;
-            case 5:
-                return colorBrewer.ViviendaColor[5]
-                break;
-            default:
-                return colorBrewer.ViviendaColor[Math.floor(Math.random() * 6) + 0]
-        }
+    let colors = assignColor(6);
 
-    };
     let dataBar: any[]
     if(props.indicador.tipo === 'waterfall'){
         dataBar = props.indicador.grafica
     }
     else {
         dataBar = props.indicador.grafica[props.indicadorIndex].map((d: AxisChart,key:number) =>
-            ({value:(d),itemStyle:{color: assignColor(key)}}))
+            ({value:(d),itemStyle:{color: colorBrewer.ViviendaColor[colors[key]]}}))
     }
     return(
         <div className={classes.root}>
