@@ -11,7 +11,8 @@ import {cumplimientoONAVIPNV2} from "../../../json/PNV/cumplimientoONAVI21-2";
 import {cumplimientoONAVIPNV3} from "../../../json/PNV/cumplimientoONAVI21-3";
 import {totales} from "../../../json/PNV/totalCumplimiento";
 import {fichaPie} from "../../../json/PNV/fichas_ind_pnv1";
-import {fichaPie3} from "../../../json/PNV/fichas_ind_pnv3";
+import {fichaPie3} from "../../../json/PNV/fichas_ind_pnv3"
+import GridCumplimientoBienestar from "../ComponentesPaginas/GridCumplimientoBienestar";
 
 /*import Fetch from "./Fetch";
 
@@ -25,6 +26,7 @@ export default class AvanceBienestar extends Component<any, any> {
         super(props);
         this.state = {
             trimestre: 3,
+            reiniciar: false
         }
     }
 
@@ -39,61 +41,59 @@ export default class AvanceBienestar extends Component<any, any> {
         const handleCallback = (childData: any) => {
             this.setState({trimestre: childData});
         }
+        const resetAll = () => {
+            this.setState({reiniciar: !this.state.reiniciar});
+        }
+
         return (
-               <Fragment>
-                        <TotalesCumplimientoBienestar data={totales} callBack={handleCallback} periodo={'Trimestral 2021'}
+               <Fragment key={this.state.reiniciar}>
+                        <TotalesCumplimientoBienestar data={totales} callBack={handleCallback} callBack2={resetAll} periodo={'Trimestral 2021'}
                                                       seccion={'totales'} title={'Cumplimiento/Avances'}
                                                       titleTrimestral={"Informe Trimestral"} titleCifras={'acciones'}
                                                       titleBar={'Porcentaje acumulado de cumplimento'}
                                                       titleInforme={'Informe Trimestral'} aAxis={'trimestre'}
                                                       bAxis={'total'} cAxis={'aCabo'}/>
+
                         {this.state.trimestre === undefined ? <></> :
                             parseInt(this.state.trimestre) === 3 ?
-
-                                    <PorcentajeCumplimientoBienestar data={cumplimientoPNV3} data2={cumplimientoONAVIPNV3}
-                                                                     fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
-                                                                     titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                                                     periodo={this.state.trimestre + " Trimestre"}
-                                                                     titleBar={"Porcentaje de contribución según ONAVI"}
-                                                                     titleCifras={"acciones"}
-                                                                     titlePie={"Estatus de las acciones según objetivo prioritario"}
-                                                                     titlePie2={""} titleRow1={""}
-                                                                     titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
-                                                                     cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
-                                                                     fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
+                                <GridCumplimientoBienestar data={cumplimientoPNV3} data2={cumplimientoONAVIPNV3}
+                                                           fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
+                                                           titleRow={"Porcentaje de cumplimiento según objetivo "}
+                                                           periodo={this.state.trimestre + " Trimestre"}
+                                                           titleBar={"Porcentaje de contribución según ONAVI"}
+                                                           titleCifras={"acciones"}
+                                                           titlePie={"Estatus de las acciones según objetivo prioritario"}
+                                                           aAxis={"total"} bAxis={"concluida"}
+                                                           cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
+                                                           fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
 
 
                                 : parseInt(this.state.trimestre) === 2 ?
+                                <GridCumplimientoBienestar data={cumplimientoPNV2} data2={cumplimientoONAVIPNV2}
+                                                           fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
+                                                           titleRow={"Porcentaje de cumplimiento según objetivo "}
+                                                           periodo={this.state.trimestre + " Trimestre"}
+                                                           titleBar={"Porcentaje de contribución según ONAVI"}
+                                                           titleCifras={"acciones"}
+                                                           titlePie={"Estatus de las acciones según objetivo prioritario"}
+                                                           aAxis={"total"} bAxis={"concluida"}
+                                                           cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
+                                                           fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
 
-                                    <PorcentajeCumplimientoBienestar data={cumplimientoPNV2} data2={cumplimientoONAVIPNV2}
-                                                                     fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
-                                                                     titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                                                     periodo={this.state.trimestre + " Trimestre"}
-                                                                     titleBar={"Porcentaje de contribución según ONAVI"}
-                                                                     titleCifras={"acciones"}
-                                                                     titlePie={"Estatus de las acciones según objetivo prioritario"}
-                                                                     titlePie2={""} titleRow1={""}
-                                                                     titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
-                                                                     cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
-                                                                     fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
 
                                 : parseInt(this.state.trimestre) === 1 ?
-                                    <PorcentajeCumplimientoBienestar data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
-                                                                     fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
-                                                                     titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                                                     periodo={this.state.trimestre + " Trimestre"}
-                                                                     titleBar={"Porcentaje de contribución según ONAVI"}
-                                                                     titleCifras={"acciones"}
-                                                                     titlePie={"Estatus de las acciones según objetivo prioritario"}
-                                                                     titlePie2={""} titleRow1={""}
-                                                                     titleRow2={""} titleInforme={""} aAxis={"total"} bAxis={"concluida"}
-                                                                     cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
-                                                                     fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
-
-
+                                    <GridCumplimientoBienestar data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
+                                                               fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
+                                                               titleRow={"Porcentaje de cumplimiento según objetivo "}
+                                                               periodo={this.state.trimestre + " Trimestre"}
+                                                               titleBar={"Porcentaje de contribución según ONAVI"}
+                                                               titleCifras={"acciones"}
+                                                               titlePie={"Estatus de las acciones según objetivo prioritario"}
+                                                               aAxis={"total"} bAxis={"concluida"}
+                                                               cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
+                                                               fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
                                     : <></>
                         }
-                        <IndicadoresBienestar />
                    <br/><br/><br/>
                </Fragment>
         )

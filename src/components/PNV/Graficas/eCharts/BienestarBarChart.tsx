@@ -24,9 +24,10 @@ import TableMUIViv from "../../Tablas/TableMUIViv";
 
 interface BarProps {
     tableData:any;
+    indicadorIndex:number
 }
 
- const minValue = (value:string) =>{
+const minValue = (value:string) =>{
     if(value.includes("Porcentaje")){
         return 8;
     }
@@ -102,7 +103,7 @@ const useStyles = makeStyles((theme:Theme) =>
 
     })
 );
-export default function BarCharts(props:BarProps){
+export default function BienestarBarChart(props:BarProps){
     const [width, setWidth] = useState<number>(window.innerWidth);
     function handleWindowSizeChange() {setWidth(window.innerWidth);}
     useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
@@ -164,11 +165,11 @@ export default function BarCharts(props:BarProps){
         ({
             grid:{
                 left:3,
-                    right:(param.data[unidadMedida].includes("Millones"))?39:20,
+                right:(param.data[unidadMedida].includes("Millones"))?39:20,
             },
             yAxis: {
                 data: Object.keys(param.data[serieHistorica]).map((arr:any) => arr),
-                    axisLabel: {inside: true, color: '#575151'}, axisTick: {show: true}, axisLine: {show: false}, z: 10
+                axisLabel: {inside: true, color: '#575151'}, axisTick: {show: true}, axisLine: {show: false}, z: 10
             },
             xAxis:{axisLine: {show: false}, axisTick: {show: false}, axisLabel: {color: '#999', formatter: ""}},
             visualMap: {orient: 'horizontal', left: 'center', min: minValue(param.data[unidadMedida]), max: maxValue(param.data[unidadMedida]), dimension: 0, inRange: {color: (param.data[tendenciaEsp].includes("Descendente"))?['#65B581','#FFCE34','#FD665F']:['#FD665F','#FFCE34','#65B581']}},
@@ -187,100 +188,68 @@ export default function BarCharts(props:BarProps){
     return(
         <div className={classes.root}>
             <Grid container spacing={2} alignItems={'center'} >
-                {bienestarCharts.map((data:any,key:number) =>
-                    <Fragment key={key+100}>
-                        <Grid item xs={12} sm={12} md={6}  >
-                            <Paper elevation={3} className={classes.paper}>
-                                <h3>{bienestarTitles[key]}</h3>
-                                <h4>{bienestarUnidades[key]}</h4>
-                                <h5>{"Tendencia "+bienestarTendencia[key]}</h5>
-                                {clickChart[key]}
-                                <ReactECharts option={data} />
-                            </Paper>
-                        </Grid>
-                    </Fragment>
-                )}
+                <Grid item xs={12} sm={12} md={12}  >
+                    <Paper elevation={3} className={classes.paper}>
+                        <h3>{bienestarTitles[props.indicadorIndex]}</h3>
+                        <h4>{bienestarUnidades[props.indicadorIndex]}</h4>
+                        <h5>{"Tendencia "+bienestarTendencia[props.indicadorIndex]}</h5>
+                        {clickChart[props.indicadorIndex]}
+                        <ReactECharts option={bienestarCharts[props.indicadorIndex]} />
+                    </Paper>
+                </Grid>
             </Grid>
-            {
-                props.tableData.map((param:any,key:number) =>
-                    <Dialog fullScreen={isMobile} open={clickTableMap[key].state} onClose={clickTableMap[key].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} key={param.titulo + key}>
-                        <DialogTitle>
-                            {"Fícha Técnica de la Meta del Objetivo "+(key+1)}
-                        </DialogTitle>
-                        <DialogContent dividers>
-                            <Grid container spacing={2}  >
-                                <Grid item xs={12} sm={12} md={12} key={param.titulo+key}>
-                                    <TableMUIPNV data={param.data}/>
-                                </Grid>
-                            </Grid>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button autoFocus onClick={clickTableMap[key].func} color={'primary'}>
-                                Cerrar
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
-                )
-            }
-
-            {
-                props.tableData.map((param:any,key:number) =>
-                    <Dialog fullScreen={isMobile} open={clickChartMap[key].state} onClose={clickChartMap[key].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} key={param.titulo + key}>
-                        <DialogTitle>
-                            {"Parametros y Fíchas Técnicas de la Meta del Objetivo "+(key+1)}
-                        </DialogTitle>
-                        <DialogContent dividers>
-                            <Grid container spacing={2} alignItems={'center'} >
-                                {
-                                    param.parametros.map((param1:any,key1:number) => <Grid item xs={12} sm={12} md={6} key={key1+param1.data["Nombre"]}><Paper elevation={3} className={classes.paper}><h3>{param1.data["Nombre"]}</h3><h4>{param1.data[unidadMedida]}</h4><h5>{"Tendencia "+param1.data[tendenciaEsp]}</h5><ReactECharts option={chartTemplate(param1)}/></Paper></Grid>)
-                                }
-                            </Grid>
-                            <Grid container spacing={2}  >
-                                {
-                                    param.parametros.map((param1:any,key1:number) =>
-                                        <Grid item xs={12} sm={12} md={6} key={param1.titulo+key1}>
-                                            <Accordion key={param.titulo+key} TransitionProps={{ unmountOnExit: true }}>
-                                                <AccordionSummary
-                                                    expandIcon={<ExpandMoreIcon />}
-                                                    aria-controls="panel1a-content"
-                                                    id="panel1a-header"
-                                                >
-                                                    <Typography className={classes.typo}>{param1.titulo} </Typography>
-                                                </AccordionSummary>
-                                                <AccordionDetails>
-                                                    <TableMUIViv data={param1.data}/>
-                                                </AccordionDetails>
-                                            </Accordion>
-                                        </Grid>
-                                    )
-                                }
-                            </Grid>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button autoFocus onClick={clickChartMap[key].func} color={'primary'}>
-                                Cerrar
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
-                )
-            }
-            {/*<Dialog open={open1} onClose={handleClickOpen1} aria-labelledby={'customized-dialog-title'} maxWidth={"xl"}>
+            <Dialog fullScreen={isMobile} open={clickTableMap[props.indicadorIndex].state} onClose={clickTableMap[props.indicadorIndex].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
                 <DialogTitle>
-                    Ficha Técnica
+                    {"Fícha Técnica de la Meta del Objetivo "+(props.indicadorIndex+1)}
                 </DialogTitle>
                 <DialogContent dividers>
-
+                    <Grid container spacing={2}  >
+                        <Grid item xs={12} sm={12} md={12}>
+                            <TableMUIPNV data={props.tableData[props.indicadorIndex].data}/>
+                        </Grid>
+                    </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={handleClickOpen1} color={'primary'}>
+                    <Button autoFocus onClick={clickTableMap[props.indicadorIndex].func} color={'primary'}>
                         Cerrar
                     </Button>
                 </DialogActions>
-            </Dialog>*/
-            }
-
+            </Dialog>
+            <Dialog fullScreen={isMobile} open={clickChartMap[props.indicadorIndex].state} onClose={clickChartMap[props.indicadorIndex].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
+                <DialogTitle>
+                    {"Parametros y Fíchas Técnicas de la Meta del Objetivo "+(props.indicadorIndex+1)}
+                </DialogTitle>
+                <DialogContent dividers>
+                    <Grid container spacing={2} alignItems={'center'} >
+                        {
+                            props.tableData[props.indicadorIndex].parametros.map((param1:any,key1:number) => <Grid item xs={12} sm={12} md={6} key={key1+param1.data["Nombre"]}><Paper elevation={3} className={classes.paper}><h3>{param1.data["Nombre"]}</h3><h4>{param1.data[unidadMedida]}</h4><h5>{"Tendencia "+param1.data[tendenciaEsp]}</h5><ReactECharts option={chartTemplate(param1)}/></Paper></Grid>)
+                        }
+                    </Grid>
+                    <Grid container spacing={2}  >
+                        {
+                            props.tableData[props.indicadorIndex].parametros.map((param1:any,key1:number) =>
+                                <Grid item xs={12} sm={12} md={6} key={param1.titulo+key1}>
+                                    <Accordion TransitionProps={{ unmountOnExit: true }}>
+                                        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                            <Typography className={classes.typo}>{param1.titulo} </Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <TableMUIViv data={param1.data}/>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </Grid>
+                            )
+                        }
+                    </Grid>
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={clickChartMap[props.indicadorIndex].func} color={'primary'}>
+                        Cerrar
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
 
-        )
+    )
 }
 

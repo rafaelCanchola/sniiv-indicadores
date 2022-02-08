@@ -144,6 +144,8 @@ export default function PorcentajeCumplimientoBienestar(props:CumplimientoProps)
     const handleClose3 = () => {
         setOpen3(false);
     }
+    const iconHeight = isMobile ? 20: 40;
+    const iconWidth = isMobile ? 40: 80;
     const RowChart = {
 
         tooltip: {
@@ -292,43 +294,43 @@ export default function PorcentajeCumplimientoBienestar(props:CumplimientoProps)
                         fontSize: 10,
                     },
                     CONAVI:{
-                        height:40,
-                        width: 80,
+                        height:iconHeight,
+                        width: iconWidth,
                         backgroundColor: {
                             image: onaIcons.CONAVI
                         },
                     },
                     FOVISSSTE:{
-                        height:40,
-                        width: 80,
+                        height:iconHeight,
+                        width: iconWidth,
                         backgroundColor: {
                             image: onaIcons.FOVISSSTE
                         },
                     },
                     INFONAVIT:{
-                        height:40,
-                        width: 80,
+                        height:iconHeight,
+                        width: iconWidth,
                         backgroundColor: {
                             image: onaIcons.INFONAVIT
                         },
                     },
                     SHF:{
-                        height:40,
-                        width: 80,
+                        height:iconHeight,
+                        width: iconWidth,
                         backgroundColor: {
                             image: onaIcons.SHF
                         },
                     },
                     INSUS:{
-                        height:40,
-                        width: 80,
+                        height:iconHeight,
+                        width: iconWidth,
                         backgroundColor: {
                             image: onaIcons.INSUS
                         },
                     },
                     SEDATU:{
-                        height:40,
-                        width: 80,
+                        height:iconHeight,
+                        width: iconWidth,
                         backgroundColor: {
                             image: onaIcons.SEDATU
                         },

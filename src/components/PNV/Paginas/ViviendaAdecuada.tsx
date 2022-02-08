@@ -2,10 +2,12 @@ import React, {Fragment, useEffect, useState} from 'react';
 import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-
+import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Typography from "@material-ui/core/Typography";
+import RefreshIcon from "@material-ui/icons/RefreshOutlined";
 import CardVivienda from "../MUIComponents/CardVivienda";
 import {IndicadorVivienda} from "../ComponentesPaginas/IndicadorVivienda";
-import RefreshIcon from "@material-ui/icons/RefreshOutlined";
 
 import {indicadorViv1} from "../../../json/Vivienda/fichas_ind_v1";
 import {indicadorViv2} from "../../../json/Vivienda/fichas_ind_v2";
@@ -24,10 +26,7 @@ import ubicacion from "../../../assets/images/ubicacion-tr.png";
 import cultura from "../../../assets/images/cultura-tr.png";
 import habitabilidad from "../../../assets/images/habitabilidad-tr.png";
 import asequibilidad from "../../../assets/images/asequibilidad-tr.png";
-import CardImgVivienda from '../MUIComponents/CardImgVivienda';
-import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Typography from "@material-ui/core/Typography";
+
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -202,7 +201,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                                             <Fragment>
                                                 {(key === elementos.length-1)? <Grid item xs={4}></Grid> : <></>}
                                                 <Grid item xs={4}>
-                                                    <CardImgVivienda children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image}/>
+                                                    <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image}/>
                                                 </Grid>
                                             </Fragment>
                                         )}
@@ -211,9 +210,9 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                                 </AccordionDetails>
                             </Accordion>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={6}>
+                        <Grid item xs={12} sm={12}>
                             <Paper elevation={3} className={classes.paper}>
-                                {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : indicadores[indicador[0]-1].tipo === 'none'? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
+                                {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} /> : indicadores[indicador[0]-1].tipo === 'none'? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
                             </Paper>
                         </Grid>
                     </Grid>
@@ -221,7 +220,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                     <Fragment>
                         <Grid item xs={12} sm={3} md={3}>
                         {elementos.slice(0,4).map(card =>
-                            <CardVivienda children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
+                            <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
                         )}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6}>
@@ -231,7 +230,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
                             {elementos.slice(4).map(card =>
-                                <CardVivienda children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
+                                <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
                             )}
                         </Grid>
                     </Fragment>

@@ -38,7 +38,6 @@ export function waterFallSize (initialData: any[],lengthData:number):any{
 }
 
 export function assignObjetivosColor(obj:number){
-    console.log(obj)
     if (obj > 5){
         return colorBrewer.Objetivos[randomNumber(5)];
     }else{

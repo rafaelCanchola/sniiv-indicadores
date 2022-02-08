@@ -32,7 +32,8 @@ interface CumplimientoProps {
     data: any;
     periodo: string;
     seccion: string;
-    callBack:any;
+    callBack:any,
+    callBack2:any,
     title: string;
     titleTrimestral: string;
     titleCifras: string;
@@ -131,8 +132,7 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                             <Paper elevation={3} className={classes.paper}>
                             <h5>{props.periodo}</h5>
                             <AutorenewIcon fontSize={'large'} onClick={() => {
-                                setReiniciarS(!reiniciarS);
-                                dc.filterAll(props.seccion)
+                                props.callBack2()
                             }}/>
                             </Paper>
 

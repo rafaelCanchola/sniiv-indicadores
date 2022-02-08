@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import * as dc from "dc";
 import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+
+import BienestarBarChart from "../Graficas/eCharts/BienestarBarChart";
 import Grid from "@material-ui/core/Grid";
 import TableIcon from '@material-ui/icons/TableChart';
 import TuneIcon from '@material-ui/icons/Tune';
@@ -41,8 +42,6 @@ import {ind_b12} from "../../../json/Bienestar/fichas_ind_b12";
 import {ind_b13} from "../../../json/Bienestar/fichas_ind_b13";
 import {ind_b14} from "../../../json/Bienestar/fichas_ind_b14";
 import {ind_b15} from "../../../json/Bienestar/fichas_ind_b15";
-import BarCharts from "../Graficas/eCharts/BarCharts";
-import AutorenewIcon from "@material-ui/icons/Autorenew";
 
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -78,8 +77,8 @@ const useStyles = makeStyles((theme:Theme) =>
     })
 );
 
-interface CumplimientoProps {
-
+interface IndicadoresProps {
+    indicadorIndex:number
 }
 
 
@@ -87,27 +86,8 @@ interface AxisChart{
     [x: string]:any;
 }
 
-export default function IndicadoresBienestar(props:CumplimientoProps){
-    const [modo,setModo] = useState(1);
-    const [reiniciarS, setReiniciarS] = useState(false);
-    const [open1, setOpen1] = useState(false);
-    const [open3, setOpen3] = useState(false);
+export default function IndicadoresBienestar(props:IndicadoresProps){
     const classes = useStyles();
-
-
-    const handleClickOpen1 = () => {
-        setOpen1(true);
-    }
-    const handleClose1 = () => {
-        setOpen1(false);
-    }
-
-    const handleClickOpen3 = () => {
-        setOpen3(true);
-    }
-    const handleClose3 = () => {
-        setOpen3(false);
-    }
 
     const bienestar = [
         {
@@ -124,7 +104,6 @@ export default function IndicadoresBienestar(props:CumplimientoProps){
                 },
             ]
         },
-
         {
             titulo:"Meta del Bienestar del Objetivo Prioritario 2",
             data: ind_b4,
@@ -185,59 +164,10 @@ export default function IndicadoresBienestar(props:CumplimientoProps){
 
     return(
         <div className={classes.root}>
-            <Grid container spacing={2} alignItems={'center'} >
-                <Grid item xs={12} sm={12} md={12}>
-                    <Paper elevation={0} className={classes.paper}>
-                        <h1>{"Indicadores del bienestar"}</h1>
-                        <BarCharts tableData={bienestar}/>
-                    </Paper>
-                </Grid>
-            <Grid item xs={12} sm={12} md={12}>
-                <Paper elevation={0} className={classes.paper}>
-                    {/*
-                        bienestar.map((param:any,key:number) =>
-                            <Accordion key={param.titulo+key} TransitionProps={{ unmountOnExit: true }}>
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                >
-                                    <Typography className={classes.typo}>{param.titulo} </Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <TableMUIPNV data={param.data}/>
-                                </AccordionDetails>
-                                <AccordionDetails>
-                                    {
-                                        param.parametros.map((param1:any,key1:number) =>
-                                            <div className={classes.column} key={param1.titulo+key1}>
-                                                <Accordion  TransitionProps={{ unmountOnExit: true }}>
-                                                    <AccordionSummary expandIcon={<ExpandMoreIcon />}
-                                                                      aria-controls="panel1a-content"
-                                                                      id="panel1a-header"
-                                                    >
-                                                        <Typography className={classes.typo}>{param1.titulo}</Typography>
-                                                    </AccordionSummary>
-                                                    <AccordionDetails className={classes.details}>
-                                                        <Typography className={classes.typo}>
-                                                            <TableMUIViv data={param1.data}/>
-                                                        </Typography>
-                                                    </AccordionDetails>
-                                                </Accordion>
-                                            </div>
-
-                                        )
-                                    }
-                                </AccordionDetails>
-                            </Accordion>
-
-                        )*/
-                    }
-
-                </Paper>
-            </Grid>
-            </Grid>
-
+            <Paper elevation={0} className={classes.paper}>
+                <h1>{"Indicadores del bienestar"}</h1>
+                <BienestarBarChart tableData={bienestar} indicadorIndex={props.indicadorIndex}/>
+            </Paper>
         </div>
     )
 }
