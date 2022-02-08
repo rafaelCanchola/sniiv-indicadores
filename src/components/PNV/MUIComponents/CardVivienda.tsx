@@ -51,26 +51,23 @@ export default function CardVivienda(props:CardProps) {
         <Fragment>
             { props.children.length > 0 ?
                 <Card className={classes.root}>
-                    <CardActionArea >
-                        <div className={classes.details}>
-                            <CardContent className={classes.content}>
-                                <Typography component="h5" variant="h5" color={'textSecondary'}>
-                                    {props.obj}
-                                </Typography>
-                                <Typography variant="subtitle1" color="textSecondary">
-                                    {props.title}
-                                </Typography>
-                            </CardContent>
-                            <div className={classes.controls}>
-                                {props.children.map((child:any,key:any) =>
-                                    <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
-                                        <TableIcon fontSize={'large'}/>
-                                    </IconButton>
-                                )}
-
-                            </div>
+                    <div className={classes.details}>
+                        <CardContent className={classes.content}>
+                            <Typography component="h5" variant="h5" color={'textSecondary'}>
+                                {props.obj}
+                            </Typography>
+                            <Typography variant="subtitle1" color="textSecondary">
+                                {props.title}
+                            </Typography>
+                        </CardContent>
+                        <div className={classes.controls}>
+                            {props.children.map((child:any,key:any) =>
+                                <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
+                                    <TableIcon fontSize={'large'}/>
+                                </IconButton>
+                            )}
                         </div>
-                    </CardActionArea>
+                    </div>
                     <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                 </Card>
                 :

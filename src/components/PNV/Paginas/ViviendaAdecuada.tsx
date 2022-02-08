@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -24,6 +24,10 @@ import ubicacion from "../../../assets/images/ubicacion-tr.png";
 import cultura from "../../../assets/images/cultura-tr.png";
 import habitabilidad from "../../../assets/images/habitabilidad-tr.png";
 import asequibilidad from "../../../assets/images/asequibilidad-tr.png";
+import CardImgVivienda from '../MUIComponents/CardImgVivienda';
+import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -40,7 +44,10 @@ const useStyles = makeStyles((theme:Theme) =>
         image:{
             width:"100%",
             height: "auto"
-        }
+        },
+        body:{
+            fontSize: 12,
+        },
     })
 );
 
@@ -49,6 +56,12 @@ interface ViviendaProps {
 }
 
 export default function ViviendaAdecuada(props:ViviendaProps){
+    const [width, setWidth] = useState<number>(window.innerWidth);
+    function handleWindowSizeChange() {setWidth(window.innerWidth);}
+    useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
+
+    const isMobile = width <= 768;
+
     const [indicador,setIndicador] = useState([0,0]);
     const classes = useStyles();
 
@@ -166,35 +179,68 @@ export default function ViviendaAdecuada(props:ViviendaProps){
 
     return(
         <div className={classes.root}>
-                <Grid container spacing={2}  >
-                    <Grid item xs={12} sm={12} md={12}>
-                        <Paper elevation={0} className={classes.paper}>
-                            <h1>{"Vivienda Adecuada"}</h1>
-                            <h5>{"Indicadores complementarios"}</h5>
-                            <RefreshIcon fontSize={'large'} onClick={() => setIndicador([0,0])} />
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={4} sm={4} md={3}>
-                        {elementos.slice(0,4).map(card =>
-                            <Paper elevation={0} className={classes.paper} key={card.num+card.title}>
-                                <CardVivienda children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image}/>
-                            </Paper>
-                        )}
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={6}>
-                        <Paper elevation={3} className={classes.paper}>
-                            {indicador[0] === 0 ? <img src={vivienda} className={classes.image} /> : indicadores[indicador[0]-1].tipo === 'none'? <img src={vivienda} className={classes.image} /> : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={4} sm={4} md={3}>
-                        {elementos.slice(4).map(card =>
-                            <Paper elevation={0} className={classes.paper} key={card.num+card.title}>
-                                <CardVivienda children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image}/>
-                            </Paper>
-                        )}
-                    </Grid>
+            <Grid container spacing={2}  >
+                <Grid item xs={12} sm={12} md={12}>
+                    <Paper elevation={0} className={classes.paper}>
+                        <h1>{"Vivienda Adecuada"}</h1>
+                        <h5>{"Indicadores complementarios"}</h5>
+                        <RefreshIcon fontSize={'large'} onClick={() => setIndicador([0,0])} />
+                    </Paper>
                 </Grid>
+                {isMobile ?
+                    <Grid container spacing={2}  >
+                        <Grid item xs={12} sm={12} md={12} >
+                            <Accordion>
+                                <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
+                                    <Typography
+                                        className={classes.body}>Selecciona un indicador</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography>
+                                        <Grid container spacing={2}  >
+                                            {elementos.map((card:any,key:number) =>
+                                            <Fragment>
+                                                {(key === elementos.length-1)? <Grid item xs={4}></Grid> : <></>}
+                                                <Grid item xs={4}>
+                                                    <CardImgVivienda children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image}/>
+                                                </Grid>
+                                            </Fragment>
+                                        )}
+                                        </Grid>
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={6}>
+                            <Paper elevation={3} className={classes.paper}>
+                                {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : indicadores[indicador[0]-1].tipo === 'none'? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                    :
+                    <Fragment>
+                        <Grid item xs={12} sm={3} md={3}>
+                        {elementos.slice(0,4).map(card =>
+                            <CardVivienda children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
+                        )}
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                        <Paper elevation={3} className={classes.paper}>
+                            {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} /> : indicadores[indicador[0]-1].tipo === 'none'? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
+                        </Paper>
+                        </Grid>
+                        <Grid item xs={12} sm={3} md={3}>
+                            {elementos.slice(4).map(card =>
+                                <CardVivienda children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
+                            )}
+                        </Grid>
+                    </Fragment>
+                }
+
+            </Grid>
             <br/><br/><br/>
         </div>
     )
 }
+
+

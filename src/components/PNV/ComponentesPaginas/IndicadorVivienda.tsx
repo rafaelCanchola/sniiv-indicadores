@@ -44,6 +44,7 @@ interface AxisChart{
 }
 
 export function IndicadorVivienda(props:IndicadorViviendaProps){
+
     const classes = useStyles();
     let colors = assignColor(6);
 
@@ -57,6 +58,7 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
     }
     return(
         <div className={classes.root}>
+            <h3>{props.indicador.titulo}</h3>
             {props.indicador.tipo === 'dual' ?
                 <Grid container spacing={2}  >
                     <BarChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} />
@@ -72,19 +74,17 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
             }
             <Grid container spacing={2}  >
                 <Grid item xs={12} sm={12} md={12} >
-                    <Paper elevation={3} className={classes.paper}>
-                        <Accordion>
-                            <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
-                                <Typography
-                                    className={classes.body}>Ficha Técnica</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    <TableMUIViv data={props.indicador.data[props.indicadorIndex].ficha}/>
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                    </Paper>
+                    <Accordion>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
+                            <Typography
+                                className={classes.body}>Ficha Técnica</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                <TableMUIViv data={props.indicador.data[props.indicadorIndex].ficha}/>
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
                 </Grid>
             </Grid>
         </div>

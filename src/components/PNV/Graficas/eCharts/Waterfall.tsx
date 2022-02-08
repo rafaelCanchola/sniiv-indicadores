@@ -45,7 +45,6 @@ interface WaterfallProps{
 
 export default function Waterfall(props:WaterfallProps){
     const classes = useStyles();
-    const lengthData = props.data.length;
     const waterArray = waterFallSize(props.data,props.data.length)
 
     const option = {
