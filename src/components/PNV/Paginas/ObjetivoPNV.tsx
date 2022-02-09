@@ -3,12 +3,18 @@ import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import ReactECharts from "echarts-for-react";
-
-import pnv2021 from "../../../assets/images/pnv2021.png";
 import CardObjetivo from '../MUIComponents/CardObjetivo';
 
 import {objetivosONAVI} from "../../../json/PNV/objetivosONAVI";
 import {colorBrewer} from "../../colorBrewer";
+
+import pnv2021 from "../../../assets/images/pnv2021.png";
+import objetivo1 from "../../../assets/images/obj1.png";
+import objetivo2 from "../../../assets/images/obj2.png";
+import objetivo3 from "../../../assets/images/obj3.png";
+import objetivo4 from "../../../assets/images/obj4.png";
+import objetivo5 from "../../../assets/images/obj5.png";
+import objetivo6 from "../../../assets/images/obj6.png";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -59,35 +65,35 @@ export default function ObjetivoPNV(){
             "title":"Objetivo 1",
             "obj": "Garantizar el ejercicio del derecho a la vivienda adecuada a todas las personas, especialmente a los grupos en mayor condición de discriminación y vulnerabilidad, a través de soluciones financieras, técnicas y sociales de acuerdo con las necesidades específicas de cada grupo de población.",
             "more": "",
-            "img":"",
+            "img":objetivo1,
             "size":2
         },
         {
             "title":"Objetivo 2",
             "obj":"Garantizar la coordinación entre los organismos nacionales de vivienda y los distintos órdenes de gobierno para el uso eficiente de los recursos públicos",
             "more":"",
-            "img":"",
+            "img":objetivo2,
             "size":2
         },
         {
             "title":"Objetivo 3",
             "obj":"Fomentar conjuntamente con el sector social y privado, condiciones que propicien el ejercicio del derecho a la vivienda adecuada.",
             "more":"",
-            "img":"",
+            "img":objetivo3,
             "size":2
         },
         {
             "title":"Objetivo 4",
             "obj":"Asegurar el derecho a la información y la rendición de cuentas de todos los actores del sistema de vivienda adecuada.",
             "more":"",
-            "img":"",
+            "img":objetivo6,
             "size":2
         },
         {
             "title":"Objetivo 5",
             "obj":"Establecer un modelo de ordenamiento territorial y gestión del suelo que considere la vivienda adecuada como elemento central de planeación de territorio.",
             "more":"",
-            "img":"",
+            "img":objetivo5,
             "size":2
         }
     ]

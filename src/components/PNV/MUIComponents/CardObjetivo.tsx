@@ -41,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
     text:{
         fontSize:10,
         color:theme.palette.text.secondary,
+    },
+    image:{
+        width:"65%",
+        height:"auto"
     }
 }));
 
@@ -48,7 +52,7 @@ export default function MediaCard(props:CardProps) {
     const classes = useStyles();
     return (
         <Card >
-            <CardHeader avatar={<Avatar aria-label="avatar" className={classes.avatar}>Obj</Avatar>} title={props.title} className={classes.text}/>
+            <CardHeader avatar={<Avatar aria-label="avatar" className={classes.avatar}><img src={props.image} className={classes.image}/></Avatar>} title={props.title} className={classes.text}/>
             <CardContent>
                 <Typography className={classes.text} variant={"body2"}>
                     {props.content}
