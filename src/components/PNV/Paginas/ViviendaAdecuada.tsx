@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme:Theme) =>
             margin: theme.spacing(2),
         },
         paper:{
-            padding: theme.spacing(2),
+            padding: theme.spacing(1),
             textAlign:"center",
             color: theme.palette.text.secondary,
             backgroundColor: theme.palette.background.default,
@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme:Theme) =>
         },
         body:{
             fontSize: 12,
+            color: theme.palette.text.secondary,
         },
     })
 );
@@ -211,7 +212,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                             </Accordion>
                         </Grid>
                         <Grid item xs={12} sm={12}>
-                            <Paper elevation={3} className={classes.paper}>
+                            <Paper elevation={0} className={classes.paper}>
                                 {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} /> : indicadores[indicador[0]-1].tipo === 'none'? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
                             </Paper>
                         </Grid>
@@ -219,19 +220,25 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                     :
                     <Fragment>
                         <Grid item xs={12} sm={3} md={3}>
+                            <Paper elevation={0} className={classes.paper}><br/></Paper>
                         {elementos.slice(0,4).map(card =>
-                            <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
+                            <Paper elevation={0} className={classes.paper}>
+                            <CardVivienda  mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
+                            </Paper>
                         )}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6}>
-                        <Paper elevation={3} className={classes.paper}>
+                        <Paper elevation={0} className={classes.paper}>
                             {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} /> : indicadores[indicador[0]-1].tipo === 'none'? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
                         </Paper>
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
+                            <Paper elevation={0} className={classes.paper}><br/><br/></Paper>
                             {elementos.slice(4).map(card =>
+                                <Paper elevation={0} className={classes.paper}>
                                 <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
-                            )}
+                                </Paper>
+                                    )}
                         </Grid>
                     </Fragment>
                 }
