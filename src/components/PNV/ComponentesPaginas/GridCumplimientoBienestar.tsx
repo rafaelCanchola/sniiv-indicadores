@@ -71,14 +71,12 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
     const [indicador,setIndicador] = useState([0,0]);
     const classes = useStyles();
     let dataRow = props.data.map((d: AxisChart,key:number) =>
-        ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),title:key+1,itemStyle:{color: assignObjetivosColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
+        ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),name:key+1,itemStyle:{color: assignObjetivosColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
         .reverse()
     let labelDataRow = props.data.map((d: AxisChart) => "Objetivo "+d[props.hAxis]).reverse()
     let dataBar = props.data2.map((d: AxisChart) =>
         ({value:(d[props.aAxis] === 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),itemStyle:{color: assignObjetivosColor(d[props.hAxis])}}))
     let labelDataBar = props.data2.map((d: AxisChart) => d[props.gAxis])
-
-
 
     const graficas =[
         {
