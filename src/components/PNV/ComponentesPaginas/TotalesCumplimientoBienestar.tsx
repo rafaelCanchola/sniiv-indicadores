@@ -1,32 +1,11 @@
-import React, {useState} from 'react';
-import * as dc from "dc";
-import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
+import React from 'react';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import ReactECharts from "echarts-for-react";
 
 import trimestral from "../../../assets/images/trimestral.png";
-
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(2),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
-
-        },
-        image:{
-            width:"80%",
-            height: "auto"
-        }
-    })
-
-);
+import {useStyles} from "../../../utils/Style";
 
 interface CumplimientoProps {
     data: any;
@@ -49,7 +28,6 @@ interface AxisChart{
 }
 
 export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
-    const [reiniciarS, setReiniciarS] = useState(false);
     const classes = useStyles();
     const option = {
         xAxis: {
@@ -144,7 +122,7 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                         <Paper elevation={0} className={classes.paper}>
                             <h2>{props.titleTrimestral}</h2>
                             <Paper elevation={3} className={classes.paper}>
-                                <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"}><img src={trimestral} className={classes.image} alt={"Reporte trimestral"} /></a>
+                                <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"} rel={"noreferrer"}><img src={trimestral} className={classes.imagePNV} alt={"Reporte trimestral"} /></a>
                             </Paper>
                         </Paper>
                     </Grid>

@@ -15,28 +15,8 @@ import shf from "../../../assets/images/shf.png";
 import sedatu from "../../../assets/images/sedatu.png";
 import {colorBrewer} from "../../colorBrewer";
 import {assignObjetivosColor, assignStateColor} from "../../../utils/Utils";
+import {useStyles} from "../../../utils/Style";
 
-
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(2),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
-
-        },
-        image:{
-            width:"80%",
-            height: "auto"
-        },
-        gauge:{
-        }
-    })
-);
 
 interface CumplimientoProps {
     data: any;

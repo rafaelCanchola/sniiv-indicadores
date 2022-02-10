@@ -1,37 +1,11 @@
 import React, { Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {CardActionArea, IconButton} from "@material-ui/core";
 import TableIcon from '@material-ui/icons/Toc';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-    },
-    details: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    content: {
-        flex: '1 0 auto',
-    },
-    cover: {
-        width: "40%",
-    },
-    controls: {
-        display: 'flex',
-        alignItems: 'center',
-        paddingLeft: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-    },
-    playIcon: {
-        height: 38,
-        width: 38,
-    },
-}));
+import {useStyles} from "../../../utils/Style";
 
 interface CardProps{
     obj: number,
@@ -52,7 +26,7 @@ export default function CardBienestar(props:CardProps) {
         <Fragment>
             {props.mobile ?
                 props.children.length > 0 ?
-                    <Card className={classes.root}>
+                    <Card className={classes.rootBienestar}>
                         <div className={classes.details}>
                             {props.children.map((child:any,key:any) =>
                                 <div className={classes.controls}>
@@ -65,7 +39,7 @@ export default function CardBienestar(props:CardProps) {
                         <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                     </Card>
                     :
-                    <Card className={classes.root}>
+                    <Card className={classes.rootBienestar}>
                         <div className={classes.details}>
                             <div className={classes.controls}>
                                 <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,0])} >
@@ -77,7 +51,7 @@ export default function CardBienestar(props:CardProps) {
                     </Card>
                 :
                  props.children.length > 0 ?
-                        <Card className={classes.root}>
+                        <Card className={classes.rootBienestar}>
                             <div className={classes.details}>
                                 <CardContent className={classes.content}>
                                     <Typography variant="subtitle1" color="textSecondary">
@@ -101,7 +75,7 @@ export default function CardBienestar(props:CardProps) {
                             </div>
                             <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                         </Card>
-                        :<Card className={classes.root}>
+                        :<Card className={classes.rootBienestar}>
                             <CardActionArea onClick={clicke}>
                                 <div className={classes.details}>
                                     <CardContent className={classes.content}>

@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {useState} from "react";
 import Paper from "@material-ui/core/Paper";
 import {
     Accordion,
@@ -9,50 +9,22 @@ import {
     DialogContent,
     DialogTitle
 } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import TableIcon from "@material-ui/icons/Toc";
+import ReactECharts from "echarts-for-react";
 
-import TableMUIViv from "../Tablas/TableMUIViv";
-import Waterfall from "../Graficas/eCharts/Waterfall";
-import BarChart from "../Graficas/eCharts/BarChart";
 import {colorBrewer} from "../../colorBrewer";
-import {assignColor, assignStateColor} from "../../../utils/Utils";
+import {assignStateColor, MobileSize} from "../../../utils/Utils";
+
 import conavi from "../../../assets/images/conavi.png";
 import fovissste from "../../../assets/images/fovissste.png";
 import infonavit from "../../../assets/images/infonavit.png";
 import insus from "../../../assets/images/insus.png";
 import shf from "../../../assets/images/shf.png";
 import sedatu from "../../../assets/images/sedatu.png";
-import TableIcon from "@material-ui/icons/Toc";
-import ReactECharts from "echarts-for-react";
+
 import IndicadoresBienestar from "./IndicadoresBienestar";
 import TableMUIPNV from "../Tablas/TableMUIPNV";
-
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(2),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
-
-        },
-        image:{
-            width:"100%",
-            height: "auto"
-        },
-        body:{
-            fontSize: 12,
-        },
-        gauge:{
-        }
-    })
-);
+import {useStyles} from "../../../utils/Style";
 
 interface IndicadorViviendaProps {
     indicador:any,
@@ -66,9 +38,8 @@ interface AxisChart{
 function orderPie(myProps:any,objective:number){
     let dataPie = myProps.data.filter((d: any) => d[myProps.hAxis] === objective)[0];
     let reduceDataPie = Object.keys(dataPie).reduce((obj:any,key:any) => {if(key !== myProps.hAxis && key !== myProps.fAxis && key !== myProps.aAxis){obj[key]=dataPie[key]}return obj},{})
-    console.log(reduceDataPie)
     let mapDatapie = Object.keys(reduceDataPie).map((d:any) => ({name:d,value:reduceDataPie[d],itemStyle:{color: assignStateColor(d,myProps.bAxis,myProps.cAxis,myProps.dAxis,myProps.eAxis)}}))
-    console.log(mapDatapie)
+
     return {
         title: {
             text: 'Objetivo '+objective,
@@ -104,11 +75,8 @@ function orderPie(myProps:any,objective:number){
 
 
 export function IndicadoresPNV(props:IndicadorViviendaProps){
-    const [width, setWidth] = useState<number>(window.innerWidth);
-    function handleWindowSizeChange() {setWidth(window.innerWidth);}
-    useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
 
-    const isMobile = width <= 768;
+    const isMobile = MobileSize();
 
     const classes = useStyles();
     const [open1, setOpen1] = useState(false);

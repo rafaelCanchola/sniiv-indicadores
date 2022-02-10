@@ -1,5 +1,5 @@
 import {colorBrewer} from "../components/colorBrewer";
-
+import {useEffect, useState} from "react";
 
 export function randomNumber(max:number){
     return Math.floor(Math.random() * max) + 0
@@ -55,4 +55,11 @@ export function assignStateColor(obj:string,bAxis:any,cAxis:any,dAxis:any,eAxis:
     } else if (obj === dAxis) {
         return colorBrewer.StateColor[3];
     }
+}
+
+export function MobileSize():boolean{
+    const [width, setWidth] = useState<number>(window.innerWidth);
+    function handleWindowSizeChange() {setWidth(window.innerWidth);}
+    useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
+    return width <= 768
 }

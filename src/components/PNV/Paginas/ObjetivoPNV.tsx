@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
+import React from 'react';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import ReactECharts from "echarts-for-react";
@@ -16,25 +15,8 @@ import objetivo4 from "../../../assets/images/obj4.png";
 import objetivo5 from "../../../assets/images/obj5.png";
 import objetivo6 from "../../../assets/images/obj6.png";
 
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(2),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
+import {useStyles} from "../../../utils/Style";
 
-        },
-        image:{
-            width:"80%",
-            height: "auto"
-        }
-    })
-
-);
 
 interface CumplimientoProps {
     data: any;
@@ -56,8 +38,6 @@ interface AxisChart{
 }
 
 export default function ObjetivoPNV(){
-    const [modo,setModo] = useState(1);
-    const [reiniciarS, setReiniciarS] = useState(false);
     const classes = useStyles();
 
     const objetivos = [
@@ -156,15 +136,16 @@ export default function ObjetivoPNV(){
 
                         <h1>{"¿Qué es el PNV?"}</h1>
 
-                        <Paper elevation={3} className={classes.paper}>
+                        <Paper elevation={3} className={classes.paperPNV}>
                             <p>
-                                El Programa Nacional de Vivienda incorpora los siete elementos de la vivienda adecuada establecidos por ONU-Hábitat: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad, habitabilidad, accesibilidad; ubicación y adecuación cultural. De esta manera, se busca que todos los actores impulsen estos criterios en los planes, reglas y programas de cada institución.
+                                El Programa Nacional de Vivienda es un programa especial derivado del Plan Nacional de Desarrollo 2019-2024.
+                            </p>
+                            <p>
+                                Incorpora los siete elementos de la vivienda adecuada establecidos por ONU-Hábitat: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad, habitabilidad, accesibilidad; ubicación y adecuación cultural. De esta manera, se busca que todos los actores impulsen estos criterios en los planes, reglas y programas de cada institución.
                             </p>
                             <p>
                                 La nueva política de vivienda coloca su énfasis en los grupos más vulnerables, y devolviéndoles el acceso a la vivienda adecuada como derecho; esto en consonancia con el objetivo 2. Política Social del Plan Nacional de Desarrollo 2021-2024. Lo anterior, tomando en cuenta que la vivienda ha dejado de ser un producto comercial escindido del territorio y se ha convertido, vista desde la política pública, en un espacio habitacional inherentemente vinculado al territorio.
                             </p>
-
-
                         </Paper>
                     </Paper>
                 </Grid>
@@ -172,7 +153,7 @@ export default function ObjetivoPNV(){
                     <Paper elevation={0} className={classes.paper}>
                         <h2>{"Programa Nacional de Vivienda"}</h2>
                         <Paper elevation={3} className={classes.paper}>
-                            <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"}><img src={pnv2021} className={classes.image} /></a>
+                            <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"} rel={"noreferrer"}><img src={pnv2021} className={classes.image} alt={"Imagen"}/></a>
                         </Paper>
                     </Paper>
                 </Grid>

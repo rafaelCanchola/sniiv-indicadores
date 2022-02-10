@@ -1,7 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import PorcentajeCumplimientoBienestar from "../ComponentesPaginas/PorcentajeCumplimientoBienestar";
 import TotalesCumplimientoBienestar from "../ComponentesPaginas/TotalesCumplimientoBienestar";
-import IndicadoresBienestar from "../ComponentesPaginas/IndicadoresBienestar";
 
 import {cumplimientoPNV1} from "../../../json/PNV/cumplimiento21-1";
 import {cumplimientoPNV2} from "../../../json/PNV/cumplimiento21-2";

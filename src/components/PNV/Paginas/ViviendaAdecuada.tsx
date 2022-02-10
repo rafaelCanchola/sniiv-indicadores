@@ -1,5 +1,4 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
@@ -26,30 +25,7 @@ import ubicacion from "../../../assets/images/ubicacion-tr.png";
 import cultura from "../../../assets/images/cultura-tr.png";
 import habitabilidad from "../../../assets/images/habitabilidad-tr.png";
 import asequibilidad from "../../../assets/images/asequibilidad-tr.png";
-
-
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(1),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
-
-        },
-        image:{
-            width:"100%",
-            height: "auto"
-        },
-        body:{
-            fontSize: 12,
-            color: theme.palette.text.secondary,
-        },
-    })
-);
+import {useStyles} from "../../../utils/Style";
 
 interface ViviendaProps {
 
@@ -71,14 +47,14 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             title: "SEGURIDAD EN LA TENENCIA",
             image:seguridad,
             more:"",
-            children:[]
+            children:[0,1]
         },
         {
             num: 2,
             title: "DISPONIBILIDAD DE SERVICIOS",
             image:servicios,
             more:"",
-            children:[]
+            children:[0,1,2]
         },
         {
             num: 3,
@@ -120,28 +96,36 @@ export default function ViviendaAdecuada(props:ViviendaProps){
     const indicadores = [
         {
             titulo: "Seguridad en la tenencia",
-            tipo:'none',
+            tipo:'dual',
+            data:[{ficha:indicadorViv2},{ficha:indicadorViv3}],
+            chartTitle:['Porcentaje viviendas rentadas o prestadas','Porcentaje de viviendas propias sin escrituras o propias en proceso de pago sin escrituras'],
+            grafica:[[27.7,],[17.5]],
+            label:[{chartLabel:['Viviendas']},{chartLabel:['Viviendas']}],
+
         },
         {
             titulo: "Disponibilidad de Servicios",
-            tipo:'none',
+            tipo:'dual',
+            data:[{ficha:indicadorViv2},{ficha:indicadorViv3},{ficha:indicadorViv4}],
+            chartTitle:['Porcentaje de viviendas con sistema de captación pluvial','Porcentaje de viviendas con ecotecnia: luz eléctrica de panel solar','Porcentaje de viviendas con servicio sanitario con biodigestor'],
+            grafica:[[0.3],[0.1],[1.7]],
+            label:[{chartLabel:['Viviendas']},{chartLabel:['Viviendas']},{chartLabel:['Viviendas']}],
         },
         {
             titulo: "Asequibilidad",
             tipo:'waterfall',
             data: [{ficha:indicadorViv1}],
             chartTitle:'Proporción de viviendas particulares habitadas según motivo de renta',
-            grafica:[5782349,25403,188464,309176,460831,558275,1269756,2970444],
-
-            label:['Total','No sabe', 'Invertir en persona','No le interesa', 'Otra', 'Mensualidad menor', 'Facilidad de mudar', 'Sin crédito']
+            grafica:[100,0.4,3.3,5.3,8,9.7,22,51.4],
+            label:['Total','No sabe', 'Prefiere invertir en su persona (viajes, estudios, negocio)','No le interesa comprar', 'Otra', 'La mensualidad es menor que una hipoteca', 'Por facilidad de poder mudarse, si cambia de ciudad o empleo', 'No tiene acceso a crédito (hipotecario o bancario) / No tiene recursos']
         },
         {
             titulo: "Habitabilidad",
             tipo:'dual',
             chartTitle:['Porcentaje de viviendas particulares habitadas según tipo de problema estructural','Porcentaje de viviendas particulares habitadas propias, según respuesta del informante, que declararon estar muy satisfechos y algo satisfechos con la calidad y aspectos de la vivienda'],
             data: [{ficha:indicadorViv2},{ficha:indicadorViv3}],
-            grafica:[[14390038,5725273,5218505,15583020,3729173,31425730,],[18050877,18097127,15238794,21183163,21435472,20095401]],
-            label:[{chartLabel:['Grietas en techos','Marcos de las puertas','Hundimiento del piso','Filtración de agua','Fractura de columnas','Sistema eléctrico']},
+            grafica:[[40.8,16.2,14.8,44.2,10.6,89.1,],[75.5,75.7,63.8,88.6,89.7,84.1]],
+            label:[{chartLabel:['Grietas o cuarteaduras en techos o muros','Pandeos o deformaciones en los marcos de las puertas o ventanas','Levantamientos o hundimientos del piso','Humedad o filtraciones de agua en cimientos, muros o techos','Fracturas, pandeos o deformación de columnas, vigas o trabes','Sistema eléctrico (muros, techos, etcétera)']},
                 {chartLabel: ['Calidad del piso','Calidad de los muros y techos','Pintura, recubrimientos y otros acabados','Iluminación natural','Ventilación natural','Protección que les da contra la lluvia, frío, calor o viento']}]
         },
         {
@@ -149,16 +133,16 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             tipo:'dual',
             chartTitle:['Porcentaje de viviendas particulares habitadas según tipo de problema estructural','Porcentaje de viviendas que perciben que su colonia o barrio presentan muchos problemas por la falta de rampas o elevadores  para personas en condición de discapacidad'],
             data: [{ficha:indicadorViv4},{ficha:indicadorViv5}],
-            grafica:[[4507772,3480530,4325469,4325469],[14559735,]],
+            grafica:[[12.8,9.9,12.3,12.9],[41.3,]],
             label:[{chartLabel: ['Poner pasamanos','Ampliar puertas','Poner rampas','Adecuar baños']},
-                {chartLabel: ['perciben que su colonia o barrio presentan muchos problemas por la falta de rampas o elevadores  para personas en condición de discapacidad ']}]
+                {chartLabel: ['Percepción de problemas  que tienen falta de rampas']}]
         },
         {
             titulo: "Ubicación",
             tipo:'dual',
             chartTitle:['Porcentaje de viviendas particulares habitadas propias, según grado de satisfacción con la distancia-tiempo entre la vivienda y tipo de servicios','Porcentaje de viviendas que declararon presentar problemáticas de contaminación, ruido, inseguridad y vandalismo','Porcentaje Problemáticas de contaminación, ruido, inseguridad y vandalismo'],
             data: [{ficha:indicadorViv6},{ficha:indicadorViv7}],
-            grafica:[[29340302,24979438,26872910,25330965,23724488,17060862,],[13755640,16949152,6567779,8405756,10930621,15524909]],
+            grafica:[[83.2,70.8,76.2,71.8,67.3,48.4,],[39,48,18.6,23.8,31,44]],
             label:[{chartLabel: ['Centros escolares','Mercados o centros comerciales','Trabajo','Centros de salud','Parques o espacios deportivos','Centros de recreación o instalaciones culturales']},
                 {chartLabel:['Exceso de ruido','Basura tirada en las calles','Contaminación del ambiente por fábricas o construcciones','Deterioro por abandono de viviendas o espacios públicos','Problema tienen con el vandalismo, grafitis, pintas, vidrios rotos','Problema tienen con los robos o asaltos']}]
         },
@@ -167,7 +151,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             tipo:'bar',
             chartTitle:'Porcentaje de viviendas que declararon tener un alto grado de identidad con sus gustos, costumbres y tradiciones',
             data: [{ficha:indicadorViv8}],
-            grafica:[[28881734,]],
+            grafica:[[81.9,]],
             label:{chartLabel:['Vivienda se identifica con sus gustos, costumbres y tradiciones']}
         },
 
@@ -199,7 +183,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                                     <Typography>
                                         <Grid container spacing={2}  >
                                             {elementos.map((card:any,key:number) =>
-                                            <Fragment>
+                                            <Fragment key={key}>
                                                 {(key === elementos.length-1)? <Grid item xs={4}></Grid> : <></>}
                                                 <Grid item xs={4}>
                                                     <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image}/>
@@ -220,22 +204,22 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                     :
                     <Fragment>
                         <Grid item xs={12} sm={3} md={3}>
-                            <Paper elevation={0} className={classes.paper}><br/></Paper>
-                        {elementos.slice(0,4).map(card =>
-                            <Paper elevation={0} className={classes.paper}>
+                            <Paper elevation={0} className={classes.paperImage}><br/></Paper>
+                        {elementos.slice(0,4).map((card:any,key:number )=>
+                            <Paper elevation={0} className={classes.paperImage} key={key}>
                             <CardVivienda  mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
                             </Paper>
                         )}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6}>
-                        <Paper elevation={0} className={classes.paper}>
+                        <Paper elevation={0} className={classes.paperImage}>
                             {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} /> : indicadores[indicador[0]-1].tipo === 'none'? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
                         </Paper>
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
-                            <Paper elevation={0} className={classes.paper}><br/><br/></Paper>
-                            {elementos.slice(4).map(card =>
-                                <Paper elevation={0} className={classes.paper}>
+                            <Paper elevation={0} className={classes.paperImage}><br/><br/></Paper>
+                            {elementos.slice(4).map((card:any,key:number ) =>
+                                <Paper elevation={0} className={classes.paperImage} key={key}>
                                 <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
                                 </Paper>
                                     )}
