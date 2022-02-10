@@ -3,8 +3,8 @@ import './App.css';
 import {Link,withRouter,Route} from 'react-router-dom';
 import {BrowserRouter} from "react-router-dom";
 import {BottomNavigation, BottomNavigationAction, AppBar, alpha} from "@material-ui/core";
-import AssIcon from '@material-ui/icons/AssignmentOutlined'
-import HomeIcon from '@material-ui/icons/HouseOutlined'
+import AssIcon from '@material-ui/icons/LibraryBooksOutlined'
+import HomeIcon from '@material-ui/icons/ApartmentOutlined'
 import AnalyticsIcon from '@material-ui/icons/MultilineChartOutlined'
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
