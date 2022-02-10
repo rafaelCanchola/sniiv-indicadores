@@ -7,7 +7,7 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogTitle
+    DialogTitle, styled,
 } from "@material-ui/core";
 import TableIcon from "@material-ui/icons/Toc";
 import ReactECharts from "echarts-for-react";
@@ -25,6 +25,9 @@ import sedatu from "../../../assets/images/sedatu.png";
 import IndicadoresBienestar from "./IndicadoresBienestar";
 import TableMUIPNV from "../Tablas/TableMUIPNV";
 import {useStyles} from "../../../utils/Style";
+import Leyenda from "../MUIComponents/Leyenda";
+
+
 
 interface IndicadorViviendaProps {
     indicador:any,
@@ -109,6 +112,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
 
     const GaugeChart = {
         tooltip: { },
+
         series: [
             {
                 type: 'gauge',
@@ -285,6 +289,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                     <h2>{props.indicador.title}</h2>
                     <h3>{props.indicador.trimestre}</h3>
                     <TableIcon fontSize={'large'} onClick={handleClickOpen1}/>
+                    <Leyenda />
                     <Paper elevation={3} className={classes.paper}>
                         <ReactECharts option={GaugeChart} className={classes.gauge} />
                     </Paper>
@@ -293,6 +298,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                     <Paper elevation={0} className={classes.paper}>
                         <h2>{props.indicador.title}</h2>
                         <h3>{props.indicador.trimestre}</h3>
+                        <Leyenda />
                         <Paper elevation={3} className={classes.paper}>
                             <ReactECharts option={BarChart} opts={{ renderer: 'svg' }} />
                         </Paper>
