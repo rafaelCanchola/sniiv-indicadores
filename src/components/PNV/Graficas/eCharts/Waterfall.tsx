@@ -46,7 +46,6 @@ interface WaterfallProps{
 export default function Waterfall(props:WaterfallProps){
     const classes = useStyles();
     const waterArray = waterFallSize(props.data,props.data.length)
-
     const option = {
 
         tooltip: {
@@ -61,7 +60,8 @@ export default function Waterfall(props:WaterfallProps){
         xAxis: {
             type: 'category',
             splitLine: { show: false },
-            data: props.label
+            show:false,
+            data: props.label.chartLabel
         },
         yAxis: {
             type: 'value'

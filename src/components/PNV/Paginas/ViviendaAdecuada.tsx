@@ -61,14 +61,14 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             title: "ASEQUIBILIDAD",
             image:asequibilidad,
             more:"",
-            children:[]
+            children:[0,1,2,3]
         },
         {
             num: 4,
             title: "HABITABILIDAD",
             image:habitabilidad,
             more:"",
-            children:[0,1]
+            children:[0,1,2]
         },
         {
             num: 5,
@@ -91,13 +91,20 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             more:"",
             children:[]
         },
+        {
+            num: 8,
+            title: "AUTOPRODUCCIÓN",
+            image:cultura,
+            more:"",
+            children:[0,1]
+        },
     ]
 
     const indicadores = [
         {
             titulo: "Seguridad en la tenencia",
             tipo:'dual',
-            data:[{ficha:indicadorViv2},{ficha:indicadorViv3}],
+            data:[{ficha:indicadorViv2},{ficha:indicadorViv3}],//faltan las fichas
             chartTitle:['Porcentaje viviendas rentadas o prestadas','Porcentaje de viviendas propias sin escrituras o propias en proceso de pago sin escrituras'],
             grafica:[[27.7,],[17.5]],
             label:[{chartLabel:['Viviendas']},{chartLabel:['Viviendas']}],
@@ -106,7 +113,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
         {
             titulo: "Disponibilidad de Servicios",
             tipo:'dual',
-            data:[{ficha:indicadorViv2},{ficha:indicadorViv3},{ficha:indicadorViv4}],
+            data:[{ficha:indicadorViv2},{ficha:indicadorViv3},{ficha:indicadorViv4}],//faltan las fichas
             chartTitle:['Porcentaje de viviendas con sistema de captación pluvial','Porcentaje de viviendas con ecotecnia: luz eléctrica de panel solar','Porcentaje de viviendas con servicio sanitario con biodigestor'],
             grafica:[[0.3],[0.1],[1.7]],
             label:[{chartLabel:['Viviendas']},{chartLabel:['Viviendas']},{chartLabel:['Viviendas']}],
@@ -114,19 +121,24 @@ export default function ViviendaAdecuada(props:ViviendaProps){
         {
             titulo: "Asequibilidad",
             tipo:'waterfall',
-            data: [{ficha:indicadorViv1}],
-            chartTitle:'Proporción de viviendas particulares habitadas según motivo de renta',
-            grafica:[100,0.4,3.3,5.3,8,9.7,22,51.4],
-            label:['Total','No sabe', 'Prefiere invertir en su persona (viajes, estudios, negocio)','No le interesa comprar', 'Otra', 'La mensualidad es menor que una hipoteca', 'Por facilidad de poder mudarse, si cambia de ciudad o empleo', 'No tiene acceso a crédito (hipotecario o bancario) / No tiene recursos']
+            data: [{ficha:indicadorViv1},{ficha:indicadorViv1},{ficha:indicadorViv1},{ficha:indicadorViv1}],
+            chartTitle:['Proporción de viviendas particulares habitadas según motivo de renta','Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin, distribución según tipo de financiamiento','Proporción de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Proporción de viviendas por tipo de financiamiento respecto de las viviendas totales.'],
+            grafica:[[100,0.4,3.3,5.3,8,9.7,22,51.4],[100,1.9,98.1],[100,0.2,99.8],[100,0.8,2.6,3.3,5.8,19.8,67.7]],
+            label:[{chartLabel:['Total','No sabe', 'Prefiere invertir en su persona (viajes, estudios, negocio)','No le interesa comprar', 'Otra', 'La mensualidad es menor que una hipoteca', 'Por facilidad de poder mudarse, si cambia de ciudad o empleo', 'No tiene acceso a crédito (hipotecario o bancario) / No tiene recursos']},
+                {chartLabel: ['Total','Más 30% de su ingreso','Menor 30%']},
+                {chartLabel: ['Total','Más 30% de su ingreso','Menor 30%']},
+                {chartLabel: ['Total','No especificado','Le dio crédito otra institución','Le prestó un familiar, amigo o prestamista','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO','Usó sus propios recursos']}
+            ]
         },
         {
             titulo: "Habitabilidad",
             tipo:'dual',
-            chartTitle:['Porcentaje de viviendas particulares habitadas según tipo de problema estructural','Porcentaje de viviendas particulares habitadas propias, según respuesta del informante, que declararon estar muy satisfechos y algo satisfechos con la calidad y aspectos de la vivienda'],
-            data: [{ficha:indicadorViv2},{ficha:indicadorViv3}],
-            grafica:[[40.8,16.2,14.8,44.2,10.6,89.1,],[75.5,75.7,63.8,88.6,89.7,84.1]],
+            chartTitle:['Porcentaje de viviendas particulares habitadas según tipo de problema estructural','Porcentaje de viviendas particulares habitadas propias, según respuesta del informante, que declararon estar muy satisfechos y algo satisfechos con la calidad y aspectos de la vivienda','Porcentaje de viviendas según años de antigüedad'],
+            data: [{ficha:indicadorViv2},{ficha:indicadorViv3},{ficha:indicadorViv3}],
+            grafica:[[40.8,16.2,14.8,44.2,10.6,89.1,],[75.5,75.7,63.8,88.6,89.7,84.1],[8.2,11,1,25,9,17.2,20.4,17.1]],
             label:[{chartLabel:['Grietas o cuarteaduras en techos o muros','Pandeos o deformaciones en los marcos de las puertas o ventanas','Levantamientos o hundimientos del piso','Humedad o filtraciones de agua en cimientos, muros o techos','Fracturas, pandeos o deformación de columnas, vigas o trabes','Sistema eléctrico (muros, techos, etcétera)']},
-                {chartLabel: ['Calidad del piso','Calidad de los muros y techos','Pintura, recubrimientos y otros acabados','Iluminación natural','Ventilación natural','Protección que les da contra la lluvia, frío, calor o viento']}]
+                {chartLabel: ['Calidad del piso','Calidad de los muros y techos','Pintura, recubrimientos y otros acabados','Iluminación natural','Ventilación natural','Protección que les da contra la lluvia, frío, calor o viento']},
+                {chartLabel: ['De 0 a 5 años','De 6 a 10 años','De 11 a 20 años','De 21 a 30 años','Más de 30 años','No sabe']}]
         },
         {
             titulo: "Accesibilidad",
@@ -153,6 +165,16 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             data: [{ficha:indicadorViv8}],
             grafica:[[81.9,]],
             label:{chartLabel:['Vivienda se identifica con sus gustos, costumbres y tradiciones']}
+        },
+        {
+            titulo: "Autoproducción",
+            tipo:'waterfall',
+            chartTitle:['Distribución promedio de las viviendas propias o propias en proceso de pago que fueron mandadas a construir, según decil de ingreso corriente del hogar','Distribución promedio de las viviendas propias o propias en proceso de pago que fueron construidas por el propietario, según decil de ingreso '],
+            data: [{ficha:indicadorViv8},{ficha:indicadorViv8}],
+            grafica:[[100,8.6,9.2,9.2,9.3,9.4,10.1,10.1,10.2,11.6,12.2],[100,6.4,8.4,9.5,9.6,10,10,10.7,11.3,11.5,12.7]],
+            label:[{chartLabel:['Total','Decil 8','Decil 6','Decil 9','Decil 10','Decil 7','Decil 5','Decil 4','Decil 3','Decil 2','Decil 1']},
+                {chartLabel:['Total','Decil 10','Decil 9','Decil 7','Decil 8','Decil 6','Decil 5','Decil 4','Decil 3','Decil 2','Decil 1']}
+            ]
         },
 
     ]

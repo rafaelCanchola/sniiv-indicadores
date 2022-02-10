@@ -50,7 +50,7 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
 
     let dataBar: any[]
     if(props.indicador.tipo === 'waterfall'){
-        dataBar = props.indicador.grafica
+        dataBar = props.indicador.grafica[props.indicadorIndex]
     }
     else {
         dataBar = props.indicador.grafica[props.indicadorIndex].map((d: AxisChart,key:number) =>
@@ -65,7 +65,7 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
                 </Grid>
             : props.indicador.tipo === 'waterfall' ?
                     <Grid container spacing={2}  >
-                        <Waterfall title={props.indicador.chartTitle} data={dataBar} label={props.indicador.label} />
+                        <Waterfall title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} />
                     </Grid>
                     :
                         <Grid container spacing={2}  >
