@@ -115,8 +115,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             tipo:'dual',
             data:[{ficha:indicadorViv2},{ficha:indicadorViv3},{ficha:indicadorViv4}],//faltan las fichas
             chartTitle:['Porcentaje de viviendas con sistema de captación pluvial','Porcentaje de viviendas con ecotecnia: luz eléctrica de panel solar','Porcentaje de viviendas con servicio sanitario con biodigestor'],
-            grafica:[[0.3],[0.1],[1.7]],
-            label:[{chartLabel:['Viviendas']},{chartLabel:['Viviendas']},{chartLabel:['Viviendas']}],
+            grafica:[[99.7,0.3],[99.9,0.1],[98.3,1.7]],
+            label:[{chartLabel:['Viviendas sin sistema de captación pluvial','Viviendas con sistema de captación pluvial']},{chartLabel:['Viviendas sin ecotecnia','Viviendas con ecotecnia']},{chartLabel:['Viviendas sin servicio sanitario con biodigestor','Viviendas con servicio sanitario con biodigestor']}],
         },
         {
             titulo: "Asequibilidad",
@@ -135,7 +135,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             tipo:'dual',
             chartTitle:['Porcentaje de viviendas particulares habitadas según tipo de problema estructural','Porcentaje de viviendas particulares habitadas propias, según respuesta del informante, que declararon estar muy satisfechos y algo satisfechos con la calidad y aspectos de la vivienda','Porcentaje de viviendas según años de antigüedad'],
             data: [{ficha:indicadorViv2},{ficha:indicadorViv3},{ficha:indicadorViv3}],
-            grafica:[[40.8,16.2,14.8,44.2,10.6,89.1,],[75.5,75.7,63.8,88.6,89.7,84.1],[8.2,11,1,25,9,17.2,20.4,17.1]],
+            grafica:[[40.8,16.2,14.8,44.2,10.6,89.1,],[75.5,75.7,63.8,88.6,89.7,84.1],[8.2,11.1,25.9,17.2,20.4,17.1]],
             label:[{chartLabel:['Grietas o cuarteaduras en techos o muros','Pandeos o deformaciones en los marcos de las puertas o ventanas','Levantamientos o hundimientos del piso','Humedad o filtraciones de agua en cimientos, muros o techos','Fracturas, pandeos o deformación de columnas, vigas o trabes','Sistema eléctrico (muros, techos, etcétera)']},
                 {chartLabel: ['Calidad del piso','Calidad de los muros y techos','Pintura, recubrimientos y otros acabados','Iluminación natural','Ventilación natural','Protección que les da contra la lluvia, frío, calor o viento']},
                 {chartLabel: ['De 0 a 5 años','De 6 a 10 años','De 11 a 20 años','De 21 a 30 años','Más de 30 años','No sabe']}]

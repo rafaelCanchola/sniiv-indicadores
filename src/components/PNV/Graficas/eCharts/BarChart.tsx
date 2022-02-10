@@ -76,7 +76,8 @@ export default function BarChart(props:BarChartProps){
             axisLabel: {
                 color: '#999',
                 show:false,
-            }
+            },
+            max: 100,
         },
 
         series: [
