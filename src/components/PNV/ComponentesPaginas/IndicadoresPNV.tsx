@@ -12,7 +12,7 @@ import {
 import TableIcon from "@material-ui/icons/Toc";
 import ReactECharts from "echarts-for-react";
 
-import {colorBrewer} from "../../colorBrewer";
+import {colorBrewer} from "../../../utils/colorBrewer";
 import {assignStateColor, MobileSize} from "../../../utils/Utils";
 
 import conavi from "../../../assets/images/conavi.png";

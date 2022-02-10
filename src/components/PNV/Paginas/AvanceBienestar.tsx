@@ -11,6 +11,7 @@ import {totales} from "../../../json/PNV/totalCumplimiento";
 import {fichaPie} from "../../../json/PNV/fichas_ind_pnv1";
 import {fichaPie3} from "../../../json/PNV/fichas_ind_pnv3"
 import GridCumplimientoBienestar from "../ComponentesPaginas/GridCumplimientoBienestar";
+import {ordinalNumber} from "../../../utils/Utils";
 
 /*import Fetch from "./Fetch";
 
@@ -57,7 +58,7 @@ export default class AvanceBienestar extends Component<any, any> {
                                 <GridCumplimientoBienestar data={cumplimientoPNV3} data2={cumplimientoONAVIPNV3}
                                                            fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                                            titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                                           periodo={this.state.trimestre + " Trimestre"}
+                                                           periodo={ordinalNumber(this.state.trimestre) + " trimestre"}
                                                            titleBar={"Porcentaje de contribución según ONAVI"}
                                                            titleCifras={"acciones"}
                                                            titlePie={"Estatus de las acciones según objetivo prioritario"}
@@ -70,7 +71,7 @@ export default class AvanceBienestar extends Component<any, any> {
                                 <GridCumplimientoBienestar data={cumplimientoPNV2} data2={cumplimientoONAVIPNV2}
                                                            fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                                            titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                                           periodo={this.state.trimestre + " Trimestre"}
+                                                           periodo={ordinalNumber(this.state.trimestre) + " trimestre"}
                                                            titleBar={"Porcentaje de contribución según ONAVI"}
                                                            titleCifras={"acciones"}
                                                            titlePie={"Estatus de las acciones según objetivo prioritario"}
@@ -83,7 +84,7 @@ export default class AvanceBienestar extends Component<any, any> {
                                     <GridCumplimientoBienestar data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
                                                                fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                                                titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                                               periodo={this.state.trimestre + " Trimestre"}
+                                                               periodo={ordinalNumber(this.state.trimestre) + " trimestre"}
                                                                titleBar={"Porcentaje de contribución según ONAVI"}
                                                                titleCifras={"acciones"}
                                                                titlePie={"Estatus de las acciones según objetivo prioritario"}

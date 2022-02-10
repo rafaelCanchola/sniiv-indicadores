@@ -9,8 +9,8 @@ import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import TableMUIViv from "../Tablas/TableMUIViv";
 import Waterfall from "../Graficas/eCharts/Waterfall";
 import BarChart from "../Graficas/eCharts/BarChart";
-import {colorBrewer} from "../../colorBrewer";
-import {assignColor} from "../../../utils/Utils";
+import {colorBrewer} from "../../../utils/colorBrewer";
+import {assign4TColor, assignColor} from "../../../utils/Utils";
 import BarChartNumber from "../Graficas/eCharts/BarChartNumber";
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -47,15 +47,15 @@ interface AxisChart{
 export function IndicadorVivienda(props:IndicadorViviendaProps){
 
     const classes = useStyles();
-    let colors = assignColor(6);
-
+    let colors = assignColor(10)
+    console.log(colors)
     let dataBar: any[]
     if(props.indicador.tipo === 'waterfall'){
         dataBar = props.indicador.grafica[props.indicadorIndex]
     }
     else {
         dataBar = props.indicador.grafica[props.indicadorIndex].map((d: AxisChart,key:number) =>
-            ({value:(d),itemStyle:{color: colorBrewer.ViviendaColor[colors[key]]}}))
+            ({value:(d),itemStyle:{color: colorBrewer.T4Green[colors[key]]}}))
     }
     return(
         <div className={classes.root}>

@@ -1,4 +1,4 @@
-import {colorBrewer} from "../components/colorBrewer";
+import {colorBrewer} from "./colorBrewer";
 import {useEffect, useState} from "react";
 
 export function randomNumber(max:number){
@@ -20,7 +20,13 @@ export function assignColor(max:number): any {
     }
     return colorArray;
 }
-
+export function assign4TColor(max:number): any {
+    let color = assignColor(max)
+    for(let i = 0,j= 0.55; i<max;i++,j-=0.05){
+        color[i] = j;
+    }
+    return color;
+}
 export function waterFallSize (initialData: any[],lengthData:number):any{
     let waterArray = []
     for (let i = 0,j = 1;i < lengthData; i++){
@@ -62,4 +68,24 @@ export function MobileSize():boolean{
     function handleWindowSizeChange() {setWidth(window.innerWidth);}
     useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
     return width <= 768
+}
+
+export function ordinalNumber(value:any){
+    switch (value){
+        case 1:
+            return value+'er';
+        case 2:
+            return value+'do';
+        case 3:
+            return value+'er';
+        case '1':
+            return value+'er';
+        case '2':
+            return value+'do';
+        case '3':
+            return value+'er';
+        default:
+            return value+'to';
+    }
+
 }

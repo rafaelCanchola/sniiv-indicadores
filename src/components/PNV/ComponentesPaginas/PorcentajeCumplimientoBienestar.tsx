@@ -13,7 +13,7 @@ import infonavit from "../../../assets/images/infonavit.png";
 import insus from "../../../assets/images/insus.png";
 import shf from "../../../assets/images/shf.png";
 import sedatu from "../../../assets/images/sedatu.png";
-import {colorBrewer} from "../../colorBrewer";
+import {colorBrewer} from "../../../utils/colorBrewer";
 import {assignObjetivosColor, assignStateColor} from "../../../utils/Utils";
 import {useStyles} from "../../../utils/Style";
 

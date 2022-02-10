@@ -2,7 +2,7 @@ import ReactECharts from "echarts-for-react";
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import {colorBrewer} from "../../../colorBrewer";
+import {colorBrewer} from "../../../../utils/colorBrewer";
 import {randomNumber, waterFallSize} from "../../../../utils/Utils";
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -51,7 +51,7 @@ export default function Waterfall(props:WaterfallProps){
         tooltip: {
             formatter:'{b} <br/><b>{c}%</b>',
         },
-        color:colorBrewer.ViviendaColor[randomNumber(6)],
+        color:colorBrewer.T4Colors[0],
         grid: {
             left: '3%',
             right: '4%',

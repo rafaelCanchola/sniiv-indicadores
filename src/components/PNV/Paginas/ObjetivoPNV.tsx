@@ -5,7 +5,7 @@ import ReactECharts from "echarts-for-react";
 import CardObjetivo from '../MUIComponents/CardObjetivo';
 
 import {objetivosONAVI} from "../../../json/PNV/objetivosONAVI";
-import {colorBrewer} from "../../colorBrewer";
+import {colorBrewer} from "../../../utils/colorBrewer";
 
 import pnv2021 from "../../../assets/images/pnv2021.png";
 import objetivo1 from "../../../assets/images/obj1.png";

@@ -6,6 +6,7 @@ import ReactECharts from "echarts-for-react";
 
 import trimestral from "../../../assets/images/trimestral.png";
 import {useStyles} from "../../../utils/Style";
+import {ordinalNumber} from "../../../utils/Utils";
 
 interface CumplimientoProps {
     data: any;
@@ -34,7 +35,8 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
             data: props.data.map((d: AxisChart) => d.trimestre),
             axisLabel: {
                 inside: true,
-                color: '#fff'
+                color: '#fff',
+                formatter: (value:any) => ordinalNumber(value)+' trimestre',
             },
             axisTick: {
                 show: true

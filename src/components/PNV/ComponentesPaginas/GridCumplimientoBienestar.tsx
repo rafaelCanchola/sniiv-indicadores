@@ -14,7 +14,7 @@ import onavi from "../../../assets/images/onavi.png";
 import indicadores from "../../../assets/images/indicadores.png";
 import programa from "../../../assets/images/programanacional.png";
 
-import {assignObjetivosColor} from "../../../utils/Utils";
+import {assignObjetivosColor, MobileSize} from "../../../utils/Utils";
 import {IndicadoresPNV} from "./IndicadoresPNV";
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -65,11 +65,8 @@ interface AxisChart{
     [x: string]:any;
 }
 export default function GridCumplimientoBienestar(props:CumplimientoProps){
-    const [width, setWidth] = useState<number>(window.innerWidth);
-    function handleWindowSizeChange() {setWidth(window.innerWidth);}
-    useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
 
-    const isMobile = width <= 768;
+    const isMobile = MobileSize();
 
     const [indicador,setIndicador] = useState([0,0]);
     const classes = useStyles();

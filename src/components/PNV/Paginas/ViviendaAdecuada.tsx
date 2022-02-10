@@ -226,7 +226,6 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                     :
                     <Fragment>
                         <Grid item xs={12} sm={3} md={3}>
-                            <Paper elevation={0} className={classes.paperImage}><br/></Paper>
                         {elementos.slice(0,4).map((card:any,key:number )=>
                             <Paper elevation={0} className={classes.paperImage} key={key}>
                             <CardVivienda  mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
@@ -234,12 +233,12 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                         )}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6}>
+                            <Paper elevation={0} className={classes.paperImage}><br/><br/></Paper>
                         <Paper elevation={0} className={classes.paperImage}>
                             {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} /> : indicadores[indicador[0]-1].tipo === 'none'? <img src={vivienda} className={classes.image} alt={"vivienda"}/> : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
                         </Paper>
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
-                            <Paper elevation={0} className={classes.paperImage}><br/><br/></Paper>
                             {elementos.slice(4).map((card:any,key:number ) =>
                                 <Paper elevation={0} className={classes.paperImage} key={key}>
                                 <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
