@@ -11,6 +11,7 @@ import Waterfall from "../Graficas/eCharts/Waterfall";
 import BarChart from "../Graficas/eCharts/BarChart";
 import {colorBrewer} from "../../colorBrewer";
 import {assignColor} from "../../../utils/Utils";
+import BarChartNumber from "../Graficas/eCharts/BarChartNumber";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -67,7 +68,11 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
                     <Grid container spacing={2}  >
                         <Waterfall title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} />
                     </Grid>
-                    :
+                    : props.indicador.tipo === 'dualBar' ?
+                        <Grid container spacing={2}  >
+                            <BarChartNumber title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} />
+                        </Grid>
+                            :
                         <Grid container spacing={2}  >
                             <BarChart title={props.indicador.chartTitle} data={dataBar} label={props.indicador.label} />
                         </Grid>

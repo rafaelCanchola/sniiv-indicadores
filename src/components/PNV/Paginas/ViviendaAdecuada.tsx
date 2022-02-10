@@ -123,10 +123,10 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             tipo:'waterfall',
             data: [{ficha:indicadorViv1},{ficha:indicadorViv1},{ficha:indicadorViv1},{ficha:indicadorViv1}],
             chartTitle:['Proporción de viviendas particulares habitadas según motivo de renta','Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin, distribución según tipo de financiamiento','Proporción de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Proporción de viviendas por tipo de financiamiento respecto de las viviendas totales.'],
-            grafica:[[100,0.4,3.3,5.3,8,9.7,22,51.4],[100,1.9,98.1],[100,0.2,99.8],[100,0.8,2.6,3.3,5.8,19.8,67.7]],
+            grafica:[[100,0.4,3.3,5.3,8,9.7,22,51.4],[100,2.1,3.5,9.6,18.1,66.8],[14.3,0.3,0.5,1.4,2.6,9.5],[100,0.8,2.6,3.3,5.8,19.8,67.7]],
             label:[{chartLabel:['Total','No sabe', 'Prefiere invertir en su persona (viajes, estudios, negocio)','No le interesa comprar', 'Otra', 'La mensualidad es menor que una hipoteca', 'Por facilidad de poder mudarse, si cambia de ciudad o empleo', 'No tiene acceso a crédito (hipotecario o bancario) / No tiene recursos']},
-                {chartLabel: ['Total','Más 30% de su ingreso','Menor 30%']},
-                {chartLabel: ['Total','Más 30% de su ingreso','Menor 30%']},
+                {chartLabel: ['Total','Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
+                {chartLabel: ['Total','Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
                 {chartLabel: ['Total','No especificado','Le dio crédito otra institución','Le prestó un familiar, amigo o prestamista','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO','Usó sus propios recursos']}
             ]
         },
@@ -168,12 +168,12 @@ export default function ViviendaAdecuada(props:ViviendaProps){
         },
         {
             titulo: "Autoproducción",
-            tipo:'waterfall',
+            tipo:'dualBar',
             chartTitle:['Distribución promedio de las viviendas propias o propias en proceso de pago que fueron mandadas a construir, según decil de ingreso corriente del hogar','Distribución promedio de las viviendas propias o propias en proceso de pago que fueron construidas por el propietario, según decil de ingreso '],
             data: [{ficha:indicadorViv8},{ficha:indicadorViv8}],
-            grafica:[[100,8.6,9.2,9.2,9.3,9.4,10.1,10.1,10.2,11.6,12.2],[100,6.4,8.4,9.5,9.6,10,10,10.7,11.3,11.5,12.7]],
-            label:[{chartLabel:['Total','Decil 8','Decil 6','Decil 9','Decil 10','Decil 7','Decil 5','Decil 4','Decil 3','Decil 2','Decil 1']},
-                {chartLabel:['Total','Decil 10','Decil 9','Decil 7','Decil 8','Decil 6','Decil 5','Decil 4','Decil 3','Decil 2','Decil 1']}
+            grafica:[[10126,16830,22213,27530,33382,40041,48726,60466,80452,173161],[9890,16853,22277,27548,33386,40131,48566,60539,80275,152765]],
+            label:[{chartLabel:['Decil 1','Decil 2','Decil 3','Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']},
+                {chartLabel:['Decil 1','Decil 2','Decil 3','Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']}
             ]
         },
 

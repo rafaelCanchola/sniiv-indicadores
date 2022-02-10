@@ -50,6 +50,7 @@ export default function BarChart(props:BarChartProps){
             axisPointer: {
                 type: 'shadow'
             },
+            formatter:'{b} <br/><b>{c}%</b>',
         },
         xAxis: {
             data: props.label.chartLabel,

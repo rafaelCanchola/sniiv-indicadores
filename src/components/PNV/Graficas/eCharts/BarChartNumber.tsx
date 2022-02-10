@@ -2,8 +2,6 @@ import ReactECharts from "echarts-for-react";
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import {colorBrewer} from "../../../colorBrewer";
-import {randomNumber, waterFallSize} from "../../../../utils/Utils";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -37,73 +35,76 @@ const useStyles = makeStyles((theme:Theme) =>
     })
 );
 
-interface WaterfallProps{
+interface BarChartProps{
     title:any,
     data:any,
     label:any
 }
 
-export default function Waterfall(props:WaterfallProps){
+export default function BarChartNumber(props:BarChartProps){
     const classes = useStyles();
-    const waterArray = waterFallSize(props.data,props.data.length)
-    const option = {
 
-        tooltip: {
-            formatter:'{b} <br/><b>{c}%</b>',
-        },
-        color:colorBrewer.ViviendaColor[randomNumber(6)],
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
+    const barChart = {
+        tooltip:{
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            },
         },
         xAxis: {
-            type: 'category',
-            splitLine: { show: false },
-            show:false,
-            data: props.label.chartLabel
+            data: props.label.chartLabel,
+            axisLabel: {
+                show:false,
+                inside: true,
+                color: '#fff'
+            },
+            axisTick: {
+                show: true
+            },
+            axisLine: {
+                show: false
+            },
+            z: 10
         },
         yAxis: {
-            type: 'value',
-            axisLabel:{
-                show:false
-            }
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                color: '#999',
+                show:false,
+            },
         },
+
         series: [
             {
                 type: 'bar',
-                stack: 'Total',
-                itemStyle: {
-                    borderColor: 'transparent',
-                    color: 'transparent'
+                showBackground: true,
+                label:{
+                    show:false,
+                    position:"top",
+                    type:"value",
+
                 },
                 emphasis: {
                     itemStyle: {
-                        borderColor: 'transparent',
-                        color: 'transparent'
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
-                },
-                data: waterArray
-            },
-            {
-                name: 'Número de viviendas',
-                type: 'bar',
-                stack: 'Total',
-                label: {
-                    show: false,
-                    position: 'inside'
-
                 },
                 data: props.data
             }
         ]
-    };
+    }
     return(
         <Grid item xs={12} sm={12} md={12} >
             <Paper elevation={3} className={classes.paper}>
                 <h4>{props.title}</h4>
-                <ReactECharts option={option}/>
+                <ReactECharts option={barChart}/>
             </Paper>
         </Grid>
     )
