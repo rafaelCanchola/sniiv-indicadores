@@ -48,7 +48,6 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
 
     const classes = useStyles();
     let colors = assignColor(10)
-    console.log(colors)
     let dataBar: any[]
     if(props.indicador.tipo === 'waterfall'){
         dataBar = props.indicador.grafica[props.indicadorIndex]

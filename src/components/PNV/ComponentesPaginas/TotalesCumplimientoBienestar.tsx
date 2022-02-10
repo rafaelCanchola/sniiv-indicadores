@@ -119,12 +119,13 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                         </Paper>
                     </Grid>
                 </Grid>
+
                 <Grid container spacing={2} alignItems={'center'} >
                     <Grid item xs={12} sm={12} md={3} >
                         <Paper elevation={0} className={classes.paper}>
                             <h2>{props.titleTrimestral}</h2>
                             <Paper elevation={3} className={classes.paper}>
-                                <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"} rel={"noreferrer"}><img src={trimestral} className={classes.imagePNV} alt={"Reporte trimestral"} /></a>
+                                <a href={'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/4B9gmHHOQ9m69oVBdVEIFA/content/3er_informe_trimestral_PNV.pdf'} target={"_blank"} rel={"noreferrer"}><img src={trimestral} className={classes.imagePNV} alt={"Reporte trimestral"} /></a>
                             </Paper>
                         </Paper>
                     </Grid>
