@@ -82,7 +82,8 @@ export const useStyles = makeStyles((theme:Theme) =>
             flex: '1 0 auto',
         },
         cover: {
-            width: "40%",
+            width: "50%",
+            height:'auto'
         },
         controls: {
             display: 'flex',
