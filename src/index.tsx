@@ -4,11 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import { ThemeProvider } from '@material-ui/styles';
+import { CssBaseline } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core';
+const theme = createMuiTheme({ typography: { fontFamily: [ 'Montserrat' ].join(','), }, })
 
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
-          <App />
+          <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <App />
+          </ThemeProvider>
       </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

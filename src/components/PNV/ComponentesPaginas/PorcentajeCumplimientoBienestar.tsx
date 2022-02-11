@@ -245,7 +245,6 @@ export default function PorcentajeCumplimientoBienestar(props:CumplimientoProps)
     }
     const BarChart = {
         tooltip: {},
-
         yAxis: {
             axisLabel: {
                 color: '#999',

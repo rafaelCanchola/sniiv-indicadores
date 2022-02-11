@@ -38,7 +38,9 @@ const useStyles = makeStyles((theme:Theme) =>
 interface BarChartProps{
     title:any,
     data:any,
-    label:any
+    label:any,
+    xAxis:string,
+    yAxis:string
 }
 
 export default function BarChart(props:BarChartProps){
@@ -53,6 +55,8 @@ export default function BarChart(props:BarChartProps){
             formatter:'{b} <br/><b>{c}%</b>',
         },
         xAxis: {
+            name:props.xAxis,
+            nameLocation:"center",
             data: props.label.chartLabel,
             axisLabel: {
                 show:false,
@@ -68,6 +72,8 @@ export default function BarChart(props:BarChartProps){
             z: 10
         },
         yAxis: {
+            name:props.yAxis,
+            nameLocation:"center",
             axisLine: {
                 show: false
             },

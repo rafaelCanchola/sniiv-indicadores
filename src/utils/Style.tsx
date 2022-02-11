@@ -11,6 +11,7 @@ export const useStyles = makeStyles((theme:Theme) =>
             textAlign:"center",
             color: theme.palette.text.secondary,
             backgroundColor: theme.palette.background.default,
+            fontFamily:'Montserrat',
 
         },
         paperPNV:{
@@ -18,6 +19,7 @@ export const useStyles = makeStyles((theme:Theme) =>
             textAlign:"justify",
             color: theme.palette.text.secondary,
             backgroundColor: theme.palette.background.default,
+            fontFamily:'Montserrat',
         },
         paperImage:{
             padding: theme.spacing(1),
@@ -41,6 +43,7 @@ export const useStyles = makeStyles((theme:Theme) =>
         body:{
             fontSize: 12,
             color: theme.palette.text.secondary,
+            fontFamily:'Montserrat',
         },
         rootCard: {
             maxWidth: 345,
@@ -66,6 +69,7 @@ export const useStyles = makeStyles((theme:Theme) =>
         text:{
             fontSize:10,
             color:theme.palette.text.secondary,
+            fontFamily:'Montserrat',
         },
         imageCard:{
             width:"65%",
@@ -101,6 +105,29 @@ export const useStyles = makeStyles((theme:Theme) =>
         typo:{
             textAlign:"center",
             color: theme.palette.text.secondary,
+        },
+        card: {
+            borderRadius: '1rem',
+            boxShadow: 'none',
+            position: 'relative',
+            minWidth: 200,
+            minHeight: 360,
+            '&:after': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                width: '100%',
+                height: '64%',
+                bottom: 0,
+                zIndex: 1,
+                background: 'linear-gradient(to top, #000, rgba(0,0,0,0))',
+            },
+        },
+        contentCard: {
+            position: 'absolute',
+            zIndex: 2,
+            bottom: 0,
+            width: '100%',
         },
     })
 );

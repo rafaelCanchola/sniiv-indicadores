@@ -107,8 +107,8 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
     const handleClose3 = () => {
         setOpen3(false);
     }
-    const iconHeight = isMobile ? 20: 40;
-    const iconWidth = isMobile ? 40: 80;
+    const iconHeight = isMobile ? 15: 30;
+    const iconWidth = isMobile ? 30: 60;
     const GaugeChart = {
         tooltip: {
             formatter:'Objetivo {b} <br/><b>{c}%</b>',
@@ -168,9 +168,6 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
         ]
     }
     const BarChart = {
-        tooltip: {
-
-        },
 
         yAxis: {
             axisLabel: {
@@ -199,21 +196,21 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                         align: 'center',
                         fontSize: 10,
                     },
-                    CONAVI:{
+                    CONA:{
                         height:iconHeight,
                         width: iconWidth,
                         backgroundColor: {
                             image: onaIcons.CONAVI
                         },
                     },
-                    FOVISSSTE:{
+                    FOVI:{
                         height:iconHeight,
                         width: iconWidth,
                         backgroundColor: {
                             image: onaIcons.FOVISSSTE
                         },
                     },
-                    INFONAVIT:{
+                    INFO:{
                         height:iconHeight,
                         width: iconWidth,
                         backgroundColor: {
@@ -227,14 +224,14 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                             image: onaIcons.SHF
                         },
                     },
-                    INSUS:{
+                    INSU:{
                         height:iconHeight,
                         width: iconWidth,
                         backgroundColor: {
                             image: onaIcons.INSUS
                         },
                     },
-                    SEDATU:{
+                    SEDA:{
                         height:iconHeight,
                         width: iconWidth,
                         backgroundColor: {
@@ -246,8 +243,8 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
             data: props.indicador.label,
         },
         grid:{
-            left:'6%',
-            right:'5%',
+            left:'10%',
+            right:'10%',
             top:'5%'
         },
         series: [

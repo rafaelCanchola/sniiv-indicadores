@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import {CardActionArea, IconButton} from "@material-ui/core";
 import TableIcon from '@material-ui/icons/Toc';
 import {useStyles} from "../../../utils/Style";
+import InfoIcon from '@material-ui/icons/Info';
 
 interface CardProps{
     obj: number,

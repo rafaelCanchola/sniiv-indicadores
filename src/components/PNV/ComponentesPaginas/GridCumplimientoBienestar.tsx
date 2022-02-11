@@ -77,7 +77,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
     let dataBar = props.data2.map((d: AxisChart) =>
         ({value:(d[props.aAxis] === 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),itemStyle:{color: assignObjetivosColor(d[props.hAxis])}}))
     let labelDataBar = props.data2.map((d: AxisChart) => d[props.gAxis])
-
+    let sliceDataBar = labelDataBar.map((name:any )=> name.slice(0,4))
     const graficas =[
         {
             num: 1,
@@ -121,7 +121,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
             title: props.titleBar,
             trimestre: props.periodo,
             data: dataBar,
-            label: labelDataBar,
+            label: sliceDataBar,
             tipo: 'bar'
         },
         {
@@ -171,24 +171,27 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                             </Accordion>
                         </Grid>
                         <Grid item xs={12} sm={12} >
-                            <Paper elevation={3} className={classes.paper}>
+                            <Paper elevation={0} className={classes.paper}>
                                 {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
                             </Paper>
                         </Grid>
                     </Grid>
                     :
                     <Fragment>
+
                         <Grid item xs={12} sm={3} md={3}>
+                            <Paper elevation={0} className={classes.paper}><br/><br/></Paper>
                             {graficas.slice(0,2).map(card =>
                                 <CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
                             )}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6}>
-                            <Paper elevation={3} className={classes.paper}>
+                            <Paper elevation={0} className={classes.paper}>
                                 {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
                             </Paper>
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
+                            <Paper elevation={0} className={classes.paper}><br/><br/></Paper>
                             {graficas.slice(2).map(card =>
                                 <CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
                             )}

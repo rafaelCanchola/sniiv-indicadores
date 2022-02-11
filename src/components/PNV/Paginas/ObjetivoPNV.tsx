@@ -134,7 +134,7 @@ export default function ObjetivoPNV(){
                 <Grid item xs={12}>
                     <Paper elevation={0} className={classes.paper}>
 
-                        <h1>{"¿Qué es el PNV?"}</h1>
+                        <h1>{"¿Qué es el Programa Nacional de Vivienda?"}</h1>
 
                         <Paper elevation={3} className={classes.paperPNV}>
                             <p>

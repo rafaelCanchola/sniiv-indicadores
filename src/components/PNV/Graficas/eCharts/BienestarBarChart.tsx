@@ -20,6 +20,7 @@ import TableMUIPNV from "../../Tablas/TableMUIPNV";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import TableMUIViv from "../../Tablas/TableMUIViv";
+import {MobileSize} from "../../../../utils/Utils";
 
 
 interface BarProps {
@@ -104,12 +105,8 @@ const useStyles = makeStyles((theme:Theme) =>
     })
 );
 export default function BienestarBarChart(props:BarProps){
-    const [width, setWidth] = useState<number>(window.innerWidth);
-    function handleWindowSizeChange() {setWidth(window.innerWidth);}
-    useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
 
-    const isMobile = width <= 768;
-
+    const isMobile = MobileSize();
 
     const classes = useStyles();
     const [openChart1, setOpenChart1] = useState(false);
@@ -164,10 +161,12 @@ export default function BienestarBarChart(props:BarProps){
     const chartTemplate = (param: any) =>
         ({
             grid:{
-                left:3,
+                left:'7%',
                 right:(param.data[unidadMedida].includes("Millones"))?39:20,
             },
             yAxis: {
+                name:'Año',
+                nameLocation:'center',
                 data: Object.keys(param.data[serieHistorica]).map((arr:any) => arr),
                 axisLabel: {inside: true, color: '#575151'}, axisTick: {show: true}, axisLine: {show: false}, z: 10
             },

@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {CardActionArea, IconButton} from "@material-ui/core";
 import TableIcon from '@material-ui/icons/Toc';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,7 +38,6 @@ interface CardProps{
     obj: number,
     title: string,
     image: any,
-    more: string,
     children: any,
     callBack:any,
     mobile:boolean
@@ -45,74 +45,49 @@ interface CardProps{
 
 export default function CardVivienda(props:CardProps) {
     const classes = useStyles();
-    const clicke = () => {
-        props.callBack([props.obj,0]);
+    const clickInfo = () => {
+        props.callBack([10,props.obj-1])
     }
     return (
         <Fragment>
             { props.mobile ?
-                props.children.length > 0 ?
                     <Card className={classes.root}>
                         <div className={classes.details}>
                             {props.children.map((child:any,key:any) =>
                                 <div className={classes.controls}>
                                     <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
-                                        <TableIcon fontSize={'large'}/>
+                                        <EqualizerIcon fontSize={'large'}/>
                                     </IconButton>
                                 </div>
                             )}
                         </div>
                         <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                     </Card>
-                    :
-                    <Card className={classes.root}>
-                        <div className={classes.details}>
-                            <div className={classes.controls}>
-                                <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,0])} >
-                                    <TableIcon fontSize={'large'}/>
-                                </IconButton>
-                            </div>
-                        </div>
-                        <CardMedia className={classes.cover} image={props.image}title={props.title}/>
-                    </Card>
+
                 :
-                props.children.length > 0 ?
                 <Card className={classes.root}>
                     <div className={classes.details}>
                         <CardContent className={classes.content}>
+                            <CardActionArea onClick={clickInfo}>
                             <Typography component="h5" variant="h5" color={'textSecondary'}>
                                 {props.obj}
                             </Typography>
                             <Typography variant="subtitle1" color="textSecondary">
                                 {props.title}
                             </Typography>
+                            </CardActionArea>
                         </CardContent>
                         <div className={classes.controls}>
                             {props.children.map((child:any,key:any) =>
                                 <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
-                                    <TableIcon fontSize={'large'}/>
+                                    <EqualizerIcon fontSize={'large'}/>
                                 </IconButton>
                             )}
                         </div>
                     </div>
                     <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                 </Card>
-                :
-                <Card className={classes.root}>
-                    <CardActionArea onClick={clicke}>
-                        <div className={classes.details}>
-                            <CardContent className={classes.content}>
-                                <Typography component="h5" variant="h5" color={'textSecondary'}>
-                                    {props.obj}
-                                </Typography>
-                                <Typography variant="subtitle1" color="textSecondary">
-                                    {props.title}
-                                </Typography>
-                            </CardContent>
-                        </div>
-                    </CardActionArea>
-                    <CardMedia className={classes.cover} image={props.image}title={props.title}/>
-                </Card>
+
             }
         </Fragment>
     )

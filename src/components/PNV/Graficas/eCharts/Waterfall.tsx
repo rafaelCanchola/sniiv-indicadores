@@ -40,7 +40,9 @@ const useStyles = makeStyles((theme:Theme) =>
 interface WaterfallProps{
     title:any,
     data:any,
-    label:any
+    label:any,
+    xAxis:string,
+    yAxis:string
 }
 
 export default function Waterfall(props:WaterfallProps){
@@ -53,18 +55,25 @@ export default function Waterfall(props:WaterfallProps){
         },
         color:colorBrewer.T4Colors[0],
         grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
+            left: '5%',
+            right: '5%',
+            bottom: '10%',
             containLabel: true
         },
         xAxis: {
+            name:props.xAxis,
+            nameLocation:"center",
             type: 'category',
             splitLine: { show: false },
-            show:false,
-            data: props.label.chartLabel
+            show:true,
+            data: props.label.chartLabel,
+            axisLabel: {
+                show:false,
+            }
         },
         yAxis: {
+            name:props.yAxis,
+            nameLocation:"center",
             type: 'value',
             axisLabel:{
                 show:false

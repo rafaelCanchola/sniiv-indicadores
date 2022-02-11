@@ -32,10 +32,12 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
     const classes = useStyles();
     const option = {
         xAxis: {
+            name:'Trimestre',
+            nameLocation:'center',
             data: props.data.map((d: AxisChart) => d.trimestre),
             axisLabel: {
                 inside: true,
-                color: '#fff',
+                color: '#595959',
                 formatter: (value:any) => ordinalNumber(value)+' trimestre',
             },
             axisTick: {
@@ -47,7 +49,8 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
             z: 10
         },
         yAxis: {
-
+            name:'Porcentaje',
+            nameLocation:'center',
             axisLine: {
                 show: false
             },
@@ -56,7 +59,8 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
             },
             axisLabel: {
                 color: '#999',
-                formatter: "{value} %"
+                formatter: "{value} %",
+                show:false,
             }
         },
 

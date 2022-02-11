@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme:Theme) =>
         },
         body:{
             fontSize: 12,
+            color: theme.palette.text.secondary,
         },
     })
 );
@@ -61,36 +62,41 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
             <h3>{props.indicador.titulo}</h3>
             {props.indicador.tipo === 'dual' ?
                 <Grid container spacing={2}  >
-                    <BarChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} />
+                    <BarChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} xAxis={props.indicador.xAxis[props.indicadorIndex]} yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
                 </Grid>
             : props.indicador.tipo === 'waterfall' ?
                     <Grid container spacing={2}  >
-                        <Waterfall title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} />
+                        <Waterfall title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} xAxis={props.indicador.xAxis[props.indicadorIndex]} yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
                     </Grid>
                     : props.indicador.tipo === 'dualBar' ?
                         <Grid container spacing={2}  >
-                            <BarChartNumber title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} />
+                            <BarChartNumber title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} xAxis={props.indicador.xAxis[props.indicadorIndex]} yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
                         </Grid>
                             :
                         <Grid container spacing={2}  >
-                            <BarChart title={props.indicador.chartTitle} data={dataBar} label={props.indicador.label} />
+                            <BarChart title={props.indicador.chartTitle} data={dataBar} label={props.indicador.label} xAxis={props.indicador.xAxis[props.indicadorIndex]} yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
                         </Grid>
             }
-            <Grid container spacing={2}  >
-                <Grid item xs={12} sm={12} md={12} >
-                    <Accordion>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
-                            <Typography
-                                className={classes.body}>Ficha Técnica</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                <TableMUIViv data={props.indicador.data[props.indicadorIndex].ficha}/>
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+            {props.indicador.data[props.indicadorIndex] !== undefined?
+                <Grid container spacing={2}  >
+                    <Grid item xs={12} sm={12} md={12} >
+                        <Accordion>
+                            <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
+                                <Typography
+                                    className={classes.body}>Ficha Técnica</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                    <TableMUIViv data={props.indicador.data[props.indicadorIndex].ficha}/>
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                    </Grid>
                 </Grid>
-            </Grid>
+            :
+                <></>
+            }
+
         </div>
     )
 }
