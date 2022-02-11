@@ -24,7 +24,8 @@ import servicios from "../../../assets/images/servicios-tr.png";
 import ubicacion from "../../../assets/images/ubicacion-tr.png";
 import cultura from "../../../assets/images/cultura-tr.png";
 import habitabilidad from "../../../assets/images/habitabilidad-tr.png";
-import asequibilidad from "../../../assets/images/asequibilidad-tr.png";
+import asequibilidad from "../../../assets/images/pesos.png";
+import autoproduccion from "../../../assets/images/autoproduccion.png";
 import {useStyles} from "../../../utils/Style";
 import TextoVivienda from "../MUIComponents/TextoVivienda";
 
@@ -95,7 +96,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
         {
             num: 8,
             title: "AUTOPRODUCCIÓN",
-            image:cultura,
+            image:autoproduccion,
             more:"",
             children:[0,1]
         },
