@@ -161,7 +161,7 @@ export default function BienestarBarChart(props:BarProps){
     const chartTemplate = (param: any) =>
         ({
             grid:{
-                left:'7%',
+                left:'9%',
                 right:(param.data[unidadMedida].includes("Millones"))?39:20,
             },
             yAxis: {

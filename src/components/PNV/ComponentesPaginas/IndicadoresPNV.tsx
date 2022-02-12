@@ -107,8 +107,8 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
     const handleClose3 = () => {
         setOpen3(false);
     }
-    const iconHeight = isMobile ? 15: 30;
-    const iconWidth = isMobile ? 30: 60;
+    const iconHeight = isMobile ? 20: 30;
+    const iconWidth = isMobile ? 35: 60;
     const GaugeChart = {
         tooltip: {
             formatter:'Objetivo {b} <br/><b>{c}%</b>',
@@ -243,7 +243,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
             data: props.indicador.label,
         },
         grid:{
-            left:'10%',
+            left:'12%',
             right:'10%',
             top:'5%'
         },

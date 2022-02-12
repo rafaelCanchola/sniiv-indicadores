@@ -28,17 +28,15 @@ import asequibilidad from "../../../assets/images/pesos.png";
 import autoproduccion from "../../../assets/images/autoproduccion.png";
 import {useStyles} from "../../../utils/Style";
 import TextoVivienda from "../MUIComponents/TextoVivienda";
+import {MobileSize} from "../../../utils/Utils";
 
 interface ViviendaProps {
 
 }
 
 export default function ViviendaAdecuada(props:ViviendaProps){
-    const [width, setWidth] = useState<number>(window.innerWidth);
-    function handleWindowSizeChange() {setWidth(window.innerWidth);}
-    useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
 
-    const isMobile = width <= 768;
+    const isMobile = MobileSize();
 
     const [indicador,setIndicador] = useState([0,0]);
     const classes = useStyles();
@@ -200,7 +198,6 @@ export default function ViviendaAdecuada(props:ViviendaProps){
     ]
 
     const handleCallback = (childData: any) => {
-        console.log(childData)
         setIndicador(childData)
     }
 
