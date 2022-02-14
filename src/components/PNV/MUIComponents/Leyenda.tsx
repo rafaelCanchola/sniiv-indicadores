@@ -12,31 +12,20 @@ export default function Leyenda(){
 
     return (
         <Grid container alignItems="center" className={classes.root}>
-
-                <Grid item xs={2} sm={2} md={2}>
-                    <Paper elevation={0} className={classes.text}>
-                    <FiberManualRecordIcon fontSize={'small'} style={{color:colorBrewer.Objetivos[0]}}/><br/>Objetivo 1
-                    </Paper>
+            <Grid item xs={2} sm={2} md={2}>
+                    <FiberManualRecordIcon fontSize={'small'} style={{color:colorBrewer.Objetivos[0]}}/><p className={classes.text}>Objetivo 1</p>
                 </Grid>
                 <Grid item xs={2} sm={2} md={2}>
-                    <Paper elevation={0} className={classes.text}>
-                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[1]}}/><br/>Objetivo 2
-                    </Paper>
+                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[1]}}/><p className={classes.text}>Objetivo 2</p>
                 </Grid>
                 <Grid item xs={2} sm={2} md={2}>
-                    <Paper elevation={0} className={classes.text}>
-                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[2]}}/><br/>Objetivo 3
-                    </Paper>
+                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[2]}}/><p className={classes.text}>Objetivo 3</p>
                 </Grid>
                 <Grid item xs={2} sm={2} md={2}>
-                    <Paper elevation={0} className={classes.text}>
-                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[3]}}/><br/>Objetivo 4
-                    </Paper>
+                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[3]}}/><p className={classes.text}>Objetivo 4</p>
                 </Grid>
                 <Grid item xs={2} sm={2} md={2}>
-                    <Paper elevation={0} className={classes.text}>
-                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[4]}}/><br/>Objetivo 5
-                    </Paper>
+                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[4]}}/><p className={classes.text}>Objetivo 5</p>
                 </Grid>
         </Grid>
     )

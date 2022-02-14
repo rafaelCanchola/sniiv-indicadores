@@ -129,5 +129,37 @@ export const useStyles = makeStyles((theme:Theme) =>
             bottom: 0,
             width: '100%',
         },
+        cardBienestarMobile:{
+            boxShadow: 'none',
+            position: 'relative',
+            minWidth: 200,
+            minHeight: 500,
+            '&:after': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                width: '100%',
+                height: '85%',
+                bottom: 0,
+                zIndex: 1,
+                background: 'linear-gradient(to top, #000, rgba(0,0,0,0.3))',
+            },
+        },
+        cardBienestar:{
+            boxShadow: 'none',
+            position: 'relative',
+            minWidth: 200,
+            minHeight: 500,
+            '&:after': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                width: '100%',
+                height: '65%',
+                bottom: 0,
+                zIndex: 1,
+                background: 'linear-gradient(to top, #000, rgba(0,0,0,0.05))',
+            },
+        },
     })
 );

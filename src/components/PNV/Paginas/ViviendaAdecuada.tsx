@@ -29,6 +29,9 @@ import autoproduccion from "../../../assets/images/autoproduccion.png";
 import {useStyles} from "../../../utils/Style";
 import TextoVivienda from "../MUIComponents/TextoVivienda";
 import {MobileSize} from "../../../utils/Utils";
+import CardBanner from "../MUIComponents/CardBanner";
+import bienestar1 from "../../../assets/images/bienestar/bienestar1.png";
+import pnv from "../../../assets/images/bienestar/pnv.png";
 
 interface ViviendaProps {
 
@@ -204,6 +207,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
     const GridVivienda =
     <Paper elevation={0} className={classes.paperImage}>
         <Paper elevation={3} className={classes.paper}>
+            <h3>{"Vivienda Adecuada"}</h3>
             <h5>{"Indicadores complementarios"}</h5>
             <RefreshIcon fontSize={'large'} onClick={() => setIndicador([0,0])} />
         </Paper>
@@ -216,76 +220,67 @@ export default function ViviendaAdecuada(props:ViviendaProps){
 
 
     return(
-        <div className={classes.root}>
-            <Grid container spacing={2}  >
-                <Grid item xs={12} sm={12} md={12}>
-                    <Paper elevation={0} className={classes.paper}>
-                        <h1>{"Vivienda Adecuada"}</h1>
-
-                    </Paper>
-                    <Paper elevation={3} className={classes.paperPNV}>
-                        <p>
-                            La vivienda adecuada está reconocida como un derecho en los instrumentos internacionales incluidos la Declaración de los Derechos Humanos y el Pacto Internacional de los Derechos Económicos, Sociales y Culturales. La vivienda adecuada debe proveer más que cuatro paredes y un techo. Se deben cumplir una serie de condiciones particulares antes de considerarse como Vivienda adecuada.
-                        </p>
-                        <p>
-                            La caracterización de los retos específicos que tiene la vivienda en México se basa en los siete elementos de una vivienda adecuada definidos por la Organización de las Naciones Unidas (ONU): seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad; habitabilidad; accesibilidad; ubicación y adecuación cultural.
-                        </p>
-                    </Paper>
-                    <br/>
+        <Fragment>
+            <CardBanner subtitle={'La vivienda adecuada está reconocida como un derecho en los instrumentos internacionales incluidos la Declaración de los Derechos Humanos y el Pacto Internacional de los Derechos Económicos, Sociales y Culturales.'}
+                        title={'Vivienda adecuada'}
+                        image={bienestar1}
+                        more1={'La vivienda adecuada debe proveer más que cuatro paredes y un techo. Se deben cumplir una serie de condiciones particulares antes de considerarse como Vivienda adecuada.'}
+                        more2={'La caracterización de los retos específicos que tiene la vivienda en México se basa en los siete elementos de una vivienda adecuada definidos por la Organización de las Naciones Unidas (ONU): seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad; habitabilidad; accesibilidad; ubicación y adecuación cultural.'}
+                        isMobile={isMobile}/>
+            <div className={classes.root}>
+                <Grid container spacing={2}  >
+                    {isMobile ?
+                        <Grid container spacing={2}  >
+                            <Grid item xs={12} sm={12} md={12} >
+                                <Accordion>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
+                                        <Typography className={classes.body}>Selecciona un indicador</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography>
+                                            <Grid container spacing={2}  >
+                                                {elementos.map((card:any,key:number) =>
+                                                    <Fragment key={key}>
+                                                        {(key === elementos.length-1)? <Grid item xs={4}></Grid> : <></>}
+                                                        <Grid item xs={4}>
+                                                            <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image}/>
+                                                        </Grid>
+                                                    </Fragment>
+                                                )}
+                                            </Grid>
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                            </Grid>
+                            <Grid item xs={12} sm={12}>
+                                {GridVivienda}
+                            </Grid>
+                        </Grid>
+                        :
+                        <Fragment>
+                            <Grid item xs={12} sm={3} md={3}>
+                                {elementos.slice(0,4).map((card:any,key:number )=>
+                                    <Paper elevation={0} className={classes.paperImage} key={key}>
+                                        <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
+                                    </Paper>
+                                )}
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={6}>
+                                {GridVivienda}
+                            </Grid>
+                            <Grid item xs={12} sm={3} md={3}>
+                                {elementos.slice(4).map((card:any,key:number ) =>
+                                    <Paper elevation={0} className={classes.paperImage} key={key}>
+                                        <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
+                                    </Paper>
+                                )}
+                            </Grid>
+                        </Fragment>
+                    }
                 </Grid>
-
-                {isMobile ?
-                    <Grid container spacing={2}  >
-                        <Grid item xs={12} sm={12} md={12} >
-                            <Accordion>
-                                <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
-                                    <Typography
-                                        className={classes.body}>Selecciona un indicador</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        <Grid container spacing={2}  >
-                                            {elementos.map((card:any,key:number) =>
-                                            <Fragment key={key}>
-                                                {(key === elementos.length-1)? <Grid item xs={4}></Grid> : <></>}
-                                                <Grid item xs={4}>
-                                                    <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image}/>
-                                                </Grid>
-                                            </Fragment>
-                                        )}
-                                        </Grid>
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                        </Grid>
-                        <Grid item xs={12} sm={12}>
-                            {GridVivienda}
-                        </Grid>
-                    </Grid>
-                    :
-                    <Fragment>
-                        <Grid item xs={12} sm={3} md={3}>
-                        {elementos.slice(0,4).map((card:any,key:number )=>
-                            <Paper elevation={0} className={classes.paperImage} key={key}>
-                            <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
-                            </Paper>
-                        )}
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={6}>
-                            {GridVivienda}
-                        </Grid>
-                        <Grid item xs={12} sm={3} md={3}>
-                            {elementos.slice(4).map((card:any,key:number ) =>
-                                <Paper elevation={0} className={classes.paperImage} key={key}>
-                                <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
-                                </Paper>
-                            )}
-                        </Grid>
-                    </Fragment>
-                }
-            </Grid>
-            <br/><br/><br/>
-        </div>
+                <br/><br/><br/>
+            </div>
+        </Fragment>
     )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import ReactECharts from "echarts-for-react";
@@ -15,7 +15,12 @@ import objetivo4 from "../../../assets/images/obj4.png";
 import objetivo5 from "../../../assets/images/obj5.png";
 import objetivo6 from "../../../assets/images/obj6.png";
 
+import bienestar2 from "../../../assets/images/bienestar/bienestar2.png";
+import pnv from "../../../assets/images/bienestar/pnv.png";
+
 import {useStyles} from "../../../utils/Style";
+import CardBanner from "../MUIComponents/CardBanner";
+import {MobileSize} from "../../../utils/Utils";
 
 
 interface CumplimientoProps {
@@ -39,6 +44,7 @@ interface AxisChart{
 
 export default function ObjetivoPNV(){
     const classes = useStyles();
+    const isMobile = MobileSize();
 
     const objetivos = [
         {
@@ -129,58 +135,44 @@ export default function ObjetivoPNV(){
     }
 
     return(
-        <div className={classes.root}>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <Paper elevation={0} className={classes.paper}>
-
-                        <h1>{"¿Qué es el Programa Nacional de Vivienda?"}</h1>
-
-                        <Paper elevation={3} className={classes.paperPNV}>
-                            <p>
-                                El Programa Nacional de Vivienda es un programa especial derivado del Plan Nacional de Desarrollo 2019-2024.
-                            </p>
-                            <p>
-                                Incorpora los siete elementos de la vivienda adecuada establecidos por ONU-Hábitat: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad, habitabilidad, accesibilidad; ubicación y adecuación cultural. De esta manera, se busca que todos los actores impulsen estos criterios en los planes, reglas y programas de cada institución.
-                            </p>
-                            <p>
-                                La nueva política de vivienda coloca su énfasis en los grupos más vulnerables, y devolviéndoles el acceso a la vivienda adecuada como derecho; esto en consonancia con el objetivo 2. Política Social del Plan Nacional de Desarrollo 2021-2024. Lo anterior, tomando en cuenta que la vivienda ha dejado de ser un producto comercial escindido del territorio y se ha convertido, vista desde la política pública, en un espacio habitacional inherentemente vinculado al territorio.
-                            </p>
-                        </Paper>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12} sm={12} md={3} >
-                    <Paper elevation={0} className={classes.paper}>
-                        <h2>{"Programa Nacional de Vivienda"}</h2>
-                        <Paper elevation={3} className={classes.paper}>
-                            <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"} rel={"noreferrer"}><img src={pnv2021} className={classes.image} alt={"Imagen"}/></a>
-                        </Paper>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12} sm={12} md={9}>
-                    <Paper elevation={0} className={classes.paper}>
-                        <br/>
-                        <h3>{"5 objetivos prioritarios"}</h3>
-                        <h3>{"113 acciones puntuales"}</h3>
-                        <Paper elevation={3} className={classes.paper}>
-                        <ReactECharts option={sankey} />
-                        </Paper>
-                    </Paper>
-                </Grid>
-            </Grid>
-
-            <Grid container spacing={2} alignItems={'center'} >
-                <Grid item xs={12} sm={12} md={1}></Grid>
-                {objetivos.map(card =>
-                    //@ts-ignore
-                    <Grid item xs={12} sm={12} md={card.size} key={card.obj}  >
-                        <Paper elevation={3} className={classes.paper}>
-                            <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img}/>
+        <Fragment>
+            <CardBanner isMobile={isMobile} subtitle={'El Programa Nacional de Vivienda es un programa especial derivado del Plan Nacional de Desarrollo 2019-2024.'} title={'¿Qué es el Programa Nacional de Vivienda?'} image={bienestar2} more1={'Incorpora los siete elementos de la vivienda adecuada establecidos por ONU-Hábitat: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad, habitabilidad, accesibilidad; ubicación y adecuación cultural. De esta manera, se busca que todos los actores impulsen estos criterios en los planes, reglas y programas de cada institución.'} more2={'La nueva política de vivienda coloca su énfasis en los grupos más vulnerables, y devolviéndoles el acceso a la vivienda adecuada como derecho; esto en consonancia con el objetivo 2. Política Social del Plan Nacional de Desarrollo 2021-2024. Lo anterior, tomando en cuenta que la vivienda ha dejado de ser un producto comercial escindido del territorio y se ha convertido, vista desde la política pública, en un espacio habitacional inherentemente vinculado al territorio.'} />
+            <div className={classes.root}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={12} md={3} >
+                        <Paper elevation={0} className={classes.paper}>
+                            <h2>{"Programa Nacional de Vivienda"}</h2>
+                            <Paper elevation={3} className={classes.paper}>
+                                <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"} rel={"noreferrer"}><img src={pnv2021} className={classes.image} alt={"Imagen"}/></a>
+                            </Paper>
                         </Paper>
                     </Grid>
-                )}
-            </Grid>
-            <br/><br/><br/>
-        </div>
+                    <Grid item xs={12} sm={12} md={9}>
+                        <Paper elevation={0} className={classes.paper}>
+                            <br/>
+                            <h3>{"5 objetivos prioritarios"}</h3>
+                            <h3>{"113 acciones puntuales"}</h3>
+                            <Paper elevation={3} className={classes.paper}>
+                                <ReactECharts option={sankey} />
+                            </Paper>
+                        </Paper>
+                    </Grid>
+                </Grid>
+
+                <Grid container spacing={2} alignItems={'center'} >
+                    <Grid item xs={12} sm={12} md={1}></Grid>
+                    {objetivos.map(card =>
+                        //@ts-ignore
+                        <Grid item xs={12} sm={12} md={card.size} key={card.obj}  >
+                            <Paper elevation={3} className={classes.paper}>
+                                <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img}/>
+                            </Paper>
+                        </Grid>
+                    )}
+                </Grid>
+                <br/><br/><br/>
+            </div>
+        </Fragment>
+
     )
 }
