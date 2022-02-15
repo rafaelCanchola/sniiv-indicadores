@@ -70,6 +70,11 @@ export const useStyles = makeStyles((theme:Theme) =>
         avatar: {
             backgroundColor: red[500],
         },
+        textCard:{
+            fontSize:10,
+            color:theme.palette.text.secondary,
+            fontFamily:'Montserrat',
+        },
         text:{
             fontSize:10,
             color:'white',

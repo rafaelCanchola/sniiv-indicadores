@@ -159,7 +159,7 @@ export default function ObjetivoPNV(){
                         {objetivos.map(card =>
                             //@ts-ignore
                             <Grid item xs={12} sm={12} md={card.size} key={card.obj}  >
-                                    <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img}/>
+                                <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img}/>
                             </Grid>
                         )}
                     </Grid>

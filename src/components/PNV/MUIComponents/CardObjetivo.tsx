@@ -19,9 +19,9 @@ export default function MediaCard(props:CardProps) {
     const classes = useStyles();
     return (
         <Card >
-            <CardHeader avatar={<Avatar aria-label="avatar" className={classes.avatar}><img src={props.image} className={classes.imageIcon} alt={"Imagen"}/></Avatar>} title={props.title} className={classes.text}/>
+            <CardHeader avatar={<Avatar aria-label="avatar" className={classes.avatar}><img src={props.image} className={classes.imageIcon} alt={"Imagen"}/></Avatar>} title={props.title} className={classes.textCard}/>
             <CardContent>
-                <Typography className={classes.text} variant={"body2"}>
+                <Typography className={classes.textCard} variant={"body2"}>
                     {props.content}
                 </Typography>
 
