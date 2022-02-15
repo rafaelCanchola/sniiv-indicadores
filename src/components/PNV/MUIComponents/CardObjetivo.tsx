@@ -12,7 +12,8 @@ interface CardProps{
     title: string,
     content: string,
     image: any,
-    more: string
+    more: string,
+    tabla:any
 }
 
 export default function MediaCard(props:CardProps) {

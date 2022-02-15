@@ -16,7 +16,8 @@ import objetivo5 from "../../../assets/images/obj5.png";
 import objetivo6 from "../../../assets/images/obj6.png";
 
 import bienestar2 from "../../../assets/images/bienestar/bienestar2.png";
-import pnv from "../../../assets/images/bienestar/pnv.png";
+
+import {objs} from "../../../json/acciones_obj_prior_a"
 
 import {useStyles} from "../../../utils/Style";
 import CardBanner from "../MUIComponents/CardBanner";
@@ -53,35 +54,40 @@ export default function ObjetivoPNV(){
             "obj": "Garantizar el ejercicio del derecho a la vivienda adecuada a todas las personas, especialmente a los grupos en mayor condición de discriminación y vulnerabilidad, a través de soluciones financieras, técnicas y sociales de acuerdo con las necesidades específicas de cada grupo de población.",
             "more": "",
             "img":objetivo1,
-            "size":2
+            "size":2,
+            tabla:objs.Objetivo1
         },
         {
             "title":"Objetivo 2",
             "obj":"Garantizar la coordinación entre los organismos nacionales de vivienda y los distintos órdenes de gobierno para el uso eficiente de los recursos públicos",
             "more":"",
             "img":objetivo2,
-            "size":2
+            "size":2,
+            tabla:objs.Objetivo2
         },
         {
             "title":"Objetivo 3",
             "obj":"Fomentar conjuntamente con el sector social y privado, condiciones que propicien el ejercicio del derecho a la vivienda adecuada.",
             "more":"",
             "img":objetivo3,
-            "size":2
+            "size":2,
+            tabla:objs.Objetivo3
         },
         {
             "title":"Objetivo 4",
             "obj":"Asegurar el derecho a la información y la rendición de cuentas de todos los actores del sistema de vivienda adecuada.",
             "more":"",
             "img":objetivo6,
-            "size":2
+            "size":2,
+            tabla:objs.Objetivo4
         },
         {
             "title":"Objetivo 5",
             "obj":"Establecer un modelo de ordenamiento territorial y gestión del suelo que considere la vivienda adecuada como elemento central de planeación de territorio.",
             "more":"",
             "img":objetivo5,
-            "size":2
+            "size":2,
+            tabla:objs.Objetivo5
         }
     ]
     const sankey = {
@@ -160,7 +166,7 @@ export default function ObjetivoPNV(){
                         {objetivos.map(card =>
                             //@ts-ignore
                             <Grid item xs={12} sm={12} md={card.size} key={card.obj}  >
-                                <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img}/>
+                                <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla}/>
                             </Grid>
                         )}
                     </Grid>
