@@ -11,6 +11,7 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+
     },
     details: {
         display: 'flex',
@@ -69,7 +70,7 @@ export default function CardVivienda(props:CardProps) {
                     <div className={classes.details}>
                         <CardContent className={classes.content}>
                             <CardActionArea onClick={clickInfo}>
-                            <Typography component="h5" variant="h5" color={'textSecondary'}>
+                            <Typography component="h5" variant="h5" color={'textPrimary'}>
                                 {props.obj}
                             </Typography>
                             <Typography variant="subtitle1" color="textSecondary">

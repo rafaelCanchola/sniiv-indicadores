@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import AutorenewIcon from '@material-ui/icons/Autorenew';
@@ -6,7 +6,9 @@ import ReactECharts from "echarts-for-react";
 
 import trimestral from "../../../assets/images/trimestral.png";
 import {useStyles} from "../../../utils/Style";
-import {ordinalNumber} from "../../../utils/Utils";
+import {MobileSize, ordinalNumber} from "../../../utils/Utils";
+import CardBanner from "../MUIComponents/CardBanner";
+import bienestar1 from "../../../assets/images/bienestar/bienestar3.png";
 
 interface CumplimientoProps {
     data: any;
@@ -30,6 +32,7 @@ interface AxisChart{
 
 export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
     const classes = useStyles();
+    const isMobile = MobileSize();
     const option = {
         xAxis: {
             name:'Trimestre',
@@ -108,34 +111,28 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
     };
 
     return(
-        <div className={classes.root}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <Paper elevation={0} className={classes.paper}>
-                            <h1>{props.title}</h1>
-                            <Paper elevation={3} className={classes.paper}>
-                            <h5>{props.periodo}</h5>
-                            <AutorenewIcon fontSize={'large'} onClick={() => {
-                                props.callBack2()
-                            }}/>
-                            </Paper>
-
-                        </Paper>
-                    </Grid>
-                </Grid>
-
+        <Fragment>
+            <CardBanner subtitle={props.periodo}
+                        title={props.title}
+                        image={bienestar1}
+                        more1={''}
+                        more2={''}
+                        isMobile={isMobile}/>
+            <Paper className={classes.paperContainer3}>
+            <div className={classes.root}>
                 <Grid container spacing={2} alignItems={'center'} >
                     <Grid item xs={12} sm={12} md={3} >
-                        <Paper elevation={0} className={classes.paper}>
-                            <h2>{props.titleTrimestral}</h2>
-                            <Paper elevation={3} className={classes.paper}>
+                        <Paper elevation={0} className={classes.paperImage3}>
+                            <h2 className={classes.textColor}>{props.titleTrimestral}</h2>
                                 <a href={'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/4B9gmHHOQ9m69oVBdVEIFA/content/3er_informe_trimestral_PNV.pdf'} target={"_blank"} rel={"noreferrer"}><img src={trimestral} className={classes.imagePNV} alt={"Reporte trimestral"} /></a>
-                            </Paper>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12} md={9} >
-                        <Paper elevation={0} className={classes.paper}>
-                            <h2>{props.titleBar}</h2>
+                        <Paper elevation={0} className={classes.paperImage3}>
+                            <h2 className={classes.textColor}>{props.titleBar}</h2>
+                            <AutorenewIcon className={classes.textColor} fontSize={'large'} onClick={() => {
+                                props.callBack2()
+                            }}/>
                             <Paper elevation={3} className={classes.paper}>
                                 <ReactECharts option={option} onEvents={onEvents} />
                             </Paper>
@@ -144,6 +141,9 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
 
 
                 </Grid>
-        </div>
+            </div>
+            </Paper>
+
+        </Fragment>
     )
 }

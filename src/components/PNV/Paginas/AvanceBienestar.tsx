@@ -12,6 +12,8 @@ import {fichaPie} from "../../../json/PNV/fichas_ind_pnv1";
 import {fichaPie3} from "../../../json/PNV/fichas_ind_pnv3"
 import GridCumplimientoBienestar from "../ComponentesPaginas/GridCumplimientoBienestar";
 import {ordinalNumber} from "../../../utils/Utils";
+import {Paper} from "@material-ui/core";
+import {useStyles} from "../../../utils/Style";
 
 /*import Fetch from "./Fetch";
 
@@ -93,7 +95,6 @@ export default class AvanceBienestar extends Component<any, any> {
                                                                fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
                                     : <></>
                         }
-                   <br/><br/><br/>
                </Fragment>
         )
     }

@@ -24,7 +24,6 @@ export default function MediaCard(props:CardProps) {
                 <Typography className={classes.textCard} variant={"body2"}>
                     {props.content}
                 </Typography>
-
             </CardContent>
             <CardActions>
                 <Button size="small">Conoce más</Button>

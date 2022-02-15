@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme:Theme) =>
             margin: theme.spacing(2),
         },
         paper:{
-            padding: theme.spacing(2),
+            padding: theme.spacing(1),
             textAlign:"center",
             color: theme.palette.text.secondary,
             backgroundColor: theme.palette.background.default,
@@ -186,8 +186,6 @@ export default function BienestarBarChart(props:BarProps){
 
     return(
         <div className={classes.root}>
-            <Grid container spacing={2} alignItems={'center'} >
-                <Grid item xs={12} sm={12} md={12}  >
                     <Paper elevation={3} className={classes.paper}>
                         <h3>{bienestarTitles[props.indicadorIndex]}</h3>
                         <h4>{bienestarUnidades[props.indicadorIndex]}</h4>
@@ -195,8 +193,6 @@ export default function BienestarBarChart(props:BarProps){
                         {clickChart[props.indicadorIndex]}
                         <ReactECharts option={bienestarCharts[props.indicadorIndex]} />
                     </Paper>
-                </Grid>
-            </Grid>
             <Dialog fullScreen={isMobile} open={clickTableMap[props.indicadorIndex].state} onClose={clickTableMap[props.indicadorIndex].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
                 <DialogTitle>
                     {"Fícha Técnica de la Meta del Objetivo "+(props.indicadorIndex+1)}

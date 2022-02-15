@@ -21,6 +21,7 @@ import pnv from "../../../assets/images/bienestar/pnv.png";
 import {useStyles} from "../../../utils/Style";
 import CardBanner from "../MUIComponents/CardBanner";
 import {MobileSize} from "../../../utils/Utils";
+import IndicadoresBienestar from "../ComponentesPaginas/IndicadoresBienestar";
 
 
 interface CumplimientoProps {
@@ -160,6 +161,15 @@ export default function ObjetivoPNV(){
                             //@ts-ignore
                             <Grid item xs={12} sm={12} md={card.size} key={card.obj}  >
                                 <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img}/>
+                            </Grid>
+                        )}
+                    </Grid>
+                    <Grid container  >
+                        <Grid item xs={12} sm={12} md={1}></Grid>
+                        {[0,1,2,3,4].map(card =>
+                            //@ts-ignore
+                            <Grid item xs={12} sm={12} md={2} key={card}  >
+                                <IndicadoresBienestar indicadorIndex={card}/>
                             </Grid>
                         )}
                     </Grid>

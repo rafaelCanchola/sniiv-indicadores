@@ -4,38 +4,8 @@ import {Paper} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {colorBrewer} from "../../../../utils/colorBrewer";
 import {randomNumber, waterFallSize} from "../../../../utils/Utils";
+import {useStyles} from "../../../../utils/Style";
 
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(2),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
-
-        },
-        image:{
-            width:"80%",
-            height: "auto"
-        },
-        typo:{
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-
-        },
-        details: {
-            alignItems: 'center',
-        },
-        column: {
-            flexBasis: '50%',
-        },
-
-
-    })
-);
 
 interface WaterfallProps{
     title:any,

@@ -12,29 +12,8 @@ import BarChart from "../Graficas/eCharts/BarChart";
 import {colorBrewer} from "../../../utils/colorBrewer";
 import {assign4TColor, assignColor} from "../../../utils/Utils";
 import BarChartNumber from "../Graficas/eCharts/BarChartNumber";
+import {useStyles} from "../../../utils/Style";
 
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(2),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
-
-        },
-        image:{
-            width:"100%",
-            height: "auto"
-        },
-        body:{
-            fontSize: 12,
-            color: theme.palette.text.secondary,
-        },
-    })
-);
 
 interface IndicadorViviendaProps {
     indicador:any,
@@ -59,7 +38,7 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
     }
     return(
         <div className={classes.root}>
-            <h3>{props.indicador.titulo}</h3>
+            <h3 className={classes.textColorGrey}>{props.indicador.titulo}</h3>
             {props.indicador.tipo === 'dual' ?
                 <Grid container spacing={2}  >
                     <BarChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} xAxis={props.indicador.xAxis[props.indicadorIndex]} yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
@@ -80,7 +59,7 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
             {props.indicador.data[props.indicadorIndex] !== undefined?
                 <Grid container spacing={2}  >
                     <Grid item xs={12} sm={12} md={12} >
-                        <Accordion>
+                        <Accordion >
                             <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
                                 <Typography
                                     className={classes.body}>Ficha Técnica</Typography>

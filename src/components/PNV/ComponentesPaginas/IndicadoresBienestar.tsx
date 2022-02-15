@@ -139,11 +139,6 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
     ];
 
     return(
-        <div className={classes.root}>
-            <Paper elevation={0} className={classes.paper}>
-                <h1>{"Indicadores del bienestar"}</h1>
-                <BienestarBarChart tableData={bienestar} indicadorIndex={props.indicadorIndex}/>
-            </Paper>
-        </div>
+        <BienestarBarChart tableData={bienestar} indicadorIndex={props.indicadorIndex}/>
     )
 }

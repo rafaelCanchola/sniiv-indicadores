@@ -13,19 +13,19 @@ export default function Leyenda(){
     return (
         <Grid container alignItems="center" className={classes.root}>
             <Grid item xs={2} sm={2} md={2}>
-                    <FiberManualRecordIcon fontSize={'small'} style={{color:colorBrewer.Objetivos[0]}}/><p className={classes.text}>Objetivo 1</p>
+                    <FiberManualRecordIcon fontSize={'small'} style={{color:colorBrewer.Objetivos[0]}}/><p className={classes.textCard}>Objetivo 1</p>
                 </Grid>
                 <Grid item xs={2} sm={2} md={2}>
-                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[1]}}/><p className={classes.text}>Objetivo 2</p>
+                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[1]}}/><p className={classes.textCard}>Objetivo 2</p>
                 </Grid>
                 <Grid item xs={2} sm={2} md={2}>
-                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[2]}}/><p className={classes.text}>Objetivo 3</p>
+                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[2]}}/><p className={classes.textCard}>Objetivo 3</p>
                 </Grid>
                 <Grid item xs={2} sm={2} md={2}>
-                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[3]}}/><p className={classes.text}>Objetivo 4</p>
+                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[3]}}/><p className={classes.textCard}>Objetivo 4</p>
                 </Grid>
                 <Grid item xs={2} sm={2} md={2}>
-                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[4]}}/><p className={classes.text}>Objetivo 5</p>
+                    <FiberManualRecordIcon fontSize={'small'}style={{color:colorBrewer.Objetivos[4]}}/><p className={classes.textCard}>Objetivo 5</p>
                 </Grid>
         </Grid>
     )

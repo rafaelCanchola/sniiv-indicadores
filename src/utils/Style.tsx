@@ -5,6 +5,7 @@ import {colorBrewer} from "./colorBrewer";
 
 import fondo from "../assets/images/bienestar/fondo2.png";
 import fondo2 from "../assets/images/bienestar/fondo.png";
+import fondo3 from "../assets/images/bienestar/fondo3.png";
 
 export const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -16,7 +17,12 @@ export const useStyles = makeStyles((theme:Theme) =>
             textAlign:"center",
             color: theme.palette.text.secondary,
             fontFamily:'Montserrat',
-
+        },
+        paperGrey:{
+            textAlign:"center",
+            color: theme.palette.text.secondary,
+            fontFamily:'Montserrat',
+            backgroundColor:'#e0e0e0'
         },
         paperPNV:{
             padding: theme.spacing(2),
@@ -29,8 +35,36 @@ export const useStyles = makeStyles((theme:Theme) =>
             padding: theme.spacing(1),
             textAlign:"center",
             color: theme.palette.text.secondary,
+            backgroundImage:'url('+fondo+')',
+        },
+        paperImage2:{
+            padding: theme.spacing(1),
+            textAlign:"center",
+            color: theme.palette.text.secondary,
             backgroundImage:'url('+fondo2+')',
-
+        },
+        paperImage3:{
+            padding: theme.spacing(1),
+            textAlign:"center",
+            color: theme.palette.text.secondary,
+            backgroundImage:'url('+fondo3+')',
+        },
+        paperVivienda:{
+            padding: theme.spacing(1),
+            textAlign:"center",
+            //backgroundColor:'#e0e0e0'//'#babcbb'
+        },
+        paperGreen:{
+            textAlign:"center",
+            backgroundColor:'#325b4f'//'#babcbb'
+        },
+        paperRed:{
+            textAlign:"center",
+            backgroundColor:'#e0e0e0'//'#babcbb'
+        },
+        paperGold:{
+            textAlign:"center",
+            backgroundColor:'#b99560'//'#babcbb'
         },
         image:{
             width:"100%",
@@ -131,10 +165,10 @@ export const useStyles = makeStyles((theme:Theme) =>
                 display: 'block',
                 position: 'absolute',
                 width: '100%',
-                height: '64%',
+                height: '100%',
                 bottom: 0,
                 zIndex: 1,
-                background: 'linear-gradient(to top, #000, rgba(0,0,0,0))',
+                background: 'linear-gradient(to top, #000, rgba(0,0,0,0.1))',
             },
         },
         contentCard: {
@@ -194,9 +228,16 @@ export const useStyles = makeStyles((theme:Theme) =>
         paperContainer2:{
             backgroundImage:'url('+fondo2+')',
         },
+        paperContainer3:{
+            backgroundImage:'url('+fondo3+')',
+        },
         textColor:{
             textAlign:"center",
             color: 'white',
+            fontFamily:'Montserrat',
+        },
+        textColorGrey:{
+            color: theme.palette.text.secondary,
             fontFamily:'Montserrat',
         },
         imageSedatu:{

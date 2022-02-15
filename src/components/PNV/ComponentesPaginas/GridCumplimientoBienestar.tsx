@@ -16,29 +16,9 @@ import programa from "../../../assets/images/programanacional.png";
 
 import {assignObjetivosColor, MobileSize} from "../../../utils/Utils";
 import {IndicadoresPNV} from "./IndicadoresPNV";
+import {useStyles} from "../../../utils/Style";
 
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(2),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
 
-        },
-        image:{
-            width:"100%",
-            height: "auto"
-        },
-        body:{
-            fontSize: 12,
-            color: theme.palette.text.secondary,
-        },
-    })
-);
 
 interface CumplimientoProps {
     data: any;
@@ -100,13 +80,6 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
             more:"",
             children:[0,1,2,3,4]
         },
-        {
-            num: 4,
-            title: "Indicadores del bienestar",
-            image:indicadores,
-            more:"",
-            children:[0,1,2,3,4]
-        },
 
     ]
     const indicadoresB = [
@@ -145,15 +118,17 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
     }
 
     return(
+        <Paper className={classes.paperContainer3}>
         <div className={classes.root}>
             <Grid container spacing={2}  >
 
                 {isMobile ?
                     <Grid container spacing={2}  >
                         <Grid item xs={12} sm={12} md={12} >
-                            <Accordion>
+                            <br/>
+                            <Accordion className={classes.paperGold}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
-                                    <Typography className={classes.body}>Selecciona un indicador</Typography>
+                                    <Typography className={classes.textColor}>Selecciona un indicador</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <Typography>
@@ -171,29 +146,27 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                             </Accordion>
                         </Grid>
                         <Grid item xs={12} sm={12} >
-                            <Paper elevation={0} className={classes.paper}>
                                 {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
-                            </Paper>
+
                         </Grid>
                     </Grid>
                     :
                     <Fragment>
 
                         <Grid item xs={12} sm={3} md={3}>
-                            <Paper elevation={0} className={classes.paper}><br/><br/></Paper>
+                            <Paper elevation={0} className={classes.paperImage3}><br/><br/></Paper>
                             {graficas.slice(0,2).map(card =>
-                                <CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
+                                <Paper elevation={0} className={classes.paperImage3}><CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/></Paper>
                             )}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6}>
-                            <Paper elevation={0} className={classes.paper}>
                                 {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
-                            </Paper>
+
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
-                            <Paper elevation={0} className={classes.paper}><br/><br/></Paper>
+                            <Paper elevation={0} className={classes.paperImage3}><br/><br/></Paper>
                             {graficas.slice(2).map(card =>
-                                <CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
+                                <Paper elevation={0} className={classes.paperImage3}><CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/></Paper>
                             )}
                         </Grid>
                     </Fragment>
@@ -202,6 +175,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
             </Grid>
             <br/><br/><br/>
         </div>
+        </Paper>
     )
 }
 

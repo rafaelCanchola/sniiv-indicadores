@@ -206,16 +206,19 @@ export default function ViviendaAdecuada(props:ViviendaProps){
 
     const GridVivienda =
         <Fragment>
-            <Paper elevation={3} className={classes.paperImage}>
-                <h3 className={classes.textColor}>{"Vivienda Adecuada"}</h3>
-                <h5 className={classes.textColor}>{"Indicadores complementarios"}</h5>
-                <RefreshIcon className={classes.textColor} fontSize={'large'} onClick={() => setIndicador([0,0])} />
+            <Paper elevation={3} className={classes.paperVivienda}>
+                <h3 className={classes.textColorGrey}>{"Vivienda Adecuada"}</h3>
+                <h5 className={classes.textColorGrey}>{"Indicadores complementarios"}</h5>
+                <RefreshIcon className={classes.textColorGrey} fontSize={'large'} onClick={() => setIndicador([0,0])} />
             </Paper>
             <br/>
             <br/>
-            {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} />
-                : indicador[0] === 10? <TextoVivienda image={elementos[indicador[1]].image} title={elementos[indicador[1]].title} obj={elementos[indicador[1]].num} more={elementos[indicador[1]].more}/>
-                    : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
+            <Paper className={classes.paperVivienda}>
+                {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} />
+                    : indicador[0] === 10? <TextoVivienda image={elementos[indicador[1]].image} title={elementos[indicador[1]].title} obj={elementos[indicador[1]].num} more={elementos[indicador[1]].more}/>
+                        : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
+            </Paper>
+
         </Fragment>
 
 
@@ -230,49 +233,50 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                         isMobile={isMobile}/>
             <Paper className={classes.paperContainer2}>
                 <div className={classes.root}>
-                <Grid container spacing={2}  >
-                    {isMobile ?
-                        <Grid container spacing={2}  >
-                            <Grid item xs={12} sm={12} md={12} >
-                                <Accordion>
-                                    <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
-                                        <Typography className={classes.body}>Selecciona un indicador</Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <Typography>
-                                            <Grid container spacing={2}  >
-                                                {elementos.map((card:any,key:number) =>
-                                                    <Fragment key={key}>
-                                                        {(key === elementos.length-1)? <Grid item xs={4}></Grid> : <></>}
-                                                        <Grid item xs={4}>
-                                                            <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image}/>
-                                                        </Grid>
-                                                    </Fragment>
-                                                )}
-                                            </Grid>
-                                        </Typography>
-                                    </AccordionDetails>
-                                </Accordion>
+                    <Grid container spacing={2}  >
+                        {isMobile ?
+                            <Grid container spacing={2}  >
+                                <Grid item xs={12} sm={12} md={12} >
+                                    <br/>
+                                    <Accordion className={classes.paperGreen}>
+                                        <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
+                                            <Typography className={classes.textColor}>Selecciona un indicador</Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <Typography>
+                                                <Grid container spacing={2}  >
+                                                    {elementos.map((card:any,key:number) =>
+                                                        <Fragment key={key}>
+                                                            {(key === elementos.length-1)? <Grid item xs={4}></Grid> : <></>}
+                                                            <Grid item xs={4}>
+                                                                <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image}/>
+                                                            </Grid>
+                                                        </Fragment>
+                                                    )}
+                                                </Grid>
+                                            </Typography>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </Grid>
+                                <Grid item xs={12} sm={12} >
+                                    {GridVivienda}
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={12}>
-                                {GridVivienda}
-                            </Grid>
-                        </Grid>
                         :
                         <Fragment>
                             <Grid item xs={12} sm={3} md={3}>
                                 {elementos.slice(0,4).map((card:any,key:number )=>
-                                    <Paper elevation={0} className={classes.paperImage} key={key}>
+                                    <Paper elevation={0} className={classes.paperImage2} key={key}>
                                         <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
                                     </Paper>
                                 )}
                             </Grid>
-                            <Grid item xs={12} sm={6} md={6}>
+                            <Grid item xs={12} sm={6} md={6} >
                                 {GridVivienda}
                             </Grid>
                             <Grid item xs={12} sm={3} md={3}>
                                 {elementos.slice(4).map((card:any,key:number ) =>
-                                    <Paper elevation={0} className={classes.paperImage} key={key}>
+                                    <Paper elevation={0} className={classes.paperImage2} key={key}>
                                         <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
                                     </Paper>
                                 )}

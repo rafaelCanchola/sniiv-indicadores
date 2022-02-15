@@ -2,38 +2,8 @@ import ReactECharts from "echarts-for-react";
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import {useStyles} from "../../../../utils/Style";
 
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(2),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
-
-        },
-        image:{
-            width:"80%",
-            height: "auto"
-        },
-        typo:{
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-
-        },
-        details: {
-            alignItems: 'center',
-        },
-        column: {
-            flexBasis: '50%',
-        },
-
-
-    })
-);
 
 interface BarChartProps{
     title:any,
