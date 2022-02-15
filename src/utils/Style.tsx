@@ -76,7 +76,7 @@ export const useStyles = makeStyles((theme:Theme) =>
             fontFamily:'Montserrat',
         },
         textTitle:{
-            fontSize:14,
+            fontSize:12,
             color:'white',
             fontFamily:'Montserrat',
         },
@@ -193,6 +193,9 @@ export const useStyles = makeStyles((theme:Theme) =>
             textAlign:"center",
             color: 'white',
             fontFamily:'Montserrat',
+        },
+        imageSedatu:{
+            width:'80%',
         }
     })
 );

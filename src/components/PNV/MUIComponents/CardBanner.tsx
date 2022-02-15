@@ -12,7 +12,7 @@ import { useGalaxyInfoStyles } from '@mui-treasury/styles/info/galaxy';
 // @ts-ignore
 import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 import {useStyles} from "../../../utils/Style";
-import pnv from "../../../assets/images/bienestar/pnv.png"
+import sniiv from "../../../assets/images/sniiv-sed.png"
 import Grid from "@material-ui/core/Grid";
 
 interface CardProps{
@@ -33,8 +33,13 @@ export default function CardBanner(props:CardProps) {
             <CardMedia classes={mediaStyles} image={props.image}/>
             <Box py={5} px={2} className={classes.contentCard}>
                 <Grid container >
-                    <Grid md={7}></Grid>
-                    <Grid md={5}>
+                    <Grid md={7} sm={12}></Grid>
+                    <Grid md={5} sm={12} >
+                        <Grid container >
+                            <Grid md={2}></Grid>
+                            <Grid md={10} sm={12}><img src={sniiv} alt={"sniiv"} className={classes.imageSedatu}/></Grid>
+                        </Grid>
+
                         <Info useStyles={useGalaxyInfoStyles}>
                             <InfoTitle>{props.title}</InfoTitle>
                             <br/>
