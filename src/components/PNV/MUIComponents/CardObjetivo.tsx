@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import TableMUIPNV from "../Tablas/TableMUIPNV";
 import {Fragment, useState} from 'react';
 import {MobileSize} from "../../../utils/Utils";
+import TableMUIObjetivo from '../Tablas/TableMUIObjetivo';
 
 interface CardProps{
     title: string,
@@ -58,12 +59,12 @@ export default function MediaCard(props:CardProps) {
             </Card>
             <Dialog fullScreen={isMobile} open={clickTableMap[props.index].state} onClose={clickTableMap[props.index].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
                 <DialogTitle>
-                    {"Fícha Técnica de la Meta del Objetivo "+(props.index+1)}
+                    {"Fíchas Técnicas del Objetivo "+(props.index+1)}
                 </DialogTitle>
                 <DialogContent dividers>
                     <Grid container spacing={2}  >
                         <Grid item xs={12} sm={12} md={12}>
-                            <TableMUIPNV data={props.tabla}/>
+                            <TableMUIObjetivo data={props.tabla}/>
                         </Grid>
                     </Grid>
                 </DialogContent>
