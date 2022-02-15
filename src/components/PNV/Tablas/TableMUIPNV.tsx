@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme:Theme) =>
             padding:3,
         },
         table:{
+            fontFamily:'Montserrat',
         }
 
     })
