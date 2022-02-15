@@ -1,5 +1,10 @@
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import red from "@material-ui/core/colors/red";
+import {colorBrewer} from "./colorBrewer";
+
+
+import fondo from "../assets/images/bienestar/fondo2.png";
+import fondo2 from "../assets/images/bienestar/fondo.png";
 
 export const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -10,7 +15,6 @@ export const useStyles = makeStyles((theme:Theme) =>
             padding: theme.spacing(2),
             textAlign:"center",
             color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
             fontFamily:'Montserrat',
 
         },
@@ -25,7 +29,7 @@ export const useStyles = makeStyles((theme:Theme) =>
             padding: theme.spacing(1),
             textAlign:"center",
             color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
+            backgroundImage:'url('+fondo2+')',
 
         },
         image:{
@@ -68,7 +72,12 @@ export const useStyles = makeStyles((theme:Theme) =>
         },
         text:{
             fontSize:10,
-            color:theme.palette.text.secondary,
+            color:'white',
+            fontFamily:'Montserrat',
+        },
+        textTitle:{
+            fontSize:14,
+            color:'white',
             fontFamily:'Montserrat',
         },
         imageCard:{
@@ -155,11 +164,35 @@ export const useStyles = makeStyles((theme:Theme) =>
                 display: 'block',
                 position: 'absolute',
                 width: '100%',
-                height: '65%',
+                height: '100%',
                 bottom: 0,
                 zIndex: 1,
-                background: 'linear-gradient(to top, #000, rgba(0,0,0,0.05))',
+                background: 'linear-gradient(to top left, rgba(0,0,0,0.8) 55%, rgba(0,0,0,0) 50%)'
             },
         },
+        imageBanner:{
+            width:'20%',
+        },
+        titlePNV:{
+            fontSize: 21,
+            color: colorBrewer.T4Colors[0],
+            fontFamily:'Montserrat',
+        },
+        subtitlePNV:{
+            fontSize: 18,
+            color: colorBrewer.T4Colors[1],
+            fontFamily:'Montserrat',
+        },
+        paperContainer:{
+            backgroundImage:'url('+fondo+')',
+        },
+        paperContainer2:{
+            backgroundImage:'url('+fondo2+')',
+        },
+        textColor:{
+            textAlign:"center",
+            color: 'white',
+            fontFamily:'Montserrat',
+        }
     })
 );

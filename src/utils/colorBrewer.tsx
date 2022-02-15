@@ -308,7 +308,7 @@ export const  colorBrewer = {
     Objetivos: ['#dd7671', '#f5ce85', '#a485c2', '#e3a277', '#95ce9c'],
     StateColor: ['#e0af1b', '#a7a7a7', '#158c49', '#db1f1f'],
     ViviendaColor: ['#906723', '#a3e1cc', '#f68175', '#fbcb4a', '#858e84', '#efe6d0'],
-    T4Colors: ['#13322b'],
+    T4Colors: ['#13322b','#b9975f'],
     T4Green: ['#164f2f','#3d6049','#536e5c','#657b6c','#74867a','#819186','#8d9b91','#98a49c','#a2aca5','#acb5af','#b5bdb7']
 
 }

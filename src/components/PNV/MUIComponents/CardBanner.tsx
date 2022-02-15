@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
-import {Box} from "@material-ui/core";
+import {Box, Typography} from "@material-ui/core";
 import {
     Info,
     InfoCaption,
@@ -12,7 +12,8 @@ import { useGalaxyInfoStyles } from '@mui-treasury/styles/info/galaxy';
 // @ts-ignore
 import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 import {useStyles} from "../../../utils/Style";
-
+import pnv from "../../../assets/images/bienestar/pnv.png"
+import Grid from "@material-ui/core/Grid";
 
 interface CardProps{
     subtitle: string,
@@ -29,18 +30,23 @@ export default function CardBanner(props:CardProps) {
 
     return (
         <Card className={props.isMobile ? classes.cardBienestarMobile: classes.cardBienestar}>
-            <CardMedia
-                classes={mediaStyles}
-                image={props.image}
-            />
-            <Box py={3} px={2} className={classes.contentCard}>
-                <Info useStyles={useGalaxyInfoStyles}>
-                    <InfoTitle>{props.title}</InfoTitle>
-                    <br/>
-                    {props.isMobile ?<></> : <Fragment><InfoSubtitle>{props.subtitle}</InfoSubtitle><br/></Fragment>}
-                    <InfoCaption>{props.more1}</InfoCaption>
-                    <InfoCaption>{props.more2}</InfoCaption>
-                </Info>
+            <CardMedia classes={mediaStyles} image={props.image}/>
+            <Box py={5} px={2} className={classes.contentCard}>
+                <Grid container >
+                    <Grid md={7}></Grid>
+                    <Grid md={5}>
+                        <Info useStyles={useGalaxyInfoStyles}>
+                            <InfoTitle>{props.title}</InfoTitle>
+                            <br/>
+                            {props.isMobile ?<></> : <Fragment><Typography className={classes.textTitle}>{props.subtitle}</Typography><br/></Fragment>}
+                            <Typography className={classes.text}>{props.more1}</Typography>
+                            <br/>
+                            <Typography className={classes.text}>{props.more2}</Typography>
+                        </Info>
+                    </Grid>
+
+                </Grid>
+
             </Box>
         </Card>
     )

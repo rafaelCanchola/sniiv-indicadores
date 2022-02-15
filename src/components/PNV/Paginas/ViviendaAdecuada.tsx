@@ -205,18 +205,19 @@ export default function ViviendaAdecuada(props:ViviendaProps){
     }
 
     const GridVivienda =
-    <Paper elevation={0} className={classes.paperImage}>
-        <Paper elevation={3} className={classes.paper}>
-            <h3>{"Vivienda Adecuada"}</h3>
-            <h5>{"Indicadores complementarios"}</h5>
-            <RefreshIcon fontSize={'large'} onClick={() => setIndicador([0,0])} />
-        </Paper>
-        <br/>
-        <br/>
-        {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} />
-            : indicador[0] === 10? <TextoVivienda image={elementos[indicador[1]].image} title={elementos[indicador[1]].title} obj={elementos[indicador[1]].num} more={elementos[indicador[1]].more}/>
-                : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
-    </Paper>
+        <Fragment>
+            <Paper elevation={3} className={classes.paperImage}>
+                <h3 className={classes.textColor}>{"Vivienda Adecuada"}</h3>
+                <h5 className={classes.textColor}>{"Indicadores complementarios"}</h5>
+                <RefreshIcon className={classes.textColor} fontSize={'large'} onClick={() => setIndicador([0,0])} />
+            </Paper>
+            <br/>
+            <br/>
+            {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} />
+                : indicador[0] === 10? <TextoVivienda image={elementos[indicador[1]].image} title={elementos[indicador[1]].title} obj={elementos[indicador[1]].num} more={elementos[indicador[1]].more}/>
+                    : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
+        </Fragment>
+
 
 
     return(
@@ -227,7 +228,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                         more1={'La vivienda adecuada debe proveer más que cuatro paredes y un techo. Se deben cumplir una serie de condiciones particulares antes de considerarse como Vivienda adecuada.'}
                         more2={'La caracterización de los retos específicos que tiene la vivienda en México se basa en los siete elementos de una vivienda adecuada definidos por la Organización de las Naciones Unidas (ONU): seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad; habitabilidad; accesibilidad; ubicación y adecuación cultural.'}
                         isMobile={isMobile}/>
-            <div className={classes.root}>
+            <Paper className={classes.paperContainer2}>
+                <div className={classes.root}>
                 <Grid container spacing={2}  >
                     {isMobile ?
                         <Grid container spacing={2}  >
@@ -280,6 +282,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                 </Grid>
                 <br/><br/><br/>
             </div>
+            </Paper>
         </Fragment>
     )
 }
