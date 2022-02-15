@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {Fragment, useState} from "react";
 import Paper from "@material-ui/core/Paper";
 import {
     Accordion,
@@ -170,6 +170,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
     const BarChart = {
 
         yAxis: {
+
             axisLabel: {
                 color: '#999',
                 formatter: "{value} %"
@@ -300,20 +301,21 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                         <h3>{props.indicador.trimestre}</h3>
                         <Leyenda />
                         <Paper elevation={3} className={classes.paper}>
-                            <ReactECharts option={BarChart} opts={{ renderer: 'svg' }} />
+                            <ReactECharts option={BarChart}  />
                         </Paper>
                     </Paper>
-                    : props.indicador.tipo === 'row' ?
-                        <IndicadoresBienestar indicadorIndex={props.indicadorIndex}/>
                     : props.indicador.tipo === 'pie' ?
+                        <Fragment>
                             <Paper elevation={0} className={classes.paper}>
                                 <h2>{props.indicador.title}</h2>
                                 <h3>{props.indicador.trimestre}</h3>
                                 <TableIcon fontSize={'large'} onClick={handleClickOpen3}/>
                                 <Paper elevation={3} className={classes.paper}>
-                                    <ReactECharts option={orderPie(propsPie,props.indicadorIndex+1)} opts={{ renderer: 'svg' }}  />
+                                    <ReactECharts option={orderPie(propsPie,props.indicadorIndex+1)}   />
                                 </Paper>
                             </Paper>
+                        </Fragment>
+
                             : <></>
             }
             <Dialog fullScreen={isMobile} open={open1} onClose={handleClose1} aria-labelledby={'customized-dialog-title'} maxWidth={"md"}>

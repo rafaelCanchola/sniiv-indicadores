@@ -55,6 +55,7 @@ export default function ObjetivoPNV(){
             "more": "",
             "img":objetivo1,
             "size":2,
+            index:0,
             tabla:objs.Objetivo1
         },
         {
@@ -63,6 +64,7 @@ export default function ObjetivoPNV(){
             "more":"",
             "img":objetivo2,
             "size":2,
+            index:1,
             tabla:objs.Objetivo2
         },
         {
@@ -71,6 +73,7 @@ export default function ObjetivoPNV(){
             "more":"",
             "img":objetivo3,
             "size":2,
+            index:2,
             tabla:objs.Objetivo3
         },
         {
@@ -79,6 +82,7 @@ export default function ObjetivoPNV(){
             "more":"",
             "img":objetivo6,
             "size":2,
+            index:3,
             tabla:objs.Objetivo4
         },
         {
@@ -87,6 +91,7 @@ export default function ObjetivoPNV(){
             "more":"",
             "img":objetivo5,
             "size":2,
+            index:4,
             tabla:objs.Objetivo5
         }
     ]
@@ -166,7 +171,7 @@ export default function ObjetivoPNV(){
                         {objetivos.map(card =>
                             //@ts-ignore
                             <Grid item xs={12} sm={12} md={card.size} key={card.obj}  >
-                                <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla}/>
+                                <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla} index={card.index}/>
                             </Grid>
                         )}
                     </Grid>
