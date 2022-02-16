@@ -206,7 +206,7 @@ export const useStyles = makeStyles((theme:Theme) =>
                 height: '100%',
                 bottom: 0,
                 zIndex: 1,
-                background: 'linear-gradient(to top left, rgba(0,0,0,0.8) 55%, rgba(0,0,0,0) 50%)'
+                background: 'linear-gradient(to top left, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0) 60%)'
             },
         },
         imageBanner:{
