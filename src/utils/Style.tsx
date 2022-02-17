@@ -6,6 +6,7 @@ import {colorBrewer} from "./colorBrewer";
 import fondo from "../assets/images/bienestar/fondo2.png";
 import fondo2 from "../assets/images/bienestar/fondo.png";
 import fondo3 from "../assets/images/bienestar/fondo3.png";
+import fondo4 from "../assets/images/bienestar/fondo4.png";
 
 export const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -48,6 +49,12 @@ export const useStyles = makeStyles((theme:Theme) =>
             textAlign:"center",
             color: theme.palette.text.secondary,
             backgroundImage:'url('+fondo3+')',
+        },
+        paperImage4:{
+            padding: theme.spacing(1),
+            textAlign:"center",
+            color: theme.palette.text.secondary,
+            backgroundImage:'url('+fondo4+')',
         },
         paperVivienda:{
             padding: theme.spacing(1),
@@ -108,6 +115,12 @@ export const useStyles = makeStyles((theme:Theme) =>
             fontSize:10,
             color:theme.palette.text.secondary,
             fontFamily:'Montserrat',
+        },
+        textCardBlack:{
+            fontSize:10,
+            color:theme.palette.text.primary,
+            fontFamily:'Montserrat',
+            fontWeight:'bold'
         },
         text:{
             fontSize:10,
@@ -206,7 +219,7 @@ export const useStyles = makeStyles((theme:Theme) =>
                 height: '100%',
                 bottom: 0,
                 zIndex: 1,
-                background: 'linear-gradient(to top left, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0) 60%)'
+                background: 'linear-gradient(to top left, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 65%)'
             },
         },
         imageBanner:{
@@ -230,6 +243,9 @@ export const useStyles = makeStyles((theme:Theme) =>
         },
         paperContainer3:{
             backgroundImage:'url('+fondo3+')',
+        },
+        paperContainer4:{
+            backgroundImage:'url('+fondo4+')',
         },
         textColor:{
             textAlign:"center",

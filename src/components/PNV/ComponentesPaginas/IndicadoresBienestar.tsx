@@ -67,71 +67,71 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
 
     const bienestar = [
         {
-            titulo:"Meta del Bienestar del Objetivo Prioritario 1",
+            titulo:"Objetivo Prioritario 1",
             data: ind_b1,
             parametros:[
                 {
-                    titulo:"Parametro 1 del Objetivo Prioritario 1",
+                    titulo:"Parámetro 1 del Objetivo Prioritario 1",
                     data: ind_b2
                 },
                 {
-                    titulo:"Parametro 2 del Objetivo Prioritario 1",
+                    titulo:"Parámetro 2 del Objetivo Prioritario 1",
                     data: ind_b3
                 },
             ]
         },
         {
-            titulo:"Meta del Bienestar del Objetivo Prioritario 2",
+            titulo:"Objetivo Prioritario 2",
             data: ind_b4,
             parametros:[
                 {
-                    titulo:"Parametro 1 del Objetivo Prioritario 2",
+                    titulo:"Parámetro 1 del Objetivo Prioritario 2",
                     data: ind_b5
                 },
                 {
-                    titulo:"Parametro 2 del Objetivo Prioritario 2",
+                    titulo:"Parámetro 2 del Objetivo Prioritario 2",
                     data: ind_b6
                 },
             ]
         },
         {
-            titulo:"Meta del Bienestar del Objetivo Prioritario 3",
+            titulo:"Objetivo Prioritario 3",
             data: ind_b7,
             parametros:[
                 {
-                    titulo:"Parametro 1 del Objetivo Prioritario 3",
+                    titulo:"Parámetro 1 del Objetivo Prioritario 3",
                     data: ind_b8
                 },
                 {
-                    titulo:"Parametro 2 del Objetivo Prioritario 3",
+                    titulo:"Parámetro 2 del Objetivo Prioritario 3",
                     data: ind_b9
                 },
             ]
         },
         {
-            titulo:"Meta del Bienestar del Objetivo Prioritario 4",
+            titulo:"Objetivo Prioritario 4",
             data: ind_b10,
             parametros:[
                 {
-                    titulo:"Parametro 1 del Objetivo Prioritario 4",
+                    titulo:"Parámetro 1 del Objetivo Prioritario 4",
                     data: ind_b11
                 },
                 {
-                    titulo:"Parametro 2 del Objetivo Prioritario 4",
+                    titulo:"Parámetro 2 del Objetivo Prioritario 4",
                     data: ind_b12
                 },
             ]
         },
         {
-            titulo:"Meta del Bienestar del Objetivo Prioritario 5",
+            titulo:"Objetivo Prioritario 5",
             data: ind_b13,
             parametros:[
                 {
-                    titulo:"Parametro 1 del Objetivo Prioritario 5",
+                    titulo:"Parámetro 1 del Objetivo Prioritario 5",
                     data: ind_b14
                 },
                 {
-                    titulo:"Parametro 2 del Objetivo Prioritario 5",
+                    titulo:"Parámetro 2 del Objetivo Prioritario 5",
                     data: ind_b15
                 },
             ]

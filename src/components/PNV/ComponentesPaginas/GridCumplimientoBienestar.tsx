@@ -120,8 +120,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
     return(
         <Paper className={classes.paperContainer3}>
         <div className={classes.root}>
-            <Grid container spacing={2}  >
-
+            <Grid container spacing={2}>
                 {isMobile ?
                     <Grid container spacing={2}  >
                         <Grid item xs={12} sm={12} md={12} >
@@ -146,13 +145,11 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                             </Accordion>
                         </Grid>
                         <Grid item xs={12} sm={12} >
-                                {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
-
+                            {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
                         </Grid>
                     </Grid>
                     :
                     <Fragment>
-
                         <Grid item xs={12} sm={3} md={3}>
                             <Paper elevation={0} className={classes.paperImage3}><br/><br/></Paper>
                             {graficas.slice(0,2).map(card =>
@@ -160,8 +157,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                             )}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6}>
-                                {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
-
+                            {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
                             <Paper elevation={0} className={classes.paperImage3}><br/><br/></Paper>
@@ -171,7 +167,6 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                         </Grid>
                     </Fragment>
                 }
-
             </Grid>
             <br/><br/><br/>
         </div>

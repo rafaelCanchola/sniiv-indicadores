@@ -83,7 +83,9 @@ const useStyles = makeStyles((theme:Theme) =>
             textAlign:"center",
             color: theme.palette.text.secondary,
             backgroundColor: theme.palette.background.default,
-
+        },
+        colorBlack:{
+            color: theme.palette.text.primary,
         },
         image:{
             width:"80%",
@@ -179,6 +181,7 @@ export default function BienestarBarChart(props:BarProps){
                 }]
         })
     const bienestarTitles = props.tableData.map((param:any) => param.titulo)
+    const bienestarObjetivo = props.tableData.map((param:any) => param.data["Nombre"])
     const bienestarUnidades = props.tableData.map((param:any) => param.data[unidadMedida])
     const bienestarTendencia = props.tableData.map((param:any) => param.data[tendenciaEsp])
     const bienestarCharts = props.tableData.map((param:any) => chartTemplate(param));
@@ -187,15 +190,17 @@ export default function BienestarBarChart(props:BarProps){
     return(
         <div className={classes.root}>
                     <Paper elevation={3} className={classes.paper}>
-                        <h3>{bienestarTitles[props.indicadorIndex]}</h3>
-                        <h4>{bienestarUnidades[props.indicadorIndex]}</h4>
-                        <h5>{"Tendencia "+bienestarTendencia[props.indicadorIndex]}</h5>
+                        <h4 className={classes.colorBlack}>{bienestarTitles[props.indicadorIndex]}</h4>
+                        <h5>{bienestarObjetivo[props.indicadorIndex]}</h5>
+                        <h5>{bienestarUnidades[props.indicadorIndex]}</h5>
+                        {//<h5>{"Tendencia "+bienestarTendencia[props.indicadorIndex]}</h5>
+                        }
                         {clickChart[props.indicadorIndex]}
                         <ReactECharts option={bienestarCharts[props.indicadorIndex]} />
                     </Paper>
             <Dialog fullScreen={isMobile} open={clickTableMap[props.indicadorIndex].state} onClose={clickTableMap[props.indicadorIndex].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
                 <DialogTitle>
-                    {"Fícha Técnica de la Meta del Objetivo "+(props.indicadorIndex+1)}
+                    {"Ficha Técnica de la Meta del Objetivo "+(props.indicadorIndex+1)}
                 </DialogTitle>
                 <DialogContent dividers>
                     <Grid container spacing={2}  >
@@ -212,7 +217,7 @@ export default function BienestarBarChart(props:BarProps){
             </Dialog>
             <Dialog fullScreen={isMobile} open={clickChartMap[props.indicadorIndex].state} onClose={clickChartMap[props.indicadorIndex].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
                 <DialogTitle>
-                    {"Parametros y Fíchas Técnicas de la Meta del Objetivo "+(props.indicadorIndex+1)}
+                    {"Parámetros y Fichas Técnicas de la Meta del Objetivo "+(props.indicadorIndex+1)}
                 </DialogTitle>
                 <DialogContent dividers>
                     <Grid container spacing={2} alignItems={'center'} >

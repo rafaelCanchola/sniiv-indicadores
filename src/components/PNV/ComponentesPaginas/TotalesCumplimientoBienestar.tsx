@@ -115,8 +115,8 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
             <CardBanner subtitle={props.periodo}
                         title={props.title}
                         image={bienestar1}
-                        more1={''}
-                        more2={''}
+                        more1={'La evaluación permanente de este Programa permitirá avanzar, hacia 2024, en cinco principios impulsados por cada uno de sus objetivos: la persona al centro de todas las decisiones en el sector vivienda; el uso eficiente de los recursos públicos; la coordinación entre los distintos órdenes de gobierno y la colaboración amplia con todos los sectores de la sociedad; la rendición de cuentas y el combate a la corrupción, y la generación, por primera vez, de un modelo integral de ordenamiento territorial.'}
+                        more2={'El seguimiento permanente del Programa Nacional de Vivienda 2021-2024, a través de un informe trimestral de resultados, permitirá identificar los avances en los cinco objetivos prioritarios que establece, o en consecuencia, identificar las áreas de oportunidad para su logro, a través de los resultados de los programas de apoyo a la vivienda en términos del número de acciones realizadas y el monto invertido, y por otra parte, las estrategias que contribuyen al cumplimiento de dichos objetivos, tales como convenios, lineamientos, sistemas de información, capacitación, asesorías, acuerdos, desarrollo de nuevos productos, entre otros.'}
                         isMobile={isMobile}/>
             <Paper className={classes.paperContainer3}>
             <div className={classes.root}>
@@ -124,22 +124,18 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                     <Grid item xs={12} sm={12} md={3} >
                         <Paper elevation={0} className={classes.paperImage3}>
                             <h2 className={classes.textColor}>{props.titleTrimestral}</h2>
-                                <a href={'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/4B9gmHHOQ9m69oVBdVEIFA/content/3er_informe_trimestral_PNV.pdf'} target={"_blank"} rel={"noreferrer"}><img src={trimestral} className={classes.imagePNV} alt={"Reporte trimestral"} /></a>
+                            <a href={'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/4B9gmHHOQ9m69oVBdVEIFA/content/3er_informe_trimestral_PNV.pdf'} target={"_blank"} rel={"noreferrer"}><img src={trimestral} className={classes.imagePNV} alt={"Reporte trimestral"} /></a>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12} md={9} >
                         <Paper elevation={0} className={classes.paperImage3}>
                             <h2 className={classes.textColor}>{props.titleBar}</h2>
-                            <AutorenewIcon className={classes.textColor} fontSize={'large'} onClick={() => {
-                                props.callBack2()
-                            }}/>
+                            <AutorenewIcon className={classes.textColor} fontSize={'large'} onClick={() => {props.callBack2()}}/>
                             <Paper elevation={3} className={classes.paper}>
                                 <ReactECharts option={option} onEvents={onEvents} />
                             </Paper>
                         </Paper>
                     </Grid>
-
-
                 </Grid>
             </div>
             </Paper>

@@ -46,9 +46,6 @@ interface CardProps{
 
 export default function CardVivienda(props:CardProps) {
     const classes = useStyles();
-    const clickInfo = () => {
-        props.callBack([10,props.obj-1])
-    }
     return (
         <Fragment>
             { props.mobile ?
@@ -64,12 +61,11 @@ export default function CardVivienda(props:CardProps) {
                         </div>
                         <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                     </Card>
-
                 :
                 <Card className={classes.root}>
                     <div className={classes.details}>
                         <CardContent className={classes.content}>
-                            <CardActionArea onClick={clickInfo}>
+                            <CardActionArea onClick={() => props.callBack([10,props.obj-1])}>
                             <Typography component="h5" variant="h5" color={'textPrimary'}>
                                 {props.obj}
                             </Typography>
@@ -88,7 +84,6 @@ export default function CardVivienda(props:CardProps) {
                     </div>
                     <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                 </Card>
-
             }
         </Fragment>
     )

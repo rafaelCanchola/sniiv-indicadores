@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme:Theme) =>
         },
         colHead:{
             backgroundColor: '#dfc9a3',
-            color: theme.palette.common.white,
+            color: theme.palette.text.secondary,
             fontWeight: "bold",
             fontSize: 8,
             padding:3,

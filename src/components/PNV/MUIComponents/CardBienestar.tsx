@@ -18,11 +18,48 @@ interface CardProps{
     mobile:boolean
 }
 
+
 export default function CardBienestar(props:CardProps) {
     const classes = useStyles();
-    const clicke = () => {
-        props.callBack([props.obj,0]);
-    }
+    const webCardView =
+        props.children.length > 0 ?
+            <Card className={classes.rootBienestar}>
+                <div className={classes.details}>
+                    <CardContent className={classes.content}>
+                        <Typography variant="subtitle1" color="textSecondary">
+                            {props.title}
+                        </Typography>
+                    </CardContent>
+                    <div className={classes.controls}>
+                        {props.children.slice(0,3).map((child:any,key:any) =>
+                            <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
+                                <TableIcon fontSize={'large'}/>
+                            </IconButton>
+                        )}
+                    </div>
+                    <div className={classes.controls}>
+                        {props.children.slice(3).map((child:any,key:any) =>
+                            <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
+                                <TableIcon fontSize={'large'}/>
+                            </IconButton>
+                        )}
+                    </div>
+                </div>
+                <CardMedia className={classes.cover} image={props.image} title={props.title}/>
+            </Card>
+            :<Card className={classes.rootBienestar}>
+                <CardActionArea onClick={() => props.callBack([props.obj,0])}>
+                    <div className={classes.details}>
+                        <CardContent className={classes.content}>
+                            <Typography variant="h6" color="textSecondary">
+                                {props.title}
+                            </Typography>
+                        </CardContent>
+                    </div>
+                </CardActionArea>
+                <CardMedia className={classes.cover} image={props.image}title={props.title}/>
+            </Card>
+
     return (
         <Fragment>
             {props.mobile ?
@@ -51,43 +88,7 @@ export default function CardBienestar(props:CardProps) {
                         <CardMedia className={classes.cover} image={props.image}title={props.title}/>
                     </Card>
                 :
-                 props.children.length > 0 ?
-                        <Card className={classes.rootBienestar}>
-                            <div className={classes.details}>
-                                <CardContent className={classes.content}>
-                                    <Typography variant="subtitle1" color="textSecondary">
-                                        {props.title}
-                                    </Typography>
-                                </CardContent>
-                                <div className={classes.controls}>
-                                    {props.children.slice(0,3).map((child:any,key:any) =>
-                                        <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
-                                            <TableIcon fontSize={'large'}/>
-                                        </IconButton>
-                                    )}
-                                </div>
-                                <div className={classes.controls}>
-                                    {props.children.slice(3).map((child:any,key:any) =>
-                                        <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
-                                            <TableIcon fontSize={'large'}/>
-                                        </IconButton>
-                                    )}
-                                </div>
-                            </div>
-                            <CardMedia className={classes.cover} image={props.image} title={props.title}/>
-                        </Card>
-                        :<Card className={classes.rootBienestar}>
-                            <CardActionArea onClick={clicke}>
-                                <div className={classes.details}>
-                                    <CardContent className={classes.content}>
-                                        <Typography variant="h6" color="textSecondary">
-                                            {props.title}
-                                        </Typography>
-                                    </CardContent>
-                                </div>
-                            </CardActionArea>
-                            <CardMedia className={classes.cover} image={props.image}title={props.title}/>
-                        </Card>
+                 webCardView
                 }
 
 

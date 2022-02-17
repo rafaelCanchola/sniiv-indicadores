@@ -12,6 +12,8 @@ import TableMUIPNV from "../Tablas/TableMUIPNV";
 import {Fragment, useState} from 'react';
 import {MobileSize} from "../../../utils/Utils";
 import TableMUIObjetivo from '../Tablas/TableMUIObjetivo';
+import red from "@material-ui/core/colors/red";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 
 interface CardProps{
     title: string,
@@ -19,11 +21,21 @@ interface CardProps{
     image: any,
     more: string,
     tabla:any,
-    index:number
+    index:number,
+    color:any
 }
 
 export default function MediaCard(props:CardProps) {
     const classes = useStyles();
+
+    const useMyStyle = makeStyles((theme:Theme) =>
+        createStyles({
+                avatar: {
+                    backgroundColor: props.color,
+                },
+            }));
+    const myClass = useMyStyle();
+
     const isMobile = MobileSize();
     const [openTable1, setOpenTable1] = useState(false);
     const [openTable2, setOpenTable2] = useState(false);
@@ -44,17 +56,21 @@ export default function MediaCard(props:CardProps) {
         {state:openTable4,func:handleClickOpenTable4},
         {state:openTable5,func:handleClickOpenTable5},
     ]
+
+    // @ts-ignore
     return (
         <Fragment>
             <Card >
-                <CardHeader avatar={<Avatar aria-label="avatar" className={classes.avatar}><img src={props.image} className={classes.imageIcon} alt={"Imagen"}/></Avatar>} title={props.title} className={classes.textCard}/>
+                {// @ts-ignore
+                <CardHeader avatar={<Avatar aria-label="avatar" className={myClass.avatar}><img src={props.image} className={classes.imageIcon} alt={"Imagen"}/></Avatar>} title={props.title} className={classes.textCardBlack}/>
+                }
                 <CardContent>
                     <Typography className={classes.textCard} variant={"body2"}>
                         {props.content}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" onClick={clickTableMap[props.index].func}>Conoce más</Button>
+                    <Button size="small" className={classes.textCard} onClick={clickTableMap[props.index].func}>Conoce más</Button>
                 </CardActions>
             </Card>
             <Dialog fullScreen={isMobile} open={clickTableMap[props.index].state} onClose={clickTableMap[props.index].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >

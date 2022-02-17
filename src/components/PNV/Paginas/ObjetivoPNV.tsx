@@ -54,6 +54,7 @@ export default function ObjetivoPNV(){
             "obj": "Garantizar el ejercicio del derecho a la vivienda adecuada a todas las personas, especialmente a los grupos en mayor condición de discriminación y vulnerabilidad, a través de soluciones financieras, técnicas y sociales de acuerdo con las necesidades específicas de cada grupo de población.",
             "more": "",
             "img":objetivo1,
+            color:colorBrewer.Objetivos[0],
             "size":2,
             index:0,
             tabla:objs.Objetivo1
@@ -63,6 +64,7 @@ export default function ObjetivoPNV(){
             "obj":"Garantizar la coordinación entre los organismos nacionales de vivienda y los distintos órdenes de gobierno para el uso eficiente de los recursos públicos",
             "more":"",
             "img":objetivo2,
+            color:colorBrewer.Objetivos[1],
             "size":2,
             index:1,
             tabla:objs.Objetivo2
@@ -72,6 +74,7 @@ export default function ObjetivoPNV(){
             "obj":"Fomentar conjuntamente con el sector social y privado, condiciones que propicien el ejercicio del derecho a la vivienda adecuada.",
             "more":"",
             "img":objetivo3,
+            color:colorBrewer.Objetivos[2],
             "size":2,
             index:2,
             tabla:objs.Objetivo3
@@ -81,6 +84,7 @@ export default function ObjetivoPNV(){
             "obj":"Asegurar el derecho a la información y la rendición de cuentas de todos los actores del sistema de vivienda adecuada.",
             "more":"",
             "img":objetivo6,
+            color:colorBrewer.Objetivos[3],
             "size":2,
             index:3,
             tabla:objs.Objetivo4
@@ -90,13 +94,16 @@ export default function ObjetivoPNV(){
             "obj":"Establecer un modelo de ordenamiento territorial y gestión del suelo que considere la vivienda adecuada como elemento central de planeación de territorio.",
             "more":"",
             "img":objetivo5,
+            color:colorBrewer.Objetivos[4],
             "size":2,
             index:4,
             tabla:objs.Objetivo5
         }
     ]
     const sankey = {
-        tooltip:{},
+        tooltip:{
+            formatter: '{b}: {c} acciones puntuales ',
+        },
         series: {
             type: 'sankey',
             layout: 'none',
@@ -151,14 +158,16 @@ export default function ObjetivoPNV(){
             <CardBanner isMobile={isMobile}
                         subtitle={'El Programa Nacional de Vivienda es un programa especial derivado del Plan Nacional de Desarrollo 2019-2024.'}
                         title={'¿Qué es el Programa Nacional de Vivienda?'} image={bienestar2}
-                        more1={'Incorpora los siete elementos de la vivienda adecuada establecidos por ONU-Hábitat: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad, habitabilidad, accesibilidad; ubicación y adecuación cultural. De esta manera, se busca que todos los actores impulsen estos criterios en los planes, reglas y programas de cada institución.'}
-                        more2={'La nueva política de vivienda coloca su énfasis en los grupos más vulnerables, y devolviéndoles el acceso a la vivienda adecuada como derecho.'} />
-            <Paper className={classes.paperContainer}>
+                        more1={'El Programa Nacional de Vivienda 2021-2024 es el instrumento de planeación de la política nacional de vivienda. Este programa es pionero al integrar por primera vez el derecho humano del acceso a la vivienda adecuada, que considera los siguientes siete elementos establecidos por ONU-Hábitat: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad, habitabilidad, accesibilidad; ubicación y adecuación cultural.'}
+                        more2={'El Programa está compuesto por cinco objetivos prioritarios: 21 estrategias prioritarias y 113 acciones puntuales cuyo cumpliento se realizará en conjunto entre la Comisión Nacional de Vivienda (CONAVI), el Fondo de la Vivienda del Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado (FOVISSSTE), el Instituto del Fondo Nacional de la Vivienda para los Trabajadores (INFONAVIT), Sociedad Hipotecaria Federal (SHF) y la Secretaría de Desarrollo Agrario, Territorial y Urbano (SEDATU) y, el Instituto Nacional de Suelo Sustentable (INSUS).'} />
+            <Paper className={classes.paperContainer4}>
                 <div className={classes.root}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} sm={12} md={3} >
-                            <h2 className={classes.textColor}>{"Programa Nacional de Vivienda"}</h2>
-                            <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"} rel={"noreferrer"}><img src={pnv2021} className={classes.image} alt={"Imagen"}/></a>
+                            <Paper elevation={0} className={classes.paperImage4}>
+                                <h3 className={classes.textColor}>{"Conoce el Programa Nacional de Vivienda"}</h3>
+                            <a href={'https://www.gob.mx/cms/uploads/attachment/file/643644/PNV_28.05.2021.pdf'} target={"_blank"} rel={"noreferrer"}><img src={pnv2021} className={classes.imagePNV} alt={"PNV"}/></a>
+                            </Paper>
                         </Grid>
                         <Grid item xs={12} sm={12} md={9}>
                                 <br/>
@@ -175,7 +184,7 @@ export default function ObjetivoPNV(){
                         {objetivos.map(card =>
                             //@ts-ignore
                             <Grid item xs={12} sm={12} md={card.size} key={card.obj}  >
-                                <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla} index={card.index}/>
+                                <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla} index={card.index} color={card.color}/>
                             </Grid>
                         )}
                     </Grid>

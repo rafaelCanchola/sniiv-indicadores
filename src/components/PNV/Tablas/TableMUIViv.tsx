@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme:Theme) =>
         },
         colHead:{
             backgroundColor: '#dfc9a3',
-            color: theme.palette.common.white,
+            color: theme.palette.text.secondary,
             fontWeight: "bold",
             fontSize: 8,
             padding:3,
@@ -105,14 +105,14 @@ function TableMUIViv(props: TableProps) {
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{"Nombre variable " +(keys+1)}</TableCell>
                                 <TableCell className={classes.body} align={"center"} colSpan={2}>{data["Nombre variable"]}</TableCell>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={1}>{"Valor variable " +(keys+1)}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={2}>{data["Valor variable"]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={2}>{data["Valor variable"].toLocaleString()}</TableCell>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={1}>{"Fuente de información variable " +(keys+1)}</TableCell>
                                 <TableCell className={classes.body} align={"center"} colSpan={2}>{data["Fuente de información variable"]}</TableCell>
                             </TableRow>
                         )}
                         <TableRow>
                             <TableCell className={classes.colHead} align={"center"} colSpan={3}>{variableslast}</TableCell>
-                            <TableCell className={classes.body} align={"center"} colSpan={7}>{props.data[childKeys[0]][variableslast]}</TableCell>
+                            <TableCell className={classes.body} align={"center"} colSpan={7}>{props.data[childKeys[0]][variableslast].toLocaleString()}</TableCell>
                         </TableRow>
                         <TableRow><TableCell className={classes.head} align={"center"} colSpan={10}>{childKeys[1]}</TableCell></TableRow>
                         <TableRow>
@@ -121,7 +121,7 @@ function TableMUIViv(props: TableProps) {
                         </TableRow>
                         <TableRow>
                             <TableCell align={"center"} className={classes.colHead} colSpan={2}>{baseMap[0]}</TableCell>
-                            <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[childKeys[1]][lineaMap[0]][baseMap[0]]}</TableCell>
+                            <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[childKeys[1]][lineaMap[0]][baseMap[0]].toLocaleString()}</TableCell>
                             <TableCell className={classes.body} align={"center"} colSpan={5}>{props.data[childKeys[1]][lineaMap[1]]}</TableCell>
                         </TableRow>
                         <TableRow>
@@ -133,7 +133,7 @@ function TableMUIViv(props: TableProps) {
                             <TableCell align={"center"} className={classes.colHead} colSpan={5}>{lineaMap[3]}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell className={classes.body} align={"center"} colSpan={5}>{props.data[childKeys[1]][lineaMap[2]]}</TableCell>
+                            <TableCell className={classes.body} align={"center"} colSpan={5}>{props.data[childKeys[1]][lineaMap[2]].toLocaleString()}</TableCell>
                             <TableCell className={classes.body} align={"center"} colSpan={5}>{props.data[childKeys[1]][lineaMap[3]]}</TableCell>
                         </TableRow>
                         <TableRow><TableCell align={"center"} className={classes.head} colSpan={10}>{childKeys[2]}</TableCell></TableRow>
@@ -144,7 +144,7 @@ function TableMUIViv(props: TableProps) {
                         </TableRow>
                         <TableRow>
                             {historicoMap.map((data:any, keys:number) =>
-                                <TableCell key={data+keys} className={classes.body} align={"center"} colSpan={1}>{props.data[childKeys[2]][data]}</TableCell>
+                                <TableCell key={data+keys} className={classes.body} align={"center"} colSpan={1}>{props.data[childKeys[2]][data].toLocaleString()}</TableCell>
                             )}
                         </TableRow>
                     </TableBody>
