@@ -8,7 +8,7 @@ import trimestral from "../../../assets/images/trimestral.png";
 import {useStyles} from "../../../utils/Style";
 import {MobileSize, ordinalNumber} from "../../../utils/Utils";
 import CardBanner from "../MUIComponents/CardBanner";
-import bienestar1 from "../../../assets/images/bienestar/bienestar3.png";
+
 
 interface CumplimientoProps {
     data: any;
@@ -33,6 +33,8 @@ interface AxisChart{
 export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
     const classes = useStyles();
     const isMobile = MobileSize();
+    const bienestar1 = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/jqSkhFwsSC27_u5Lm0tIaw/content/cumplimiento.jpg?&a=true'
+
     const option = {
         xAxis: {
             name:'Trimestre',

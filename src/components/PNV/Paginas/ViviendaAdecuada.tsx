@@ -30,8 +30,7 @@ import {useStyles} from "../../../utils/Style";
 import TextoVivienda from "../MUIComponents/TextoVivienda";
 import {MobileSize} from "../../../utils/Utils";
 import CardBanner from "../MUIComponents/CardBanner";
-import bienestar1 from "../../../assets/images/bienestar/bienestar1.png";
-import pnv from "../../../assets/images/bienestar/pnv.png";
+
 
 interface ViviendaProps {
 
@@ -40,6 +39,7 @@ interface ViviendaProps {
 export default function ViviendaAdecuada(props:ViviendaProps){
 
     const isMobile = MobileSize();
+    const bienestar1 = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/7iHubpXhSW-a0tnkfn6PhA/content/adecuada.jpg?&a=true'
 
     const [indicador,setIndicador] = useState([0,0]);
     const classes = useStyles();

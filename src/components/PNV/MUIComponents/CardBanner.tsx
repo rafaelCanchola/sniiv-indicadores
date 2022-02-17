@@ -26,7 +26,7 @@ interface CardProps{
 
 export default function CardBanner(props:CardProps) {
     const classes = useStyles();
-    const mediaStyles = useCoverCardMediaStyles({ bgPosition: 'top' });
+    const mediaStyles = useCoverCardMediaStyles({ bgPosition: 'center' });
 
     return (
         <Card className={props.isMobile ? classes.cardBienestarMobile: classes.cardBienestar}>

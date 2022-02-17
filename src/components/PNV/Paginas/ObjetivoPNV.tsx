@@ -15,7 +15,6 @@ import objetivo4 from "../../../assets/images/obj4.png";
 import objetivo5 from "../../../assets/images/obj5.png";
 import objetivo6 from "../../../assets/images/obj6.png";
 
-import bienestar2 from "../../../assets/images/bienestar/bienestar2.png";
 
 import {objs} from "../../../json/acciones_obj_prior_a"
 
@@ -47,6 +46,7 @@ interface AxisChart{
 export default function ObjetivoPNV(){
     const classes = useStyles();
     const isMobile = MobileSize();
+    const bienestar2 = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/0dbOa_A1Rv2zirBGGCuwDg/content/pnv.jpeg?&a=true'
 
     const objetivos = [
         {
