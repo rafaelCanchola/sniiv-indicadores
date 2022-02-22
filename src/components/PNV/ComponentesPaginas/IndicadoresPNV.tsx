@@ -324,7 +324,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                     Ficha Técnica
                 </DialogTitle>
                 <DialogContent dividers>
-                    <TableMUIPNV data={props.indicador.label[0]} id={props.indicador.label[0].Nombre} pdfName={"ind_"+props.indicador.pdfName[props.indicadorIndex]}/>
+                    <TableMUIPNV data={props.indicador.label[0]} id={props.indicador.label[0].Nombre} pdfName={"ind_"+props.indicador.label[0].Nombre}/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose1} color={'primary'}>
@@ -337,7 +337,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                     Ficha Técnica
                 </DialogTitle>
                 <DialogContent dividers>
-                    <TableMUIPNV data={props.indicador.label[props.indicador.label.length-1]} id={"PNV"+ props.indicador} pdfName={"ind_"+props.indicador.pdfName[props.indicadorIndex]}/>
+                    <TableMUIPNV data={props.indicador.label[props.indicador.label.length-1]} id={"PNV"+ props.indicador} pdfName={"PNV"+ props.indicador}/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose3} color={'primary'}>
