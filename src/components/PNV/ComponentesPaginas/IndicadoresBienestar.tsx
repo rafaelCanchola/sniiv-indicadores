@@ -68,71 +68,86 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
     const bienestar = [
         {
             titulo:"Objetivo Prioritario 1",
+            pdfName:'obj_1',
             data: ind_b1,
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 1",
-                    data: ind_b2
+                    data: ind_b2,
+                    pdfName:'obj_2',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 1",
-                    data: ind_b3
+                    data: ind_b3,
+                    pdfName:'obj_3',
                 },
             ]
         },
         {
             titulo:"Objetivo Prioritario 2",
+            pdfName:'obj_4',
             data: ind_b4,
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 2",
-                    data: ind_b5
+                    data: ind_b5,
+                    pdfName:'obj_5',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 2",
-                    data: ind_b6
+                    data: ind_b6,
+                    pdfName:'obj_6',
                 },
             ]
         },
         {
             titulo:"Objetivo Prioritario 3",
+            pdfName:'obj_7',
             data: ind_b7,
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 3",
-                    data: ind_b8
+                    data: ind_b8,
+                    pdfName:'obj_8',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 3",
-                    data: ind_b9
+                    data: ind_b9,
+                    pdfName:'obj_9',
                 },
             ]
         },
         {
             titulo:"Objetivo Prioritario 4",
+            pdfName:'obj_10',
             data: ind_b10,
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 4",
-                    data: ind_b11
+                    data: ind_b11,
+                    pdfName:'obj_11',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 4",
-                    data: ind_b12
+                    data: ind_b12,
+                    pdfName:'obj_12',
                 },
             ]
         },
         {
             titulo:"Objetivo Prioritario 5",
+            pdfName:'obj_13',
             data: ind_b13,
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 5",
-                    data: ind_b14
+                    data: ind_b14,
+                    pdfName:'obj_14',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 5",
-                    data: ind_b15
+                    data: ind_b15,
+                    pdfName:'obj_15',
                 },
             ]
         },

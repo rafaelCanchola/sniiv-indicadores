@@ -1,5 +1,7 @@
 import {colorBrewer} from "./colorBrewer";
 import {useEffect, useState} from "react";
+import * as htmlToImage from "html-to-image";
+import jsPDF from "jspdf";
 
 export function randomNumber(max:number){
     return Math.floor(Math.random() * max) + 0
@@ -87,5 +89,26 @@ export function ordinalNumber(value:any){
         default:
             return value+'to';
     }
-
 }
+
+export function SaveToPDF(pdfName:any,idName:any,imageWidth:number,imageHeight:number){
+    let domElement = document.getElementById(idName);
+    // @ts-ignore
+    htmlToImage.toPng(domElement,{width:500, height:1000})
+        .then(function (dataUrl) {
+            const pdf = new jsPDF({});
+            pdf.addImage(dataUrl, 'PNG', 0, 0, imageWidth, imageHeight);
+            pdf.save(pdfName+'.pdf');
+        })
+        .catch(function (error) {
+            console.error('oops, something went wrong!', error);
+        });
+};
+
+export function HTMLToPDF(pdfName:any,idName:any,fichaMain:boolean){
+    let domElement = document.getElementById(idName);
+            const pdf = new jsPDF({format:fichaMain? [900,900] : [750,500]});
+            //@ts-ignore
+            pdf.html(domElement, {callback:function (pdf){pdf.save(pdfName+'.pdf')}});
+
+};

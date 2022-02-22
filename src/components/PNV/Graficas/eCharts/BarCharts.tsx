@@ -210,7 +210,7 @@ export default function BarCharts(props:BarProps){
                         <DialogContent dividers>
                             <Grid container spacing={2}  >
                                 <Grid item xs={12} sm={12} md={12} key={param.titulo+key}>
-                                    <TableMUIPNV data={param.data}/>
+                                    <TableMUIPNV data={param.data} id={"Objetivo"+key} pdfName={"obj_"+key}/>
                                 </Grid>
                             </Grid>
                         </DialogContent>
@@ -248,7 +248,7 @@ export default function BarCharts(props:BarProps){
                                                     <Typography className={classes.typo}>{param1.titulo} </Typography>
                                                 </AccordionSummary>
                                                 <AccordionDetails>
-                                                    <TableMUIViv data={param1.data}/>
+                                                    <TableMUIViv data={param1.data} id={"Objetivo"+key} pdfName={"obj_"+key}/>
                                                 </AccordionDetails>
                                             </Accordion>
                                         </Grid>

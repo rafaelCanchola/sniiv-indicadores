@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Paper from "@material-ui/core/Paper";
-import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
+import {Accordion, AccordionDetails, AccordionSummary, Button} from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -10,7 +10,7 @@ import TableMUIViv from "../Tablas/TableMUIViv";
 import Waterfall from "../Graficas/eCharts/Waterfall";
 import BarChart from "../Graficas/eCharts/BarChart";
 import {colorBrewer} from "../../../utils/colorBrewer";
-import {assign4TColor, assignColor} from "../../../utils/Utils";
+import {assign4TColor, assignColor, SaveToPDF} from "../../../utils/Utils";
 import BarChartNumber from "../Graficas/eCharts/BarChartNumber";
 import {useStyles} from "../../../utils/Style";
 
@@ -25,7 +25,7 @@ interface AxisChart{
 }
 
 export function IndicadorVivienda(props:IndicadorViviendaProps){
-
+    const onButtonClick = () => SaveToPDF("ind_"+props.indicador.pdfName[props.indicadorIndex],"Indicador"+props.indicadorIndex,160,290)
     const classes = useStyles();
     let colors = assignColor(10)
     let dataBar: any[]
@@ -66,8 +66,8 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    <TableMUIViv data={props.indicador.data[props.indicadorIndex].ficha}/>
-                                </Typography>
+                                    <TableMUIViv data={props.indicador.data[props.indicadorIndex].ficha} id={"Indicador"+props.indicadorIndex} pdfName={"ind_"+props.indicador.pdfName[props.indicadorIndex]}/>
+                                   </Typography>
                             </AccordionDetails>
                         </Accordion>
                     </Grid>

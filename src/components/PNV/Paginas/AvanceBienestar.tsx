@@ -44,6 +44,9 @@ export default class AvanceBienestar extends Component<any, any> {
             this.setState({reiniciar: !this.state.reiniciar});
         }
 
+        const pnv1 = parseInt(this.state.trimestre) === 3 ? [cumplimientoPNV3,cumplimientoONAVIPNV3] :
+            parseInt(this.state.trimestre) === 2 ? [cumplimientoPNV2,cumplimientoONAVIPNV2] : [cumplimientoPNV1,cumplimientoONAVIPNV1]
+
         return (
                <Fragment key={this.state.reiniciar}>
                    <TotalesCumplimientoBienestar data={totales} callBack={handleCallback} callBack2={resetAll} periodo={'Trimestral 2021'}
@@ -52,10 +55,7 @@ export default class AvanceBienestar extends Component<any, any> {
                                                  titleBar={'Porcentaje acumulado de cumplimento'}
                                                  titleInforme={'Informe Trimestral'} aAxis={'trimestre'}
                                                  bAxis={'total'} cAxis={'aCabo'}/>
-
-                   {this.state.trimestre === undefined && <></> }
-                   {parseInt(this.state.trimestre) === 3 &&
-                   <GridCumplimientoBienestar data={cumplimientoPNV3} data2={cumplimientoONAVIPNV3}
+                   <GridCumplimientoBienestar data={pnv1[0]} data2={pnv1[1]}
                                               fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                               titleRow={"Porcentaje de cumplimiento según objetivo "}
                                               periodo={ordinalNumber(this.state.trimestre) + " trimestre"}
@@ -65,33 +65,7 @@ export default class AvanceBienestar extends Component<any, any> {
                                               aAxis={"total"} bAxis={"concluida"}
                                               cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
                                               fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
-                   }
 
-                   {parseInt(this.state.trimestre) === 2 &&
-                   <GridCumplimientoBienestar data={cumplimientoPNV2} data2={cumplimientoONAVIPNV2}
-                                              fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
-                                              titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                              periodo={ordinalNumber(this.state.trimestre) + " trimestre"}
-                                              titleBar={"Porcentaje de contribución según ONAVI"}
-                                              titleCifras={"acciones"}
-                                              titlePie={"Estatus de las acciones según objetivo prioritario"}
-                                              aAxis={"total"} bAxis={"concluida"}
-                                              cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
-                                              fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
-                   }
-
-                   {parseInt(this.state.trimestre) === 1 &&
-                   <GridCumplimientoBienestar data={cumplimientoPNV1} data2={cumplimientoONAVIPNV1}
-                                              fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
-                                              titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                              periodo={ordinalNumber(this.state.trimestre) + " trimestre"}
-                                              titleBar={"Porcentaje de contribución según ONAVI"}
-                                              titleCifras={"acciones"}
-                                              titlePie={"Estatus de las acciones según objetivo prioritario"}
-                                              aAxis={"total"} bAxis={"concluida"}
-                                              cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
-                                              fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
-                        }
                </Fragment>
         )
     }

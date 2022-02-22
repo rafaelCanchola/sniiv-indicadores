@@ -44,9 +44,9 @@ export default function TableMUIObjetivo(props: TableProps) {
     const dataKeys = Object.keys(props.data[0]);
     const classes = useStyles();
     return (
-        <Fragment>
+        <Fragment >
             {props.data.map( (dat:any,key:number)=>
-                <TableContainer component={Paper} key={key}>
+                <TableContainer component={Paper} key={key} >
                     <Table className={classes.table} >
                         <TableBody >
                             <TableRow><TableCell className={classes.head} align={"center"} colSpan={2}>{dat[dataKeys[0]]}</TableCell></TableRow>

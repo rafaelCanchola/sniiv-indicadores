@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -6,9 +6,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from "@material-ui/core/Paper";
+import {Button} from "@material-ui/core";
+import {HTMLToPDF} from "../../../utils/Utils";
 
 interface TableProps{
-    data:any
+    data:any,
+    id:any,
+    pdfName:any
 }
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -48,9 +52,14 @@ function TableMUIViv(props: TableProps) {
     const baseMap = Object.keys(props.data[childKeys[1]][lineaMap[0]]);
     const historicoMap = Object.keys(props.data[childKeys[2]]);
     const classes = useStyles();
+    console.log('ID TABLE:'+props.id)
     return (
-        <TableContainer component={Paper}>
-                <Table className={classes.table} >
+        <Fragment>
+            <Button size="small"
+                    onClick={() => HTMLToPDF(props.pdfName, props.id,false )}>Descargar ficha técnica</Button>
+
+            <TableContainer component={Paper} >
+                <Table className={classes.table} id={props.id} >
                     <TableBody >
                         <TableRow ><TableCell className={classes.head} align={"center"} colSpan={10}>{props.data[dataKeys[0]]}</TableCell></TableRow>
                         <TableRow>
@@ -149,7 +158,10 @@ function TableMUIViv(props: TableProps) {
                         </TableRow>
                     </TableBody>
                 </Table>
-        </TableContainer>
+            </TableContainer>
+
+        </Fragment>
+
     )
 }
 

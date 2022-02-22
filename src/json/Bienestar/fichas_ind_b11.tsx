@@ -12,7 +12,7 @@ export const ind_b11 = {
     "Disponibilidad de la información": "Marzo",
     "Tendencia esperada": "Descendente",
     "Unidad Responsable de reportar el avance":  "15.- Desarrollo Agrario, Territorial y Urbano\n511 Dirección General de Desarrollo Urbano, Suelo y Vivienda",
-    "Método de cálculo": " Parámetro que busca medir el porcentaje de usuarios que experimenta corrupción en trámites relacionados con créditos de vivienda o programas sociales.\n% usuarios que enfrentan corrupción en trámites relacionados con créditos de vivienda o programas sociales= ((Usuarios que experimentan corrupción en trámites de créditos de vivienda o programas sociales)/(Usuarios totales en trámites de créditos de vivienda o programas sociales))*100",
+    "Método de cálculo": " Parámetro que busca medir el porcentaje de usuarios que experimenta corrupción en trámites relacionados con créditos de vivienda o programas sociales.\n Porcentaje de usuarios que enfrentan corrupción en trámites relacionados con créditos de vivienda o programas sociales= ((Usuarios que experimentan corrupción en trámites de créditos de vivienda o programas sociales)/(Usuarios totales en trámites de créditos de vivienda o programas sociales))*100",
     "Observaciones": "Los datos para este parámetro son publicados por el INEGI como parte de la ENCIG",
     "APLICACIÓN DEL MÉTODO DE CÁLCULO DEL INDICADOR PARA LA OBTENCIÓN DEL VALOR DE LA LÍNEA BASE":
     {

@@ -115,6 +115,7 @@ export const useStyles = makeStyles((theme:Theme) =>
             fontSize:10,
             color:theme.palette.text.secondary,
             fontFamily:'Montserrat',
+            textAlign:'justify'
         },
         textCardBlack:{
             fontSize:10,
@@ -124,6 +125,7 @@ export const useStyles = makeStyles((theme:Theme) =>
         },
         text:{
             fontSize:10,
+            textAlign:'justify',
             color:'white',
             fontFamily:'Montserrat',
         },

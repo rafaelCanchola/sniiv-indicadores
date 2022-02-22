@@ -7,7 +7,7 @@ export const ind_b2 = {
     "Tipo": "Estratégica",
     "Acumulado o periódico": "Periódico",
     "Unidad de medida": "Porcentaje",
-    "Periodo de recolección de datos": "Agosto-Julio (ciclo escolar)",
+    "Periodo de recolección de datos": "Agosto-Julio",
     "Dimensión": "Eficacia",
     "Disponibilidad de la información": "Agosto",
     "Tendencia esperada": "Descendente",

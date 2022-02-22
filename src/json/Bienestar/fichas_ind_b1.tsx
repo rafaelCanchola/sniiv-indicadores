@@ -7,13 +7,13 @@ export const ind_b1 = {
     "Tipo": "Estratégica",
     "Acumulado o periódico": "Periódico",
     "Unidad de medida": "Porcentaje de viviendas en rezago",
-    "Periodo de recolección de datos": "Agosto-Julio (ciclo escolar)",
+    "Periodo de recolección de datos": "Agosto-Julio",
     "Dimensión": "Eficacia",
     "Disponibilidad de la información": "Agosto",
     "Tendencia esperada": "Descendente",
     "Unidad Responsable de reportar el avance":  "15.- Desarrollo Agrario, Territorial y Urbano\nQCW.- Comisión Nacional de Vivienda",
     "Método de cálculo": " PVRH = (VFRH/TV)*100\nEsta meta se calculará como el porcentaje de viviendas en rezago habitacional publicado por la ENIGH deforma bienal",
-    "Observaciones": "Los datos para esta Meta provendrán del Módulo de Condiciones Socioeconómicas de la ENIGH (MCS-ENIGH), que es publicado bienalmente y se utiliza por la CONAVI para estimar el Rezago Habitacional",
+    "Observaciones": "Los datos para esta Meta provendrán de la Encuesta Nacional de Ingresos y Gastos de los Hogares (ENIGH), que es publicado bienalmente y se utiliza por la CONAVI para estimar el Rezago Habitacional",
     "APLICACIÓN DEL MÉTODO DE CÁLCULO DEL INDICADOR PARA LA OBTENCIÓN DEL VALOR DE LA LÍNEA BASE":
     {
         "variables":[

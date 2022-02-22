@@ -13,7 +13,7 @@ import TableIcon from "@material-ui/icons/Toc";
 import ReactECharts from "echarts-for-react";
 
 import {colorBrewer} from "../../../utils/colorBrewer";
-import {assignStateColor, MobileSize} from "../../../utils/Utils";
+import {assignStateColor, MobileSize, SaveToPDF} from "../../../utils/Utils";
 
 import conavi from "../../../assets/images/conavi.png";
 import fovissste from "../../../assets/images/fovissste.png";
@@ -282,6 +282,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
         gAxis:props.indicador.label[6],
         hAxis:props.indicador.label[7],
     }
+    const onButtonClick = () => SaveToPDF("ind_"+props.indicador.pdfName[props.indicadorIndex],"Indicador"+props.indicadorIndex,160,290)
 
     return(
         <div className={classes.root}>
@@ -323,7 +324,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                     Ficha Técnica
                 </DialogTitle>
                 <DialogContent dividers>
-                    <TableMUIPNV data={props.indicador.label[0]}/>
+                    <TableMUIPNV data={props.indicador.label[0]} id={props.indicador.label[0].Nombre} pdfName={"ind_"+props.indicador.pdfName[props.indicadorIndex]}/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose1} color={'primary'}>
@@ -336,7 +337,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                     Ficha Técnica
                 </DialogTitle>
                 <DialogContent dividers>
-                    <TableMUIPNV data={props.indicador.label[props.indicador.label.length-1]}/>
+                    <TableMUIPNV data={props.indicador.label[props.indicador.label.length-1]} id={"PNV"+ props.indicador} pdfName={"ind_"+props.indicador.pdfName[props.indicadorIndex]}/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose3} color={'primary'}>

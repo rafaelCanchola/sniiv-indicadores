@@ -1,7 +1,7 @@
 export const ind_b7 = {
     "Nombre": "3.1 Valor de la aportación del sector y las acciones de la vivienda en el Producto Interno Bruto de México en valores constantes",
     "Objetivo prioritario": "Fomentar conjuntamente con el sector social y privado, condiciones que propicien el ejercicio del derecho a la vivienda adecuada",
-    "Definición o descripción": "Mide el Producto Interno Bruto que representa el sector y las acciones de vivienda en México con base en la información publicada por INEGI en la Cuenta Satélite de Vivienda en México, tomando en cuenta la construcción, los servicios financieros y de seguros, los servicios inmobiliarios y de alquiler de bienes muebles e intangibles y otros sectores.",
+    "Definición o descripción": "Mide el Producto Interno Bruto que representa el sector y las acciones de vivienda en México con base en la información publicada por INEGI en la Cuenta Satélite de Vivienda de México, tomando en cuenta la construcción, los servicios financieros y de seguros, los servicios inmobiliarios y de alquiler de bienes muebles e intangibles y otros sectores",
     "Nivel de desagregación": "Nacional",
     "Periodicidad o frecuencia de medición": "Anual",
     "Tipo": "Estratégico",

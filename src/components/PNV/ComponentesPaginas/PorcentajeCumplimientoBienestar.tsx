@@ -414,7 +414,7 @@ export default function PorcentajeCumplimientoBienestar(props:CumplimientoProps)
                     Ficha Técnica
                 </DialogTitle>
                 <DialogContent dividers>
-                    <TableMUIPNV data={props.fichaPie}/>
+                    <TableMUIPNV data={props.fichaPie} id={'ObjetivoFicha1'} pdfName={'ObjetivoFicha1'}/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose1} color={'primary'}>
@@ -427,7 +427,7 @@ export default function PorcentajeCumplimientoBienestar(props:CumplimientoProps)
                     Ficha Técnica
                 </DialogTitle>
                 <DialogContent dividers>
-                    <TableMUIPNV data={props.fichaPie3}/>
+                    <TableMUIPNV data={props.fichaPie3} id={'ObjetivoFicha3'} pdfName={"ObjetivoFicha3"}/>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose3} color={'primary'}>

@@ -1,6 +1,6 @@
 export const ind_b13 = {
     "Nombre": "5.1 Proporción de viviendas nuevas construidas fuera de los Polígonos de Contención Urbana",
-    "Objetivo prioritario": "Establecer un modelo de ordenamiento territorial y gestión del suelo que considere la vivienda adecuada como elemento central de planeación de territorio",
+    "Objetivo prioritario": "Establecer un modelo de ordenamiento territorial y gestión del suelo que considere la vivienda adecuada como elemento central de planeación del territorio",
     "Definición o descripción": "Esta meta de bienestar busca aproximar el desarrollo de vivienda de acuerdo con una ubicación adecuada, midiendo este desarrollo a través de la vivienda que, registrada ante el RUV, se lleva a cabo fuera de los perímetros de contención urbana",
     "Nivel de desagregación": "Nacional",
     "Periodicidad o frecuencia de medición": "Anual",
@@ -13,7 +13,7 @@ export const ind_b13 = {
     "Tendencia esperada": "Descendente",
     "Unidad Responsable de reportar el avance":  "15.- Desarrollo Agrario, Territorial y Urbano\nQCW.- Comisión Nacional de Vivienda",
     "Método de cálculo": " Se toman los registros de vivienda acumulados dentro del RUV cada año, diferenciando si su ubicación se encuentra dentro de los perímetros de contención urbana.\n% de viviendas registradas fuera de PCUs=[(Número de viviendas registradas en el RUV fuera de FC)/(Número de viviendas registradas en el RUV)] x100",
-    "Observaciones": "Los datos para este parámetro son publicados por el SNIIV en la página de CONAVI.",
+    "Observaciones": "Los datos para este parámetro son publicados por el SNIIV administrada por SEDATU.",
     "APLICACIÓN DEL MÉTODO DE CÁLCULO DEL INDICADOR PARA LA OBTENCIÓN DEL VALOR DE LA LÍNEA BASE":
     {
         "variables":[

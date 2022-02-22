@@ -20,7 +20,7 @@ import TableMUIPNV from "../../Tablas/TableMUIPNV";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import TableMUIViv from "../../Tablas/TableMUIViv";
-import {MobileSize} from "../../../../utils/Utils";
+import {HTMLToPDF, MobileSize, SaveToPDF} from "../../../../utils/Utils";
 
 
 interface BarProps {
@@ -185,6 +185,7 @@ export default function BienestarBarChart(props:BarProps){
     const bienestarUnidades = props.tableData.map((param:any) => param.data[unidadMedida])
     const bienestarTendencia = props.tableData.map((param:any) => param.data[tendenciaEsp])
     const bienestarCharts = props.tableData.map((param:any) => chartTemplate(param));
+    const onButtonClick = () => SaveToPDF("ind_"+props.tableData[props.indicadorIndex].pdfName,"Indicador"+bienestarTitles[props.indicadorIndex],160,290)
 
 
     return(
@@ -203,12 +204,8 @@ export default function BienestarBarChart(props:BarProps){
                     {"Ficha Técnica de la Meta del Objetivo "+(props.indicadorIndex+1)}
                 </DialogTitle>
                 <DialogContent dividers>
-                    <Grid container spacing={2}  >
-                        <Grid item xs={12} sm={12} md={12}>
-                            <TableMUIPNV data={props.tableData[props.indicadorIndex].data}/>
-                        </Grid>
-                    </Grid>
-                </DialogContent>
+                    <TableMUIPNV data={props.tableData[props.indicadorIndex].data} id={"Indicador"+bienestarTitles[props.indicadorIndex]} pdfName={"ind_" + props.tableData[props.indicadorIndex].pdfName}/>
+                    </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={clickTableMap[props.indicadorIndex].func} color={'primary'}>
                         Cerrar
@@ -222,7 +219,7 @@ export default function BienestarBarChart(props:BarProps){
                 <DialogContent dividers>
                     <Grid container spacing={2} alignItems={'center'} >
                         {
-                            props.tableData[props.indicadorIndex].parametros.map((param1:any,key1:number) => <Grid item xs={12} sm={12} md={6} key={key1+param1.data["Nombre"]}><Paper elevation={3} className={classes.paper}><h3>{param1.data["Nombre"]}</h3><h4>{param1.data[unidadMedida]}</h4><h5>{"Tendencia "+param1.data[tendenciaEsp]}</h5><ReactECharts option={chartTemplate(param1)}/></Paper></Grid>)
+                            props.tableData[props.indicadorIndex].parametros.map((param1:any,key1:number) => <Grid item xs={12} sm={12} md={6} key={key1+param1.data["Nombre"]}><Paper elevation={3} className={classes.paper}><h3>{param1.data["Nombre"]}</h3><h4>{param1.data[unidadMedida]}</h4><ReactECharts option={chartTemplate(param1)}/></Paper></Grid>)
                         }
                     </Grid>
                     <Grid container spacing={2}  >
@@ -234,7 +231,7 @@ export default function BienestarBarChart(props:BarProps){
                                             <Typography className={classes.typo}>{param1.titulo} </Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <TableMUIViv data={param1.data}/>
+                                            <TableMUIViv data={param1.data} id={'Bienestar'+key1} pdfName={"ind_" + param1.pdfName}/>
                                         </AccordionDetails>
                                     </Accordion>
                                 </Grid>

@@ -48,7 +48,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
 
     const isMobile = MobileSize();
 
-    const [indicador,setIndicador] = useState([0,0]);
+    const [indicador,setIndicador] = useState([1,0]);
     const classes = useStyles();
     let dataRow = props.data.map((d: AxisChart,key:number) =>
         ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),name:key+1,itemStyle:{color: assignObjetivosColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
@@ -145,7 +145,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                             </Accordion>
                         </Grid>
                         <Grid item xs={12} sm={12} >
-                            {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
+                            <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>
                         </Grid>
                     </Grid>
                     :
@@ -157,7 +157,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                             )}
                         </Grid>
                         <Grid item xs={12} sm={6} md={6}>
-                            {indicador[0] === 0 ? <img src={programa} className={classes.image} alt={"vivienda"} /> : <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
+                            <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
                             <Paper elevation={0} className={classes.paperImage3}><br/><br/></Paper>

@@ -112,7 +112,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             grafica:[[27.7,],[17.5]],
             label:[{chartLabel:['Viviendas']},{chartLabel:['Viviendas']}],
             xAxis:['Viviendas','Viviendas',],
-            yAxis:['Porcentaje','Porcentaje',]
+            yAxis:['Porcentaje','Porcentaje',],
+            pdfName:[],
 
         },
         {
@@ -125,7 +126,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                 {chartLabel:['Viviendas sin ecotecnia','Viviendas con ecotecnia']},
                 {chartLabel:['Viviendas sin servicio sanitario con biodigestor','Viviendas con servicio sanitario con biodigestor']}],
             xAxis:['Viviendas','Viviendas','Viviendas'],
-            yAxis:['Porcentaje','Porcentaje','Porcentaje']
+            yAxis:['Porcentaje','Porcentaje','Porcentaje'],
+            pdfName:[],
         },
         {
             titulo: "Asequibilidad",
@@ -139,7 +141,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                 {chartLabel: ['Total','No especificado','Le dio crédito otra institución','Le prestó un familiar, amigo o prestamista','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO','Usó sus propios recursos']}
             ],
             xAxis:['Viviendas','Viviendas','Viviendas','Viviendas'],
-            yAxis:['Porcentaje','Porcentaje','Porcentaje','Porcentaje']
+            yAxis:['Porcentaje','Porcentaje','Porcentaje','Porcentaje'],
+            pdfName:['ase_vivi_ren'],
         },
         {
             titulo: "Habitabilidad",
@@ -151,7 +154,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                 {chartLabel: ['Calidad del piso','Calidad de los muros y techos','Pintura, recubrimientos y otros acabados','Iluminación natural','Ventilación natural','Protección que les da contra la lluvia, frío, calor o viento']},
                 {chartLabel: ['De 0 a 5 años','De 6 a 10 años','De 11 a 20 años','De 21 a 30 años','Más de 30 años','No sabe']}],
             xAxis:['Viviendas','Viviendas','Viviendas'],
-            yAxis:['Porcentaje','Porcentaje','Porcentaje']
+            yAxis:['Porcentaje','Porcentaje','Porcentaje'],
+            pdfName:['hab_viv_est','hab_viv_hab'],
         },
         {
             titulo: "Accesibilidad",
@@ -162,7 +166,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             label:[{chartLabel: ['Poner pasamanos','Ampliar puertas','Poner rampas','Adecuar baños']},
                 {chartLabel: ['Percepción de problemas  que tienen falta de rampas']}],
             xAxis:['Viviendas','Viviendas'],
-            yAxis:['Porcentaje','Porcentaje']
+            yAxis:['Porcentaje','Porcentaje'],
+            pdfName:['acc_viv_est','acc_viv_hab'],
         },
         {
             titulo: "Ubicación",
@@ -173,7 +178,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             label:[{chartLabel: ['Centros escolares','Mercados o centros comerciales','Trabajo','Centros de salud','Parques o espacios deportivos','Centros de recreación o instalaciones culturales']},
                 {chartLabel:['Exceso de ruido','Basura tirada en las calles','Contaminación del ambiente por fábricas o construcciones','Deterioro por abandono de viviendas o espacios públicos','Problema tienen con el vandalismo, grafitis, pintas, vidrios rotos','Problema tienen con los robos o asaltos']}],
             xAxis:['Viviendas','Viviendas'],
-            yAxis:['Porcentaje','Porcentaje']
+            yAxis:['Porcentaje','Porcentaje'],
+            pdfName:['ubi_viv_sati','ubi_viv_prob'],
         },
         {
             titulo: "Adecuación cultural",
@@ -183,7 +189,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             grafica:[[81.9,]],
             label:[{chartLabel:['Vivienda se identifica con sus gustos, costumbres y tradiciones']}],
             xAxis:['Viviendas'],
-            yAxis:['Porcentaje']
+            yAxis:['Porcentaje'],
+            pdfName:['cul_viv_cos'],
         },
         {
             titulo: "Autoproducción",
@@ -228,8 +235,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             <CardBanner subtitle={'La vivienda adecuada está reconocida como un derecho en los instrumentos internacionales incluidos la Declaración de los Derechos Humanos y el Pacto Internacional de los Derechos Económicos, Sociales y Culturales.'}
                         title={'Vivienda adecuada'}
                         image={bienestar1}
-                        more1={'La vivienda adecuada debe proveer más que cuatro paredes y un techo. Se deben cumplir una serie de condiciones particulares antes de considerarse como Vivienda adecuada.'}
-                        more2={'La caracterización de los retos específicos que tiene la vivienda en México se basa en los siete elementos de una vivienda adecuada definidos por la Organización de las Naciones Unidas (ONU): seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad; habitabilidad; accesibilidad; ubicación y adecuación cultural.'}
+                        more1={'La vivienda adecuada debe proveer más que cuatro paredes y un techo. De acuerdo con la Organización de las Naciones Unidas (ONU), la caracterización de los retos específicos que tiene la vivienda en México se basa en los siete elementos: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad; habitabilidad; accesibilidad; ubicación y adecuación cultural.'}
+                        more2={''}
                         isMobile={isMobile}/>
             <Paper className={classes.paperContainer2}>
                 <div className={classes.root}>

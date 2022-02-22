@@ -1,7 +1,7 @@
 export const ind_b4 ={
     "Nombre": "2.1 Eficiencia en el uso del gasto operativo de instituciones de vivienda",
     "Objetivo prioritario": "Garantizar la coordinación entre los organismos nacionales de vivienda y los distintos órdenes de gobierno para el uso eficiente de los recursos públicos",
-    "Definición o descripción": "Mide el costo operativo de los organismos nacionales de vivienda, específicamente FOVISSSTE y Sociedad Hipotecaria Federal, respecto al número total de viviendas producidas en el año, buscando medir la mejora en eficiencia en el uso de los recursos públicos destinados al desarrollo de la vivienda en el país",
+    "Definición o descripción": "Mide el costo operativo de los organismos nacionales de vivienda, específicamente del Fondo de la Vivienda del Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado (FOVISSSTE) y la Sociedad Hipotecaria Federal (SHF), respecto al número total de viviendas producidas en el año, buscando medir la mejora en eficiencia en el uso de los recursos públicos destinados al desarrollo de la vivienda en el país",
     "Nivel de desagregación": "Sectorial (organismos nacionales de vivienda) y nacional",
     "Periodicidad o frecuencia de medición": "Anual",
     "Tipo": "Estratégico",
