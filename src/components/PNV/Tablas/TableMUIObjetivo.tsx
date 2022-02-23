@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme:Theme) =>
             fontWeight: "bold",
             fontSize: 8,
             padding:3,
+            fontFamily:'Montserrat',
         },
         colHead:{
             backgroundColor: '#dfc9a3',
@@ -26,10 +27,12 @@ const useStyles = makeStyles((theme:Theme) =>
             fontWeight: "bold",
             fontSize: 8,
             padding:3,
+            fontFamily:'Montserrat',
         },
         body:{
             fontSize: 8,
             padding:3,
+            fontFamily:'Montserrat',
         },
         table:{
             fontFamily:'Montserrat',
