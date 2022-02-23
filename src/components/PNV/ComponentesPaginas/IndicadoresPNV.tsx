@@ -26,6 +26,7 @@ import IndicadoresBienestar from "./IndicadoresBienestar";
 import TableMUIPNV from "../Tablas/TableMUIPNV";
 import {useStyles} from "../../../utils/Style";
 import Leyenda from "../MUIComponents/Leyenda";
+import ChartIcon from "@material-ui/icons/InsertChart";
 
 
 
@@ -84,6 +85,9 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
     const classes = useStyles();
     const [open1, setOpen1] = useState(false);
     const [open3, setOpen3] = useState(false);
+
+    const [tableHover1, setTableHover1] = useState(false);
+    const [tableHover2, setTableHover2] = useState(false);
 
     const onaIcons = {
         CONAVI:conavi,
@@ -282,7 +286,6 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
         gAxis:props.indicador.label[6],
         hAxis:props.indicador.label[7],
     }
-    const onButtonClick = () => SaveToPDF("ind_"+props.indicador.pdfName[props.indicadorIndex],"Indicador"+props.indicadorIndex,160,290)
 
     return(
         <div className={classes.root}>
@@ -290,7 +293,9 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                 <Paper elevation={0} className={classes.paper}>
                     <h2>{props.indicador.title}</h2>
                     <h3>{props.indicador.trimestre}</h3>
-                    <TableIcon fontSize={'large'} onClick={handleClickOpen1}/>
+                    <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover1(true)} onMouseOut={() => setTableHover1(false)}  onClick={handleClickOpen1}>
+                        {tableHover1 ? "Ficha técnica" :<TableIcon fontSize={"large"}/>}
+                    </Button>
                     <Leyenda />
                     <Paper elevation={3} className={classes.paper}>
                         <ReactECharts option={GaugeChart} className={classes.gauge} />
@@ -310,7 +315,9 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                             <Paper elevation={0} className={classes.paper}>
                                 <h2>{props.indicador.title}</h2>
                                 <h3>{props.indicador.trimestre}</h3>
-                                <TableIcon fontSize={'large'} onClick={handleClickOpen3}/>
+                                <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover2(true)} onMouseOut={() => setTableHover2(false)}  onClick={handleClickOpen3}>
+                                    {tableHover2 ? "Ficha técnica" :<TableIcon fontSize={"large"}/>}
+                                </Button>
                                 <Paper elevation={3} className={classes.paper}>
                                     <ReactECharts option={orderPie(propsPie,props.indicadorIndex+1)}   />
                                 </Paper>

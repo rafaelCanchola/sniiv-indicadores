@@ -152,19 +152,14 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                     <Fragment>
                         <Grid item xs={12} sm={3} md={3}>
                             <Paper elevation={0} className={classes.paperImage3}><br/><br/></Paper>
-                            {graficas.slice(0,2).map(card =>
+                            {graficas.map(card =>
                                 <Paper elevation={0} className={classes.paperImage3}><CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/></Paper>
                             )}
                         </Grid>
-                        <Grid item xs={12} sm={6} md={6}>
+                        <Grid item xs={12} sm={9} md={9}>
                             <IndicadoresPNV indicador={indicadoresB[indicador[0]-1]} indicadorIndex={indicador[1]}/>
                         </Grid>
-                        <Grid item xs={12} sm={3} md={3}>
-                            <Paper elevation={0} className={classes.paperImage3}><br/><br/></Paper>
-                            {graficas.slice(2).map(card =>
-                                <Paper elevation={0} className={classes.paperImage3}><CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/></Paper>
-                            )}
-                        </Grid>
+
                     </Fragment>
                 }
             </Grid>

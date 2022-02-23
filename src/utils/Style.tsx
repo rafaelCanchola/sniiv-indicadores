@@ -117,6 +117,9 @@ export const useStyles = makeStyles((theme:Theme) =>
             fontFamily:'Montserrat',
             textAlign:'justify'
         },
+        moreCard:{
+            alignItems: 'right'
+        },
         textCardCenter:{
             fontSize:10,
             color:theme.palette.text.secondary,

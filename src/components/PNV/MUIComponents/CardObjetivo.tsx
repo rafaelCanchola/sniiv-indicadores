@@ -8,12 +8,12 @@ import {CardHeader, Dialog, DialogActions, DialogContent, DialogTitle} from '@ma
 import Avatar from '@material-ui/core/Avatar';
 import {useStyles} from "../../../utils/Style";
 import Grid from "@material-ui/core/Grid";
-import TableMUIPNV from "../Tablas/TableMUIPNV";
 import {Fragment, useState} from 'react';
 import {MobileSize} from "../../../utils/Utils";
 import TableMUIObjetivo from '../Tablas/TableMUIObjetivo';
 import red from "@material-ui/core/colors/red";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 interface CardProps{
     title: string,
@@ -57,7 +57,8 @@ export default function MediaCard(props:CardProps) {
         {state:openTable5,func:handleClickOpenTable5},
     ]
 
-    // @ts-ignore
+    const [anchorEl, setAnchorEl] = React.useState(false);
+
     return (
         <Fragment>
             <Card >
@@ -69,8 +70,10 @@ export default function MediaCard(props:CardProps) {
                         {props.content}
                     </Typography>
                 </CardContent>
-                <CardActions>
-                    <Button size="small" className={classes.textCard} onClick={clickTableMap[props.index].func}>Conoce más</Button>
+                <CardActions >
+                    <Button size="small" onMouseOver={() => setAnchorEl(true)} onMouseOut={() => setAnchorEl(false)} className={classes.textCard} onClick={clickTableMap[props.index].func}>
+                        {anchorEl ? "Conoce más" :<MoreHorizIcon />}
+                    </Button>
                 </CardActions>
             </Card>
             <Dialog fullScreen={isMobile} open={clickTableMap[props.index].state} onClose={clickTableMap[props.index].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >

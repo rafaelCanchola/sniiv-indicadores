@@ -21,6 +21,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import TableMUIViv from "../../Tablas/TableMUIViv";
 import {HTMLToPDF, MobileSize, SaveToPDF} from "../../../../utils/Utils";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 
 interface BarProps {
@@ -102,6 +103,12 @@ const useStyles = makeStyles((theme:Theme) =>
         column: {
             flexBasis: '50%',
         },
+        textCard:{
+            fontSize:10,
+            color:theme.palette.text.secondary,
+            fontFamily:'Montserrat',
+            textAlign:'justify'
+        },
 
 
     })
@@ -111,6 +118,10 @@ export default function BienestarBarChart(props:BarProps){
     const isMobile = MobileSize();
 
     const classes = useStyles();
+
+    const [tableHover1, setTableHover1] = useState(false);
+    const [tableHover2, setTableHover2] = useState(false);
+
     const [openChart1, setOpenChart1] = useState(false);
     const [openChart2, setOpenChart2] = useState(false);
     const [openChart3, setOpenChart3] = useState(false);
@@ -132,14 +143,14 @@ export default function BienestarBarChart(props:BarProps){
     const handleClickOpenTable4 = () => {setOpenTable4(!openTable4);}
     const handleClickOpenTable5 = () => {setOpenTable5(!openTable5);}
 
-    const clickChart = [
-        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart1}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable1}/></Fragment>,
-        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart2}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable2}/></Fragment>,
-        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart3}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable3}/></Fragment>,
-        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart4}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable4}/></Fragment>,
-        <Fragment><ChartIcon fontSize={'large'} onClick={handleClickOpenChart5}/><TableIcon fontSize={'large'} onClick={handleClickOpenTable5}/></Fragment>,
-    ];
 
+    const clickChartFunc = [
+        [handleClickOpenChart1,handleClickOpenTable1],
+        [handleClickOpenChart2,handleClickOpenTable2],
+        [handleClickOpenChart3,handleClickOpenTable3],
+        [handleClickOpenChart4,handleClickOpenTable4],
+        [handleClickOpenChart5,handleClickOpenTable5],
+    ]
     const clickChartMap = [
         {state:openChart1,func:handleClickOpenChart1},
         {state:openChart2,func:handleClickOpenChart2},
@@ -185,7 +196,6 @@ export default function BienestarBarChart(props:BarProps){
     const bienestarUnidades = props.tableData.map((param:any) => param.data[unidadMedida])
     const bienestarTendencia = props.tableData.map((param:any) => param.data[tendenciaEsp])
     const bienestarCharts = props.tableData.map((param:any) => chartTemplate(param));
-    const onButtonClick = () => SaveToPDF("ind_"+props.tableData[props.indicadorIndex].pdfName,"Indicador"+bienestarTitles[props.indicadorIndex],160,290)
 
 
     return(
@@ -194,9 +204,19 @@ export default function BienestarBarChart(props:BarProps){
                         <h4 className={classes.colorBlack}>{bienestarTitles[props.indicadorIndex]}</h4>
                         <h5>{bienestarObjetivo[props.indicadorIndex]}</h5>
                         <h5>{bienestarUnidades[props.indicadorIndex]}</h5>
-                        {//<h5>{"Tendencia "+bienestarTendencia[props.indicadorIndex]}</h5>
-                        }
-                        {clickChart[props.indicadorIndex]}
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <Button size="small" className={classes.textCard} onMouseOver={() => setTableHover1(true)} onMouseOut={() => setTableHover1(false)}  onClick={clickChartFunc[props.indicadorIndex][0]}>
+                                    {tableHover1 ? "Parámetros" :<ChartIcon />}
+                                </Button>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Button size="small" className={classes.textCard} onMouseOver={() => setTableHover2(true)} onMouseOut={() => setTableHover2(false)}  onClick={clickChartFunc[props.indicadorIndex][1]}>
+                                    {tableHover2 ? "Ficha técnica" :<TableIcon />}
+                                </Button>
+                            </Grid>
+
+                        </Grid>
                         <ReactECharts option={bienestarCharts[props.indicadorIndex]} />
                     </Paper>
             <Dialog fullScreen={isMobile} open={clickTableMap[props.indicadorIndex].state} onClose={clickTableMap[props.indicadorIndex].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
