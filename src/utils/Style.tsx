@@ -117,6 +117,12 @@ export const useStyles = makeStyles((theme:Theme) =>
             fontFamily:'Montserrat',
             textAlign:'justify'
         },
+        textCardCenter:{
+            fontSize:10,
+            color:theme.palette.text.secondary,
+            fontFamily:'Montserrat',
+            textAlign:'center'
+        },
         textCardBlack:{
             fontSize:10,
             color:theme.palette.text.primary,

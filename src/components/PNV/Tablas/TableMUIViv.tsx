@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from "@material-ui/core/Paper";
 import {Button} from "@material-ui/core";
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import {HTMLToPDF} from "../../../utils/Utils";
 
 interface TableProps{
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme:Theme) =>
             fontWeight: "bold",
             fontSize: 8,
             padding:3,
+            fontFamily:'Montserrat',
         },
         colHead:{
             backgroundColor: '#dfc9a3',
@@ -30,14 +32,22 @@ const useStyles = makeStyles((theme:Theme) =>
             fontWeight: "bold",
             fontSize: 8,
             padding:3,
+            fontFamily:'Montserrat',
         },
         body:{
             fontSize: 8,
             padding:3,
+            fontFamily:'Montserrat',
         },
         table:{
             fontFamily:'Montserrat',
-        }
+        },
+        textCardCenter:{
+            fontSize:10,
+            color:theme.palette.text.secondary,
+            fontFamily:'Montserrat',
+            textAlign:'center'
+        },
 
     })
 
@@ -55,10 +65,9 @@ function TableMUIViv(props: TableProps) {
     console.log('ID TABLE:'+props.id)
     return (
         <Fragment>
-            <Button size="small"
-                    onClick={() => HTMLToPDF(props.pdfName, props.id,false )}>Descargar ficha técnica</Button>
 
             <TableContainer component={Paper} >
+                <Button size="small" onClick={() => HTMLToPDF(props.pdfName, props.id,false )} className={classes.textCardCenter} >Descargar ficha técnica <PictureAsPdfIcon/></Button>
                 <Table className={classes.table} id={props.id} >
                     <TableBody >
                         <TableRow ><TableCell className={classes.head} align={"center"} colSpan={10}>{props.data[dataKeys[0]]}</TableCell></TableRow>
