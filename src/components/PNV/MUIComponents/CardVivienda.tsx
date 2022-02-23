@@ -13,6 +13,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
 
     },
+    rootSelected: {
+        display: 'flex',
+        backgroundColor: '#dbdbdb',
+
+    },
     details: {
         display: 'flex',
         flexDirection: 'column',
@@ -41,7 +46,8 @@ interface CardProps{
     image: any,
     children: any,
     callBack:any,
-    mobile:boolean
+    mobile:boolean,
+    selected: boolean
 }
 
 export default function CardVivienda(props:CardProps) {
@@ -49,7 +55,7 @@ export default function CardVivienda(props:CardProps) {
     return (
         <Fragment>
             { props.mobile ?
-                    <Card className={classes.root}>
+                    <Card className={props.selected? classes.rootSelected:classes.root}>
                         <div className={classes.details}>
                             {props.children.map((child:any,key:any) =>
                                 <div className={classes.controls}>
@@ -62,7 +68,7 @@ export default function CardVivienda(props:CardProps) {
                         <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                     </Card>
                 :
-                <Card className={classes.root}>
+                <Card className={props.selected? classes.rootSelected:classes.root}>
                     <div className={classes.details}>
                         <CardContent className={classes.content}>
                             <CardActionArea onClick={() => props.callBack([10,props.obj-1])}>

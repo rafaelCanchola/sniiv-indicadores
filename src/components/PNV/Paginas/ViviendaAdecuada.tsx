@@ -41,7 +41,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
     const isMobile = MobileSize();
     const bienestar1 = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/7iHubpXhSW-a0tnkfn6PhA/content/adecuada.jpg?&a=true'
 
-    const [indicador,setIndicador] = useState([0,0]);
+    const [indicador,setIndicador] = useState([20,20]);
     const classes = useStyles();
 
     const elementos =[
@@ -216,12 +216,12 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             <Paper elevation={3} className={classes.paperVivienda}>
                 <h3 className={classes.textColorGrey}>{"Vivienda Adecuada"}</h3>
                 <h5 className={classes.textColorGrey}>{"Indicadores complementarios"}</h5>
-                <RefreshIcon className={classes.textColorGrey} fontSize={'large'} onClick={() => setIndicador([0,0])} />
+                <RefreshIcon className={classes.textColorGrey} fontSize={'large'} onClick={() => setIndicador([20,20])} />
             </Paper>
             <br/>
             <br/>
             <Paper className={classes.paperVivienda}>
-                {indicador[0] === 0 ? <img src={vivienda} className={classes.image} alt={"vivienda"} />
+                {indicador[0] === 20 ? <img src={vivienda} className={classes.image} alt={"vivienda"} />
                     : indicador[0] === 10? <TextoVivienda image={elementos[indicador[1]].image} title={elementos[indicador[1]].title} obj={elementos[indicador[1]].num} more={elementos[indicador[1]].more}/>
                         : <IndicadorVivienda indicador={indicadores[indicador[0]-1]} indicadorIndex={indicador[1]}/>}
             </Paper>
@@ -256,7 +256,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                                                         <Fragment key={key}>
                                                             {(key === elementos.length-1)? <Grid item xs={4}></Grid> : <></>}
                                                             <Grid item xs={4}>
-                                                                <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image}/>
+                                                                <CardVivienda selected={indicador[0] === key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image}/>
                                                             </Grid>
                                                         </Fragment>
                                                     )}
@@ -274,7 +274,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                             <Grid item xs={12} sm={3} md={3}>
                                 {elementos.slice(0,4).map((card:any,key:number )=>
                                     <Paper elevation={0} className={classes.paperImage2} key={key}>
-                                        <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
+                                        <CardVivienda selected={indicador[0] === 10? indicador[1]===key: indicador[0]-1===key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
                                     </Paper>
                                 )}
                             </Grid>
@@ -284,7 +284,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                             <Grid item xs={12} sm={3} md={3}>
                                 {elementos.slice(4).map((card:any,key:number ) =>
                                     <Paper elevation={0} className={classes.paperImage2} key={key}>
-                                        <CardVivienda mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
+
+                                        <CardVivienda selected={indicador[0] === 10? indicador[1]===key+4: indicador[0]-1===key+4} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
                                     </Paper>
                                 )}
                             </Grid>
