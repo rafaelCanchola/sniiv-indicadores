@@ -66,18 +66,22 @@ export default function CardVivienda(props:CardProps) {
                     <div className={classes.details}>
                         <CardContent className={classes.content}>
                             <CardActionArea onClick={() => props.callBack([10,props.obj-1])}>
-                            <Typography component="h5" variant="h5" color={'textPrimary'}>
-                                {props.obj}
-                            </Typography>
-                            <Typography variant="subtitle1" color="textSecondary">
-                                {props.title}
+                            <Typography variant="subtitle2" color="textSecondary">
+                                {props.obj !== 8 && props.obj} {props.title}
                             </Typography>
                             </CardActionArea>
                         </CardContent>
                         <div className={classes.controls}>
-                            {props.children.map((child:any,key:any) =>
+                            {props.children.slice(0,2).map((child:any,key:any) =>
                                 <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
-                                    <EqualizerIcon fontSize={'large'}/>
+                                    <EqualizerIcon fontSize={'medium'}/>
+                                </IconButton>
+                            )}
+                        </div>
+                        <div className={classes.controls}>
+                            {props.children.slice(2).map((child:any,key:any) =>
+                                <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
+                                    <EqualizerIcon fontSize={'medium'}/>
                                 </IconButton>
                             )}
                         </div>

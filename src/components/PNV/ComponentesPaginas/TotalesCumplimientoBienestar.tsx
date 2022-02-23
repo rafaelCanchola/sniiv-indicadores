@@ -131,9 +131,9 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                     </Grid>
                     <Grid item xs={12} sm={12} md={9} >
                         <Paper elevation={0} className={classes.paperImage3}>
-                            <h2 className={classes.textColor}>{props.titleBar}</h2>
-                            <AutorenewIcon className={classes.textColor} fontSize={'large'} onClick={() => {props.callBack2()}}/>
                             <Paper elevation={3} className={classes.paper}>
+                                <h2 className={classes.textColorGrey}>{props.titleBar}</h2>
+                                <AutorenewIcon className={classes.textColorGrey} fontSize={'large'} onClick={() => {props.callBack2()}}/>
                                 <ReactECharts option={option} onEvents={onEvents} />
                             </Paper>
                         </Paper>

@@ -39,10 +39,28 @@ interface AxisChart{
     [x: string]:any;
 }
 
+function namePieFormatter(value:string){
+    switch (value){
+        case 'concluida':
+            return 'Concluida'
+            break;
+        case 'enProceso':
+            return 'En proceso'
+            break;
+        case 'porIniciar':
+            return 'Por Iniciar'
+            break;
+        case 'sinRealizar':
+            return 'No se realizarán'
+            break;
+    }
+}
+
 function orderPie(myProps:any,objective:number){
     let dataPie = myProps.data.filter((d: any) => d[myProps.hAxis] === objective)[0];
     let reduceDataPie = Object.keys(dataPie).reduce((obj:any,key:any) => {if(key !== myProps.hAxis && key !== myProps.fAxis && key !== myProps.aAxis){obj[key]=dataPie[key]}return obj},{})
-    let mapDatapie = Object.keys(reduceDataPie).map((d:any) => ({name:d,value:reduceDataPie[d],itemStyle:{color: assignStateColor(d,myProps.bAxis,myProps.cAxis,myProps.dAxis,myProps.eAxis)}}))
+    let mapDatapie = Object.keys(reduceDataPie).map((d:any) => ({name:namePieFormatter(d),value:reduceDataPie[d],itemStyle:{color: assignStateColor(d,myProps.bAxis,myProps.cAxis,myProps.dAxis,myProps.eAxis)}}))
+    const sum = mapDatapie.reduce((prev, current) => prev + current.value, 0);
 
     return {
         title: {
@@ -60,8 +78,9 @@ function orderPie(myProps:any,objective:number){
                 avoidLabelOverlap: false,
 
                 label: {
-                    show: false,
-                    position: 'center'
+                    show: true,
+                    position: 'center',
+                    formatter: () => {return sum + ' acciones' },
                 },
                 emphasis: {
                     itemStyle: {

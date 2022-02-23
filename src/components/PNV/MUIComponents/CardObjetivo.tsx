@@ -78,7 +78,7 @@ export default function MediaCard(props:CardProps) {
             </Card>
             <Dialog fullScreen={isMobile} open={clickTableMap[props.index].state} onClose={clickTableMap[props.index].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
                 <DialogTitle>
-                    {"Fíchas Técnicas del Objetivo "+(props.index+1)}
+                    {"Fichas Técnicas del Objetivo "+(props.index+1)}
                 </DialogTitle>
                 <DialogContent dividers>
                     <Grid container spacing={2}  >
