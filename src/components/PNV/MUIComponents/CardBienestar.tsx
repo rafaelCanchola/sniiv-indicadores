@@ -8,6 +8,7 @@ import TableIcon from '@material-ui/icons/Toc';
 import {useStyles} from "../../../utils/Style";
 import InfoIcon from '@material-ui/icons/Info';
 import Avatar from "@material-ui/core/Avatar";
+import InsertChartIcon from '@material-ui/icons/InsertChart';
 
 import objetivo1 from "../../../assets/images/obj1.png";
 import objetivo2 from "../../../assets/images/obj2.png";
@@ -16,6 +17,7 @@ import objetivo5 from "../../../assets/images/obj5.png";
 import objetivo6 from "../../../assets/images/obj6.png";
 import {colorBrewer} from "../../../utils/colorBrewer";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 interface CardProps{
     obj: number,
     title: string,
@@ -119,29 +121,32 @@ export default function CardBienestar(props:CardProps) {
         <Fragment>
             {props.mobile ?
                 props.children.length > 0 ?
-                    <Card className={classes.rootBienestar}>
-                        <div className={classes.details}>
-                            {props.children.map((child:any,key:any) =>
-                                <div className={classes.controls}>
-                                    <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
-                                        <TableIcon fontSize={'large'}/>
-                                    </IconButton>
+                    props.children.map((child:any,key:any) =>
+                        <Grid item xs={12}>
+                            <Card className={classes.rootBienestar}>
+                                <div className={classes.details}>
+                                    <div className={classes.controls}>
+                                        <Button onClick={() => props.callBack([props.obj,child])} key={key} >
+                                            <Avatar aria-label="avatar" className={images[key].color}><img src={images[key].img} className={classes.imageIcon} alt={"Imagen"}/></Avatar><Typography variant="body2" color="textSecondary">{'  Estatus de las acciones objetivo '+(child+1)}</Typography>
+                                        </Button>
+                                    </div>
+
                                 </div>
-                            )}
-                        </div>
-                        <CardMedia className={classes.cover} image={props.image} title={props.title}/>
-                    </Card>
+                            </Card>
+                        </Grid>
+                        )
                     :
-                    <Card className={classes.rootBienestar}>
+                    <Grid item xs={12}>
+                        <Card className={classes.rootBienestar}>
                         <div className={classes.details}>
                             <div className={classes.controls}>
-                                <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,0])} >
-                                    <TableIcon fontSize={'large'}/>
-                                </IconButton>
+                                <Button aria-label="Gráfica" onClick={() => props.callBack([props.obj,0])} >
+                                    <Typography variant="body2" color="textSecondary"><InsertChartIcon/>{props.title}</Typography>
+                                </Button>
                             </div>
                         </div>
-                        <CardMedia className={classes.cover} image={props.image}title={props.title}/>
                     </Card>
+                    </Grid>
                 :
                  webCardView
                 }
