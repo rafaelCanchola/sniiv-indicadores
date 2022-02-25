@@ -87,6 +87,11 @@ const useStyles = makeStyles((theme:Theme) =>
         },
         colorBlack:{
             color: theme.palette.text.primary,
+            fontFamily:'Montserrat',
+        },
+        colorGrey:{
+            color: theme.palette.text.secondary,
+            fontFamily:'Montserrat',
         },
         image:{
             width:"80%",
@@ -200,25 +205,23 @@ export default function BienestarBarChart(props:BarProps){
 
     return(
         <div className={classes.root}>
-                    <Paper elevation={3} className={classes.paper}>
-                        <h4 className={classes.colorBlack}>{bienestarTitles[props.indicadorIndex]}</h4>
-                        <h5>{bienestarObjetivo[props.indicadorIndex]}</h5>
-                        <h5>{bienestarUnidades[props.indicadorIndex]}</h5>
-                        <Grid container>
-                            <Grid item xs={12}>
-                                <Button size="small" className={classes.textCard} onMouseOver={() => setTableHover1(true)} onMouseOut={() => setTableHover1(false)}  onClick={clickChartFunc[props.indicadorIndex][0]}>
-                                    {tableHover1 ? "Parámetros" :<ChartIcon />}
-                                </Button>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Button size="small" className={classes.textCard} onMouseOver={() => setTableHover2(true)} onMouseOut={() => setTableHover2(false)}  onClick={clickChartFunc[props.indicadorIndex][1]}>
-                                    {tableHover2 ? "Ficha técnica" :<TableIcon />}
-                                </Button>
-                            </Grid>
+            <Paper elevation={3} className={classes.paper}>
+                <h4 className={classes.colorBlack}>{bienestarTitles[props.indicadorIndex]}</h4>
+                <h5 className={classes.colorGrey}>{bienestarObjetivo[props.indicadorIndex]}</h5>
+                <h5 className={classes.colorGrey}>{bienestarUnidades[props.indicadorIndex]}</h5>
+                <Grid container>
+                    <Grid item xs={12}>
+                        <Button size="small" className={classes.textCard} onMouseOver={() => setTableHover1(true)} onMouseOut={() => setTableHover1(false)}  onClick={clickChartFunc[props.indicadorIndex][0]}>
+                            {tableHover1 ? "Parámetros" :<ChartIcon />}
+                        </Button>
+                        <Button size="small" className={classes.textCard} onMouseOver={() => setTableHover2(true)} onMouseOut={() => setTableHover2(false)}  onClick={clickChartFunc[props.indicadorIndex][1]}>
+                            {tableHover2 ? "Ficha técnica" :<TableIcon />}
+                        </Button>
+                    </Grid>
 
-                        </Grid>
-                        <ReactECharts option={bienestarCharts[props.indicadorIndex]} />
-                    </Paper>
+                </Grid>
+                <ReactECharts option={bienestarCharts[props.indicadorIndex]} />
+            </Paper>
             <Dialog fullScreen={isMobile} open={clickTableMap[props.indicadorIndex].state} onClose={clickTableMap[props.indicadorIndex].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
                 <DialogTitle>
                     {"Ficha Técnica de la Meta del Objetivo "+(props.indicadorIndex+1)}

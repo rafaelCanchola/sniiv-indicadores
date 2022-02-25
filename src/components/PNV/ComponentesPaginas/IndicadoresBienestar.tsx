@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment, useState} from 'react';
 import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -19,42 +19,26 @@ import {ind_b12} from "../../../json/Bienestar/fichas_ind_b12";
 import {ind_b13} from "../../../json/Bienestar/fichas_ind_b13";
 import {ind_b14} from "../../../json/Bienestar/fichas_ind_b14";
 import {ind_b15} from "../../../json/Bienestar/fichas_ind_b15";
+import Typography from "@material-ui/core/Typography";
+import {useStyles} from "../../../utils/Style";
+import Grid from "@material-ui/core/Grid";
+import {CardHeader, Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import Button from "@material-ui/core/Button";
+import TableMUIObjetivo from "../Tablas/TableMUIObjetivo";
+import {MobileSize} from "../../../utils/Utils";
 
 
-const useStyles = makeStyles((theme:Theme) =>
-    createStyles({
-        root:{
-            margin: theme.spacing(2),
-        },
-        paper:{
-            padding: theme.spacing(2),
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.background.default,
 
-        },
-        typo:{
-            textAlign:"center",
-            color: theme.palette.text.secondary,
-        },
-        image:{
-            width:"80%",
-            height: "auto"
-        },
-        details: {
-            alignItems: 'center',
-        },
-        column: {
-            flexBasis: '50%',
-        },
-        mainColumn:{
-            flexBasis: '70%'
-        }
-    })
-);
 
 interface IndicadoresProps {
-    indicadorIndex:number
+    indicadorIndex:number,
+    info:any;
+    image:any;
+    color:any;
+    tabla:any;
 }
 
 
@@ -64,7 +48,16 @@ interface AxisChart{
 
 export default function IndicadoresBienestar(props:IndicadoresProps){
     const classes = useStyles();
+    const useMyStyle = makeStyles((theme:Theme) =>
+        createStyles({
+            avatar: {
+                backgroundColor: props.color,
+                alignSelf:'center'
+            },
+        }));
+    const myClass = useMyStyle();
 
+    const isMobile = MobileSize();
     const bienestar = [
         {
             titulo:"Objetivo Prioritario 1",
@@ -152,8 +145,66 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
             ]
         },
     ];
+    const [openTable1, setOpenTable1] = useState(false);
+    const [openTable2, setOpenTable2] = useState(false);
+    const [openTable3, setOpenTable3] = useState(false);
+    const [openTable4, setOpenTable4] = useState(false);
+    const [openTable5, setOpenTable5] = useState(false);
 
+    const handleClickOpenTable1 = () => {setOpenTable1(!openTable1);}
+    const handleClickOpenTable2 = () => {setOpenTable2(!openTable2);}
+    const handleClickOpenTable3 = () => {setOpenTable3(!openTable3);}
+    const handleClickOpenTable4 = () => {setOpenTable4(!openTable4);}
+    const handleClickOpenTable5 = () => {setOpenTable5(!openTable5);}
+    const clickTableMap = [
+        {state:openTable1,func:handleClickOpenTable1},
+        {state:openTable2,func:handleClickOpenTable2},
+        {state:openTable3,func:handleClickOpenTable3},
+        {state:openTable4,func:handleClickOpenTable4},
+        {state:openTable5,func:handleClickOpenTable5},
+    ]
+
+    const [anchorEl, setAnchorEl] = React.useState(false);
     return(
-        <BienestarBarChart tableData={bienestar} indicadorIndex={props.indicadorIndex}/>
+        <Fragment>
+                    <Paper elevation={3} className={classes.paper} >
+                        <Grid container >
+                            <Grid item xs={4} md={5}></Grid>
+                            <Grid item xs={2} md={1}>
+                                <Avatar aria-label="avatar" className={myClass.avatar}><img src={props.image} className={classes.imageIcon} alt={"Imagen"}/></Avatar>
+                            </Grid>
+                            <Grid item xs={3} md={2}>
+                                <h3 className={classes.textColorBlack}>Objetivo {props.indicadorIndex+1}</h3>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <p className={classes.body}>
+                                    {props.info}
+                                </p>
+                                <Button size="small" onMouseOver={() => setAnchorEl(true)} onMouseOut={() => setAnchorEl(false)} className={classes.textCard} onClick={clickTableMap[props.indicadorIndex].func}>
+                                    {anchorEl ? "Conoce más" :<MoreHorizIcon />}
+                                </Button>
+                            </Grid>
+                        </Grid>
+
+                    </Paper>
+            <BienestarBarChart tableData={bienestar} indicadorIndex={props.indicadorIndex}/>
+            <Dialog fullScreen={isMobile} open={clickTableMap[props.indicadorIndex].state} onClose={clickTableMap[props.indicadorIndex].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
+                <DialogTitle>
+                    {"Fichas Técnicas del Objetivo "+(props.indicadorIndex+1)}
+                </DialogTitle>
+                <DialogContent dividers>
+                    <Grid container spacing={2}  >
+                        <Grid item xs={12} sm={12} md={12}>
+                            <TableMUIObjetivo data={props.tabla}/>
+                        </Grid>
+                    </Grid>
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={clickTableMap[props.indicadorIndex].func} color={'primary'}>
+                        Cerrar
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </Fragment>
     )
 }

@@ -83,7 +83,7 @@ export const useStyles = makeStyles((theme:Theme) =>
         },
         imageIcon:{
             width:"60%",
-            height: "auto"
+            height: "auto",
         },
         body:{
             fontSize: 12,
@@ -266,6 +266,11 @@ export const useStyles = makeStyles((theme:Theme) =>
         textColorGrey:{
             color: theme.palette.text.secondary,
             fontFamily:'Montserrat',
+        },
+        textColorBlack:{
+            color: theme.palette.text.primary,
+            fontFamily:'Montserrat',
+            textAlign:'left'
         },
         imageSedatu:{
             width:'80%',

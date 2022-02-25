@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Fragment, useState} from 'react';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import ReactECharts from "echarts-for-react";
@@ -46,6 +46,8 @@ interface AxisChart{
 export default function ObjetivoPNV(){
     const classes = useStyles();
     const isMobile = MobileSize();
+    const [objetivo,setObjetivo] = useState(0);
+
     const bienestar2 = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/0dbOa_A1Rv2zirBGGCuwDg/content/pnv.jpeg?&a=true'
 
     const objetivos = [
@@ -153,6 +155,10 @@ export default function ObjetivoPNV(){
         }
     }
 
+    const handleCallback = (childData: any) => {
+        setObjetivo(childData)
+    }
+
     return(
         <Fragment>
             <CardBanner isMobile={isMobile}
@@ -181,22 +187,34 @@ export default function ObjetivoPNV(){
                     </Grid>
 
                     <Grid container spacing={2} alignItems={'center'} >
-                        <Grid item xs={12} sm={12} md={1}></Grid>
-                        {objetivos.map(card =>
-                            //@ts-ignore
-                            <Grid item xs={12} sm={12} md={card.size} key={card.obj}  >
-                                <CardObjetivo title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla} index={card.index} color={card.color}/>
+                        {isMobile ?
+                            <Fragment >
+                                <Grid item xs={1}></Grid>
+                                {objetivos.map(card =>
+                                    <Fragment key={card.obj}>
+                                        <Grid item xs={2}>
+                                            <CardObjetivo callBack={handleCallback} title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla} index={card.index} color={card.color}/>
+                                        </Grid>
+                                        <br/>
+                                    </Fragment>
+                                )}
+                            </Fragment>
+                            :
+                            <Grid item xs={12} sm={12} md={3}>
+                                {objetivos.map(card =>
+                                    <Fragment key={card.obj}>
+                                        <Grid item xs={12}   >
+                                            <CardObjetivo callBack={handleCallback} title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla} index={card.index} color={card.color}/>
+                                        </Grid>
+                                        <br/>
+                                    </Fragment>
+                                )}
                             </Grid>
-                        )}
-                    </Grid>
-                    <Grid container  >
-                        <Grid item xs={12} sm={12} md={1}></Grid>
-                        {[0,1,2,3,4].map(card =>
-                            //@ts-ignore
-                            <Grid item xs={12} sm={12} md={2} key={card}  >
-                                <IndicadoresBienestar indicadorIndex={card}/>
-                            </Grid>
-                        )}
+                        }
+
+                        <Grid item xs={12} sm={12} md={9}>
+                            <IndicadoresBienestar indicadorIndex={objetivo} info={objetivos[objetivo].obj} image={objetivos[objetivo].img} color={objetivos[objetivo].color} tabla={objetivos[objetivo].tabla}/>
+                        </Grid>
                     </Grid>
                 <br/><br/><br/>
             </div>
