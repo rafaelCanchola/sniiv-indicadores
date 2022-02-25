@@ -1,9 +1,8 @@
 import ReactECharts from "echarts-for-react";
 import Grid from "@material-ui/core/Grid";
 import {Paper} from "@material-ui/core";
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {colorBrewer} from "../../../../utils/colorBrewer";
-import {randomNumber, waterFallSize} from "../../../../utils/Utils";
+import {waterFallSize} from "../../../../utils/Utils";
 import {useStyles} from "../../../../utils/Style";
 
 

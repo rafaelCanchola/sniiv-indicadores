@@ -1,12 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import {Button, CardActionArea, IconButton} from "@material-ui/core";
-import TableIcon from '@material-ui/icons/Toc';
+import {Button, CardActionArea} from "@material-ui/core";
 import {useStyles} from "../../../utils/Style";
-import InfoIcon from '@material-ui/icons/Info';
 import Avatar from "@material-ui/core/Avatar";
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 

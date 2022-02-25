@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-import {Link,withRouter,Route} from 'react-router-dom';
-import {BrowserRouter} from "react-router-dom";
-import {BottomNavigation, BottomNavigationAction, AppBar, alpha} from "@material-ui/core";
+import {Link,Route} from 'react-router-dom';
+import {BottomNavigation, BottomNavigationAction, AppBar} from "@material-ui/core";
 import AssIcon from '@material-ui/icons/LibraryBooksOutlined'
 import HomeIcon from '@material-ui/icons/ApartmentOutlined'
 import AnalyticsIcon from '@material-ui/icons/MultilineChartOutlined'
@@ -17,13 +16,7 @@ import ViviendaAdecuada from "./components/PNV/Paginas/ViviendaAdecuada";
 
 
 
-const styles = {
-    stickToBottom: {
-        width: '100%',
-        position: 'fixed',
-        bottom: 0,
-    },
-};
+
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({

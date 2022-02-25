@@ -4,16 +4,15 @@ import CardMedia from '@material-ui/core/CardMedia';
 import {Box, Typography} from "@material-ui/core";
 import {
     Info,
-    InfoCaption,
-    InfoSubtitle,
     InfoTitle,
 } from '@mui-treasury/components/info';
 import { useGalaxyInfoStyles } from '@mui-treasury/styles/info/galaxy';
-// @ts-ignore
-import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 import {useStyles} from "../../../utils/Style";
 import sniiv from "../../../assets/images/sniiv-sed.png"
 import Grid from "@material-ui/core/Grid";
+
+// @ts-ignore
+import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 
 interface CardProps{
     subtitle: string,

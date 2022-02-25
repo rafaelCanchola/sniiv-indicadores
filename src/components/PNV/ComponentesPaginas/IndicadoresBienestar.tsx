@@ -1,8 +1,16 @@
 import React, {Fragment, useState} from 'react';
 import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 import BienestarBarChart from "../Graficas/eCharts/BienestarBarChart";
+import {useStyles} from "../../../utils/Style";
+import TableMUIObjetivo from "../Tablas/TableMUIObjetivo";
+import {MobileSize} from "../../../utils/Utils";
 
 import {ind_b1} from "../../../json/Bienestar/fichas_ind_b1";
 import {ind_b2} from "../../../json/Bienestar/fichas_ind_b2";
@@ -19,19 +27,6 @@ import {ind_b12} from "../../../json/Bienestar/fichas_ind_b12";
 import {ind_b13} from "../../../json/Bienestar/fichas_ind_b13";
 import {ind_b14} from "../../../json/Bienestar/fichas_ind_b14";
 import {ind_b15} from "../../../json/Bienestar/fichas_ind_b15";
-import Typography from "@material-ui/core/Typography";
-import {useStyles} from "../../../utils/Style";
-import Grid from "@material-ui/core/Grid";
-import {CardHeader, Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import Button from "@material-ui/core/Button";
-import TableMUIObjetivo from "../Tablas/TableMUIObjetivo";
-import {MobileSize} from "../../../utils/Utils";
-
-
-
 
 interface IndicadoresProps {
     indicadorIndex:number,
@@ -40,7 +35,6 @@ interface IndicadoresProps {
     color:any;
     tabla:any;
 }
-
 
 interface AxisChart{
     [x: string]:any;

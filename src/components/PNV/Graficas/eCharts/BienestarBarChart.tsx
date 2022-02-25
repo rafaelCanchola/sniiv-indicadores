@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import ReactECharts from "echarts-for-react";
 
 import Grid from "@material-ui/core/Grid";
@@ -20,8 +20,7 @@ import TableMUIPNV from "../../Tablas/TableMUIPNV";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import TableMUIViv from "../../Tablas/TableMUIViv";
-import {HTMLToPDF, MobileSize, SaveToPDF} from "../../../../utils/Utils";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import {MobileSize} from "../../../../utils/Utils";
 
 
 interface BarProps {

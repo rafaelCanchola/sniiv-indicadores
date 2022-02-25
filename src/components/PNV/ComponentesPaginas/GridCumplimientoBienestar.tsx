@@ -1,5 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {makeStyles,createStyles,Theme} from "@material-ui/core/styles";
+import React, {Fragment, useState} from 'react';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
@@ -11,8 +10,6 @@ import CardBienestar from "../MUIComponents/CardBienestar";
 import objetivo from "../../../assets/images/objetivo.png";
 import estatus from "../../../assets/images/estatus.png";
 import onavi from "../../../assets/images/onavi.png";
-import indicadores from "../../../assets/images/indicadores.png";
-import programa from "../../../assets/images/programanacional.png";
 
 import {assignObjetivosColor, MobileSize} from "../../../utils/Utils";
 import {IndicadoresPNV} from "./IndicadoresPNV";
@@ -53,7 +50,6 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
     let dataRow = props.data.map((d: AxisChart,key:number) =>
         ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),name:key+1,itemStyle:{color: assignObjetivosColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
         .reverse()
-    let labelDataRow = props.data.map((d: AxisChart) => "Objetivo "+d[props.hAxis]).reverse()
     let dataBar = props.data2.map((d: AxisChart) =>
         ({value:(d[props.aAxis] === 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),itemStyle:{color: assignObjetivosColor(d[props.hAxis])}}))
     let labelDataBar = props.data2.map((d: AxisChart) => d[props.gAxis])

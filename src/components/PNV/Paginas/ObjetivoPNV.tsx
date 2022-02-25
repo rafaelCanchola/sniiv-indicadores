@@ -11,7 +11,6 @@ import pnv2021 from "../../../assets/images/pnv2021.png";
 import objetivo1 from "../../../assets/images/obj1.png";
 import objetivo2 from "../../../assets/images/obj2.png";
 import objetivo3 from "../../../assets/images/obj3.png";
-import objetivo4 from "../../../assets/images/obj4.png";
 import objetivo5 from "../../../assets/images/obj5.png";
 import objetivo6 from "../../../assets/images/obj6.png";
 
@@ -23,25 +22,6 @@ import CardBanner from "../MUIComponents/CardBanner";
 import {MobileSize} from "../../../utils/Utils";
 import IndicadoresBienestar from "../ComponentesPaginas/IndicadoresBienestar";
 
-
-interface CumplimientoProps {
-    data: any;
-    periodo: string;
-    seccion: string;
-    callBack:any;
-    title: string;
-    titleTrimestral: string;
-    titleCifras: string;
-    titleBar: string;
-    titleInforme: string;
-    aAxis: string;
-    bAxis: string;
-    cAxis: string;
-}
-
-interface AxisChart{
-    [x: string]:any;
-}
 
 export default function ObjetivoPNV(){
     const classes = useStyles();

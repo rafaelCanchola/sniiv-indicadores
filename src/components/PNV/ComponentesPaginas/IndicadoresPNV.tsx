@@ -1,19 +1,17 @@
 import React, {Fragment, useState} from "react";
 import Paper from "@material-ui/core/Paper";
 import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary, Button,
+    Button,
     Dialog,
     DialogActions,
     DialogContent,
-    DialogTitle, styled,
+    DialogTitle,
 } from "@material-ui/core";
 import TableIcon from "@material-ui/icons/Toc";
 import ReactECharts from "echarts-for-react";
 
 import {colorBrewer} from "../../../utils/colorBrewer";
-import {assignStateColor, MobileSize, SaveToPDF} from "../../../utils/Utils";
+import {assignStateColor, MobileSize} from "../../../utils/Utils";
 
 import conavi from "../../../assets/images/conavi.png";
 import fovissste from "../../../assets/images/fovissste.png";
@@ -22,12 +20,9 @@ import insus from "../../../assets/images/insus.png";
 import shf from "../../../assets/images/shf.png";
 import sedatu from "../../../assets/images/sedatu.png";
 
-import IndicadoresBienestar from "./IndicadoresBienestar";
 import TableMUIPNV from "../Tablas/TableMUIPNV";
 import {useStyles} from "../../../utils/Style";
 import Leyenda from "../MUIComponents/Leyenda";
-import ChartIcon from "@material-ui/icons/InsertChart";
-
 
 
 interface IndicadorViviendaProps {
@@ -43,16 +38,12 @@ function namePieFormatter(value:string){
     switch (value){
         case 'concluida':
             return 'Concluida'
-            break;
         case 'enProceso':
             return 'En proceso'
-            break;
         case 'porIniciar':
             return 'Por Iniciar'
-            break;
         case 'sinRealizar':
             return 'No se realizarán'
-            break;
     }
 }
 

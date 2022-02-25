@@ -2,10 +2,7 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 import {useStyles} from "../../../utils/Style";
-import {styled} from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
 import {colorBrewer} from "../../../utils/colorBrewer";
-import ReactECharts from "echarts-for-react";
 
 export default function Leyenda(){
     const classes = useStyles();
