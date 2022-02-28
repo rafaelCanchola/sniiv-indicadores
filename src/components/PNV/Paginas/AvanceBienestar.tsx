@@ -52,14 +52,14 @@ export default class AvanceBienestar extends Component<any, any> {
                    <TotalesCumplimientoBienestar data={totales} callBack={handleCallback} callBack2={resetAll} periodo={'Trimestral 2021'}
                                                  seccion={'totales'} title={'Cumplimiento/Avances'}
                                                  titleTrimestral={"Informe Trimestral"} titleCifras={'acciones'}
-                                                 titleBar={'Porcentaje acumulado de cumplimento'}
+                                                 titleBar={'Porcentaje acumulado de cumplimento del 2021'}
                                                  titleInforme={'Informe Trimestral'} aAxis={'trimestre'}
                                                  bAxis={'total'} cAxis={'aCabo'}/>
                    <GridCumplimientoBienestar data={pnv1[0]} data2={pnv1[1]}
                                               fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
                                               titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                              periodo={ordinalNumber(this.state.trimestre) + " trimestre"}
-                                              titleBar={"Porcentaje de contribución según ONAVI"}
+                                              periodo={ordinalNumber(this.state.trimestre) + " trimestre 2021"}
+                                              titleBar={"Porcentaje de contribución según ONAVIS"}
                                               titleCifras={"acciones"}
                                               titlePie={"Estatus de las acciones según objetivo prioritario"}
                                               aAxis={"total"} bAxis={"concluida"}

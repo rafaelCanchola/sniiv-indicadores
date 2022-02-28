@@ -130,7 +130,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                                         <Grid container spacing={2}  >
                                             {graficas.map((card:any,key:number) =>
                                                 <Fragment key={key}>
-                                                        <CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
+                                                    <CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/>
                                                 </Fragment>
                                             )}
                                         </Grid>

@@ -42,6 +42,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
     const bienestar1 = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/7iHubpXhSW-a0tnkfn6PhA/content/adecuada.jpg?&a=true'
 
     const [indicador,setIndicador] = useState([20,20]);
+    const [accordion,setAccordion] = useState(true);
     const classes = useStyles();
 
     const elementos =[
@@ -131,14 +132,14 @@ export default function ViviendaAdecuada(props:ViviendaProps){
         },
         {
             titulo: "Asequibilidad",
-            tipo:'waterfall',
+            tipo:'pie',
             data: [{ficha:indicadorViv1}],//faltan las fichas
             chartTitle:['Proporción de viviendas particulares habitadas según motivo de renta','Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin, distribución según tipo de financiamiento','Proporción de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Proporción de viviendas por tipo de financiamiento respecto de las viviendas totales.'],
-            grafica:[[100,0.4,3.3,5.3,8,9.7,22,51.4],[100,2.1,3.5,9.6,18.1,66.8],[14.3,0.3,0.5,1.4,2.6,9.5],[100,0.8,2.6,3.3,5.8,19.8,67.7]],
-            label:[{chartLabel:['Total','No sabe', 'Prefiere invertir en su persona (viajes, estudios, negocio)','No le interesa comprar', 'Otra', 'La mensualidad es menor que una hipoteca', 'Por facilidad de poder mudarse, si cambia de ciudad o empleo', 'No tiene acceso a crédito (hipotecario o bancario) / No tiene recursos']},
-                {chartLabel: ['Total','Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
-                {chartLabel: ['Total','Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
-                {chartLabel: ['Total','No especificado','Le dio crédito otra institución','Le prestó un familiar, amigo o prestamista','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO','Usó sus propios recursos']}
+            grafica:[[0.4,3.3,5.3,8,9.7,22,51.4],[2.1,3.5,9.6,18.1,66.8],[0.3,0.5,1.4,2.6,9.5],[0.8,2.6,3.3,5.8,19.8,67.7]],
+            label:[{chartLabel:['No sabe', 'Prefiere invertir en su persona (viajes, estudios, negocio)','No le interesa comprar', 'Otra', 'La mensualidad es menor que una hipoteca', 'Por facilidad de poder mudarse, si cambia de ciudad o empleo', 'No tiene acceso a crédito (hipotecario o bancario) / No tiene recursos']},
+                {chartLabel: ['Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
+                {chartLabel: ['Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
+                {chartLabel: ['No especificado','Le dio crédito otra institución','Le prestó un familiar, amigo o prestamista','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO','Usó sus propios recursos']}
             ],
             xAxis:['Viviendas','Viviendas','Viviendas','Viviendas'],
             yAxis:['Porcentaje','Porcentaje','Porcentaje','Porcentaje'],
@@ -209,6 +210,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
 
     const handleCallback = (childData: any) => {
         setIndicador(childData)
+        setAccordion(false)
     }
 
     const GridVivienda =
@@ -245,7 +247,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                             <Grid container spacing={2}  >
                                 <Grid item xs={12} sm={12} md={12} >
                                     <br/>
-                                    <Accordion className={classes.paperGreen}>
+                                    <Accordion className={classes.paperGreen} expanded={accordion} onClick={() => setAccordion(!accordion)}>
                                         <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
                                             <Typography className={classes.textColor}>Selecciona un indicador</Typography>
                                         </AccordionSummary>
@@ -254,9 +256,8 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                                                 <Grid container spacing={2}  >
                                                     {elementos.map((card:any,key:number) =>
                                                         <Fragment key={key}>
-                                                            {(key === elementos.length-1)? <Grid item xs={4}></Grid> : <></>}
-                                                            <Grid item xs={4}>
-                                                                <CardVivienda selected={indicador[0] === key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image}/>
+                                                            <Grid container spacing={2}  >
+                                                                <CardVivienda selected={indicador[0] === 10? indicador[1]===key: indicador[0]-1===key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image}/>
                                                             </Grid>
                                                         </Fragment>
                                                     )}

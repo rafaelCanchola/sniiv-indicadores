@@ -20,6 +20,7 @@ import TableMUIPNV from "../../Tablas/TableMUIPNV";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import TableMUIViv from "../../Tablas/TableMUIViv";
+import {MobileSize} from "../../../../utils/Utils";
 
 
 interface BarProps {
@@ -103,11 +104,7 @@ const useStyles = makeStyles((theme:Theme) =>
     })
 );
 export default function BarCharts(props:BarProps){
-    const [width, setWidth] = useState<number>(window.innerWidth);
-    function handleWindowSizeChange() {setWidth(window.innerWidth);}
-    useEffect(() => {window.addEventListener('resize', handleWindowSizeChange);return () => {window.removeEventListener('resize', handleWindowSizeChange);}}, []);
-
-    const isMobile = width <= 768;
+    const isMobile = MobileSize();
 
 
     const classes = useStyles();

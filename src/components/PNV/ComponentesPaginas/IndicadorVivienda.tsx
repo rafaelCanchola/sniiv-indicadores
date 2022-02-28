@@ -11,6 +11,8 @@ import {colorBrewer} from "../../../utils/colorBrewer";
 import { assignColor} from "../../../utils/Utils";
 import BarChartNumber from "../Graficas/eCharts/BarChartNumber";
 import {useStyles} from "../../../utils/Style";
+import PieChart from "../Graficas/eCharts/PieChart";
+import Paper from "@material-ui/core/Paper";
 
 
 interface IndicadorViviendaProps {
@@ -26,32 +28,52 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
     const classes = useStyles();
     let colors = assignColor(10)
     let dataBar: any[]
+    props.indicador.grafica[props.indicadorIndex].sort((a:any,b:any) => {return a - b})
     if(props.indicador.tipo === 'waterfall'){
         dataBar = props.indicador.grafica[props.indicadorIndex]
     }
-    else {
+    else if(props.indicador.tipo === 'pie'){
         dataBar = props.indicador.grafica[props.indicadorIndex].map((d: AxisChart,key:number) =>
-            ({value:(d),itemStyle:{color: colorBrewer.T4Green[colors[key]]}}))
+            ({value:(d),name:props.indicador.label[props.indicadorIndex].chartLabel[key],itemStyle:{color: colorBrewer.T4Green[key]}}))
+    }
+    else{
+        dataBar = props.indicador.grafica[props.indicadorIndex].map((d: AxisChart,key:number) =>
+            ({value:(d),itemStyle:{color: colorBrewer.T4Green[key]}}))
     }
     return(
         <div className={classes.root}>
             <h3 className={classes.textColorGrey}>{props.indicador.titulo}</h3>
-            {props.indicador.tipo === 'dual' ?
-                <Grid container spacing={2}  >
-                    <BarChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} xAxis={props.indicador.xAxis[props.indicadorIndex]} yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
-                </Grid>
-            : props.indicador.tipo === 'waterfall' ?
-                    <Grid container spacing={2}  >
-                        <Waterfall title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} xAxis={props.indicador.xAxis[props.indicadorIndex]} yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
-                    </Grid>
-                    : props.indicador.tipo === 'dualBar' ?
-                        <Grid container spacing={2}  >
-                            <BarChartNumber title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar} label={props.indicador.label[props.indicadorIndex]} xAxis={props.indicador.xAxis[props.indicadorIndex]} yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
-                        </Grid>
-                            :
-                        <Grid container spacing={2}  >
-                            <BarChart title={props.indicador.chartTitle} data={dataBar} label={props.indicador.label} xAxis={props.indicador.xAxis[props.indicadorIndex]} yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
-                        </Grid>
+            {props.indicador.tipo === 'dual' &&
+            <Grid container spacing={2}>
+                <BarChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
+                          label={props.indicador.label[props.indicadorIndex]}
+                          xAxis={props.indicador.xAxis[props.indicadorIndex]}
+                          yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
+            </Grid>
+            }
+            {props.indicador.tipo === 'waterfall' &&
+            <Grid container spacing={2}>
+                <Waterfall title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
+                           label={props.indicador.label[props.indicadorIndex]}
+                           xAxis={props.indicador.xAxis[props.indicadorIndex]}
+                           yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
+            </Grid>
+            }
+            {props.indicador.tipo === 'dualBar' &&
+            <Grid container spacing={2}>
+                <BarChartNumber title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
+                                label={props.indicador.label[props.indicadorIndex]}
+                                xAxis={props.indicador.xAxis[props.indicadorIndex]}
+                                yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
+            </Grid>
+            }
+            {props.indicador.tipo === 'pie' &&
+            <Grid container spacing={2}  >
+                <PieChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
+                           label={props.indicador.label[props.indicadorIndex]}
+                           xAxis={props.indicador.xAxis[props.indicadorIndex]}
+                           yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
+            </Grid>
             }
             {props.indicador.data[props.indicadorIndex] !== undefined?
                 <Grid container spacing={2}  >

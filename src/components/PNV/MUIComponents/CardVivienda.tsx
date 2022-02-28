@@ -6,6 +6,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {CardActionArea, IconButton} from "@material-ui/core";
 import EqualizerIcon from '@material-ui/icons/Equalizer';
+import InfoIcon from '@material-ui/icons/Info';
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,18 +57,31 @@ export default function CardVivienda(props:CardProps) {
     return (
         <Fragment>
             { props.mobile ?
-                    <Card className={props.selected? classes.rootSelected:classes.root}>
-                        <div className={classes.details}>
-                            {props.children.map((child:any,key:any) =>
+                <Fragment>
+                    <Grid item xs={12}>
+                        <Card className={classes.root}>
+                            <div className={classes.details}>
                                 <div className={classes.controls}>
-                                    <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
-                                        <EqualizerIcon fontSize={'large'}/>
-                                    </IconButton>
+                                    <Button onClick={() => props.callBack([10,props.obj-1])}  >
+                                        <InfoIcon fontSize={'medium'}/> <Typography variant="body2" color="textSecondary">{props.title}</Typography>
+                                    </Button>
                                 </div>
-                            )}
-                        </div>
-                        <CardMedia className={classes.cover} image={props.image} title={props.title}/>
-                    </Card>
+                            </div>
+                        </Card>
+                    {props.children.map((child:any,key:any) =>
+                            <Card className={classes.root}>
+                                <div className={classes.details}>
+                                    <div className={classes.controls}>
+                                        <Button onClick={() => props.callBack([props.obj,child])} key={key} >
+                                            <EqualizerIcon fontSize={'medium'}/> <Typography variant="body2" color="textSecondary">{props.title+" indicador "+(child+1)}</Typography>
+                                        </Button>
+                                    </div>
+                                </div>
+                            </Card>
+                    )}
+                    </Grid>
+                    <Grid item xs={12}></Grid>
+                </Fragment>
                 :
                 <Card className={props.selected? classes.rootSelected:classes.root}>
                     <div className={classes.details}>

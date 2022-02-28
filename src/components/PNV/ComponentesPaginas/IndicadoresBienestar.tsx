@@ -163,11 +163,11 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         <Fragment>
                     <Paper elevation={3} className={classes.paper} >
                         <Grid container >
-                            <Grid item xs={4} md={5}></Grid>
+                            <Grid item xs={3} md={5}></Grid>
                             <Grid item xs={2} md={1}>
                                 <Avatar aria-label="avatar" className={myClass.avatar}><img src={props.image} className={classes.imageIcon} alt={"Imagen"}/></Avatar>
                             </Grid>
-                            <Grid item xs={3} md={2}>
+                            <Grid item xs={4} md={2}>
                                 <h3 className={classes.textColorBlack}>Objetivo {props.indicadorIndex+1}</h3>
                             </Grid>
                             <Grid item xs={12}>
@@ -184,7 +184,7 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
             <BienestarBarChart tableData={bienestar} indicadorIndex={props.indicadorIndex}/>
             <Dialog fullScreen={isMobile} open={clickTableMap[props.indicadorIndex].state} onClose={clickTableMap[props.indicadorIndex].func} aria-labelledby={'customized-dialog-title'} maxWidth={"md"} >
                 <DialogTitle>
-                    {"Fichas Técnicas del Objetivo "+(props.indicadorIndex+1)}
+                    {"Acciones puntuales del Objetivo "+(props.indicadorIndex+1)+ ' del PNV 2021-2024'}
                 </DialogTitle>
                 <DialogContent dividers>
                     <Grid container spacing={2}  >
