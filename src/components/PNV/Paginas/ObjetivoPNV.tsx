@@ -169,10 +169,18 @@ export default function ObjetivoPNV(){
                     <Grid container spacing={2} alignItems={'center'} >
                         {isMobile ?
                             <Fragment >
-                                <Grid item xs={1}></Grid>
-                                {objetivos.map(card =>
+                                {objetivos.slice(0,3).map(card =>
                                     <Fragment key={card.obj}>
-                                        <Grid item xs={2}>
+                                        <Grid item xs={4}>
+                                            <CardObjetivo callBack={handleCallback} title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla} index={card.index} color={card.color}/>
+                                        </Grid>
+                                        <br/>
+                                    </Fragment>
+                                )}
+                                <Grid item xs={2}></Grid>
+                                {objetivos.slice(3).map(card =>
+                                    <Fragment key={card.obj}>
+                                        <Grid item xs={4}>
                                             <CardObjetivo callBack={handleCallback} title={card.title} content={card.obj} more={card.more} image={card.img} tabla={card.tabla} index={card.index} color={card.color}/>
                                         </Grid>
                                         <br/>
