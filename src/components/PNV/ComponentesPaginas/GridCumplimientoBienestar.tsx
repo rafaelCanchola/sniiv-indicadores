@@ -46,6 +46,8 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
     const isMobile = MobileSize();
 
     const [indicador,setIndicador] = useState([1,0]);
+    const [accordion,setAccordion] = useState(false);
+
     const classes = useStyles();
     let dataRow = props.data.map((d: AxisChart,key:number) =>
         ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),name:key+1,itemStyle:{color: assignObjetivosColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
@@ -66,14 +68,14 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
             num: 2,
             title: props.titleBar,
             image:onavi,
-            more:"",
+            more:"Porcentaje de contribución Objetivo ",
             children:[0,1,2,3,4]
         },
         {
             num: 3,
             title: props.titlePie,
             image:estatus,
-            more:"",
+            more:"Estatus de las acciones Objetivo ",
             children:[0,1,2,3,4]
         },
 
@@ -111,6 +113,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
 
     const handleCallback = (childData: any) => {
         setIndicador(childData)
+        setAccordion(false)
     }
 
     return(
@@ -121,7 +124,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                     <Grid container spacing={2}  >
                         <Grid item xs={12} sm={12} md={12} >
                             <br/>
-                            <Accordion className={classes.paperGold}>
+                            <Accordion className={classes.paperGold} expanded={accordion} onClick={() => setAccordion(!accordion)}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon/>} aria-controls="panel1a-content" id="panel1a-header">
                                     <Typography className={classes.textColor}>Selecciona un indicador</Typography>
                                 </AccordionSummary>

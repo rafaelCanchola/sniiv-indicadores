@@ -42,6 +42,7 @@ export default class AvanceBienestar extends Component<any, any> {
         }
         const resetAll = () => {
             this.setState({reiniciar: !this.state.reiniciar});
+            this.setState({trimestre: 3});
         }
 
         const pnv1 = parseInt(this.state.trimestre) === 3 ? [cumplimientoPNV3,cumplimientoONAVIPNV3] :

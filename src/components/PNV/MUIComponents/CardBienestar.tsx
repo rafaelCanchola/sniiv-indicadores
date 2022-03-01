@@ -88,14 +88,14 @@ export default function CardBienestar(props:CardProps) {
                     </CardContent>
                     <div className={classes.controls}>
                         {props.children.slice(0,3).map((child:any,key:any) =>
-                            <Button onClick={() => props.callBack([props.obj,child])} key={key} onMouseOver={clicks[key][0]} onMouseOut={clicks[key][1]} className={classes.textColorGrey} >
+                            <Button onClick={() => props.callBack([props.obj,child])} key={key} onMouseOver={clicks[key][0]} onMouseOut={clicks[key][1]} className={classes.textCard} >
                                 {objs[key] ?"Objetivo "+(key+1):<Avatar aria-label="avatar" className={images[key].color}><img src={images[key].img} className={classes.imageIcon} alt={"Imagen"}/></Avatar>}
                             </Button>
                         )}
                     </div>
                     <div className={classes.controls}>
                         {props.children.slice(3).map((child:any,key:any) =>
-                            <Button onClick={() => props.callBack([props.obj,child])} key={key} onMouseOver={clicks[key+3][0]} onMouseOut={clicks[key+3][1]} className={classes.textColorGrey}>
+                            <Button onClick={() => props.callBack([props.obj,child])} key={key} onMouseOver={clicks[key+3][0]} onMouseOut={clicks[key+3][1]} className={classes.textCard}>
                                 {objs[key+3] ?"Objetivo "+(key+4):<Avatar aria-label="avatar" className={images[key+3].color}><img src={images[key+3].img} className={classes.imageIcon} alt={"Imagen"}/></Avatar>}
                             </Button>
                         )}
@@ -124,7 +124,7 @@ export default function CardBienestar(props:CardProps) {
                                 <div className={classes.details}>
                                     <div className={classes.controls}>
                                         <Button onClick={() => props.callBack([props.obj,child])} key={key} >
-                                            <Avatar aria-label="avatar" className={images[key].color}><img src={images[key].img} className={classes.imageIcon} alt={"Imagen"}/></Avatar><Typography variant="body2" color="textSecondary">{'  Estatus de las acciones objetivo '+(child+1)}</Typography>
+                                            <Avatar aria-label="avatar" className={images[key].color}><img src={images[key].img} className={classes.imageIcon} alt={"Imagen"}/></Avatar><Typography variant="body2" color="textSecondary">{props.more+(child+1)}</Typography>
                                         </Button>
                                     </div>
 

@@ -133,7 +133,9 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                         <Paper elevation={0} className={classes.paperImage3}>
                             <Paper elevation={3} className={classes.paper}>
                                 <h2 className={classes.textColorGrey}>{props.titleBar}</h2>
-                                <AutorenewIcon className={classes.textColorGrey} fontSize={'large'} onClick={() => {props.callBack2()}}/>
+                                {
+                                    //<AutorenewIcon className={classes.textColorGrey} fontSize={'large'} onClick={() => {props.callBack2()}}/>
+                                }
                                 <ReactECharts option={option} onEvents={onEvents} />
                             </Paper>
                         </Paper>

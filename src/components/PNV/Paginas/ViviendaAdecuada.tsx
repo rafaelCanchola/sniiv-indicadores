@@ -42,7 +42,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
     const bienestar1 = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/7iHubpXhSW-a0tnkfn6PhA/content/adecuada.jpg?&a=true'
 
     const [indicador,setIndicador] = useState([20,20]);
-    const [accordion,setAccordion] = useState(true);
+    const [accordion,setAccordion] = useState(false);
     const classes = useStyles();
 
     const elementos =[

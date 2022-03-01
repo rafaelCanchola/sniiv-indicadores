@@ -266,7 +266,6 @@ export const useStyles = makeStyles((theme:Theme) =>
         textColorGrey:{
             color: theme.palette.text.secondary,
             fontFamily:'Montserrat',
-            fontSize:11,
         },
         textColorBlack:{
             color: theme.palette.text.primary,
