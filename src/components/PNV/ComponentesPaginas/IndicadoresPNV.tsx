@@ -123,6 +123,9 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
     }
     const iconHeight = isMobile ? 20: 30;
     const iconWidth = isMobile ? 35: 60;
+
+    const barData = props.indicador.data.filter((dat:any) => dat.obj === props.indicadorIndex+1);
+    const labelBarData = barData.map((dat:any) => dat.name.slice(0,4))
     const GaugeChart = {
         tooltip: {
             formatter:'Objetivo {b} <br/><b>{c}%</b>',
@@ -255,7 +258,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                     },
                 }
             },
-            data: props.indicador.label,
+            data: labelBarData,
         },
         grid:{
             left:'12%',
@@ -267,7 +270,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                 type: 'bar',
                 showBackground: false,
                 label:{
-                    show:false,
+                    show:true,
                     position:"top",
                     type:"value",
                     formatter: (data:any) => data.value +" %",
@@ -279,7 +282,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
                 },
-                data: props.indicador.data
+                data: barData//props.indicador.data
             },
         ],
         color:colorBrewer.Objetivos,
@@ -299,42 +302,44 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
 
     return(
         <div className={classes.root}>
-            {props.indicador.tipo === 'gauge' ?
+            {props.indicador.tipo === 'gauge' &&
+            <Paper elevation={0} className={classes.paper}>
+                <h2>{props.indicador.title}</h2>
+                <h3>{props.indicador.trimestre}</h3>
+                <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover1(true)}
+                        onMouseOut={() => setTableHover1(false)} onClick={handleClickOpen1}>
+                    {tableHover1 ? "Ficha técnica" : <TableIcon fontSize={"large"}/>}
+                </Button>
+                <Leyenda/>
+                <Paper elevation={3} className={classes.paper}>
+                    <ReactECharts option={GaugeChart} className={classes.gauge}/>
+                </Paper>
+            </Paper>
+            }
+            {props.indicador.tipo === 'bar' &&
+            <Paper elevation={0} className={classes.paper}>
+                <h2>{props.indicador.title}</h2>
+                <h3>{props.indicador.trimestre}</h3>
+                <Leyenda/>
+                <Paper elevation={3} className={classes.paper}>
+                    <ReactECharts option={BarChart}/>
+                </Paper>
+            </Paper>
+            }
+            {props.indicador.tipo === 'pie' &&
+            <Fragment>
                 <Paper elevation={0} className={classes.paper}>
                     <h2>{props.indicador.title}</h2>
                     <h3>{props.indicador.trimestre}</h3>
-                    <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover1(true)} onMouseOut={() => setTableHover1(false)}  onClick={handleClickOpen1}>
-                        {tableHover1 ? "Ficha técnica" :<TableIcon fontSize={"large"}/>}
+                    <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover2(true)}
+                            onMouseOut={() => setTableHover2(false)} onClick={handleClickOpen3}>
+                        {tableHover2 ? "Ficha técnica" : <TableIcon fontSize={"large"}/>}
                     </Button>
-                    <Leyenda />
                     <Paper elevation={3} className={classes.paper}>
-                        <ReactECharts option={GaugeChart} className={classes.gauge} />
+                        <ReactECharts option={orderPie(propsPie, props.indicadorIndex + 1)}/>
                     </Paper>
                 </Paper>
-                : props.indicador.tipo === 'bar' ?
-                    <Paper elevation={0} className={classes.paper}>
-                        <h2>{props.indicador.title}</h2>
-                        <h3>{props.indicador.trimestre}</h3>
-                        <Leyenda />
-                        <Paper elevation={3} className={classes.paper}>
-                            <ReactECharts option={BarChart}  />
-                        </Paper>
-                    </Paper>
-                    : props.indicador.tipo === 'pie' ?
-                        <Fragment>
-                            <Paper elevation={0} className={classes.paper}>
-                                <h2>{props.indicador.title}</h2>
-                                <h3>{props.indicador.trimestre}</h3>
-                                <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover2(true)} onMouseOut={() => setTableHover2(false)}  onClick={handleClickOpen3}>
-                                    {tableHover2 ? "Ficha técnica" :<TableIcon fontSize={"large"}/>}
-                                </Button>
-                                <Paper elevation={3} className={classes.paper}>
-                                    <ReactECharts option={orderPie(propsPie,props.indicadorIndex+1)}   />
-                                </Paper>
-                            </Paper>
-                        </Fragment>
-
-                            : <></>
+            </Fragment>
             }
             <Dialog fullScreen={isMobile} open={open1} onClose={handleClose1} aria-labelledby={'customized-dialog-title'} maxWidth={"md"}>
                 <DialogTitle>

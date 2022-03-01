@@ -149,6 +149,10 @@ export default function ObjetivoPNV(){
             <Paper className={classes.paperContainer4}>
                 <div className={classes.root}>
                     <Grid container spacing={3}>
+                        <Grid item xs={12} md={12}>
+                            <h3 className={classes.textColor}>{"5 objetivos prioritarios"}</h3>
+                            <h3 className={classes.textColor}>{"113 acciones puntuales"}</h3>
+                        </Grid>
                         <Grid item xs={12} sm={12} md={3} >
                             <Paper elevation={0} className={classes.paperImage4}>
                                 <h3 className={classes.textColor}>{"Conoce el Programa Nacional de Vivienda"}</h3>
@@ -157,8 +161,6 @@ export default function ObjetivoPNV(){
                         </Grid>
                         <Grid item xs={12} sm={12} md={9}>
                                 <br/>
-                                <h3 className={classes.textColor}>{"5 objetivos prioritarios"}</h3>
-                                <h3 className={classes.textColor}>{"113 acciones puntuales"}</h3>
                                 <Paper elevation={3} className={classes.paper}>
                                     <h4 className={classes.textColorGrey}>{"Distribución de las acciones puntuales, según objetivo prioritario y organismo de vivienda"}</h4>
                                     <ReactECharts option={sankey} />

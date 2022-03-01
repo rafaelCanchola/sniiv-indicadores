@@ -51,7 +51,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
         ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),name:key+1,itemStyle:{color: assignObjetivosColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
         .reverse()
     let dataBar = props.data2.map((d: AxisChart) =>
-        ({value:(d[props.aAxis] === 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),itemStyle:{color: assignObjetivosColor(d[props.hAxis])}}))
+        ({obj:d.tipoObjetivo,name:d.organismo ,value:(d[props.aAxis] === 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),itemStyle:{color: assignObjetivosColor(d[props.hAxis])}}))
     let labelDataBar = props.data2.map((d: AxisChart) => d[props.gAxis])
     let sliceDataBar = labelDataBar.map((name:any )=> name.slice(0,4))
     const graficas =[
@@ -67,7 +67,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
             title: props.titleBar,
             image:onavi,
             more:"",
-            children:[]
+            children:[0,1,2,3,4]
         },
         {
             num: 3,

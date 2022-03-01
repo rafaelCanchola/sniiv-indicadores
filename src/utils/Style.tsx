@@ -121,7 +121,7 @@ export const useStyles = makeStyles((theme:Theme) =>
             alignItems: 'right'
         },
         textCardCenter:{
-            fontSize:10,
+            fontSize:10.5,
             color:theme.palette.text.secondary,
             fontFamily:'Montserrat',
             textAlign:'center'
@@ -266,6 +266,7 @@ export const useStyles = makeStyles((theme:Theme) =>
         textColorGrey:{
             color: theme.palette.text.secondary,
             fontFamily:'Montserrat',
+            fontSize:11,
         },
         textColorBlack:{
             color: theme.palette.text.primary,
