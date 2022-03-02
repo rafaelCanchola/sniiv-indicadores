@@ -69,10 +69,15 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
             }
             {props.indicador.tipo === 'pie' &&
             <Grid container spacing={2}  >
-                <PieChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
+                {dataBar[0].value > 1000 ?
+                    <BarChartNumber title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
+                                    label={props.indicador.label[props.indicadorIndex]}
+                                    xAxis={props.indicador.xAxis[props.indicadorIndex]}
+                                    yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
+                    :<PieChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
                            label={props.indicador.label[props.indicadorIndex]}
                            xAxis={props.indicador.xAxis[props.indicadorIndex]}
-                           yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
+                           yAxis={props.indicador.yAxis[props.indicadorIndex]}/>}
             </Grid>
             }
             {props.indicador.data[props.indicadorIndex] !== undefined?
