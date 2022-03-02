@@ -256,6 +256,10 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                         :
                         <Fragment>
                             <Grid item xs={12} sm={3} md={3}>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
                                 {elementos.slice(0,4).map((card:any,key:number )=>
                                     <Paper elevation={0} className={classes.paperImage2} key={key}>
                                         <CardVivienda selected={indicador[0] === 10? indicador[1]===key: indicador[0]-1===key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
@@ -266,6 +270,11 @@ export default function ViviendaAdecuada(props:ViviendaProps){
                                 {GridVivienda}
                             </Grid>
                             <Grid item xs={12} sm={3} md={3}>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
                                 {elementos.slice(4).map((card:any,key:number ) =>
                                     <Paper elevation={0} className={classes.paperImage2} key={key}>
 
