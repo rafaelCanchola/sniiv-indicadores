@@ -93,14 +93,14 @@ export default function CardVivienda(props:CardProps) {
                             </CardActionArea>
                         </CardContent>
                         <div className={classes.controls}>
-                            {props.children.slice(0,2).map((child:any,key:any) =>
+                            {props.children.slice(0,3).map((child:any,key:any) =>
                                 <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
                                     <EqualizerIcon fontSize={'medium'}/>
                                 </IconButton>
                             )}
                         </div>
                         <div className={classes.controls}>
-                            {props.children.slice(2).map((child:any,key:any) =>
+                            {props.children.slice(3).map((child:any,key:any) =>
                                 <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
                                     <EqualizerIcon fontSize={'medium'}/>
                                 </IconButton>

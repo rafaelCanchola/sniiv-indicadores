@@ -65,7 +65,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             title: "ASEQUIBILIDAD",
             image:asequibilidad,
             more:"El costo de la vivienda debe ser tal que todas las personas puedan acceder a ella sin poner en peligro el disfrute de otros satisfactores básicos o el ejercicio de sus derechos humanos. Se considera que una vivienda es asequible si un hogar destina menos del 30% de su ingreso en gastos asociados a la vivienda (ONU, 2018).",
-            children:[0,1,2,3]
+            children:[0,1,2,3,4,5]
         },
         {
             num: 4,
@@ -94,13 +94,6 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             image:cultura,
             more:"Es una vivienda adecuada si su ubicación respeta y toma en cuenta la expresión de identidad cultural. La adecuación cultural puede ser abordada desde dos ángulos principales. Por un lado, las técnicas y los materiales que se emplean durante la construcción; por otro, el diseño de la vivienda y su entorno, y cómo se ajustan a las expectativas y anhelos que forman parte de la identidad cultural de cada región y grupo poblacional.",
             children:[0,]
-        },
-        {
-            num: 8,
-            title: "AUTOPRODUCCIÓN",
-            image:autoproduccion,
-            more:"",
-            children:[0,1]
         },
     ]
 
@@ -134,15 +127,17 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             titulo: "Asequibilidad",
             tipo:'pie',
             data: [{ficha:indicadorViv1}],//faltan las fichas
-            chartTitle:['Proporción de viviendas particulares habitadas según motivo de renta','Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin, distribución según tipo de financiamiento','Proporción de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Proporción de viviendas por tipo de financiamiento respecto de las viviendas totales.'],
-            grafica:[[0.4,3.3,5.3,8,9.7,22,51.4],[2.1,3.5,9.6,18.1,66.8],[0.3,0.5,1.4,2.6,9.5],[0.8,2.6,3.3,5.8,19.8,67.7]],
+            chartTitle:['Proporción de viviendas particulares habitadas según motivo de renta','Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin, distribución según tipo de financiamiento','Proporción de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Proporción de viviendas por tipo de financiamiento respecto de las viviendas totales.','Distribución promedio de las viviendas propias o propias en proceso de pago que fueron mandadas a construir, según decil de ingreso corriente del hogar','Distribución promedio de las viviendas propias o propias en proceso de pago que fueron construidas por el propietario, según decil de ingreso '],
+            grafica:[[0.4,3.3,5.3,8,9.7,22,51.4],[2.1,3.5,9.6,18.1,66.8],[0.3,0.5,1.4,2.6,9.5],[0.8,2.6,3.3,5.8,19.8,67.7],[10126,16830,22213,27530,33382,40041,48726,60466,80452,173161],[9890,16853,22277,27548,33386,40131,48566,60539,80275,152765]],
             label:[{chartLabel:['No sabe', 'Prefiere invertir en su persona (viajes, estudios, negocio)','No le interesa comprar', 'Otra', 'La mensualidad es menor que una hipoteca', 'Por facilidad de poder mudarse, si cambia de ciudad o empleo', 'No tiene acceso a crédito (hipotecario o bancario) / No tiene recursos']},
                 {chartLabel: ['Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
                 {chartLabel: ['Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
-                {chartLabel: ['No especificado','Le dio crédito otra institución','Le prestó un familiar, amigo o prestamista','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO','Usó sus propios recursos']}
+                {chartLabel: ['No especificado','Le dio crédito otra institución','Le prestó un familiar, amigo o prestamista','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO','Usó sus propios recursos']},{chartLabel:['Decil 1','Decil 2','Decil 3','Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']},
+                {chartLabel:['Decil 1','Decil 2','Decil 3','Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']}
+
             ],
-            xAxis:['Viviendas','Viviendas','Viviendas','Viviendas'],
-            yAxis:['Porcentaje','Porcentaje','Porcentaje','Porcentaje'],
+            xAxis:['Viviendas','Viviendas','Viviendas','Viviendas','Decil','Decil'],
+            yAxis:['Porcentaje','Porcentaje','Porcentaje','Porcentaje','Ingreso promedio (pesos)','Ingreso promedio (pesos)'],
             pdfName:['ase_vivi_ren'],
         },
         {
@@ -192,19 +187,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             xAxis:['Viviendas'],
             yAxis:['Porcentaje'],
             pdfName:['cul_viv_cos'],
-        },
-        {
-            titulo: "Autoproducción",
-            tipo:'dualBar',
-            chartTitle:['Distribución promedio de las viviendas propias o propias en proceso de pago que fueron mandadas a construir, según decil de ingreso corriente del hogar','Distribución promedio de las viviendas propias o propias en proceso de pago que fueron construidas por el propietario, según decil de ingreso '],
-            data: [],
-            grafica:[[10126,16830,22213,27530,33382,40041,48726,60466,80452,173161],[9890,16853,22277,27548,33386,40131,48566,60539,80275,152765]],
-            label:[{chartLabel:['Decil 1','Decil 2','Decil 3','Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']},
-                {chartLabel:['Decil 1','Decil 2','Decil 3','Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']}
-            ],
-            xAxis:['Decil','Decil'],
-            yAxis:['Ingreso promedio (pesos)','Ingreso promedio (pesos)']
-        },
+        }
 
     ]
 
