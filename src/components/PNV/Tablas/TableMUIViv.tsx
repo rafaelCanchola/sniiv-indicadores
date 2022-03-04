@@ -62,7 +62,6 @@ function TableMUIViv(props: TableProps) {
     const baseMap = Object.keys(props.data[childKeys[1]][lineaMap[0]]);
     const historicoMap = Object.keys(props.data[childKeys[2]]);
     const classes = useStyles();
-    console.log('ID TABLE:'+props.id)
     return (
         <Fragment>
 

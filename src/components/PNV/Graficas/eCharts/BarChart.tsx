@@ -14,7 +14,43 @@ interface BarChartProps{
 
 export default function BarChart(props:BarChartProps){
     const classes = useStyles();
+    const xAxis = [{
+                    name:props.xAxis,
+                    nameLocation:"center",
+                    data: props.label.chartLabel,
+                    axisLabel: {
+                        show:false,
+                        inside: false,
+                    },
+                    axisTick: {
+                        show: true
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    z: 10
+    }]
+    const series = [
+                {
+                    type: 'bar',
+                    showBackground: true,
+                    label:{
+                        show:false,
+                        position:"top",
+                        type:"value",
 
+                    },
+                    emphasis: {
+                        focus:'series',
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+                    data: props.data
+                },
+        ]
     const barChart = {
         tooltip:{
             trigger: 'axis',
@@ -23,23 +59,7 @@ export default function BarChart(props:BarChartProps){
             },
             formatter:'{b} <br/><b>{c}%</b>',
         },
-        xAxis: {
-            name:props.xAxis,
-            nameLocation:"center",
-            data: props.label.chartLabel,
-            axisLabel: {
-                show:false,
-                inside: true,
-                color: '#fff'
-            },
-            axisTick: {
-                show: true
-            },
-            axisLine: {
-                show: false
-            },
-            z: 10
-        },
+        xAxis,
         yAxis: {
             name:props.yAxis,
             nameLocation:"center",
@@ -53,29 +73,10 @@ export default function BarChart(props:BarChartProps){
                 color: '#999',
                 show:false,
             },
-            max: 100,
+            max: props.data[0].value <= 100 && 100,
         },
+        series
 
-        series: [
-            {
-                type: 'bar',
-                showBackground: true,
-                label:{
-                    show:false,
-                    position:"top",
-                    type:"value",
-
-                },
-                emphasis: {
-                    itemStyle: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                },
-                data: props.data
-            }
-        ]
     }
     return(
         <Grid item xs={12} sm={12} md={12} >

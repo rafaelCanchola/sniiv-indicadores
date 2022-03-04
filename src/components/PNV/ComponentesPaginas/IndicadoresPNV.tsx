@@ -263,7 +263,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
         grid:{
             left:'12%',
             right:'10%',
-            top:'5%'
+            top:'12%'
         },
         series: [
             {
