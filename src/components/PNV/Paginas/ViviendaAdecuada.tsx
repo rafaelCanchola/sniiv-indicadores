@@ -8,14 +8,31 @@ import RefreshIcon from "@material-ui/icons/RefreshOutlined";
 import CardVivienda from "../MUIComponents/CardVivienda";
 import {IndicadorVivienda} from "../ComponentesPaginas/IndicadorVivienda";
 
-import {indicadorViv1} from "../../../json/Vivienda/fichas_ind_v1";
-import {indicadorViv2} from "../../../json/Vivienda/fichas_ind_v2";
-import {indicadorViv3} from "../../../json/Vivienda/fichas_ind_v3";
-import {indicadorViv4} from "../../../json/Vivienda/fichas_ind_v4";
-import {indicadorViv5} from "../../../json/Vivienda/fichas_ind_v5";
-import {indicadorViv6} from "../../../json/Vivienda/fichas_ind_v6";
-import {indicadorViv7} from "../../../json/Vivienda/fichas_ind_v7";
-import {indicadorViv8} from "../../../json/Vivienda/fichas_ind_v8";
+import {indicadorViv1_1} from "../../../json/Vivienda/fichas_ind_v1_1";
+import {indicadorViv1_2} from "../../../json/Vivienda/fichas_ind_v1_2";
+import {indicadorViv2_1} from "../../../json/Vivienda/fichas_ind_v2_1";
+import {indicadorViv2_2} from "../../../json/Vivienda/fichas_ind_v2_2";
+import {indicadorViv2_3} from "../../../json/Vivienda/fichas_ind_v2_3";
+import {indicadorViv2_4} from "../../../json/Vivienda/fichas_ind_v2_4";
+import {indicadorViv2_5} from "../../../json/Vivienda/fichas_ind_v2_5";
+import {indicadorViv2_6} from "../../../json/Vivienda/fichas_ind_v2_6";
+import {indicadorViv2_7} from "../../../json/Vivienda/fichas_ind_v2_7";
+
+import {indicadorViv3_1} from "../../../json/Vivienda/fichas_ind_v3_1";
+import {indicadorViv3_2} from "../../../json/Vivienda/fichas_ind_v3_2";
+import {indicadorViv3_3} from "../../../json/Vivienda/fichas_ind_v3_3";
+import {indicadorViv3_4} from "../../../json/Vivienda/fichas_ind_v3_4";
+import {indicadorViv3_5} from "../../../json/Vivienda/fichas_ind_v3_5";
+import {indicadorViv3_6} from "../../../json/Vivienda/fichas_ind_v3_6";
+import {indicadorViv3_7} from "../../../json/Vivienda/fichas_ind_v3_7";
+
+import {indicadorViv4_1} from "../../../json/Vivienda/fichas_ind_v4_1";
+import {indicadorViv5_1} from "../../../json/Vivienda/fichas_ind_v5_1";
+import {indicadorViv5_2} from "../../../json/Vivienda/fichas_ind_v5_2";
+import {indicadorViv6_1} from "../../../json/Vivienda/fichas_ind_v6_1";
+import {indicadorViv6_2} from "../../../json/Vivienda/fichas_ind_v6_2";
+import {indicadorViv7_1} from "../../../json/Vivienda/fichas_ind_v7_1";
+
 
 import vivienda from "../../../assets/images/house-tr.png";
 import seguridad from "../../../assets/images/seguridad-tr.png";
@@ -101,30 +118,30 @@ export default function ViviendaAdecuada(props:ViviendaProps){
         {
             titulo: "Seguridad en la tenencia",
             tipo:'dual',
-            data:[],
+            data:[{ficha:indicadorViv1_1},{ficha:indicadorViv1_2},],
             chartTitle:['Porcentaje viviendas rentadas o prestadas','Porcentaje de viviendas propias sin escrituras o propias en proceso de pago sin escrituras'],
             grafica:[[29.1,27.8],[26.6,25.2]],
             label:[{chartLabel:['2018','2020']},{chartLabel:['2018','2020']}],
             xAxis:['Viviendas','Viviendas',],
             yAxis:['Porcentaje','Porcentaje',],
-            pdfName:[],
+            pdfName:['ind_viv1_1','ind_viv1_2',],
 
         },
         {
             titulo: "Disponibilidad de Servicios",
             tipo:'dual',
-            data:[],
+            data:[{ficha:indicadorViv2_1},{ficha:indicadorViv2_2},{ficha:indicadorViv2_3},{ficha:indicadorViv2_4},{ficha:indicadorViv2_5},{ficha:indicadorViv2_6},{ficha:indicadorViv2_7}],
             chartTitle:['Porcentaje de viviendas con tecnologías sostenibles/uso sustentable','Porcentaje de viviendas con carencia de acceso a agua','Porcentaje de viviendas con carencia de servicios de drenaje','Porcentaje de viviendas con carencia de servicios de electricidad','Porcentaje de vivienda con carencia de servicios de combustible','Porcentaje de viviendas con carencia de acceso a los servicios básicos','Porcentaje de población en pobreza extrema con carencia en calidad, espacios y servicios básicos en la vivienda',],
             grafica:[[2.1,2.1],[6.6,6.4],[5.9,7.8],[0.5,0.3],[11.4,10.4],[18.3,16.5],[47.7,48.7]],
             label:[{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']}],
             xAxis:['Años','Años','Años','Años','Años','Años','Años',],
             yAxis:['Porcentaje','Porcentaje','Porcentaje','Porcentaje','Porcentaje','Porcentaje','Porcentaje'],
-            pdfName:[],
+            pdfName:['ind_viv2_1','ind_viv2_2','ind_viv2_3','ind_viv2_4','ind_viv2_5','ind_viv2_6','ind_viv2_7',],
         },
         {
             titulo: "Asequibilidad",
             tipo:'dual',
-            data: [{ficha:indicadorViv1}],//faltan las fichas
+            data: [{ficha:indicadorViv3_1},{ficha:indicadorViv3_2},{ficha:indicadorViv3_3},{ficha:indicadorViv3_4},{ficha:indicadorViv3_5},{ficha:indicadorViv3_6},{ficha:indicadorViv3_7},],//faltan las fichas
             chartTitle: ['Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin','Porcentaje de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Porcentaje de vivienda adquirida (propia o en proceso de pago) según tipo de financiamiento','Porcentaje promedio del ingreso mensual destinado para pagar vivienda (1er quintil)','Porcentaje de viviendas autoproducidas o autoconstruidas','Porcentaje de viviendas autoproducidas o autoconstruidas primer quintil de ingreso','Monto promedio del pago mensual por la vivienda autoproducida o autoconstruida',],
             grafica:[[6.8,7.2],[24.7,21.2],{'A':[19.9,20],'B':[8.9,8.5],'C':[71.2,71.5]},[36.6,37.4],[63.7,63.2],[76.1,80.3],[3034.19,3045.3]],
             label:[{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['Público','Privado','Propio']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},],
@@ -146,53 +163,53 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             xAxis:['Viviendas','Viviendas','Viviendas','Viviendas','Decil','Decil'],
             yAxis:['Porcentaje','Porcentaje','Porcentaje','Porcentaje','Ingreso promedio (pesos)','Ingreso promedio (pesos)'],
              */
-            pdfName:['ase_vivi_ren'],
+            pdfName:['ind_viv3_1','ind_viv3_2','ind_viv3_3','ind_viv3_4','ind_viv3_5','ind_viv3_6','ind_viv3_7',],
         },
         {
             titulo: "Habitabilidad",
             tipo:'dual',
             chartTitle:['Porcentaje de viviendas más de 30 de antigüedad con problemas estructurales'],
-            data: [],
+            data: [{ficha:indicadorViv4_1},],
             grafica:[['0',13.5]],
             label:[{chartLabel: ['2018','2020']},],
             xAxis:['Años'],
             yAxis:['Porcentaje'],
-            pdfName:['','hab_viv_est','hab_viv_hab'],
+            pdfName:['ind_viv4_1',],
         },
         {
             titulo: "Accesibilidad",
             tipo:'dual',
             chartTitle:['Porcentaje de viviendas que requieren de adaptaciones para personas con discapacidad','Porcentaje de percepción de barrio o localidad poco incluyente y accesible para personas con discapacidad'],
-            data: [],
+            data: [{ficha:indicadorViv5_1},{ficha:indicadorViv5_2},],
             grafica:[[0,16.9],[0,41.3]],
             label:[{chartLabel: ['2018','2020']},
                 {chartLabel: ['2018','2020']}],
             xAxis:['Años','Años'],
             yAxis:['Porcentaje','Porcentaje'],
-            pdfName:['acc_viv_est','acc_viv_hab'],
+            pdfName:['ind_viv5_1','ind_viv5_2',],
         },
         {
             titulo: "Ubicación",
             tipo:'dual',
             chartTitle:['Porcentaje de viviendas con problemáticas de contaminación, ruido, inseguridad y vandalismo','Porcentaje de viviendas con satisfacción distancia-tiempo entre vivienda y servicios'],
-            data: [],
+            data: [{ficha:indicadorViv6_1},{ficha:indicadorViv6_2},],
             grafica:[{A:[41.4],B:[10.6],C:[28.6]},{A:[48.8],B:[67.7],C:[44.1]}],
             label:[{chartLabel: ['Contaminación (auditiva, en calles, ambiente y por fábricas)','Viviendas o espacios públicos abandonados o deteriorados','Vandalismo y violencia']},
                 {chartLabel:['Trabajo','Servicios (centros escolares, centros de salud o mercados o centros comerciales)','Recreación y esparcimiento (espacios deportivos o centros de recreación o instalaciones culturales)']}],
             xAxis:[['2020'],['2020']],
             yAxis:['Porcentaje','Porcentaje'],
-            pdfName:['ubi_viv_sati','ubi_viv_prob'],
+            pdfName:['ind_viv6_1','ind_viv6_2',],
         },
         {
             titulo: "Adecuación cultural",
             tipo:'dual',
             chartTitle:[' Porcentaje de viviendas con Adecuación cultural'],
-            data: [],
+            data: [{ficha:indicadorViv7_1},],
             grafica:[[51.23,]],
             label:[{chartLabel:['2020']}],
             xAxis:[['Años']],
             yAxis:['Porcentaje'],
-            pdfName:['cul_viv_cos'],
+            pdfName:['ind_viv7_1',],
         }
 
     ]
