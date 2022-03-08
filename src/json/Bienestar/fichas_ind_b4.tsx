@@ -62,7 +62,8 @@ export const ind_b4 ={
         "2017":2340,
         "2018":"ND",
         "2019":"ND",
-        "2020":"ND" 
+        "2020":"ND",
+        "2021":0,
     },
     "METAS INTERMEDIAS":
     {

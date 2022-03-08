@@ -72,58 +72,58 @@ export default function TableMUIPNV(props: TableProps) {
                             onClick={() => HTMLToPDF(props.pdfName, props.id,true ) } className={classes.textCardCenter}>Descargar ficha técnica <PictureAsPdfIcon/></Button>
                     <Table className={classes.table} id={props.id} >
                         <TableBody >
-                            <TableRow ><TableCell className={classes.head} align={"center"} colSpan={10}>{props.data[dataKeys[0]]}</TableCell></TableRow>
+                            <TableRow ><TableCell className={classes.head} align={"center"} colSpan={11}>{props.data[dataKeys[0]]}</TableCell></TableRow>
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[1]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={7}>{props.data[dataKeys[1]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={9}>{props.data[dataKeys[1]]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[2]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={7}>{props.data[dataKeys[2]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={9}>{props.data[dataKeys[2]]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[3]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[3]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[3]]}</TableCell>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[4]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[4]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[4]]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[5]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[5]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[5]]}</TableCell>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[6]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[6]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[6]]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[7]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[7]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[7]]}</TableCell>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[8]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[8]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[8]]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[9]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[9]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[9]]}</TableCell>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[10]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[10]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[10]]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[11]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[11]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[11]]}</TableCell>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={2}>{dataKeys[12]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[dataKeys[12]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={4}>{props.data[dataKeys[12]]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={3}>{dataKeys[13]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={7}>{props.data[dataKeys[13]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={8}>{props.data[dataKeys[13]]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={3}>{dataKeys[14]}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={7}>{props.data[dataKeys[14]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={8}>{props.data[dataKeys[14]]}</TableCell>
                             </TableRow>
-                            <TableRow><TableCell className={classes.head} align={"center"} colSpan={10}>{childKeys[0]}</TableCell></TableRow>
+                            <TableRow><TableCell className={classes.head} align={"center"} colSpan={11}>{childKeys[0]}</TableCell></TableRow>
                             {variablesMap.map((data:any, keys:any) =>
                                 <TableRow key={"Nombre variable " +(keys+1)}>
                                     <TableCell className={classes.colHead} align={"center"} colSpan={2}>{"Nombre variable " +(keys+1)}</TableCell>
-                                    <TableCell className={classes.body} align={"center"} colSpan={2}>{data["Nombre variable"]}</TableCell>
+                                    <TableCell className={classes.body} align={"center"} colSpan={3}>{data["Nombre variable"]}</TableCell>
                                     <TableCell className={classes.colHead} align={"center"} colSpan={1}>{"Valor variable " +(keys+1)}</TableCell>
                                     <TableCell className={classes.body} align={"center"} colSpan={2}>{data["Valor variable"].toLocaleString()}</TableCell>
                                     <TableCell className={classes.colHead} align={"center"} colSpan={1}>{"Fuente de información variable " +(keys+1)}</TableCell>
@@ -132,17 +132,17 @@ export default function TableMUIPNV(props: TableProps) {
                             )}
                             <TableRow>
                                 <TableCell className={classes.colHead} align={"center"} colSpan={3}>{variableslast}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={7}>{props.data[childKeys[0]][variableslast]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={8}>{props.data[childKeys[0]][variableslast]}</TableCell>
                             </TableRow>
-                            <TableRow><TableCell className={classes.head} align={"center"} colSpan={10}>{childKeys[1]}</TableCell></TableRow>
+                            <TableRow><TableCell className={classes.head} align={"center"} colSpan={11}>{childKeys[1]}</TableCell></TableRow>
                             <TableRow>
                                 <TableCell align={"center"} className={classes.colHead} colSpan={5}>{lineaMap[0]}</TableCell>
-                                <TableCell align={"center"} className={classes.colHead} colSpan={5}>{lineaMap[1]}</TableCell>
+                                <TableCell align={"center"} className={classes.colHead} colSpan={6}>{lineaMap[1]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell align={"center"} className={classes.colHead} colSpan={2}>{baseMap[0]}</TableCell>
                                 <TableCell className={classes.body} align={"center"} colSpan={3}>{props.data[childKeys[1]][lineaMap[0]][baseMap[0]].toLocaleString()}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={5}>{props.data[childKeys[1]][lineaMap[1]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={6}>{props.data[childKeys[1]][lineaMap[1]]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell align={"center"} className={classes.colHead} colSpan={2}>{baseMap[1]}</TableCell>
@@ -150,13 +150,13 @@ export default function TableMUIPNV(props: TableProps) {
                             </TableRow>
                             <TableRow>
                                 <TableCell align={"center"} className={classes.colHead} colSpan={5}>{lineaMap[2]}</TableCell>
-                                <TableCell align={"center"} className={classes.colHead} colSpan={5}>{lineaMap[3]}</TableCell>
+                                <TableCell align={"center"} className={classes.colHead} colSpan={6}>{lineaMap[3]}</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell className={classes.body} align={"center"} colSpan={5}>{props.data[childKeys[1]][lineaMap[2]].toLocaleString()}</TableCell>
-                                <TableCell className={classes.body} align={"center"} colSpan={5}>{props.data[childKeys[1]][lineaMap[3]]}</TableCell>
+                                <TableCell className={classes.body} align={"center"} colSpan={6}>{props.data[childKeys[1]][lineaMap[3]]}</TableCell>
                             </TableRow>
-                            <TableRow><TableCell align={"center"} className={classes.head} colSpan={10}>{childKeys[2]}</TableCell></TableRow>
+                            <TableRow><TableCell align={"center"} className={classes.head} colSpan={11}>{childKeys[2]}</TableCell></TableRow>
                             <TableRow>
 
                                 <TableCell key={'tb0'} className={classes.colHead} align={"center"} colSpan={1}>{""}</TableCell>
@@ -171,9 +171,9 @@ export default function TableMUIPNV(props: TableProps) {
                                 )}
                             </TableRow>
 
-                            <TableRow><TableCell align={"center"} className={classes.head} colSpan={10}>{childKeys[3]}</TableCell></TableRow>
+                            <TableRow><TableCell align={"center"} className={classes.head} colSpan={11}>{childKeys[3]}</TableCell></TableRow>
                             <TableRow>
-                                <TableCell key={'tr0'} className={classes.colHead} align={"center"} colSpan={1}>{""}</TableCell>
+                                <TableCell key={'tr0'} className={classes.colHead} align={"center"} colSpan={2}>{""}</TableCell>
                                 {metasMap.map((data:any, keys:number) =>
                                     <TableCell key={data+keys} className={classes.colHead} align={"center"} colSpan={2}>{data}</TableCell>
                                 )}
@@ -181,7 +181,7 @@ export default function TableMUIPNV(props: TableProps) {
 
                             </TableRow>
                             <TableRow>
-                                <TableCell key={'tc0'} className={classes.body} align={"center"} colSpan={1}>{""}</TableCell>
+                                <TableCell key={'tc0'} className={classes.body} align={"center"} colSpan={2}>{""}</TableCell>
                                 {metasMap.map((data:any, keys:number) =>
                                     <TableCell key={data+keys} className={classes.body} align={"center"} colSpan={2}>{props.data[childKeys[3]][data].toLocaleString()}</TableCell>
                                 )}
