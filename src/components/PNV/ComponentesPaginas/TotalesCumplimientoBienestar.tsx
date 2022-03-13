@@ -88,7 +88,7 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                     show:true,
                     position:"top",
                     type:"value",
-                    formatter: (data:any) => parseInt(data.value) +" %",
+                    formatter: (data:any) => Math.round(data.value) +" %",
 
                 },
 

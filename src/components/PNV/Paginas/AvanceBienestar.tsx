@@ -4,9 +4,11 @@ import TotalesCumplimientoBienestar from "../ComponentesPaginas/TotalesCumplimie
 import {cumplimientoPNV1} from "../../../json/PNV/cumplimiento21-1";
 import {cumplimientoPNV2} from "../../../json/PNV/cumplimiento21-2";
 import {cumplimientoPNV3} from "../../../json/PNV/cumplimiento21-3";
+import {cumplimientoPNV4} from "../../../json/PNV/cumplimiento21-4";
 import {cumplimientoONAVIPNV1} from "../../../json/PNV/cumplimientoONAVI21-1";
 import {cumplimientoONAVIPNV2} from "../../../json/PNV/cumplimientoONAVI21-2";
 import {cumplimientoONAVIPNV3} from "../../../json/PNV/cumplimientoONAVI21-3";
+import {cumplimientoONAVIPNV4} from "../../../json/PNV/cumplimientoONAVI21-4";
 import {totales} from "../../../json/PNV/totalCumplimiento";
 import {fichaPie} from "../../../json/PNV/fichas_ind_pnv1";
 import {fichaPie3} from "../../../json/PNV/fichas_ind_pnv3"
@@ -24,7 +26,7 @@ export default class AvanceBienestar extends Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            trimestre: 3,
+            trimestre: 4,
             reiniciar: false
         }
     }
@@ -42,12 +44,13 @@ export default class AvanceBienestar extends Component<any, any> {
         }
         const resetAll = () => {
             this.setState({reiniciar: !this.state.reiniciar});
-            this.setState({trimestre: 3});
+            this.setState({trimestre: 4});
         }
 
-        const pnv1 = parseInt(this.state.trimestre) === 3 ? [cumplimientoPNV3,cumplimientoONAVIPNV3] :
-            parseInt(this.state.trimestre) === 2 ? [cumplimientoPNV2,cumplimientoONAVIPNV2] : [cumplimientoPNV1,cumplimientoONAVIPNV1]
-
+        let pnv1 = this.state.trimestre == 4 ? [cumplimientoPNV4,cumplimientoONAVIPNV4] :
+            this.state.trimestre == 3 ? [cumplimientoPNV3,cumplimientoONAVIPNV3]
+                : []
+console.log(this.state.trimestre)
         return (
                <Fragment key={this.state.reiniciar}>
                    <TotalesCumplimientoBienestar data={totales} callBack={handleCallback} callBack2={resetAll} periodo={'Trimestral 2021'}

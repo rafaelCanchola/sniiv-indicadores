@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import ReactECharts from "echarts-for-react";
 import CardObjetivo from '../MUIComponents/CardObjetivo';
 
-import {objetivosONAVI} from "../../../json/PNV/objetivosONAVI";
+import {objetivosONAVI_4} from "../../../json/PNV/objetivosONAVI_4";
 import {colorBrewer} from "../../../utils/colorBrewer";
 
 import pnv2021 from "../../../assets/images/pnv2021.png";
@@ -131,7 +131,7 @@ export default function ObjetivoPNV(){
                     name: 'SHF'
                 },
             ],
-            links: objetivosONAVI
+            links: objetivosONAVI_4
         }
     }
 
