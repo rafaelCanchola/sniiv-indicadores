@@ -122,7 +122,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             chartTitle:['Porcentaje viviendas rentadas o prestadas','Porcentaje de viviendas propias sin escrituras o propias en proceso de pago sin escrituras'],
             grafica:[[29.1,27.8],[26.6,25.2]],
             label:[{chartLabel:['2018','2020']},{chartLabel:['2018','2020']}],
-            xAxis:['Viviendas','Viviendas',],
+            xAxis:['Años','Años',],
             yAxis:['Porcentaje','Porcentaje',],
             pdfName:['ind_viv1_1','ind_viv1_2',],
 
@@ -207,7 +207,7 @@ export default function ViviendaAdecuada(props:ViviendaProps){
             data: [{ficha:indicadorViv7_1},],
             grafica:[[51.23,]],
             label:[{chartLabel:['2020']}],
-            xAxis:[['Años']],
+            xAxis:[['2020']],
             yAxis:['Porcentaje'],
             pdfName:['ind_viv7_1',],
         }

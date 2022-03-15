@@ -164,6 +164,7 @@ export default function ObjetivoPNV(){
                                 <Paper elevation={3} className={classes.paper}>
                                     <h4 className={classes.textColorGrey}>{"Distribución de las acciones puntuales, según objetivo prioritario y organismo de vivienda"}</h4>
                                     <ReactECharts option={sankey} />
+                                    <h5 className={classes.textColorGrey}>{"*La suma de las acciones por ONAVI es superior a 113, pues una acción puede ser atendida por más de una ONAVI"}</h5>
                                 </Paper>
                         </Grid>
                     </Grid>
