@@ -43,9 +43,9 @@ export default function CardBanner(props:CardProps) {
                             <InfoTitle>{props.title}</InfoTitle>
                             <br/>
                             {props.isMobile ?<></> : <Fragment><Typography className={classes.textTitle}>{props.subtitle}</Typography><br/></Fragment>}
-                            <Typography className={classes.text}>{props.more1}</Typography>
+                            <p className={classes.text}>{props.more1}</p>
                             <br/>
-                            <Typography className={classes.text}>{props.more2}</Typography>
+                            <p className={classes.text}>{props.more2}</p>
                         </Info>
                     </Grid>
 
