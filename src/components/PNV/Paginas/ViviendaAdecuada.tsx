@@ -7,7 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import RefreshIcon from "@material-ui/icons/RefreshOutlined";
 import CardVivienda from "../MUIComponents/CardVivienda";
 import {IndicadorVivienda} from "../ComponentesPaginas/IndicadorVivienda";
-
+//https://sistemas.sedatu.gob.mx/repositorio/s/U7Sn1E74QyWy0IkRdXkA3g
+// https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/U7Sn1E74QyWy0IkRdXkA3g/content/fichas_ind_v1_1.tsx?&a=true
 import {indicadorViv1_1} from "../../../json/Vivienda/fichas_ind_v1_1";
 import {indicadorViv1_2} from "../../../json/Vivienda/fichas_ind_v1_2";
 import {indicadorViv2_1} from "../../../json/Vivienda/fichas_ind_v2_1";
@@ -49,11 +50,7 @@ import {MobileSize} from "../../../utils/Utils";
 import CardBanner from "../MUIComponents/CardBanner";
 
 
-interface ViviendaProps {
-
-}
-
-export default function ViviendaAdecuada(props:ViviendaProps){
+export default function ViviendaAdecuada(){
 
     const isMobile = MobileSize();
     const bienestar1 = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/7iHubpXhSW-a0tnkfn6PhA/content/adecuada.jpg?&a=true'

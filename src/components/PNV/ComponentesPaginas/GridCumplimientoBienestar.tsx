@@ -14,6 +14,7 @@ import onavi from "../../../assets/images/onavi.png";
 import {assignObjetivosColor, MobileSize} from "../../../utils/Utils";
 import {IndicadoresPNV} from "./IndicadoresPNV";
 import {useStyles} from "../../../utils/Style";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 
 
 

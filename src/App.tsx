@@ -13,6 +13,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import ObjetivoPNV from "./components/PNV/Paginas/ObjetivoPNV";
 import AvanceBienestar from './components/PNV/Paginas/AvanceBienestar';
 import ViviendaAdecuada from "./components/PNV/Paginas/ViviendaAdecuada";
+import ViviendaContainer from "./components/PNV/Paginas/ViviendaContainer";
+import ObjetivoPNVContainer from "./components/PNV/Paginas/ObjetivoPNVContainer";
 
 
 
@@ -51,7 +53,7 @@ function App() {
             path:'/',
             sidebarName:',',
             icon:<AssIcon fontSize={'large'} className={classes.icon}/>,
-            component:ObjetivoPNV,
+            component:ObjetivoPNVContainer,
             exact:true
         },
         {
@@ -65,7 +67,7 @@ function App() {
             path:'/vivienda',
             sidebarName:'.',
             icon:<HomeIcon fontSize={'large'} className={classes.icon}/>,
-            component:ViviendaAdecuada,
+            component:ViviendaContainer,
             exact:true
         },
 

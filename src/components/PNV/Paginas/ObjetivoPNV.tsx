@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import ReactECharts from "echarts-for-react";
 import CardObjetivo from '../MUIComponents/CardObjetivo';
 
-import {objetivosONAVI_4} from "../../../json/PNV/objetivosONAVI_4";
 import {colorBrewer} from "../../../utils/colorBrewer";
 
 import pnv2021 from "../../../assets/images/pnv2021.png";
@@ -14,16 +13,13 @@ import objetivo3 from "../../../assets/images/obj3.png";
 import objetivo5 from "../../../assets/images/obj5.png";
 import objetivo6 from "../../../assets/images/obj6.png";
 
-
-import {objs} from "../../../json/acciones_obj_prior_a"
-
 import {useStyles} from "../../../utils/Style";
 import CardBanner from "../MUIComponents/CardBanner";
 import {MobileSize} from "../../../utils/Utils";
 import IndicadoresBienestar from "../ComponentesPaginas/IndicadoresBienestar";
 
 
-export default function ObjetivoPNV(){
+export default function ObjetivoPNV(props:any){
     const classes = useStyles();
     const isMobile = MobileSize();
     const [objetivo,setObjetivo] = useState(0);
@@ -39,7 +35,7 @@ export default function ObjetivoPNV(){
             color:colorBrewer.Objetivos[0],
             "size":2,
             index:0,
-            tabla:objs.Objetivo1
+            tabla:props.objs.Objetivo1
         },
         {
             "title":"Objetivo 2",
@@ -49,7 +45,7 @@ export default function ObjetivoPNV(){
             color:colorBrewer.Objetivos[1],
             "size":2,
             index:1,
-            tabla:objs.Objetivo2
+            tabla:props.objs.Objetivo2
         },
         {
             "title":"Objetivo 3",
@@ -59,7 +55,7 @@ export default function ObjetivoPNV(){
             color:colorBrewer.Objetivos[2],
             "size":2,
             index:2,
-            tabla:objs.Objetivo3
+            tabla:props.objs.Objetivo3
         },
         {
             "title":"Objetivo 4",
@@ -69,7 +65,7 @@ export default function ObjetivoPNV(){
             color:colorBrewer.Objetivos[3],
             "size":2,
             index:3,
-            tabla:objs.Objetivo4
+            tabla:props.objs.Objetivo4
         },
         {
             "title":"Objetivo 5",
@@ -79,7 +75,7 @@ export default function ObjetivoPNV(){
             color:colorBrewer.Objetivos[4],
             "size":2,
             index:4,
-            tabla:objs.Objetivo5
+            tabla:props.objs.Objetivo5
         }
     ]
     const sankey = {
@@ -131,7 +127,7 @@ export default function ObjetivoPNV(){
                     name: 'SHF'
                 },
             ],
-            links: objetivosONAVI_4
+            links: props.sankey
         }
     }
 
