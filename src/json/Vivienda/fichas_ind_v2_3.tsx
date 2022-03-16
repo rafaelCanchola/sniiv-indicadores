@@ -1,4 +1,4 @@
-export const indicadorViv1 = {
+export const indicadorViv2_3 = {
     "Nombre": "2.3 Porcentaje de viviendas con carencia de servicios de drenaje",
     "Objetivo prioritario": "Seguimiento del cumplimiento de los objetivos, prioridades y estrategias del Programa Nacional de Vivienda; Cumplimiento del derecho a la vivienda adecuada con indicadores de seguimiento en distintas dimensiones",
     "Definición o descripción": " Mide porcentaje de viviendas con carencia de servicios de drenaje.",
