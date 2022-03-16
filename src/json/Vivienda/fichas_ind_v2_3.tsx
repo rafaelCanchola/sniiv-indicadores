@@ -1,4 +1,4 @@
-export const indicadorViv2_3 = {
+export const indicadorViv1 = {
     "Nombre": "2.3 Porcentaje de viviendas con carencia de servicios de drenaje",
     "Objetivo prioritario": "Seguimiento del cumplimiento de los objetivos, prioridades y estrategias del Programa Nacional de Vivienda; Cumplimiento del derecho a la vivienda adecuada con indicadores de seguimiento en distintas dimensiones",
     "Definición o descripción": " Mide porcentaje de viviendas con carencia de servicios de drenaje.",
@@ -20,8 +20,8 @@ export const indicadorViv2_3 = {
         {
             "variables":[
                 {
-                    "Nombre variable":"1.- Número de viviendas que no cuentan con acceso a agua ",
-                    "Valor variable": 2367208,
+                    "Nombre variable":"1.- número de viviendas con carencia de servicios de drenaje",
+                    "Valor variable": 2030454,
                     "Fuente de información variable": "CONEVAL 2018",
                 },
                 {
@@ -31,13 +31,13 @@ export const indicadorViv2_3 = {
                
                 }
                 ],
-            "Sustitución en método de cálculo del indicador": "porcentaje de viviendas que no cuentan con acceso a agua= 2,367,208/34,155,615*100=6.93"
+            "Sustitución en método de cálculo del indicador": "porcentaje de viviendas con carencia de servicios de drenaje=2,030,454/34,155,615*100=5.94"
         },
     "VALOR DE LÍNEA BASE Y METAS":
     {
         "Línea base": 
         {
-            "Valor":6.93,
+            "Valor":5.94,
             "Año":2018
         },
         "Nota sobre la línea base":"No aplica",
@@ -52,9 +52,9 @@ export const indicadorViv2_3 = {
         "2015":0,
         "2016":0,
         "2017":0,
-        "2018":6.93,
+        "2018":5.94,
         "2019":"ND",
-        "2020":6.43  
+        "2020":4.76
 
     }
 }

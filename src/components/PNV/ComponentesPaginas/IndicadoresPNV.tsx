@@ -273,7 +273,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                     show:true,
                     position:"top",
                     type:"value",
-                    formatter: (data:any) => data.value +" %",
+                    formatter: (data:any) => data.value == 0 ? "NA" :data.value +" %",
                 },
                 emphasis: {
                     itemStyle: {
