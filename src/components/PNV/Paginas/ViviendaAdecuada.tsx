@@ -5,37 +5,13 @@ import {Accordion, AccordionDetails, AccordionSummary} from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import RefreshIcon from "@material-ui/icons/RefreshOutlined";
+
 import CardVivienda from "../MUIComponents/CardVivienda";
 import {IndicadorVivienda} from "../ComponentesPaginas/IndicadorVivienda";
-//https://sistemas.sedatu.gob.mx/repositorio/s/U7Sn1E74QyWy0IkRdXkA3g
-// https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/U7Sn1E74QyWy0IkRdXkA3g/content/fichas_ind_v1_1.tsx?&a=true
-/*import {indicadorViv1_1} from "../../../json/Vivienda/fichas_ind_v1_1";
-import {indicadorViv1_2} from "../../../json/Vivienda/fichas_ind_v1_2";
-import {indicadorViv2_1} from "../../../json/Vivienda/fichas_ind_v2_1";
-import {indicadorViv2_2} from "../../../json/Vivienda/fichas_ind_v2_2";
-import {indicadorViv2_3} from "../../../json/Vivienda/fichas_ind_v2_3";
-import {indicadorViv2_4} from "../../../json/Vivienda/fichas_ind_v2_4";
-import {indicadorViv2_5} from "../../../json/Vivienda/fichas_ind_v2_5";
-import {indicadorViv2_6} from "../../../json/Vivienda/fichas_ind_v2_6";
-import {indicadorViv2_7} from "../../../json/Vivienda/fichas_ind_v2_7";
-
-import {indicadorViv3_1} from "../../../json/Vivienda/fichas_ind_v3_1";
-import {indicadorViv3_2} from "../../../json/Vivienda/fichas_ind_v3_2";
-import {indicadorViv3_3} from "../../../json/Vivienda/fichas_ind_v3_3";
-import {indicadorViv3_4} from "../../../json/Vivienda/fichas_ind_v3_4";
-import {indicadorViv3_5} from "../../../json/Vivienda/fichas_ind_v3_5";
-import {indicadorViv3_6} from "../../../json/Vivienda/fichas_ind_v3_6";
-import {indicadorViv3_7} from "../../../json/Vivienda/fichas_ind_v3_7";
-
-import {indicadorViv4_1} from "../../../json/Vivienda/fichas_ind_v4_1";
-import {indicadorViv5_1} from "../../../json/Vivienda/fichas_ind_v5_1";
-import {indicadorViv5_2} from "../../../json/Vivienda/fichas_ind_v5_2";
-import {indicadorViv6_1} from "../../../json/Vivienda/fichas_ind_v6_1";
-import {indicadorViv6_2} from "../../../json/Vivienda/fichas_ind_v6_2";
-import {indicadorViv7_1} from "../../../json/Vivienda/fichas_ind_v7_1";
-
- */
-
+import {useStyles} from "../../../utils/Style";
+import TextoVivienda from "../MUIComponents/TextoVivienda";
+import {MobileSize} from "../../../utils/Utils";
+import CardBanner from "../MUIComponents/CardBanner";
 
 import vivienda from "../../../assets/images/house-tr.png";
 import seguridad from "../../../assets/images/seguridad-tr.png";
@@ -45,11 +21,6 @@ import ubicacion from "../../../assets/images/ubicacion-tr.png";
 import cultura from "../../../assets/images/cultura-tr.png";
 import habitabilidad from "../../../assets/images/habitabilidad-tr.png";
 import asequibilidad from "../../../assets/images/pesos.png";
-import autoproduccion from "../../../assets/images/autoproduccion.png";
-import {useStyles} from "../../../utils/Style";
-import TextoVivienda from "../MUIComponents/TextoVivienda";
-import {MobileSize} from "../../../utils/Utils";
-import CardBanner from "../MUIComponents/CardBanner";
 
 
 export default function ViviendaAdecuada(props:any){
@@ -168,22 +139,6 @@ export default function ViviendaAdecuada(props:any){
             label:[{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['Público','Privado','Propio']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},{chartLabel:['2018','2020']},],
             xAxis:['Años','Años',['2018','2020'],'Años','Años','Años','Años'],
             yAxis:['Porcentaje','Porcentaje','Porcentaje','Porcentaje','Porcentaje','Porcentaje','Monto promedio (pesos)'],
-            //grafica:[[19.9,8.9,71.2],[19.9,8.5,71.5]],
-            //chartTitle:['Proporción de viviendas particulares habitadas según motivo de renta','Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin, distribución según tipo de financiamiento','Proporción de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Proporción de viviendas por tipo de financiamiento respecto de las viviendas totales.','Distribución promedio de las viviendas propias o propias en proceso de pago que fueron mandadas a construir, según decil de ingreso corriente del hogar','Distribución promedio de las viviendas propias o propias en proceso de pago que fueron construidas por el propietario, según decil de ingreso '],
-            //grafica:[[0.4,3.3,5.3,8,9.7,22,51.4],[2.1,3.5,9.6,18.1,66.8],[0.3,0.5,1.4,2.6,9.5],[0.8,2.6,3.3,5.8,19.8,67.7],[10126,16830,22213,27530,33382,40041,48726,60466,80452,173161],[9890,16853,22277,27548,33386,40131,48566,60539,80275,152765]],
-            /*label:[{chartLabel:['No sabe', 'Prefiere invertir en su persona (viajes, estudios, negocio)','No le interesa comprar', 'Otra', 'La mensualidad es menor que una hipoteca', 'Por facilidad de poder mudarse, si cambia de ciudad o empleo', 'No tiene acceso a crédito (hipotecario o bancario) / No tiene recursos']},
-                {chartLabel: ['Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
-                {chartLabel: ['Le prestó un familiar, amigo o prestamista','Le dio crédito otra institución','No especificado','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO']},
-                {chartLabel: ['No especificado','Le dio crédito otra institución','Le prestó un familiar, amigo o prestamista','Le dio crédito un banco, sofol o caja de ahorro','Le dio crédito el INFONAVIT, FOVISSSTE o FONHAPO','Usó sus propios recursos']},
-                {chartLabel:['Decil 1','Decil 2','Decil 3','Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']},
-                {chartLabel:['Decil 1','Decil 2','Decil 3','Decil 4','Decil 5','Decil 6','Decil 7','Decil 8','Decil 9','Decil 10']}
-
-
-            ],
-
-            xAxis:['Viviendas','Viviendas','Viviendas','Viviendas','Decil','Decil'],
-            yAxis:['Porcentaje','Porcentaje','Porcentaje','Porcentaje','Ingreso promedio (pesos)','Ingreso promedio (pesos)'],
-             */
             pdfName:['ind_viv3_1','ind_viv3_2','ind_viv3_3','ind_viv3_4','ind_viv3_5','ind_viv3_6','ind_viv3_7',],
         },
         {

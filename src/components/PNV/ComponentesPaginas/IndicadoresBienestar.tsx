@@ -12,36 +12,6 @@ import {useStyles} from "../../../utils/Style";
 import TableMUIObjetivo from "../Tablas/TableMUIObjetivo";
 import {MobileSize} from "../../../utils/Utils";
 
-/*import {ind_b1} from "../../../json/Bienestar/fichas_ind_b1";
-import {ind_b2} from "../../../json/Bienestar/fichas_ind_b2.json";
-import {ind_b3} from "../../../json/Bienestar/fichas_ind_b3.json";
-import {ind_b4} from "../../../json/Bienestar/fichas_ind_b4.json";
-import {ind_b5} from "../../../json/Bienestar/fichas_ind_b5.json";
-import {ind_b6} from "../../../json/Bienestar/fichas_ind_b6";
-import {ind_b7} from "../../../json/Bienestar/fichas_ind_b7";
-import {ind_b8} from "../../../json/Bienestar/fichas_ind_b8";
-import {ind_b9} from "../../../json/Bienestar/fichas_ind_b9";
-import {ind_b10} from "../../../json/Bienestar/fichas_ind_b10";
-import {ind_b11} from "../../../json/Bienestar/fichas_ind_b11";
-import {ind_b12} from "../../../json/Bienestar/fichas_ind_b12";
-import {ind_b13} from "../../../json/Bienestar/fichas_ind_b13";
-import {ind_b14} from "../../../json/Bienestar/fichas_ind_b14";
-import {ind_b15} from "../../../json/Bienestar/fichas_ind_b15";*/
-const ind_b1 = null;
-const ind_b2 = null;
-const ind_b3 = null;
-const ind_b4 = null;
-const ind_b5 = null;
-const ind_b6 = null;
-const ind_b7 = null;
-const ind_b8 = null;
-const ind_b9 = null;
-const ind_b10 = null;
-const ind_b11 = null;
-const ind_b12 = null;
-const ind_b13 = null;
-const ind_b14 = null;
-const ind_b15 = null;
 interface IndicadoresProps {
     indicadorIndex:number,
     info:any;
@@ -49,10 +19,6 @@ interface IndicadoresProps {
     color:any;
     tabla:any;
     fichas:any;
-}
-
-interface AxisChart{
-    [x: string]:any;
 }
 
 export default function IndicadoresBienestar(props:IndicadoresProps){

@@ -4,7 +4,6 @@ import ObjetivoPNV from "./ObjetivoPNV";
 
 
 import loader from "../../../assets/images/loading-23.gif";
-import {MobileSize} from "../../../utils/Utils";
 
 export default class ObjetivoPNVContainer extends Component<any, any>{
     constructor(props: any) {

@@ -1,10 +1,8 @@
 import {Component, Fragment} from "react";
-import {FetchURL, AlfrescoURL, SniivURL, FetchSyncronized, GetYearTrimestre} from "../../FetchURL";
+import {AlfrescoURL, FetchSyncronized} from "../../FetchURL";
 import ViviendaAdecuada from "./ViviendaAdecuada";
-import ObjetivoPNV from "./ObjetivoPNV";
 import loader from "../../../assets/images/loading-23.gif";
 
-//https://sistemas.sedatu.gob.mx/repositorio/s/tL1LtdNMSyqauBJiUn3oKw
 export default class ViviendaContainer extends Component<any, any>{
     constructor(props: any) {
         super(props);
