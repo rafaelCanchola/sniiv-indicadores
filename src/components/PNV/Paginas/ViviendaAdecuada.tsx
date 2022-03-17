@@ -35,28 +35,7 @@ import {indicadorViv6_2} from "../../../json/Vivienda/fichas_ind_v6_2";
 import {indicadorViv7_1} from "../../../json/Vivienda/fichas_ind_v7_1";
 
  */
-const indicadorViv1_1 = null;
-const indicadorViv1_2 = null;
-const indicadorViv2_1 = null;
-const indicadorViv2_2 = null;
-const indicadorViv2_3 = null;
-const indicadorViv2_4 = null;
-const indicadorViv2_5 = null;
-const indicadorViv2_6 = null;
-const indicadorViv2_7 = null;
-const indicadorViv3_1 = null;
-const indicadorViv3_2 = null;
-const indicadorViv3_3 = null;
-const indicadorViv3_4 = null;
-const indicadorViv3_5 = null;
-const indicadorViv3_6 = null;
-const indicadorViv3_7 = null;
-const indicadorViv4_1 = null;
-const indicadorViv5_1 = null;
-const indicadorViv5_2 = null;
-const indicadorViv6_1 = null;
-const indicadorViv6_2 = null;
-const indicadorViv7_1 = null;
+
 
 import vivienda from "../../../assets/images/house-tr.png";
 import seguridad from "../../../assets/images/seguridad-tr.png";
@@ -73,7 +52,7 @@ import {MobileSize} from "../../../utils/Utils";
 import CardBanner from "../MUIComponents/CardBanner";
 
 
-export default function ViviendaAdecuada(){
+export default function ViviendaAdecuada(props:any){
 
     const isMobile = MobileSize();
     const bienestar1 = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/7iHubpXhSW-a0tnkfn6PhA/content/adecuada.jpg?&a=true'
@@ -82,6 +61,28 @@ export default function ViviendaAdecuada(){
     const [accordion,setAccordion] = useState(false);
     const classes = useStyles();
 
+    const indicadorViv1_1 = props.objs[0];
+    const indicadorViv1_2 = props.objs[1];
+    const indicadorViv2_1 = props.objs[2];
+    const indicadorViv2_2 = props.objs[3];
+    const indicadorViv2_3 = props.objs[4];
+    const indicadorViv2_4 = props.objs[5];
+    const indicadorViv2_5 = props.objs[6];
+    const indicadorViv2_6 = props.objs[7];
+    const indicadorViv2_7 = props.objs[8];
+    const indicadorViv3_1 = props.objs[9];
+    const indicadorViv3_2 = props.objs[10];
+    const indicadorViv3_3 = props.objs[11];
+    const indicadorViv3_4 = props.objs[12];
+    const indicadorViv3_5 = props.objs[13];
+    const indicadorViv3_6 = props.objs[14];
+    const indicadorViv3_7 = props.objs[15];
+    const indicadorViv4_1 = props.objs[16];
+    const indicadorViv5_1 = props.objs[17];
+    const indicadorViv5_2 = props.objs[18];
+    const indicadorViv6_1 = props.objs[19];
+    const indicadorViv6_2 = props.objs[20];
+    const indicadorViv7_1 = props.objs[21];
     const elementos =[
         {
             num: 1,
