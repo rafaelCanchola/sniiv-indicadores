@@ -12,11 +12,11 @@ import {useStyles} from "../../../utils/Style";
 import TableMUIObjetivo from "../Tablas/TableMUIObjetivo";
 import {MobileSize} from "../../../utils/Utils";
 
-import {ind_b1} from "../../../json/Bienestar/fichas_ind_b1";
-import {ind_b2} from "../../../json/Bienestar/fichas_ind_b2";
-import {ind_b3} from "../../../json/Bienestar/fichas_ind_b3";
-import {ind_b4} from "../../../json/Bienestar/fichas_ind_b4";
-import {ind_b5} from "../../../json/Bienestar/fichas_ind_b5";
+/*import {ind_b1} from "../../../json/Bienestar/fichas_ind_b1";
+import {ind_b2} from "../../../json/Bienestar/fichas_ind_b2.json";
+import {ind_b3} from "../../../json/Bienestar/fichas_ind_b3.json";
+import {ind_b4} from "../../../json/Bienestar/fichas_ind_b4.json";
+import {ind_b5} from "../../../json/Bienestar/fichas_ind_b5.json";
 import {ind_b6} from "../../../json/Bienestar/fichas_ind_b6";
 import {ind_b7} from "../../../json/Bienestar/fichas_ind_b7";
 import {ind_b8} from "../../../json/Bienestar/fichas_ind_b8";
@@ -26,14 +26,29 @@ import {ind_b11} from "../../../json/Bienestar/fichas_ind_b11";
 import {ind_b12} from "../../../json/Bienestar/fichas_ind_b12";
 import {ind_b13} from "../../../json/Bienestar/fichas_ind_b13";
 import {ind_b14} from "../../../json/Bienestar/fichas_ind_b14";
-import {ind_b15} from "../../../json/Bienestar/fichas_ind_b15";
-
+import {ind_b15} from "../../../json/Bienestar/fichas_ind_b15";*/
+const ind_b1 = null;
+const ind_b2 = null;
+const ind_b3 = null;
+const ind_b4 = null;
+const ind_b5 = null;
+const ind_b6 = null;
+const ind_b7 = null;
+const ind_b8 = null;
+const ind_b9 = null;
+const ind_b10 = null;
+const ind_b11 = null;
+const ind_b12 = null;
+const ind_b13 = null;
+const ind_b14 = null;
+const ind_b15 = null;
 interface IndicadoresProps {
     indicadorIndex:number,
     info:any;
     image:any;
     color:any;
     tabla:any;
+    fichas:any;
 }
 
 interface AxisChart{
@@ -56,16 +71,16 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 1",
             pdfName:'obj_1',
-            data: ind_b1,
+            data: props.fichas[0],
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 1",
-                    data: ind_b2,
+                    data: props.fichas[1],
                     pdfName:'obj_2',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 1",
-                    data: ind_b3,
+                    data: props.fichas[2],
                     pdfName:'obj_3',
                 },
             ]
@@ -73,16 +88,16 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 2",
             pdfName:'obj_4',
-            data: ind_b4,
+            data: props.fichas[3],
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 2",
-                    data: ind_b5,
+                    data: props.fichas[4],
                     pdfName:'obj_5',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 2",
-                    data: ind_b6,
+                    data: props.fichas[5],
                     pdfName:'obj_6',
                 },
             ]
@@ -90,16 +105,16 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 3",
             pdfName:'obj_7',
-            data: ind_b7,
+            data: props.fichas[6],
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 3",
-                    data: ind_b8,
+                    data: props.fichas[7],
                     pdfName:'obj_8',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 3",
-                    data: ind_b9,
+                    data: props.fichas[8],
                     pdfName:'obj_9',
                 },
             ]
@@ -107,16 +122,16 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 4",
             pdfName:'obj_10',
-            data: ind_b10,
+            data: props.fichas[9],
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 4",
-                    data: ind_b11,
+                    data: props.fichas[10],
                     pdfName:'obj_11',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 4",
-                    data: ind_b12,
+                    data: props.fichas[11],
                     pdfName:'obj_12',
                 },
             ]
@@ -124,16 +139,16 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 5",
             pdfName:'obj_13',
-            data: ind_b13,
+            data: props.fichas[12],
             parametros:[
                 {
                     titulo:"Parámetro 1 del Objetivo Prioritario 5",
-                    data: ind_b14,
+                    data: props.fichas[13],
                     pdfName:'obj_14',
                 },
                 {
                     titulo:"Parámetro 2 del Objetivo Prioritario 5",
-                    data: ind_b15,
+                    data: props.fichas[14],
                     pdfName:'obj_15',
                 },
             ]

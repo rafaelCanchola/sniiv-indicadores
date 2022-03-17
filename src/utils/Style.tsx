@@ -133,7 +133,7 @@ export const useStyles = makeStyles((theme:Theme) =>
             fontWeight:'bold'
         },
         text:{
-            fontSize:9,
+            fontSize:10,
             textAlign:'justify',
             color:'white',
             fontFamily:'Montserrat',

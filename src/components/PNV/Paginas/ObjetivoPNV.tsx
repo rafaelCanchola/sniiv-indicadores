@@ -200,7 +200,7 @@ export default function ObjetivoPNV(props:any){
                         }
 
                         <Grid item xs={12} sm={12} md={9}>
-                            <IndicadoresBienestar indicadorIndex={objetivo} info={objetivos[objetivo].obj} image={objetivos[objetivo].img} color={objetivos[objetivo].color} tabla={objetivos[objetivo].tabla}/>
+                            <IndicadoresBienestar indicadorIndex={objetivo} info={objetivos[objetivo].obj} image={objetivos[objetivo].img} color={objetivos[objetivo].color} tabla={objetivos[objetivo].tabla} fichas={props.bienestar}/>
                         </Grid>
                     </Grid>
                 <br/><br/><br/>

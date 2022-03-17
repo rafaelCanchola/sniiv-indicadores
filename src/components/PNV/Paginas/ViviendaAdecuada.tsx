@@ -9,7 +9,7 @@ import CardVivienda from "../MUIComponents/CardVivienda";
 import {IndicadorVivienda} from "../ComponentesPaginas/IndicadorVivienda";
 //https://sistemas.sedatu.gob.mx/repositorio/s/U7Sn1E74QyWy0IkRdXkA3g
 // https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/U7Sn1E74QyWy0IkRdXkA3g/content/fichas_ind_v1_1.tsx?&a=true
-import {indicadorViv1_1} from "../../../json/Vivienda/fichas_ind_v1_1";
+/*import {indicadorViv1_1} from "../../../json/Vivienda/fichas_ind_v1_1";
 import {indicadorViv1_2} from "../../../json/Vivienda/fichas_ind_v1_2";
 import {indicadorViv2_1} from "../../../json/Vivienda/fichas_ind_v2_1";
 import {indicadorViv2_2} from "../../../json/Vivienda/fichas_ind_v2_2";
@@ -34,6 +34,29 @@ import {indicadorViv6_1} from "../../../json/Vivienda/fichas_ind_v6_1";
 import {indicadorViv6_2} from "../../../json/Vivienda/fichas_ind_v6_2";
 import {indicadorViv7_1} from "../../../json/Vivienda/fichas_ind_v7_1";
 
+ */
+const indicadorViv1_1 = null;
+const indicadorViv1_2 = null;
+const indicadorViv2_1 = null;
+const indicadorViv2_2 = null;
+const indicadorViv2_3 = null;
+const indicadorViv2_4 = null;
+const indicadorViv2_5 = null;
+const indicadorViv2_6 = null;
+const indicadorViv2_7 = null;
+const indicadorViv3_1 = null;
+const indicadorViv3_2 = null;
+const indicadorViv3_3 = null;
+const indicadorViv3_4 = null;
+const indicadorViv3_5 = null;
+const indicadorViv3_6 = null;
+const indicadorViv3_7 = null;
+const indicadorViv4_1 = null;
+const indicadorViv5_1 = null;
+const indicadorViv5_2 = null;
+const indicadorViv6_1 = null;
+const indicadorViv6_2 = null;
+const indicadorViv7_1 = null;
 
 import vivienda from "../../../assets/images/house-tr.png";
 import seguridad from "../../../assets/images/seguridad-tr.png";

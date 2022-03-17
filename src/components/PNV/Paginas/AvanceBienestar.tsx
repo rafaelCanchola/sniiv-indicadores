@@ -6,6 +6,7 @@ import {fichaPie3} from "../../../json/PNV/fichas_ind_pnv3"
 import GridCumplimientoBienestar from "../ComponentesPaginas/GridCumplimientoBienestar";
 import {ordinalNumber} from "../../../utils/Utils";
 import {FetchSyncronized, FetchURL, GetYearTrimestre, SniivURL} from "../../FetchURL";
+import loader from "../../../assets/images/loading-23.gif";
 
 export default class AvanceBienestar extends Component<any, any> {
     constructor(props: any) {
@@ -47,7 +48,7 @@ export default class AvanceBienestar extends Component<any, any> {
         }
         return (
             <Fragment key={this.state.reiniciar}>
-                {this.state.total !== null &&
+                {this.state.total !== null ?
                 <Fragment key={this.state.synchronized}>
                     <TotalesCumplimientoBienestar data={this.state.total} callBack={handleCallback} callBack2={this.resetAll}
                                                   periodo={'Trimestral 2021'}
@@ -67,6 +68,8 @@ export default class AvanceBienestar extends Component<any, any> {
                                                cAxis={"enProceso"} dAxis={"porIniciar"} eAxis={"sinRealizar"}
                                                fAxis={"trimestre"} gAxis={"organismo"} hAxis={"tipoObjetivo"}/>
                 </Fragment>
+                    :
+                    <img alt={"loader"} src={loader} style={{width:'65%',left:'15%', top:'6%',position:'absolute'}}/>
                 }
             </Fragment>
 
