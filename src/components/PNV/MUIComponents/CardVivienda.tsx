@@ -54,6 +54,9 @@ interface CardProps{
 
 export default function CardVivienda(props:CardProps) {
     const classes = useStyles();
+
+    const [anchorEl, setAnchorEl] = React.useState(false);
+    const [message, setMessage] = React.useState("");
     return (
         <Fragment>
             { props.mobile ?
@@ -95,18 +98,19 @@ export default function CardVivienda(props:CardProps) {
 
                         <div className={classes.controls}>
                             {props.children.slice(0,4).map((child:any,key:any) =>
-                                <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
+                                <IconButton aria-label="Gráfica" onMouseOver={() => {setAnchorEl(true);setMessage(props.title+" indicador "+(child+1))}} onMouseOut={() => {setAnchorEl(false);setMessage("")}} onClick={() => props.callBack([props.obj,child])} key={key} >
                                     <EqualizerIcon fontSize={'medium'}/>
                                 </IconButton>
                             )}
                         </div>
                         <div className={classes.controls}>
                             {props.children.slice(4).map((child:any,key:any) =>
-                                <IconButton aria-label="Gráfica" onClick={() => props.callBack([props.obj,child])} key={key} >
+                                <IconButton aria-label="Gráfica" onMouseOver={() => {setAnchorEl(true);setMessage(props.title+" indicador "+(child+1))}} onMouseOut={() => {setAnchorEl(false);setMessage("")}} onClick={() => props.callBack([props.obj,child])} key={key} >
                                     <EqualizerIcon fontSize={'medium'}/>
                                 </IconButton>
                             )}
                         </div>
+                        {anchorEl && <Typography variant="body2" color="textSecondary">{message}</Typography>}
                     </div>
                     <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                 </Card>
