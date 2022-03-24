@@ -60,49 +60,61 @@ export default function ViviendaAdecuada(props:any){
             title: "SEGURIDAD EN LA TENENCIA",
             image:seguridad,
             more:"La seguridad de la tenencia se refiere a una situación en la que las personas cuentan de forma continua y segura con el derecho al suelo, y en consecuencia, a la posesión de la vivienda; esto incluye el acceso a la tierra en modalidades distintas a la propiedad privada, como las comunidades ejidales, comunales y cooperativas. Se refiere a garantizar las condiciones de sus ocupantes a protección jurídica contra el desalojo forzoso, el hostigamiento y otras amenazas.",
-            children:[0,1]
+            children:[0,1],
+            chartTitle:['Porcentaje viviendas rentadas o prestadas','Porcentaje de viviendas propias sin escrituras o propias en proceso de pago sin escrituras'],
+
         },
         {
             num: 2,
             title: "DISPONIBILIDAD DE SERVICIOS",
             image:servicios,
             more:"Contempla la provisión de agua potable, instalaciones sanitarias adecuadas, energía para la cocción, la calefacción y el alumbrado, así como para la conservación de alimentos y eliminación de residuos.",
-            children:[0,1,2,3,4,5,6]
+            children:[0,1,2,3,4,5,6],
+            chartTitle: ['Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin','Porcentaje de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Porcentaje de vivienda adquirida (propia o en proceso de pago) según tipo de financiamiento','Porcentaje promedio del ingreso mensual destinado para pagar vivienda (1er quintil)','Porcentaje de viviendas autoproducidas o autoconstruidas','Porcentaje de viviendas autoproducidas o autoconstruidas primer quintil de ingreso','Monto promedio del pago mensual por la vivienda autoproducida o autoconstruida',],
         },
         {
             num: 3,
             title: "ASEQUIBILIDAD",
             image:asequibilidad,
             more:"El costo de la vivienda debe ser tal que todas las personas puedan acceder a ella sin poner en peligro el disfrute de otros satisfactores básicos o el ejercicio de sus derechos humanos. Se considera que una vivienda es asequible si un hogar destina menos del 30% de su ingreso en gastos asociados a la vivienda (ONU, 2018).",
-            children:[0,1,2,3,4,5,6]
+            children:[0,1,2,3,4,5,6],
+            chartTitle: ['Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin','Porcentaje de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Porcentaje de vivienda adquirida (propia o en proceso de pago) según tipo de financiamiento','Porcentaje promedio del ingreso mensual destinado para pagar vivienda (1er quintil)','Porcentaje de viviendas autoproducidas o autoconstruidas','Porcentaje de viviendas autoproducidas o autoconstruidas primer quintil de ingreso','Monto promedio del pago mensual por la vivienda autoproducida o autoconstruida',],
+
         },
         {
             num: 4,
             title: "HABITABILIDAD",
             image:habitabilidad,
             more:"Son las condiciones que garantizan la seguridad física de sus habitantes y les proporcionan un espacio habitable suficiente, así como protección contra el frío, la humedad, el calor, la lluvia, el viento u otros riesgos para la salud y peligros estructurales. Es decir, una parte importante del rezago de las viviendas deriva de condiciones estructurales y de ubicación que las hacen vulnerables a riesgos relacionados a desastres por fenómenos naturales y eventos climáticos extremos.",
-            children:[0]
+            children:[0],
+            chartTitle:['Porcentaje de viviendas más de 30 de antigüedad con problemas estructurales'],
+
         },
         {
             num: 5,
             title: "ACCESIBILIDAD",
             image:accesibilidad,
             more:"El diseño y materialidad de la vivienda debe considerar las necesidades específicas de los grupos desfavorecidos y marginados, particularmente de personas con discapacidad.",
-            children:[0,1]
+            children:[0,1],
+            chartTitle:['Porcentaje de viviendas que requieren de adaptaciones para personas con discapacidad','Porcentaje de percepción de barrio o localidad poco incluyente y accesible para personas con discapacidad'],
+
         },
         {
             num: 6,
             title: "UBICACIÓN",
             image:ubicacion,
             more:"La localización de la vivienda debe ofrecer acceso a oportunidades de empleo, servicios de salud, escuelas, guarderías y otros servicios e instalaciones sociales, y estar ubicada fuera de zonas de riesgo o contaminadas.",
-            children:[0,1]
+            children:[0,1],
+            chartTitle:['Porcentaje de viviendas con problemáticas de contaminación, ruido, inseguridad y vandalismo','Porcentaje de viviendas con satisfacción distancia-tiempo entre vivienda y servicios'],
         },
         {
             num: 7,
             title: "ADECUACIÓN CULTURAL",
             image:cultura,
             more:"Es una vivienda adecuada si su ubicación respeta y toma en cuenta la expresión de identidad cultural. La adecuación cultural puede ser abordada desde dos ángulos principales. Por un lado, las técnicas y los materiales que se emplean durante la construcción; por otro, el diseño de la vivienda y su entorno, y cómo se ajustan a las expectativas y anhelos que forman parte de la identidad cultural de cada región y grupo poblacional.",
-            children:[0,]
+            children:[0,],
+            chartTitle:[' Porcentaje de viviendas con Adecuación cultural'],
+
         },
     ]
 
@@ -239,7 +251,7 @@ export default function ViviendaAdecuada(props:any){
                                                     {elementos.map((card:any,key:number) =>
                                                         <Fragment key={key}>
                                                             <Grid container spacing={2}  >
-                                                                <CardVivienda selected={indicador[0] === 10? indicador[1]===key: indicador[0]-1===key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image}/>
+                                                                <CardVivienda selected={indicador[0] === 10? indicador[1]===key: indicador[0]-1===key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title}image={card.image} cardName={card.chartTitle}/>
                                                             </Grid>
                                                         </Fragment>
                                                     )}
@@ -261,7 +273,7 @@ export default function ViviendaAdecuada(props:any){
                                 <br/>
                                 {elementos.slice(0,4).map((card:any,key:number )=>
                                     <Paper elevation={0} className={classes.paperImage2} key={key}>
-                                        <CardVivienda selected={indicador[0] === 10? indicador[1]===key: indicador[0]-1===key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
+                                        <CardVivienda selected={indicador[0] === 10? indicador[1]===key: indicador[0]-1===key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title} cardName={card.chartTitle}/>
                                     </Paper>
                                 )}
                             </Grid>
@@ -276,7 +288,7 @@ export default function ViviendaAdecuada(props:any){
                                 <br/>
                                 {elementos.slice(4).map((card:any,key:number ) =>
                                     <Paper elevation={0} className={classes.paperImage2} key={key}>
-                                        <CardVivienda selected={indicador[0] === 10? indicador[1]===key+4: indicador[0]-1===key+4} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title}/>
+                                        <CardVivienda selected={indicador[0] === 10? indicador[1]===key+4: indicador[0]-1===key+4} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title} cardName={card.chartTitle}/>
                                     </Paper>
                                 )}
                             </Grid>

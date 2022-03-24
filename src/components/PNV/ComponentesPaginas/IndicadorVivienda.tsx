@@ -113,7 +113,7 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
                             <AccordionDetails>
                                 <Typography>
                                     <TableMUIViv data={props.indicador.data[props.indicadorIndex].ficha} id={"Indicador"+props.indicadorIndex} pdfName={"ind_"+props.indicador.pdfName[props.indicadorIndex]}/>
-                                   </Typography>
+                                </Typography>
                             </AccordionDetails>
                         </Accordion>
                     </Grid>

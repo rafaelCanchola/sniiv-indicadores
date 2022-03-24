@@ -10,14 +10,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import ObjetivoPNV from "./components/PNV/Paginas/ObjetivoPNV";
 import AvanceBienestar from './components/PNV/Paginas/AvanceBienestar';
-import ViviendaAdecuada from "./components/PNV/Paginas/ViviendaAdecuada";
 import ViviendaContainer from "./components/PNV/Paginas/ViviendaContainer";
 import ObjetivoPNVContainer from "./components/PNV/Paginas/ObjetivoPNVContainer";
-
-
-
 
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -80,7 +75,8 @@ function App() {
                   <Route path={prop.path} exact={prop.exact} component={prop.component} key={key}/>
               )
           })}
-                  <AppBar position="fixed" style={{top: "auto", bottom: 0}} className={classes.appBar}>
+            {
+                /*<AppBar position="fixed" style={{top: "auto", bottom: 0}} className={classes.appBar}>
                   <BottomNavigation value={value} onChange={handleChange}  className={classes.appBar}>
                       {Routes.map((prop,key) => {
                           return(
@@ -88,8 +84,9 @@ function App() {
                           )
                       })}
                   </BottomNavigation>
-              </AppBar>
-          </ThemeProvider>
+                  </AppBar>*/
+            }
+        </ThemeProvider>
   );
 }
 

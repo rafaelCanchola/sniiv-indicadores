@@ -49,14 +49,15 @@ interface CardProps{
     children: any,
     callBack:any,
     mobile:boolean,
-    selected: boolean
+    selected: boolean,
+    cardName:any
 }
 
 export default function CardVivienda(props:CardProps) {
     const classes = useStyles();
 
     const [anchorEl, setAnchorEl] = React.useState(false);
-    const [message, setMessage] = React.useState("");
+    const [message, setMessage] = React.useState(50);
     return (
         <Fragment>
             { props.mobile ?
@@ -76,7 +77,7 @@ export default function CardVivienda(props:CardProps) {
                                 <div className={classes.details}>
                                     <div className={classes.controls}>
                                         <Button onClick={() => props.callBack([props.obj,child])} key={key} >
-                                            <EqualizerIcon fontSize={'medium'}/> <Typography variant="body2" color="textSecondary">{props.title+" indicador "+(child+1)}</Typography>
+                                            <EqualizerIcon fontSize={'medium'}/> <Typography variant="body2" color="textSecondary">{props.cardName[child]}</Typography>
                                         </Button>
                                     </div>
                                 </div>
@@ -98,19 +99,19 @@ export default function CardVivienda(props:CardProps) {
 
                         <div className={classes.controls}>
                             {props.children.slice(0,4).map((child:any,key:any) =>
-                                <IconButton aria-label="Gráfica" onMouseOver={() => {setAnchorEl(true);setMessage(props.title+" indicador "+(child+1))}} onMouseOut={() => {setAnchorEl(false);setMessage("")}} onClick={() => props.callBack([props.obj,child])} key={key} >
+                                <IconButton aria-label="Gráfica" onMouseOver={() => {setAnchorEl(true);setMessage(child)}} onMouseOut={() => {setAnchorEl(false);setMessage(50)}} onClick={() => props.callBack([props.obj,child])} key={key} >
                                     <EqualizerIcon fontSize={'medium'}/>
                                 </IconButton>
                             )}
                         </div>
                         <div className={classes.controls}>
                             {props.children.slice(4).map((child:any,key:any) =>
-                                <IconButton aria-label="Gráfica" onMouseOver={() => {setAnchorEl(true);setMessage(props.title+" indicador "+(child+1))}} onMouseOut={() => {setAnchorEl(false);setMessage("")}} onClick={() => props.callBack([props.obj,child])} key={key} >
+                                <IconButton aria-label="Gráfica" onMouseOver={() => {setAnchorEl(true);setMessage(child)}} onMouseOut={() => {setAnchorEl(false);setMessage(50)}} onClick={() => props.callBack([props.obj,child])} key={key} >
                                     <EqualizerIcon fontSize={'medium'}/>
                                 </IconButton>
                             )}
                         </div>
-                        {anchorEl && <Typography variant="body2" color="textSecondary">{message}</Typography>}
+                        {anchorEl && <Typography variant="body2" color="textSecondary">{props.cardName[message]}</Typography>}
                     </div>
                     <CardMedia className={classes.cover} image={props.image} title={props.title}/>
                 </Card>
