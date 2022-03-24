@@ -76,7 +76,7 @@ function App() {
               )
           })}
             {
-                /*<AppBar position="fixed" style={{top: "auto", bottom: 0}} className={classes.appBar}>
+                <AppBar position="fixed" style={{top: "auto", bottom: 0}} className={classes.appBar}>
                   <BottomNavigation value={value} onChange={handleChange}  className={classes.appBar}>
                       {Routes.map((prop,key) => {
                           return(
@@ -84,7 +84,7 @@ function App() {
                           )
                       })}
                   </BottomNavigation>
-                  </AppBar>*/
+                  </AppBar>
             }
         </ThemeProvider>
   );
