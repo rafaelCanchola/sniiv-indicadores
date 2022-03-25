@@ -8,11 +8,10 @@ import TableMUIViv from "../Tablas/TableMUIViv";
 import Waterfall from "../Graficas/eCharts/Waterfall";
 import BarChart from "../Graficas/eCharts/BarChart";
 import {colorBrewer} from "../../../utils/colorBrewer";
-import { assignColor} from "../../../utils/Utils";
+//import { assignColor} from "../../../utils/Utils";
 import BarChartNumber from "../Graficas/eCharts/BarChartNumber";
 import {useStyles} from "../../../utils/Style";
 import PieChart from "../Graficas/eCharts/PieChart";
-import Paper from "@material-ui/core/Paper";
 import StackBarChart from "../Graficas/eCharts/StackBarChart";
 
 
@@ -27,7 +26,7 @@ interface AxisChart{
 
 export function IndicadorVivienda(props:IndicadorViviendaProps){
     const classes = useStyles();
-    let colors = assignColor(10)
+    //let colors = assignColor(10)
     let dataBar: any[]
     //props.indicador.grafica[props.indicadorIndex].sort((a:any,b:any) => {return a - b})
     let objKeys = Object.keys(props.indicador.grafica[props.indicadorIndex])

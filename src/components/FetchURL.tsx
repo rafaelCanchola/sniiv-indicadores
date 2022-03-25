@@ -1,4 +1,3 @@
-import React from "react";
 
 export async function FetchSyncronized(objects:any[]){
     return await Promise.all((await Promise.all(objects.map(object => FetchURL(object)))).map(result => result.json()))

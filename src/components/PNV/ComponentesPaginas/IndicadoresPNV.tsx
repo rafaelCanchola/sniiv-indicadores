@@ -30,9 +30,6 @@ interface IndicadorViviendaProps {
     indicadorIndex:number
 }
 
-interface AxisChart{
-    [x: string]:any;
-}
 
 function namePieFormatter(value:string){
     switch (value){

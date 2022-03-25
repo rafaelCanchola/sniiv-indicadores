@@ -199,7 +199,7 @@ export default function BienestarBarChart(props:BarProps){
     const bienestarObjetivo = props.tableData.map((param:any) => param.data["Nombre"])
     const bienestarActualiza = props.tableData.map((param:any) => param.data["Periodicidad o frecuencia de medición"])
     const bienestarUnidades = props.tableData.map((param:any) => param.data[unidadMedida])
-    const bienestarTendencia = props.tableData.map((param:any) => param.data[tendenciaEsp])
+    //const bienestarTendencia = props.tableData.map((param:any) => param.data[tendenciaEsp])
     const bienestarCharts = props.tableData.map((param:any) => chartTemplate(param));
 
 

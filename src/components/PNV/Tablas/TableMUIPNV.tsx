@@ -8,7 +8,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from "@material-ui/core/Paper";
 import {Button} from "@material-ui/core";
 import {HTMLToPDF} from "../../../utils/Utils";
-import Grid from "@material-ui/core/Grid";
 import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
 
 interface TableProps{
