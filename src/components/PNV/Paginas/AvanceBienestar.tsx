@@ -18,24 +18,26 @@ export default class AvanceBienestar extends Component<any, any> {
             cumplimiento : null,
             cumplimientoOnavi : null,
             total: null,
-            synchronized:false
+            synchronized:false,
+            corsLoader: true,
+            environmentProd: true,
         }
     }
     async GetData(){
         let fetchCumplimiento = await FetchSyncronized(
             [
-                SniivURL('api/IndicadoresAPI/GetTotalAnio/'+this.state.year,true),
-                SniivURL('api/IndicadoresAPI/GetTotalObjetivoTrimestre/'+this.state.year+'/'+this.state.trimestre,true),
-                SniivURL('api/IndicadoresAPI/GetTotalCumplimientoOnavi/'+this.state.year+'/'+this.state.trimestre,true),
+                SniivURL('api/IndicadoresAPI/GetTotalAnio/'+this.state.year,this.state.corsLoader,this.state.environmentProd),
+                SniivURL('api/IndicadoresAPI/GetTotalObjetivoTrimestre/'+this.state.year+'/'+this.state.trimestre,this.state.corsLoader,this.state.environmentProd),
+                SniivURL('api/IndicadoresAPI/GetTotalCumplimientoOnavi/'+this.state.year+'/'+this.state.trimestre,this.state.corsLoader,this.state.environmentProd),
             ])
         this.setState({total:fetchCumplimiento[0],cumplimiento:fetchCumplimiento[1],cumplimientoOnavi:fetchCumplimiento[2],synchronized:!this.state.synchronized})
     }
     async resetAll() {
-        let yearTrimestre = await GetYearTrimestre()
+        let yearTrimestre = await GetYearTrimestre(this.state.corsLoader,this.state.environmentProd)
         this.setState({reiniciar: !this.state.reiniciar,year:yearTrimestre[0],trimestre:yearTrimestre[1]});
     }
     async componentDidMount() {
-        let yearTrimestre = await GetYearTrimestre()
+        let yearTrimestre = await GetYearTrimestre(this.state.corsLoader,this.state.environmentProd)
         this.setState({year:yearTrimestre[0],trimestre:yearTrimestre[1]});
         await this.GetData();
         this.setState({synchronized:false})
@@ -52,7 +54,7 @@ export default class AvanceBienestar extends Component<any, any> {
                 <Fragment >
                     <TotalesCumplimientoBienestar data={this.state.total} callBack={handleCallback} callBack2={this.resetAll}
                                                   periodo={'Trimestral 2021'}
-                                                  seccion={'totales'} title={'Cumplimiento/Avances'}
+                                                  seccion={'totales'} title={'Cumplimiento del Programa Nacional de Vivienda'}
                                                   titleTrimestral={"Informe Trimestral"} titleCifras={'acciones'}
                                                   titleBar={'Porcentaje acumulado de cumplimento del 2021'}
                                                   titleInforme={'Informe Trimestral'} aAxis={'trimestre'}

@@ -32,8 +32,8 @@ export default function CardBanner(props:CardProps) {
             <CardMedia classes={mediaStyles} image={props.image}/>
             <Box py={5} px={2} className={classes.contentCard}>
                 <Grid container >
-                    <Grid item md={7} sm={12}></Grid>
-                    <Grid item md={5} sm={12} >
+                    <Grid item md={6} sm={12}></Grid>
+                    <Grid item md={6} sm={12} >
                         <Grid container >
                             <Grid item md={2}></Grid>
                             <Grid item md={10} sm={12}><img src={sniiv} alt={"sniiv"} className={classes.imageSedatu}/></Grid>

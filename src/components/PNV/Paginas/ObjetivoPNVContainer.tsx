@@ -14,14 +14,16 @@ export default class ObjetivoPNVContainer extends Component<any, any>{
             bienestar:null,
             synchronized:false,
             year:0,
-            trimestre:0
+            trimestre:0,
+            corsLoader: true,
+            environmentProd: true,
         }
     }
     async GetData(){
         let fetchFicha = await FetchSyncronized(
             [
                 AlfrescoURL('OI1vzz_pQ3ugmSjk1P6kXw','acciones_obj_prior_a.json',true),
-                SniivURL('api/IndicadoresAPI/GetObjetivoSource/'+this.state.year+'/'+this.state.trimestre,true),
+                SniivURL('api/IndicadoresAPI/GetObjetivoSource/'+this.state.year+'/'+this.state.trimestre,this.state.corsLoader,this.state.environmentProd),
                 AlfrescoURL('aSAjHlHmQnONnkomHJflPw','fichas_ind_b1.json',true),
                 AlfrescoURL('lWlQolPWTPqySrqZoE-NGQ','fichas_ind_b2.json',true),
                 AlfrescoURL('PcgvoZZ9R_agFFn4xQhzXg','fichas_ind_b3.json',true),
@@ -42,7 +44,7 @@ export default class ObjetivoPNVContainer extends Component<any, any>{
         this.setState({fichas:fetchFicha[0],sankey:fetchFicha[1],bienestar:fetchFicha.slice(2),synchronized:!this.state.synchronized})
     }
     async componentDidMount() {
-        let yearTrimestre = await GetYearTrimestre();
+        let yearTrimestre = await GetYearTrimestre(this.state.corsLoader,this.state.environmentProd);
         this.setState({year:yearTrimestre[0],trimestre:yearTrimestre[1]})
         await this.GetData()
     }

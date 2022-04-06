@@ -73,7 +73,7 @@ export default function BarChart(props:BarChartProps){
                 color: '#999',
                 show:false,
             },
-            max: props.data[0].value <= 100 && 100,
+            max: props.data[0].value <= 40 ? props.data[0].value+15 :100 ,
         },
         series
 

@@ -195,7 +195,7 @@ export default function ViviendaAdecuada(props:any){
             data: [{ficha:indicadorViv7_1},],
             grafica:[[51.23,]],
             label:[{chartLabel:['2020']}],
-            xAxis:[['2020']],
+            xAxis:[['Años']],
             yAxis:['Porcentaje'],
             pdfName:['ind_viv7_1',],
         }

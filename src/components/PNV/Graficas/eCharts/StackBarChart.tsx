@@ -117,12 +117,12 @@ export default function StackBarChart(props:StackBarChartProps){
         series
 
     }
-    console.log(barChart)
     return(
         <Grid item xs={12} sm={12} md={12} >
             <Paper elevation={3} className={classes.paper}>
                 <h4>{props.title}</h4>
                 <ReactECharts option={barChart}/>
+                <p>Años</p>
             </Paper>
         </Grid>
     )

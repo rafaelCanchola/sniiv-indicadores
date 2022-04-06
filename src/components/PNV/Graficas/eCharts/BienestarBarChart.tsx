@@ -243,7 +243,7 @@ export default function BienestarBarChart(props:BarProps){
                 <DialogContent dividers>
                     <Grid container spacing={2} alignItems={'center'} >
                         {
-                            props.tableData[props.indicadorIndex].parametros.map((param1:any,key1:number) => <Grid item xs={12} sm={12} md={6} key={key1+param1.data["Nombre"]}><Paper elevation={3} className={classes.paper}><h3>{param1.data["Nombre"]}</h3><h4 className={classes.colorGrey}>{"Frecuencia de medición: "+bienestarActualiza[props.indicadorIndex]}</h4><h4>{param1.data[unidadMedida]}</h4><ReactECharts option={chartTemplate(param1)}/></Paper></Grid>)
+                            props.tableData[props.indicadorIndex].parametros.map((param1:any,key1:number) => <Grid item xs={12} sm={12} md={6} key={key1+param1.data["Nombre"]}><Paper elevation={3} className={classes.paper}><h3>{param1.data["Nombre"]}</h3><h4 className={classes.colorGrey}>{"Frecuencia de medición: "+param1.data["Periodicidad o frecuencia de medición"]}</h4><h4>{param1.data[unidadMedida]}</h4><ReactECharts option={chartTemplate(param1)}/></Paper></Grid>)
                         }
                     </Grid>
                     <Grid container spacing={2}  >

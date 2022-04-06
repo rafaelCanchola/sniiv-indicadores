@@ -42,9 +42,9 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
             ({value:(d),itemStyle:{color: colorBrewer.T4Green[key]}}))
             :
                 {
-                    val1: props.indicador.grafica[props.indicadorIndex][objKeys[0]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Green[0]}})),
-                    val2: props.indicador.grafica[props.indicadorIndex][objKeys[1]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Green[1]}})),
-                    val3: props.indicador.grafica[props.indicadorIndex][objKeys[2]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Green[2]}}))
+                    val1: props.indicador.grafica[props.indicadorIndex][objKeys[0]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[0]}})),
+                    val2: props.indicador.grafica[props.indicadorIndex][objKeys[1]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[1]}})),
+                    val3: props.indicador.grafica[props.indicadorIndex][objKeys[2]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[2]}}))
                 }
 
     }
@@ -70,6 +70,7 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
                                    xAxis={props.indicador.xAxis[props.indicadorIndex]}
                                    yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
                 }
+
             </Grid>
             }
             {props.indicador.tipo === 'waterfall' &&
