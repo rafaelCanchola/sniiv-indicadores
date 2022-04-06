@@ -37,6 +37,7 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 1",
             pdfName:'obj_1',
+            more:'',
             data: props.fichas[0],
             parametros:[
                 {
@@ -54,6 +55,7 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 2",
             pdfName:'obj_4',
+            more:'',
             data: props.fichas[3],
             parametros:[
                 {
@@ -71,6 +73,7 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 3",
             pdfName:'obj_7',
+            more:"Las cifras de los años 2019 y 2020 son preliminares",
             data: props.fichas[6],
             parametros:[
                 {
@@ -88,6 +91,7 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 4",
             pdfName:'obj_10',
+            more:'',
             data: props.fichas[9],
             parametros:[
                 {
@@ -105,6 +109,7 @@ export default function IndicadoresBienestar(props:IndicadoresProps){
         {
             titulo:"Objetivo Prioritario 5",
             pdfName:'obj_13',
+            more:'',
             data: props.fichas[12],
             parametros:[
                 {

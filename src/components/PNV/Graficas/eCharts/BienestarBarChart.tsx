@@ -199,7 +199,7 @@ export default function BienestarBarChart(props:BarProps){
     const bienestarObjetivo = props.tableData.map((param:any) => param.data["Nombre"])
     const bienestarActualiza = props.tableData.map((param:any) => param.data["Periodicidad o frecuencia de medición"])
     const bienestarUnidades = props.tableData.map((param:any) => param.data[unidadMedida])
-    //const bienestarTendencia = props.tableData.map((param:any) => param.data[tendenciaEsp])
+    const bienestarMore = props.tableData.map((param:any) => param.more)
     const bienestarCharts = props.tableData.map((param:any) => chartTemplate(param));
 
 
@@ -210,6 +210,7 @@ export default function BienestarBarChart(props:BarProps){
                 <h5 className={classes.colorGrey}>{bienestarObjetivo[props.indicadorIndex]}</h5>
                 <h5 className={classes.colorGrey}>{"Frecuencia de medición: "+bienestarActualiza[props.indicadorIndex]}</h5>
                 <h5 className={classes.colorGrey}>{bienestarUnidades[props.indicadorIndex]}</h5>
+                <h5 className={classes.colorGrey}>{bienestarMore[props.indicadorIndex]}</h5>
                 <Grid container>
                     <Grid item xs={12}>
                         <Button size="small" className={classes.textCard} onMouseOver={() => setTableHover1(true)} onMouseOut={() => setTableHover1(false)}  onClick={clickChartFunc[props.indicadorIndex][0]}>
