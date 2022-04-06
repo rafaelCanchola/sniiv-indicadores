@@ -320,6 +320,8 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                 <Leyenda/>
                 <Paper elevation={3} className={classes.paper}>
                     <ReactECharts option={BarChart}/>
+                    <p>NA: No aplica.</p>
+                    <p>Derivado a que no cuenta con acciones puntuales asociadas al objetivo prioritario.</p>
                 </Paper>
             </Paper>
             }
