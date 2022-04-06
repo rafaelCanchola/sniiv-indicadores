@@ -11,7 +11,7 @@ import TableIcon from "@material-ui/icons/Toc";
 import ReactECharts from "echarts-for-react";
 
 import {colorBrewer} from "../../../utils/colorBrewer";
-import {assignStateColor, MobileSize} from "../../../utils/Utils";
+import {assignStateColor, MobileSize, oneDecimalNumber} from "../../../utils/Utils";
 
 import conavi from "../../../assets/images/conavi.png";
 import fovissste from "../../../assets/images/fovissste.png";
@@ -270,7 +270,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                     show:true,
                     position:"top",
                     type:"value",
-                    formatter: (data:any) => data.value == 0 ? "NA" :data.value +" %",
+                    formatter: (data:any) => data.value === 0 ? "NA" :oneDecimalNumber(data.value) +" %",
                 },
                 emphasis: {
                     itemStyle: {

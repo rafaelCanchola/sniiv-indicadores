@@ -5,7 +5,7 @@ import ReactECharts from "echarts-for-react";
 
 import trimestral from "../../../assets/images/trimestral.png";
 import {useStyles} from "../../../utils/Style";
-import {MobileSize, ordinalNumber} from "../../../utils/Utils";
+import {MobileSize, oneDecimalNumber, ordinalNumber} from "../../../utils/Utils";
 import CardBanner from "../MUIComponents/CardBanner";
 
 
@@ -87,7 +87,7 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                     show:true,
                     position:"top",
                     type:"value",
-                    formatter: (data:any) => Math.round(data.value) +" %",
+                    formatter: (data:any) => oneDecimalNumber(data.value) +" %",
 
                 },
 

@@ -3,6 +3,9 @@ import {useEffect, useState} from "react";
 import * as htmlToImage from "html-to-image";
 import jsPDF from "jspdf";
 
+export function oneDecimalNumber(value:number){
+    return (Math.round(value*10)/10).toFixed(1)
+}
 export function randomNumber(max:number){
     return Math.floor(Math.random() * max) + 0
 }

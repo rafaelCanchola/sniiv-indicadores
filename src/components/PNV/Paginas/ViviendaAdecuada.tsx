@@ -193,7 +193,7 @@ export default function ViviendaAdecuada(props:any){
             tipo:'dual',
             chartTitle:[' Porcentaje de viviendas con Adecuación cultural'],
             data: [{ficha:indicadorViv7_1},],
-            grafica:[[51.23,]],
+            grafica:[[51.2,]],
             label:[{chartLabel:['2020']}],
             xAxis:[['Años']],
             yAxis:['Porcentaje'],
