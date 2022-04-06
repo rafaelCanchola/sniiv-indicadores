@@ -20,7 +20,7 @@ import TableMUIPNV from "../../Tablas/TableMUIPNV";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import TableMUIViv from "../../Tablas/TableMUIViv";
-import {MobileSize} from "../../../../utils/Utils";
+import {MobileSize, oneDecimalNumber} from "../../../../utils/Utils";
 
 
 interface BarProps {
@@ -190,7 +190,7 @@ export default function BienestarBarChart(props:BarProps){
             xAxis:{axisLine: {show: false}, axisTick: {show: false}, axisLabel: {color: '#999', formatter: ""}},
             visualMap: {orient: 'horizontal', left: 'center', min: minValue(param.data[unidadMedida]), max: maxValue(param.data[unidadMedida]), dimension: 0, inRange: {color: (param.data[tendenciaEsp].includes("Descendente"))?['#65B581','#FFCE34','#FD665F']:['#FD665F','#FFCE34','#65B581']}},
             series: [
-                {type: 'bar', showBackground: true, label:{show:true, position:"right", type:"value", formatter: (data:any) =>(data.value === 0)?"":(param.data[unidadMedida].includes("Porcentaje"))?parseInt(data.value) +" %":parseInt(data.value).toLocaleString()},
+                {type: 'bar', showBackground: true, label:{show:true, position:"right", type:"value", formatter: (data:any) =>(data.value === 0)?"":(param.data[unidadMedida].includes("Porcentaje"))?oneDecimalNumber(data.value) +" %":parseInt(data.value).toLocaleString()},
                     emphasis: {itemStyle: {shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0, 0, 0, 0.5)'}},
                     data: Object.keys(param.data[serieHistorica]).map((arr:any) => param.data[serieHistorica][arr])
                 }]
