@@ -19,8 +19,9 @@ export default function BarChart(props:BarChartProps){
                     nameLocation:"center",
                     data: props.label.chartLabel,
                     axisLabel: {
-                        show:false,
+                        show:true,
                         inside: false,
+                        margin:1,
                     },
                     axisTick: {
                         show: true

@@ -27,9 +27,9 @@ export default function BarChartNumber(props:BarChartProps){
             nameLocation:"center",
             data: props.label.chartLabel,
             axisLabel: {
-                show:false,
-                inside: true,
-                color: '#fff'
+                show:true,
+                inside: false,
+                margin:1,
             },
             axisTick: {
                 show: true

@@ -18,10 +18,13 @@ export default function StackBarChart(props:StackBarChartProps){
     const xAxis = [
             {
                 type: 'category',
+                name:"Años",
+                nameLocation:"center",
                 data: props.xAxis,
                 axisLabel: {
                     show:true,
                     inside: false,
+                    margin:1,
                 },
             }
     ]
@@ -122,7 +125,6 @@ export default function StackBarChart(props:StackBarChartProps){
             <Paper elevation={3} className={classes.paper}>
                 <h4>{props.title}</h4>
                 <ReactECharts option={barChart}/>
-                <p>Años</p>
             </Paper>
         </Grid>
     )
