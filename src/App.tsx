@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Route, HashRouter} from 'react-router-dom';
+import {Route, HashRouter, Link} from 'react-router-dom';
 import AssIcon from '@material-ui/icons/LibraryBooksOutlined'
 import HomeIcon from '@material-ui/icons/ApartmentOutlined'
 import AnalyticsIcon from '@material-ui/icons/MultilineChartOutlined'
@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import AvanceBienestar from './components/PNV/Paginas/AvanceBienestar';
 import ViviendaContainer from "./components/PNV/Paginas/ViviendaContainer";
 import ObjetivoPNVContainer from "./components/PNV/Paginas/ObjetivoPNVContainer";
+import {AppBar, BottomNavigation, BottomNavigationAction} from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme:Theme) =>
@@ -26,6 +27,8 @@ const useStyles = makeStyles((theme:Theme) =>
 
 function App() {
     const classes = useStyles()
+    const [value,setValue] = React.useState(',')
+    const handleChange = (event: React.ChangeEvent<{}>,newValue:string) => {setValue(newValue)}
 
     const theme = React.useMemo(
         () =>
@@ -67,6 +70,17 @@ function App() {
                   <Route path={prop.path} exact={prop.exact} component={prop.component} key={key}/>
               )
           })}
+                {
+                    <AppBar position="fixed" style={{top: "auto", bottom: 0}} className={classes.appBar}>
+                        <BottomNavigation value={value} onChange={handleChange}  className={classes.appBar}>
+                            {Routes.map((prop,key) => {
+                                return(
+                                    <BottomNavigationAction  component={Link} to={prop.path} label={prop.sidebarName} value={prop.sidebarName} key={key} icon={prop.icon}   />
+                                )
+                            })}
+                        </BottomNavigation>
+                    </AppBar>
+                }
             </HashRouter>
 
         </ThemeProvider>
