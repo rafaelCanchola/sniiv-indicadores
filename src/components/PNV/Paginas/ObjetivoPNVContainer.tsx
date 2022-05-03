@@ -15,7 +15,7 @@ export default class ObjetivoPNVContainer extends Component<any, any>{
             synchronized:false,
             year:0,
             trimestre:0,
-            corsLoader: true,
+            corsLoader: false,
             environmentProd: true,
         }
     }

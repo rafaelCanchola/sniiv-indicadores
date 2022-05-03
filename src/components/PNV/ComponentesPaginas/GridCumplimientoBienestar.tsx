@@ -24,6 +24,7 @@ interface CumplimientoProps {
     titleBar: string;
     periodo:string;
     fichaPie: any;
+    fichaPie2: any;
     fichaPie3: any;
     titleCifras: string;
     titlePie: string;
@@ -91,7 +92,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
             title: props.titleBar,
             trimestre: props.periodo,
             data: dataBar,
-            label: sliceDataBar,
+            label: [sliceDataBar,props.fichaPie2],
             tipo: 'bar'
         },
         {
