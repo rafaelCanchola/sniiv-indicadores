@@ -91,10 +91,12 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
 
     const classes = useStyles();
     const [open1, setOpen1] = useState(false);
+    const [open2, setOpen2] = useState(false);
     const [open3, setOpen3] = useState(false);
 
     const [tableHover1, setTableHover1] = useState(false);
     const [tableHover2, setTableHover2] = useState(false);
+    const [tableHover3, setTableHover3] = useState(false);
 
     const onaIcons = {
         CONAVI:conavi,
@@ -112,6 +114,12 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
         setOpen1(false);
     }
 
+    const handleClickOpen2 = () => {
+        setOpen2(true);
+    }
+    const handleClose2 = () => {
+        setOpen2(false);
+    }
     const handleClickOpen3 = () => {
         setOpen3(true);
     }
@@ -296,7 +304,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
         gAxis:props.indicador.label[6],
         hAxis:props.indicador.label[7],
     }
-
+console.log(props.indicador.label)
     return(
         <div className={classes.root}>
             {props.indicador.tipo === 'gauge' &&
@@ -317,6 +325,10 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
             <Paper elevation={0} className={classes.paper}>
                 <h2>{props.indicador.title}</h2>
                 <h3>{props.indicador.trimestre}</h3>
+                <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover2(true)}
+                        onMouseOut={() => setTableHover2(false)} onClick={handleClickOpen2}>
+                    {tableHover2 ? "Ficha técnica" : <TableIcon fontSize={"large"}/>}
+                </Button>
                 <Leyenda/>
                 <Paper elevation={3} className={classes.paper}>
                     <ReactECharts option={BarChart}/>
@@ -330,9 +342,9 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                 <Paper elevation={0} className={classes.paper}>
                     <h2>{props.indicador.title}</h2>
                     <h3>{props.indicador.trimestre}</h3>
-                    <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover2(true)}
-                            onMouseOut={() => setTableHover2(false)} onClick={handleClickOpen3}>
-                        {tableHover2 ? "Ficha técnica" : <TableIcon fontSize={"large"}/>}
+                    <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover3(true)}
+                            onMouseOut={() => setTableHover3(false)} onClick={handleClickOpen3}>
+                        {tableHover3 ? "Ficha técnica" : <TableIcon fontSize={"large"}/>}
                     </Button>
                     <Paper elevation={3} className={classes.paper}>
                         <ReactECharts option={orderPie(propsPie, props.indicadorIndex + 1)}/>
@@ -349,6 +361,19 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose1} color={'primary'}>
+                        Cerrar
+                    </Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog fullScreen={isMobile} open={open2} onClose={handleClose2} aria-labelledby={'customized-dialog-title'} maxWidth={"md"}>
+                <DialogTitle>
+                    Ficha Técnica
+                </DialogTitle>
+                <DialogContent dividers>
+                    <TableMUIPNV data={props.indicador.label[props.indicador.label.length-1]} id={props.indicador.label[props.indicador.label.length-1].Nombre} pdfName={"ind_"+props.indicador.label[props.indicador.label.length-1].Nombre}/>
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={handleClose2} color={'primary'}>
                         Cerrar
                     </Button>
                 </DialogActions>

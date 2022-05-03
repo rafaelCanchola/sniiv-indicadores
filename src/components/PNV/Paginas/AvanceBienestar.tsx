@@ -1,11 +1,8 @@
 import React, {Component,Fragment} from 'react';
 import TotalesCumplimientoBienestar from "../ComponentesPaginas/TotalesCumplimientoBienestar";
-
-import {fichaPie} from "../../../json/PNV/fichas_ind_pnv1";
-import {fichaPie3} from "../../../json/PNV/fichas_ind_pnv3"
 import GridCumplimientoBienestar from "../ComponentesPaginas/GridCumplimientoBienestar";
 import {ordinalNumber} from "../../../utils/Utils";
-import {FetchSyncronized, GetYearTrimestre, SniivURL} from "../../FetchURL";
+import {AlfrescoURL, FetchSyncronized, GetYearTrimestre, SniivURL} from "../../FetchURL";
 import loader from "../../../assets/images/loading-23.gif";
 
 export default class AvanceBienestar extends Component<any, any> {
@@ -17,9 +14,11 @@ export default class AvanceBienestar extends Component<any, any> {
             reiniciar: false,
             cumplimiento : null,
             cumplimientoOnavi : null,
+            json2:null,
+            json4:null,
             total: null,
             synchronized:false,
-            corsLoader: true,
+            corsLoader: false,
             environmentProd: true,
         }
     }
@@ -29,8 +28,13 @@ export default class AvanceBienestar extends Component<any, any> {
                 SniivURL('api/IndicadoresAPI/GetTotalAnio/'+this.state.year,this.state.corsLoader,this.state.environmentProd),
                 SniivURL('api/IndicadoresAPI/GetTotalObjetivoTrimestre/'+this.state.year+'/'+this.state.trimestre,this.state.corsLoader,this.state.environmentProd),
                 SniivURL('api/IndicadoresAPI/GetTotalCumplimientoOnavi/'+this.state.year+'/'+this.state.trimestre,this.state.corsLoader,this.state.environmentProd),
+                AlfrescoURL('jeaPHtenTQ2OcdBjdbMIYA','fichas_ind_pnv1.json',true),
+                AlfrescoURL('qjf9EQy5Qk254KBzboSmPA','fichas_ind_pnv2.json',true),
+                AlfrescoURL('WZDLryvcSt-gwoj3poieGg','fichas_ind_pnv3.json',true),
+                AlfrescoURL('vRv9fVm-RN-UhSTRXDvjvw','fichas_ind_pnv4.json',true),
+
             ])
-        this.setState({total:fetchCumplimiento[0],cumplimiento:fetchCumplimiento[1],cumplimientoOnavi:fetchCumplimiento[2],synchronized:!this.state.synchronized})
+        this.setState({total:fetchCumplimiento[0],cumplimiento:fetchCumplimiento[1],cumplimientoOnavi:fetchCumplimiento[2],json2:fetchCumplimiento[4],json3:fetchCumplimiento[5],json4:fetchCumplimiento[6],synchronized:!this.state.synchronized})
     }
     async resetAll() {
         let yearTrimestre = await GetYearTrimestre(this.state.corsLoader,this.state.environmentProd)
@@ -60,7 +64,7 @@ export default class AvanceBienestar extends Component<any, any> {
                                                   titleInforme={'Informe Trimestral'} aAxis={'trimestre'}
                                                   bAxis={'total'} cAxis={'aCabo'}/>
                     <GridCumplimientoBienestar data={this.state.cumplimiento} data2={this.state.cumplimientoOnavi}
-                                               fichaPie={fichaPie} fichaPie3={fichaPie3} seccion={"totales"}
+                                               fichaPie={this.state.json2} fichaPie2={this.state.json3} fichaPie3={this.state.json4} seccion={"totales"}
                                                titleRow={"Porcentaje de cumplimiento según objetivo "}
                                                periodo={ordinalNumber(this.state.trimestre) + " trimestre 2021"}
                                                titleBar={"Porcentaje de contribución según ONAVIS"}
