@@ -14,11 +14,13 @@ export default class AvanceBienestar extends Component<any, any> {
             reiniciar: false,
             cumplimiento : null,
             cumplimientoOnavi : null,
+            json1:null,
             json2:null,
+            json3:null,
             json4:null,
             total: null,
             synchronized:false,
-            corsLoader: true,
+            corsLoader: false,
             environmentProd: true,
         }
     }
@@ -34,7 +36,7 @@ export default class AvanceBienestar extends Component<any, any> {
                 AlfrescoURL('vRv9fVm-RN-UhSTRXDvjvw','fichas_ind_pnv4.json',true),
 
             ])
-        this.setState({total:fetchCumplimiento[0],cumplimiento:fetchCumplimiento[1],cumplimientoOnavi:fetchCumplimiento[2],json2:fetchCumplimiento[4],json3:fetchCumplimiento[5],json4:fetchCumplimiento[6],synchronized:!this.state.synchronized})
+        this.setState({total:fetchCumplimiento[0],cumplimiento:fetchCumplimiento[1],cumplimientoOnavi:fetchCumplimiento[2],json1:fetchCumplimiento[3],json2:fetchCumplimiento[4],json3:fetchCumplimiento[5],json4:fetchCumplimiento[6],synchronized:!this.state.synchronized})
     }
     async resetAll() {
         let yearTrimestre = await GetYearTrimestre(this.state.corsLoader,this.state.environmentProd)
@@ -57,6 +59,7 @@ export default class AvanceBienestar extends Component<any, any> {
                 {this.state.total !== null ?
                 <Fragment >
                     <TotalesCumplimientoBienestar data={this.state.total} callBack={handleCallback} callBack2={this.resetAll}
+                                                  fichaPie={this.state.json1}
                                                   periodo={'Trimestral 2021'}
                                                   seccion={'totales'} title={'Cumplimiento del Programa Nacional de Vivienda'}
                                                   titleTrimestral={"Informe Trimestral"} titleCifras={'acciones'}

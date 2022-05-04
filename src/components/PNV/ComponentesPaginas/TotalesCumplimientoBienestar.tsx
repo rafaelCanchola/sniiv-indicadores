@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Fragment, useState} from 'react';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import ReactECharts from "echarts-for-react";
@@ -7,10 +7,14 @@ import trimestral from "../../../assets/images/trimestral.png";
 import {useStyles} from "../../../utils/Style";
 import {MobileSize, oneDecimalNumber, ordinalNumber} from "../../../utils/Utils";
 import CardBanner from "../MUIComponents/CardBanner";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import TableMUIPNV from "../Tablas/TableMUIPNV";
+import TableIcon from "@material-ui/icons/Toc";
 
 
 interface CumplimientoProps {
     data: any;
+    fichaPie:any
     periodo: string;
     seccion: string;
     callBack:any,
@@ -110,7 +114,16 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
     const onEvents = {
         click: onChartClick,
     };
+    const [open1, setOpen1] = useState(false);
+    const [tableHover1, setTableHover1] = useState(false);
+    const handleClickOpen1 = () => {
+        setOpen1(true);
+    }
+    const handleClose1 = () => {
+        setOpen1(false);
+    }
 
+    console.log(props.fichaPie)
     return(
         <Fragment>
             <CardBanner subtitle={props.periodo}
@@ -135,11 +148,28 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                                 {
                                     //<AutorenewIcon className={classes.textColorGrey} fontSize={'large'} onClick={() => {props.callBack2()}}/>
                                 }
+                                <Button size="large" className={classes.textCard} onMouseOver={() => setTableHover1(true)}
+                                        onMouseOut={() => setTableHover1(false)} onClick={handleClickOpen1}>
+                                    {tableHover1 ? "Ficha técnica" : <TableIcon fontSize={"large"}/>}
+                                </Button>
                                 <ReactECharts option={option} onEvents={onEvents} />
                             </Paper>
                         </Paper>
                     </Grid>
                 </Grid>
+                <Dialog fullScreen={isMobile} open={open1} onClose={handleClose1} aria-labelledby={'customized-dialog-title'} maxWidth={"md"}>
+                    <DialogTitle>
+                        Ficha Técnica
+                    </DialogTitle>
+                    <DialogContent dividers>
+                        <TableMUIPNV data={props.fichaPie} id={props.fichaPie.Nombre} pdfName={"ind_"+props.fichaPie.Nombre}/>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button autoFocus onClick={handleClose1} color={'primary'}>
+                            Cerrar
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
             </Paper>
 
