@@ -31,6 +31,7 @@ export default class ViviendaContainer extends Component<any, any>{
                 AlfrescoURL('5jcJ1NLlTHSmxk411AVLCA','fichas_ind_v3_6.json',true),
                 AlfrescoURL('yf8q1jXyRHuoQQeoXzgdWQ','fichas_ind_v3_7.json',true),
                 AlfrescoURL('-SyfkpKtRxK3O3WxyeTF1w','fichas_ind_v4_1.json',true),
+                AlfrescoURL('wdvuXsRYQtC7JBUTxyVhDg','fichas_ind_v4_2.json',true),
                 AlfrescoURL('oCPCQT4mRnuQA_kS13yQ_Q','fichas_ind_v5_1.json',true),
                 AlfrescoURL('2F8WbvFgS1-qEZk_EAU-mQ','fichas_ind_v5_2.json',true),
                 AlfrescoURL('pHEwwnqlTyiRjG96H1UK_Q','fichas_ind_v6_1.json',true),

@@ -49,11 +49,12 @@ export default function ViviendaAdecuada(props:any){
     const indicadorViv3_6 = props.objs[14];
     const indicadorViv3_7 = props.objs[15];
     const indicadorViv4_1 = props.objs[16];
-    const indicadorViv5_1 = props.objs[17];
-    const indicadorViv5_2 = props.objs[18];
-    const indicadorViv6_1 = props.objs[19];
-    const indicadorViv6_2 = props.objs[20];
-    const indicadorViv7_1 = props.objs[21];
+    const indicadorViv4_2 = props.objs[17];
+    const indicadorViv5_1 = props.objs[18];
+    const indicadorViv5_2 = props.objs[19];
+    const indicadorViv6_1 = props.objs[20];
+    const indicadorViv6_2 = props.objs[21];
+    const indicadorViv7_1 = props.objs[22];
     const elementos =[
         {
             num: 1,
@@ -86,8 +87,8 @@ export default function ViviendaAdecuada(props:any){
             title: "HABITABILIDAD",
             image:habitabilidad,
             more:"Son las condiciones que garantizan la seguridad física de sus habitantes y les proporcionan un espacio habitable suficiente, así como protección contra el frío, la humedad, el calor, la lluvia, el viento u otros riesgos para la salud y peligros estructurales. Es decir, una parte importante del rezago de las viviendas deriva de condiciones estructurales y de ubicación que las hacen vulnerables a riesgos relacionados a desastres por fenómenos naturales y eventos climáticos extremos.",
-            children:[0],
-            chartTitle:['Porcentaje de viviendas más de 30 de antigüedad con problemas estructurales'],
+            children:[0,1],
+            chartTitle:['Porcentaje de viviendas más de 30 de antigüedad con problemas estructurales','Porcentaje de viviendas particulares habitadas con problemas estructrales'],
 
         },
         {
@@ -156,13 +157,13 @@ export default function ViviendaAdecuada(props:any){
         {
             titulo: "Habitabilidad",
             tipo:'dual',
-            chartTitle:['Porcentaje de viviendas más de 30 de antigüedad con problemas estructurales'],
-            data: [{ficha:indicadorViv4_1},],
-            grafica:[[13.5]],
-            label:[{chartLabel: ['2020']},],
-            xAxis:['Años'],
-            yAxis:['Porcentaje'],
-            pdfName:['ind_viv4_1',],
+            chartTitle:['Porcentaje de viviendas más de 30 de antigüedad con problemas estructurales','Porcentaje de viviendas particulares habitadas con problemas estructrales'],
+            data: [{ficha:indicadorViv4_1},{ficha:indicadorViv4_2}],
+            grafica:[[13.5],{A:[44.2],B:[40.8],C:[16.2],D:[14.8],E:[10.6],F:[7.9]}],
+            label:[{chartLabel: ['2020']},{chartLabel: ['Humedad/filtraciones de agua','Grietas/cuarteaduras','Deformaciones en marcos','Levantamiento o hundimientos del pisos','Fracturas/ deformaciones de columnas vigas o trabes','En tubería o drenaje']}],
+            xAxis:['Años',['2020']],
+            yAxis:['Porcentaje','Porcentaje'],
+            pdfName:['ind_viv4_1','ind_viv4_2'],
         },
         {
             titulo: "Accesibilidad",

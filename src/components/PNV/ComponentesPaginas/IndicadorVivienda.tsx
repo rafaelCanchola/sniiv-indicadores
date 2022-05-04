@@ -12,7 +12,8 @@ import {colorBrewer} from "../../../utils/colorBrewer";
 import BarChartNumber from "../Graficas/eCharts/BarChartNumber";
 import {useStyles} from "../../../utils/Style";
 import PieChart from "../Graficas/eCharts/PieChart";
-import StackBarChart from "../Graficas/eCharts/StackBarChart";
+import StackThreeBarChart from "../Graficas/eCharts/StackThreeBarChart";
+import StackSixBarChart from "../Graficas/eCharts/StackSixBarChart";
 
 
 interface IndicadorViviendaProps {
@@ -41,6 +42,16 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
         dataBar = props.indicador.grafica[props.indicadorIndex]['A'] === undefined ? props.indicador.grafica[props.indicadorIndex].map((d: AxisChart,key:number) =>
             ({value:(d),itemStyle:{color: colorBrewer.T4Green[key]}}))
             :
+            Object.keys(props.indicador.grafica[props.indicadorIndex]).length > 3 ?
+                {
+                    val1: props.indicador.grafica[props.indicadorIndex][objKeys[0]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[0]}})),
+                    val2: props.indicador.grafica[props.indicadorIndex][objKeys[1]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[1]}})),
+                    val3: props.indicador.grafica[props.indicadorIndex][objKeys[2]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[2]}})),
+                    val4: props.indicador.grafica[props.indicadorIndex][objKeys[3]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[3]}})),
+                    val5: props.indicador.grafica[props.indicadorIndex][objKeys[4]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[4]}})),
+                    val6: props.indicador.grafica[props.indicadorIndex][objKeys[5]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[5]}}))
+                }
+                :
                 {
                     val1: props.indicador.grafica[props.indicadorIndex][objKeys[0]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[0]}})),
                     val2: props.indicador.grafica[props.indicadorIndex][objKeys[1]].map((d: AxisChart) => ({value:(d),itemStyle:{color: colorBrewer.T4Colors[1]}})),
@@ -65,12 +76,17 @@ export function IndicadorVivienda(props:IndicadorViviendaProps){
                                       xAxis={props.indicador.xAxis[props.indicadorIndex]}
                                       yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
                     :
-                    <StackBarChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
+                    Object.keys(props.indicador.grafica[props.indicadorIndex]).length > 3 ?
+                        <StackSixBarChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
+                                       label={props.indicador.label[props.indicadorIndex]}
+                                       xAxis={props.indicador.xAxis[props.indicadorIndex]}
+                                       yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
+                        :
+                        <StackThreeBarChart title={props.indicador.chartTitle[props.indicadorIndex]} data={dataBar}
                                    label={props.indicador.label[props.indicadorIndex]}
                                    xAxis={props.indicador.xAxis[props.indicadorIndex]}
                                    yAxis={props.indicador.yAxis[props.indicadorIndex]}/>
                 }
-
             </Grid>
             }
             {props.indicador.tipo === 'waterfall' &&

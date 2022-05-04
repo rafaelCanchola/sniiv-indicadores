@@ -18,7 +18,7 @@ export default class AvanceBienestar extends Component<any, any> {
             json4:null,
             total: null,
             synchronized:false,
-            corsLoader: false,
+            corsLoader: true,
             environmentProd: true,
         }
     }
