@@ -12,7 +12,7 @@ interface StackBarChartProps{
     yAxis:string
 }
 
-export default function StackBarChart(props:StackBarChartProps){
+export default function StackSixBarChart(props:StackBarChartProps){
     const classes = useStyles();
 
     const xAxis = [
@@ -91,7 +91,70 @@ export default function StackBarChart(props:StackBarChartProps){
                 }
             },
             data: props.data.val3
-        }
+        },
+        {
+            name:props.label.chartLabel[3],
+            type: 'bar',
+            showBackground: true,
+            label:{
+                formatter: '{c}  {name|{a}}',
+                fontSize: 16,
+                rich: {
+                    name: {}
+                }
+            },
+            emphasis: {
+                focus:'series',
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            data:props.data.val4
+        },
+        {
+            name:props.label.chartLabel[4],
+            type: 'bar',
+            showBackground: true,
+            label:{
+                formatter: '{c}  {name|{a}}',
+                fontSize: 16,
+                rich: {
+                    name: {}
+                }
+            },
+            emphasis: {
+                focus:'series',
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            data:props.data.val5
+        },
+        {
+            name:props.label.chartLabel[5],
+            type: 'bar',
+            showBackground: true,
+            label:{
+                formatter: '{c}  {name|{a}}',
+                fontSize: 16,
+                rich: {
+                    name: {}
+                }
+            },
+            emphasis: {
+                focus:'series',
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            data:props.data.val6
+        },
     ]
     const barChart = {
         tooltip:{
