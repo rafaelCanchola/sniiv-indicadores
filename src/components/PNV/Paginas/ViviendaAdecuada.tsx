@@ -71,7 +71,7 @@ export default function ViviendaAdecuada(props:any){
             image:servicios,
             more:"Contempla la provisión de agua potable, instalaciones sanitarias adecuadas, energía para la cocción, la calefacción y el alumbrado, así como para la conservación de alimentos y eliminación de residuos.",
             children:[0,1,2,3,4,5,6],
-            chartTitle: ['Porcentaje de hogares que están pagando su vivienda y que destinan más del 30% de su ingreso corriente mensual para tal fin','Porcentaje de hogares en viviendas rentadas cuyo monto de renta mensual es superior al 30% de sus ingresos mensuales','Porcentaje de vivienda adquirida (propia o en proceso de pago) según tipo de financiamiento','Porcentaje promedio del ingreso mensual destinado para pagar vivienda (1er quintil)','Porcentaje de viviendas autoproducidas o autoconstruidas','Porcentaje de viviendas autoproducidas o autoconstruidas primer quintil de ingreso','Monto promedio del pago mensual por la vivienda autoproducida o autoconstruida',],
+            chartTitle: ['Porcentaje de viviendas con tecnologías sostenibles/uso sustentable','Porcentaje de viviendas con carencia de acceso a agua','Porcentaje de viviendas con carencia de servicios de drenaje','Porcentaje de viviendas con carencia de servicios de electricidad','Porcentaje de vivienda con carencia de servicios de combustible','Porcentaje de viviendas con carencia de acceso a los servicios básicos','Porcentaje de población en pobreza extrema con carencia en calidad, espacios y servicios básicos en la vivienda'],
         },
         {
             num: 3,
@@ -274,6 +274,7 @@ export default function ViviendaAdecuada(props:any){
                                 <br/>
                                 {elementos.slice(0,4).map((card:any,key:number )=>
                                     <Paper elevation={0} className={classes.paperImage2} key={key}>
+                                        {console.log(card.chartTitle)}
                                         <CardVivienda selected={indicador[0] === 10? indicador[1]===key: indicador[0]-1===key} mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} image={card.image} key={card.num+card.title} cardName={card.chartTitle}/>
                                     </Paper>
                                 )}

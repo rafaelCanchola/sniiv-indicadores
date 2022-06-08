@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme:Theme) =>
 export default function TableMUIPNV(props: TableProps) {
 
     const dataKeys = Object.keys(props.data);
-    const childKeys = [dataKeys[dataKeys.length-3],dataKeys[dataKeys.length-2],dataKeys[dataKeys.length-1]];
+    const childKeys = [dataKeys[dataKeys.length-4],dataKeys[dataKeys.length-3],dataKeys[dataKeys.length-2],dataKeys[dataKeys.length-1]];
     const variablesMap = props.data[childKeys[0]]["variables"];
     const variableslast = Object.keys(props.data[childKeys[0]])[1];
     const lineaMap = Object.keys(props.data[childKeys[1]]);
