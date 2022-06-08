@@ -215,7 +215,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
     handleSubmit()
         .then(
             (wkt) =>{
-                agaveLayer?.getSource().addFeatures(wkt)
+                agaveLayer!.getSource()!.addFeatures(wkt)
                 actualizarLayers(map)
             }
         )
