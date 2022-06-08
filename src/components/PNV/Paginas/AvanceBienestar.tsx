@@ -2,10 +2,11 @@ import React, {Component,Fragment} from 'react';
 import TotalesCumplimientoBienestar from "../ComponentesPaginas/TotalesCumplimientoBienestar";
 import GridCumplimientoBienestar from "../ComponentesPaginas/GridCumplimientoBienestar";
 import {ordinalNumber} from "../../../utils/Utils";
-import {AlfrescoURL, FetchSyncronized, GetYearTrimestre, SniivURL} from "../../FetchURL";
+import {AlfrescoUrl, FetchSyncronized, GetYearTrimestre, SniivUrl} from "../../FetchMethods";
 import loader from "../../../assets/images/loading-23.gif";
+import {connect} from "react-redux";
 
-export default class AvanceBienestar extends Component<any, any> {
+class AvanceBienestar extends Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -20,30 +21,32 @@ export default class AvanceBienestar extends Component<any, any> {
             json4:null,
             total: null,
             synchronized:false,
-            corsLoader: false,
-            environmentProd: true,
         }
     }
     async GetData(){
+        const {environment,corsEnabled} = this.props;
+
         let fetchCumplimiento = await FetchSyncronized(
             [
-                SniivURL('api/IndicadoresAPI/GetTotalAnio/'+this.state.year,this.state.corsLoader,this.state.environmentProd),
-                SniivURL('api/IndicadoresAPI/GetTotalObjetivoTrimestre/'+this.state.year+'/'+this.state.trimestre,this.state.corsLoader,this.state.environmentProd),
-                SniivURL('api/IndicadoresAPI/GetTotalCumplimientoOnavi/'+this.state.year+'/'+this.state.trimestre,this.state.corsLoader,this.state.environmentProd),
-                AlfrescoURL('jeaPHtenTQ2OcdBjdbMIYA','fichas_ind_pnv1.json',true),
-                AlfrescoURL('qjf9EQy5Qk254KBzboSmPA','fichas_ind_pnv2.json',true),
-                AlfrescoURL('WZDLryvcSt-gwoj3poieGg','fichas_ind_pnv3.json',true),
-                AlfrescoURL('vRv9fVm-RN-UhSTRXDvjvw','fichas_ind_pnv4.json',true),
+                SniivUrl('api/IndicadoresAPI/GetTotalAnio/'+this.state.year,corsEnabled,environment),
+                SniivUrl('api/IndicadoresAPI/GetTotalObjetivoTrimestre/'+this.state.year+'/'+this.state.trimestre,corsEnabled,environment),
+                SniivUrl('api/IndicadoresAPI/GetTotalCumplimientoOnavi/'+this.state.year+'/'+this.state.trimestre,corsEnabled,environment),
+                AlfrescoUrl('jeaPHtenTQ2OcdBjdbMIYA','fichas_ind_pnv1.json',true),
+                AlfrescoUrl('qjf9EQy5Qk254KBzboSmPA','fichas_ind_pnv2.json',true),
+                AlfrescoUrl('WZDLryvcSt-gwoj3poieGg','fichas_ind_pnv3.json',true),
+                AlfrescoUrl('vRv9fVm-RN-UhSTRXDvjvw','fichas_ind_pnv4.json',true),
 
             ])
         this.setState({total:fetchCumplimiento[0],cumplimiento:fetchCumplimiento[1],cumplimientoOnavi:fetchCumplimiento[2],json1:fetchCumplimiento[3],json2:fetchCumplimiento[4],json3:fetchCumplimiento[5],json4:fetchCumplimiento[6],synchronized:!this.state.synchronized})
     }
     async resetAll() {
-        let yearTrimestre = await GetYearTrimestre(this.state.corsLoader,this.state.environmentProd)
+        const {environment,corsEnabled} = this.props;
+        let yearTrimestre = await GetYearTrimestre(corsEnabled,environment)
         this.setState({reiniciar: !this.state.reiniciar,year:yearTrimestre[0],trimestre:yearTrimestre[1]});
     }
     async componentDidMount() {
-        let yearTrimestre = await GetYearTrimestre(this.state.corsLoader,this.state.environmentProd)
+        const {environment,corsEnabled} = this.props;
+        let yearTrimestre = await GetYearTrimestre(corsEnabled,environment)
         this.setState({year:yearTrimestre[0],trimestre:yearTrimestre[1]});
         await this.GetData();
         this.setState({synchronized:false})
@@ -85,3 +88,12 @@ export default class AvanceBienestar extends Component<any, any> {
         )
     }
 }
+
+const mapStateToProps = (state:any) => {
+    return{
+        environment: state.environment.environment,
+        corsEnabled: state.corsLoader.isCorsActive,
+    }
+}
+
+export default connect (mapStateToProps)(AvanceBienestar)

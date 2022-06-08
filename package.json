@@ -16,6 +16,7 @@
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
     "bootstrap": "^5.0.2",
+    "colormap": "^2.3.2",
     "crossfilter2": "^1.5.4",
     "d3": "^6.7.0",
     "dc": "^4.2.7",
@@ -27,10 +28,13 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-loader-spinner": "^4.0.0",
+    "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-table": "^7.7.0",
     "reactstrap": "^8.9.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "typescript": "^4.3.4",
     "web-vitals": "^1.1.2"
   },
@@ -59,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "@types/colormap": "^2.3.1",
     "@types/d3": "^7.0.0",
     "@types/dc": "^0.0.29",
     "@types/react-router-dom": "^5.1.7",
