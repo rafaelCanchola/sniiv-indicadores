@@ -19,11 +19,6 @@ class AvanceBienestar extends Component<any, any> {
             json4:null,
             total: null,
             synchronized:false,
-<<<<<<< HEAD
-            corsLoader: true,
-            environmentProd: true,
-=======
->>>>>>> 01d5db5 (fix ficha PNV + modulo insus)
         }
     }
     async GetData(){
