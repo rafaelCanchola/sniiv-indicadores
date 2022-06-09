@@ -65,6 +65,8 @@ export default function TableMUIPNV(props: TableProps) {
     const lineaMap = Object.keys(props.data[childKeys[mapIndex]]);
     const baseMap = Object.keys(props.data[childKeys[mapIndex]][lineaMap[0]]);
     const historicoMap = Object.keys(props.data[childKeys[historicoIndex]]);
+    let intermedioMap = (variablesIndex === 0) ? Object.keys(props.data[childKeys[3]]) : [] ;
+
     const classes = useStyles();
     return (
         <Fragment>
@@ -171,7 +173,23 @@ export default function TableMUIPNV(props: TableProps) {
                                     <TableCell key={data+keys} className={classes.body} align={"center"} colSpan={1}>{props.data[childKeys[historicoIndex]][data].toLocaleString()}</TableCell>
                                 )}
                             </TableRow>
-
+                            {variablesIndex === 0 && (
+                                <Fragment>
+                                    <TableRow><TableCell align={"center"} className={classes.head} colSpan={9}>{childKeys[3]}</TableCell></TableRow>
+                                    <TableRow>
+                                        <TableCell key={'tb0'} className={classes.colHead} align={"center"} colSpan={2}>{""}</TableCell>
+                                        {intermedioMap.map((data:any, keys:number) =>
+                                            <TableCell key={data+keys} className={classes.colHead} align={"center"} colSpan={2}>{data}</TableCell>
+                                        )}
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell key={'tb10'} className={classes.body} align={"center"} colSpan={2}>{""}</TableCell>
+                                        {intermedioMap.map((data:any, keys:number) =>
+                                            <TableCell key={data+keys} className={classes.body} align={"center"} colSpan={2}>{props.data[childKeys[3]][data].toLocaleString()}</TableCell>
+                                        )}
+                                    </TableRow>
+                                </Fragment>
+                            )}
 
 
                         </TableBody>
