@@ -123,7 +123,6 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
         setOpen1(false);
     }
 
-    console.log(props.fichaPie)
     return(
         <Fragment>
             <CardBanner subtitle={props.periodo}
