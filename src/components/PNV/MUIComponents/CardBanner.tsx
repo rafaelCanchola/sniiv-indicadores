@@ -20,7 +20,8 @@ interface CardProps{
     image: any,
     more1: string,
     more2: string,
-    isMobile: boolean
+    isMobile: boolean,
+    isBig: boolean
 }
 
 export default function CardBanner(props:CardProps) {
@@ -28,7 +29,7 @@ export default function CardBanner(props:CardProps) {
     const mediaStyles = useCoverCardMediaStyles({ bgPosition: 'center' });
 
     return (
-        <Card className={props.isMobile ? classes.cardBienestarMobile: classes.cardBienestar}>
+        <Card className={props.isMobile ? classes.cardBienestarMobile: props.isBig? classes.cardBienestar: classes.cardSmall}>
             <CardMedia classes={mediaStyles} image={props.image}/>
             <Box py={5} px={2} className={classes.contentCard}>
                 <Grid container >

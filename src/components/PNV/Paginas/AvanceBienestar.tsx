@@ -2,7 +2,7 @@ import React, {Component,Fragment} from 'react';
 import TotalesCumplimientoBienestar from "../ComponentesPaginas/TotalesCumplimientoBienestar";
 import GridCumplimientoBienestar from "../ComponentesPaginas/GridCumplimientoBienestar";
 import {ordinalNumber} from "../../../utils/Utils";
-import {AlfrescoUrl, FetchSyncronized, GetYearTrimestre, SniivUrl} from "../../FetchMethods";
+import {AlfrescoUrl, FetchSyncronized, GetLastTrimestre, GetYearTrimestre, SniivUrl} from "../../FetchMethods";
 import loader from "../../../assets/images/loading-23.gif";
 import {connect} from "react-redux";
 
@@ -20,6 +20,8 @@ class AvanceBienestar extends Component<any, any> {
             json3:null,
             json4:null,
             total: null,
+            allYears: [],
+            informe:null,
             synchronized:false,
         }
     }
@@ -35,9 +37,12 @@ class AvanceBienestar extends Component<any, any> {
                 AlfrescoUrl('qjf9EQy5Qk254KBzboSmPA','fichas_ind_pnv2.json',true),
                 AlfrescoUrl('WZDLryvcSt-gwoj3poieGg','fichas_ind_pnv3.json',true),
                 AlfrescoUrl('vRv9fVm-RN-UhSTRXDvjvw','fichas_ind_pnv4.json',true),
+                SniivUrl('api/IndicadoresAPI/GetAllYears',corsEnabled,environment),
+                SniivUrl('api/IndicadoresAPI/GetInformeTrimestral/'+this.state.year+'/'+this.state.trimestre,corsEnabled,environment),
+
 
             ])
-        this.setState({total:fetchCumplimiento[0],cumplimiento:fetchCumplimiento[1],cumplimientoOnavi:fetchCumplimiento[2],json1:fetchCumplimiento[3],json2:fetchCumplimiento[4],json3:fetchCumplimiento[5],json4:fetchCumplimiento[6],synchronized:!this.state.synchronized})
+        this.setState({total:fetchCumplimiento[0],cumplimiento:fetchCumplimiento[1],cumplimientoOnavi:fetchCumplimiento[2],json1:fetchCumplimiento[3],json2:fetchCumplimiento[4],json3:fetchCumplimiento[5],json4:fetchCumplimiento[6],allYears:fetchCumplimiento[7],informe:fetchCumplimiento[8],synchronized:!this.state.synchronized})
     }
     async resetAll() {
         const {environment,corsEnabled} = this.props;
@@ -57,22 +62,31 @@ class AvanceBienestar extends Component<any, any> {
             this.setState({trimestre: childData});
             await this.GetData()
         }
+        const handleCallback3 = async (childData: any) => {
+            const {environment,corsEnabled} = this.props;
+            let trimestre = await GetLastTrimestre(childData,corsEnabled,environment)
+            this.setState({year: childData,trimestre:trimestre});
+            await this.GetData()
+        }
         return (
             <Fragment key={this.state.reiniciar}>
                 {this.state.total !== null ?
                 <Fragment >
                     <TotalesCumplimientoBienestar data={this.state.total} callBack={handleCallback} callBack2={this.resetAll}
+                                                  callBack3={handleCallback3}
                                                   fichaPie={this.state.json1}
-                                                  periodo={'Trimestral 2021'}
+                                                  years={this.state.allYears}
+                                                  informe={this.state.informe}
+                                                  periodo={'Trimestral '+this.state.year}
                                                   seccion={'totales'} title={'Cumplimiento del Programa Nacional de Vivienda'}
                                                   titleTrimestral={"Informe Trimestral"} titleCifras={'acciones'}
-                                                  titleBar={'Porcentaje acumulado de cumplimento del 2021'}
+                                                  titleBar={'Porcentaje acumulado de cumplimento del '+this.state.year}
                                                   titleInforme={'Informe Trimestral'} aAxis={'trimestre'}
                                                   bAxis={'total'} cAxis={'aCabo'}/>
                     <GridCumplimientoBienestar data={this.state.cumplimiento} data2={this.state.cumplimientoOnavi}
                                                fichaPie={this.state.json2} fichaPie2={this.state.json3} fichaPie3={this.state.json4} seccion={"totales"}
                                                titleRow={"Porcentaje de cumplimiento según objetivo "}
-                                               periodo={ordinalNumber(this.state.trimestre) + " trimestre 2021"}
+                                               periodo={ordinalNumber(this.state.trimestre) + " trimestre "+this.state.year}
                                                titleBar={"Porcentaje de contribución según ONAVIS"}
                                                titleCifras={"acciones"}
                                                titlePie={"Estatus de las acciones según objetivo prioritario"}

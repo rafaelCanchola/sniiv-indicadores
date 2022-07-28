@@ -7,7 +7,16 @@ import trimestral from "../../../assets/images/trimestral.png";
 import {useStyles} from "../../../utils/Style";
 import {MobileSize, oneDecimalNumber, ordinalNumber} from "../../../utils/Utils";
 import CardBanner from "../MUIComponents/CardBanner";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControl,
+    InputLabel, MenuItem,
+    Select
+} from "@material-ui/core";
 import TableMUIPNV from "../Tablas/TableMUIPNV";
 import TableIcon from "@material-ui/icons/Toc";
 
@@ -17,8 +26,11 @@ interface CumplimientoProps {
     fichaPie:any
     periodo: string;
     seccion: string;
+    years:any,
     callBack:any,
     callBack2:any,
+    callBack3:any,
+    informe:any,
     title: string;
     titleTrimestral: string;
     titleCifras: string;
@@ -116,6 +128,7 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
     };
     const [open1, setOpen1] = useState(false);
     const [tableHover1, setTableHover1] = useState(false);
+    const [year, setYear] = useState(props.years[0].anio);
     const handleClickOpen1 = () => {
         setOpen1(true);
     }
@@ -123,6 +136,10 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
         setOpen1(false);
     }
 
+    const changeYear= (event: any) =>{
+        setYear(event.target.value)
+        props.callBack3(event.target.value)
+    };
     return(
         <Fragment>
             <CardBanner subtitle={props.periodo}
@@ -130,14 +147,33 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                         image={bienestar1}
                         more1={'La evaluación permanente de este Programa permitirá avanzar, hacia 2024, en cinco principios impulsados por cada uno de sus objetivos: la persona al centro de todas las decisiones en el sector vivienda; el uso eficiente de los recursos públicos; la coordinación entre los distintos órdenes de gobierno y la colaboración amplia con todos los sectores de la sociedad; la rendición de cuentas y el combate a la corrupción, y la generación, por primera vez, de un modelo integral de ordenamiento territorial.'}
                         more2={'El seguimiento permanente del Programa Nacional de Vivienda 2021-2024, a través de un informe trimestral de resultados, permitirá identificar los avances en los cinco objetivos prioritarios que establece, o en consecuencia, identificar las áreas de oportunidad para su logro, a través de  los resultados de los programas de apoyo a la vivienda en términos del número de acciones realizadas y el monto invertido, y por otra parte, las estrategias que contribuyen al cumplimiento de dichos objetivos, tales como convenios, lineamientos, sistemas de información, capacitación, asesorías, acuerdos, desarrollo de nuevos productos, entre otros.'}
-                        isMobile={isMobile}/>
+                        isMobile={isMobile}
+                        isBig={true}/>
             <Paper className={classes.paperContainer3}>
             <div className={classes.root}>
                 <Grid container spacing={2} alignItems={'center'} >
+                    <Grid item xs={12} md={12}>
+                        <Paper elevation={3} className={classes.paper}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Periodo</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={year}
+                                    label="Year"
+                                    onChange={changeYear}
+                                >
+                                    {props.years.map((yr:any) =>
+                                        <MenuItem value={yr.anio} key={yr.anio}>{yr.anio}</MenuItem>
+                                    )}
+                                </Select>
+                            </FormControl>
+                        </Paper>
+                    </Grid>
                     <Grid item xs={12} sm={12} md={3} >
                         <Paper elevation={0} className={classes.paperImage3}>
                             <h2 className={classes.textColor}>{props.titleTrimestral}</h2>
-                            <a href={'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/4wOst-QoRn6W6XXxn5tJRQ/content/4to_informe_trimestral_PNV.pdf'} target={"_blank"} rel={"noreferrer"}><img src={trimestral} className={classes.imagePNV} alt={"Reporte trimestral"} /></a>
+                            <a href={props.informe[0].url} target={"_blank"} rel={"noreferrer"}><img src={trimestral} className={classes.imagePNV} alt={"Reporte trimestral"} /></a>
                             </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12} md={9} >

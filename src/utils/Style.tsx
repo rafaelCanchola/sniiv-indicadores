@@ -233,6 +233,22 @@ export const useStyles = makeStyles((theme:Theme) =>
                 background: 'linear-gradient(to top left, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 65%)'
             },
         },
+        cardSmall:{
+            boxShadow: 'none',
+            position: 'relative',
+            minWidth: 200,
+            minHeight: 250,
+            '&:after': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                bottom: 0,
+                zIndex: 1,
+                background: 'linear-gradient(to top left, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 65%)'
+            },
+        },
         imageBanner:{
             width:'20%',
         },
@@ -272,8 +288,20 @@ export const useStyles = makeStyles((theme:Theme) =>
             fontFamily:'Montserrat',
             textAlign:'left'
         },
+        textColorRed:{
+            color: theme.palette.error.dark,
+            fontFamily:'Montserrat',
+        },
+        textColorGrey10:{
+            fontSize: 10,
+            color: theme.palette.text.secondary,
+            fontFamily:'Montserrat',
+        },
         imageSedatu:{
             width:'80%',
+        },
+        button:{
+            backgroundColor:'#325b4f'
         }
     })
 );

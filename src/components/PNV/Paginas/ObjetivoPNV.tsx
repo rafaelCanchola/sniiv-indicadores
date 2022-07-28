@@ -137,7 +137,8 @@ export default function ObjetivoPNV(props:any){
 
     return(
         <Fragment>
-            <CardBanner isMobile={isMobile}
+            <CardBanner isBig={true}
+                        isMobile={isMobile}
                         subtitle={'El Programa Nacional de Vivienda es un programa especial derivado del Plan Nacional de Desarrollo 2019-2024.'}
                         title={'¿Qué es el Programa Nacional de Vivienda?'} image={bienestar2}
                         more1={'El Programa Nacional de Vivienda 2021-2024 es el instrumento de planeación de la política nacional de vivienda. Este programa es pionero al integrar por primera vez el derecho humano del acceso a la vivienda adecuada, que considera los siguientes siete elementos establecidos por ONU-Hábitat: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad, habitabilidad, accesibilidad; ubicación y adecuación cultural.'}

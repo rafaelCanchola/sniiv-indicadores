@@ -234,7 +234,8 @@ export default function ViviendaAdecuada(props:any){
                         image={bienestar1}
                         more1={'La vivienda adecuada debe proveer más que cuatro paredes y un techo. De acuerdo con la Organización de las Naciones Unidas (ONU), la caracterización de los retos específicos que tiene la vivienda en México se basa en los siete elementos: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad; habitabilidad; accesibilidad; ubicación y adecuación cultural.'}
                         more2={''}
-                        isMobile={isMobile}/>
+                        isMobile={isMobile}
+                        isBig={true}/>
             <Paper className={classes.paperContainer2}>
                 <div className={classes.root}>
                     <Grid container spacing={2}  >

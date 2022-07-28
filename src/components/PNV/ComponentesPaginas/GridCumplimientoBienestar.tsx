@@ -53,7 +53,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
         ({value:parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),name:key+1,itemStyle:{color: assignObjetivosColor(d[props.hAxis])}, detail:{offsetCenter: [0,''+((key*22)-45)+'%']}}))
         .reverse()
     let dataBar = props.data2.map((d: AxisChart) =>
-        ({obj:d.tipoObjetivo,name:d.organismo ,value:(d[props.aAxis] === 0 ? 0 : parseInt(((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString())),itemStyle:{color: assignObjetivosColor(d[props.hAxis])}}))
+        ({obj:d.tipoObjetivo,name:d.organismo ,value:(d[props.aAxis] === 0 ? 0 : ((d[props.bAxis]+d[props.cAxis] )/d[props.aAxis]*100).toString()),itemStyle:{color: assignObjetivosColor(d[props.hAxis])}}))
     let labelDataBar = props.data2.map((d: AxisChart) => d[props.gAxis])
     let sliceDataBar = labelDataBar.map((name:any )=> name.slice(0,4))
     const graficas =[
@@ -150,7 +150,7 @@ export default function GridCumplimientoBienestar(props:CumplimientoProps){
                         <Grid item xs={12} sm={3} md={3}>
                             <Paper elevation={0} className={classes.paperImage3}><br/><br/></Paper>
                             {graficas.map(card =>
-                                <Paper elevation={0} className={classes.paperImage3}><CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/></Paper>
+                                <Paper elevation={0} className={classes.paperImage3} key={card.title}><CardBienestar mobile={isMobile} children={card.children} callBack={handleCallback} obj={card.num} title={card.title} more={card.more} image={card.image} key={card.num+card.title}/></Paper>
                             )}
                         </Grid>
                         <Grid item xs={12} sm={9} md={9}>

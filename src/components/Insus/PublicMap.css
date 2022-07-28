@@ -74,3 +74,18 @@
 #map .ol-touch .mostrar-estados {
     top: 185px;
 }
+
+.sidepanel {
+    background: #1F6B75;
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.sidepanel-title {
+    width: 100%;
+    font-size: 3em;
+    color: #ffffff;
+    display: block;
+    text-align: center;
+}

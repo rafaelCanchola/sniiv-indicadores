@@ -10,8 +10,8 @@ class Initializer extends Component<any, any>{
     render() {
         const {environment,corsEnabled} = this.props;
 
-        this.props.setEnvironment(Environments.PR)
-        this.props.setCorsLoader(true)
+        this.props.setEnvironment(Environments.DEV)
+        this.props.setCorsLoader(false)
         return <div></div>;
     }
 }

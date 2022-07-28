@@ -130,6 +130,7 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
     const iconWidth = isMobile ? 35: 60;
 
     const barData = props.indicador.data.filter((dat:any) => dat.obj === props.indicadorIndex+1);
+    console.log(barData)
     const labelBarData = barData.map((dat:any) => dat.name.slice(0,4))
     const GaugeChart = {
         tooltip: {
@@ -304,7 +305,6 @@ export function IndicadoresPNV(props:IndicadorViviendaProps){
         gAxis:props.indicador.label[6],
         hAxis:props.indicador.label[7],
     }
-console.log(props.indicador.label)
     return(
         <div className={classes.root}>
             {props.indicador.tipo === 'gauge' &&

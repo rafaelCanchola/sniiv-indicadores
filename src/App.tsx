@@ -14,6 +14,8 @@ import {Provider} from "react-redux";
 import store from './redux/store';
 import Initializer from "./components/Initializer/Initializer";
 import Inicio from "./components/Inicio/Inicio";
+import Administrator from "./components/Admin/Administrator";
+import SignInSide from "./components/Admin/Login";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -71,6 +73,20 @@ function App() {
             sidebarName:'.',
             icon:<HomeIcon fontSize={'large'} className={classes.icon}/>,
             component:ViviendaContainer,
+            exact:true
+        },
+        {
+            path:'/admin',
+            sidebarName:'.',
+            icon:<Administrator fontSize={'large'} className={classes.icon}/>,
+            component:Administrator,
+            exact:true
+        },
+        {
+            path:'/login',
+            sidebarName:'.',
+            icon:<Administrator fontSize={'large'} className={classes.icon}/>,
+            component:SignInSide,
             exact:true
         },
     ];
