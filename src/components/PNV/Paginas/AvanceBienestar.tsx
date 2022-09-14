@@ -79,6 +79,7 @@ class AvanceBienestar extends Component<any, any> {
                                                   informe={this.state.informe}
                                                   periodo={'Trimestral '+this.state.year}
                                                   seccion={'totales'} title={'Cumplimiento del Programa Nacional de Vivienda'}
+                                                  periodoTrimestral={ordinalNumber(this.state.trimestre) + " trimestre "+this.state.year}
                                                   titleTrimestral={"Informe Trimestral"} titleCifras={'acciones'}
                                                   titleBar={'Porcentaje acumulado de cumplimento del '+this.state.year}
                                                   titleInforme={'Informe Trimestral'} aAxis={'trimestre'}

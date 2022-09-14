@@ -6,11 +6,15 @@
 }
 #map .ol-mouse-position{
     background-color: rgba(0,60,136,0.3);
+    top: 60px;
     color: aliceblue;
 }
 
+#map .ol-zoom{
+    top: 127px;
+}
 #map .capa-base {
-    top: 65px;
+    top: 170px;
     left: .5em;
 }
 

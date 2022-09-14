@@ -310,7 +310,10 @@ export const  colorBrewer = {
     ViviendaColor: ['#906723', '#a3e1cc', '#f68175', '#fbcb4a', '#858e84', '#efe6d0'],
     T4Colors: ['#164f2f','#b9975f','#b5bdb7','#a3e1cc','#906723','#a2aca5'],
     T4Green: ['#164f2f','#3d6049','#536e5c','#657b6c','#74867a','#819186','#8d9b91','#98a49c','#a2aca5','#acb5af','#b5bdb7'],
-    T4GreenReverse: ['#b5bdb7','#acb5af','#a2aca5','#98a49c','#8d9b91','#819186','#74867a','#657b6c','#536e5c','#3d6049','#164f2f']
-
+    T4GreenReverse: ['#b5bdb7','#acb5af','#a2aca5','#98a49c','#8d9b91','#819186','#74867a','#657b6c','#536e5c','#3d6049','#164f2f'],
+    Indigena:['#f8d7da','#e9c2c5','#daadb1','#cb989d','#bc8389','#ad6f74','#9e5a60','#8f454c','#803038','#721c24'],
+    Pcu:['#FF0000','#730000','#4CE600','#267300','#0070FF'],
+    Oferta:['#268fff','#004085'],
+    Sisevive:['#48b461','#155724'],
 
 }

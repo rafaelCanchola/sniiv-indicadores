@@ -1,6 +1,6 @@
 {
   "name": "sniiv-indicadores",
-  "homepage": "/sniiv/",
+  "homepage": "/homemx/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,6 +23,7 @@
     "dc": "^4.2.7",
     "echarts": "^5.1.2",
     "echarts-for-react": "^3.0.1",
+    "fetch-jsonp": "^1.2.1",
     "html-to-image": "^1.9.0",
     "jspdf": "^2.5.1",
     "ol": "^6.6.1",
@@ -41,7 +42,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set GENERATE_SOURCEMAP=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

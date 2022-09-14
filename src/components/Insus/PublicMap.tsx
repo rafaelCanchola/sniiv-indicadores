@@ -17,15 +17,25 @@ import BaseLayer from "ol/layer/Base";
 import VectorSource from "ol/source/Vector";
 import colormap from 'colormap';
 import {Fill, Stroke} from "ol/style";
-import {Extent, Select} from "ol/interaction";
+import {Select} from "ol/interaction";
 import {transformExtent} from 'ol/proj';
-import {MapServiceEstadosCount, MapServiceInsusCount, MapServiceInsusGet, MapServiceMexicoGet,} from "../FetchMethods";
+import {
+    MapServiceEstadosCount,
+    MapServiceInsusCount,
+    MapServiceInsusGet,
+    MapServiceMexicoGet,
+} from "../FetchMethods";
 import {Environments} from "../../redux/reducers/environment";
 import {Overlay} from "ol";
+import fetchJsonp from "fetch-jsonp";
+import {connect} from "react-redux";
+import loader from "../../assets/images/loading-23.gif";
 
 interface PublicMapState{
+    semaphore:boolean,
     center:[],
     extent:[],
+    capas:[],
     zoom:any,
     filter:string,
     level:number,
@@ -36,9 +46,9 @@ interface PublicMapState{
 
 let appliedLayers: BaseLayer[];
 let counterLayers = 1;
-let turnCapaTerritorio = false;
 let nShades = 10;
 
+let capasCall = [0,0,0,0,0];
 let ramp = colormap({
     colormap: 'autumn',
     nshades: nShades,
@@ -60,18 +70,31 @@ const mapLayers: BaseLayer[] = [
         source: bases.b3
     }),
     new OlLayerTile({
-        source: bases.o1
+        source: bases.o2,
+        opacity:0.6
+    }),
+    new OlLayerTile({
+        source: bases.o1,
+        opacity:0.6
+    }),
+    new OlLayerTile({
+        source: bases.o3,
+        opacity:0.8
+    }),
+    new OlLayerTile({
+        source: bases.o4,
+        opacity:0.8
     })
 ]
 
 let agaveLayer = new OlLayerVector({
-    opacity:0.8,
+    opacity:0.4,
     style: function (feature,resolution) {
             const importe = feature.get('importe_t');
             const max = feature.get('max');
             const min = feature.get('min');
             let color = getColor(importe,max,min)
-        return new OlStyle({stroke: new Stroke({color:"#fff", width:0.1}),fill:new Fill({color:color})});
+        return new OlStyle({stroke: new Stroke({color:"#000", width:2}),fill:new Fill({color:color})});
         },
     source: new VectorSource({features:undefined})
 });
@@ -97,42 +120,25 @@ function getColor(importe_t:number,min:number,max:number) {
 
 function actualizarLayers(sup:any){
     appliedLayers.map(layer => sup.removeLayer(layer));
-    appliedLayers = turnCapaTerritorio ? [mapLayers[counterLayers-1],mapLayers[4],agaveLayer] : [mapLayers[counterLayers-1],agaveLayer]
+    appliedLayers = [mapLayers[counterLayers-1]]//,(capasCall[0] === 1 && mapLayers[4]),capasCall[1],capasCall[2],capasCall[3],capasCall[4]]
+    if(capasCall[0] === 1){
+        appliedLayers.push(mapLayers[4])
+    }
+    if(capasCall[2] === 1){
+        appliedLayers.push(mapLayers[5])
+    }
+    if(capasCall[1] === 1){
+        appliedLayers.push(agaveLayer)
+    }
+    if(capasCall[3] === 1){
+        appliedLayers.push(mapLayers[6])
+    }
+    if(capasCall[4] === 1){
+        appliedLayers.push(mapLayers[7])
+    }
     appliedLayers.map(layer => sup.addLayer(layer))
 }
-const CapaTerritorial = /*@__PURE__*/(function (Control) {
-    function ChangeLayer(opt_options:any) {
 
-        const options = opt_options || {};
-        const button = document.createElement('button');
-        const icon = document.createElement('span');
-        icon.className = 'icon-earth';
-        button.appendChild(icon);
-
-        const element = document.createElement('div');
-        element.className = 'capa-territorio ol-unselectable ol-control';
-        element.appendChild(button);
-
-        // @ts-ignore
-        Control.call(this, {
-            element: element,
-            target: options.target,
-        });
-
-        // @ts-ignore
-        button.addEventListener('click', this.handleChangeTerritorio.bind(this), false);
-    }
-
-    if ( Control ) ChangeLayer.__proto__ = Control;
-    ChangeLayer.prototype = Object.create( Control && Control.prototype );
-    ChangeLayer.prototype.constructor = ChangeLayer;
-
-    ChangeLayer.prototype.handleChangeTerritorio = function handleChangeTerritorio () {
-        turnCapaTerritorio = !turnCapaTerritorio;
-        actualizarLayers(this.getMap())
-    };
-    return ChangeLayer;
-}(Control));
 
 const CambioCapaBase = /*@__PURE__*/(function (Control) {
     function ChangeLayer(opt_options:any) {
@@ -178,80 +184,113 @@ export default class PublicMap extends Component<any, PublicMapState> {
     private olmap: any;
     private select = new Select();
     private selectedFeatures = this.select.getFeatures();
-    constructor(props:any) {
+
+    constructor(props: any) {
         super(props);
-        this.state = {extent:this.props.information.extent, center: this.props.information.center, zoom: 5.2,filter:this.props.information.cve_geo,level:this.props.information.level,year:this.props.year,isMontos:this.props.isMontos,reiniciar:this.props.reiniciar};//filter:"MEX",level:3 };//filter:"21156",level:1 };//filter:"MEX",level:3 };//filter:"26",level:2 };
+        this.state = {
+            semaphore: true,
+            extent: this.props.information.extent,
+            center: this.props.information.center,
+            zoom: 4.2,
+            filter: this.props.information.cve_geo,
+            level: this.props.information.level,
+            year: this.props.year,
+            isMontos: this.props.isMontos,
+            reiniciar: this.props.reiniciar,
+            capas: this.props.capas
+        };//filter:"MEX",level:3 };//filter:"21156",level:1 };//filter:"MEX",level:3 };//filter:"26",level:2 };
         this.olmap = new OlMap({
             view: new OlView({
                 //center: this.state.center,
-                zoom:5.2,
-                maxZoom:this.state.zoom,
-                extent:this.state.extent,
+                zoom: 4.2,
+                maxZoom: this.state.zoom,
+                extent: this.state.extent,
             }),
             //@ts-ignore
-            controls:defaultControls().extend([new CapaTerritorial(), new CambioCapaBase(),new ScaleLine(), new MousePosition()]),
+            controls: defaultControls().extend([new CambioCapaBase(), new ScaleLine(), new MousePosition()]),
 
         });
+        capasCall = this.props.capas;
         this.olmap.addInteraction(this.select)
         appliedLayers = [mapLayers[0]];
         this.olmap.addLayer(appliedLayers[0]);
+
     }
-    showEstados(map:any){
+
+    showEstados(map: any) {
         const pgsize = 3000;
+        const {environment, corsEnabled} = this.props
         const extent = map.getView().calculateExtent();
-        const transform = transformExtent(extent,'EPSG:3857','EPSG:4326')
+        const transform = transformExtent(extent, 'EPSG:3857', 'EPSG:4326')
         const handleSubmit = async () => {
             let poligon = [{
-                filter:this.state.filter, xmin:transform[0], ymin:transform[1], xmax:transform[2], ymax:transform[3], cors:false, environment:Environments.DEV
+                filter: this.state.filter,
+                xmin: transform[0],
+                ymin: transform[1],
+                xmax: transform[2],
+                ymax: transform[3],
+                environment: environment,
+                corsEnabled: corsEnabled
             }]
-            let conteo = await Promise.all((await Promise.all(poligon.map(object =>this.state.level === 1 ? MapServiceInsusCount(this.state.year,object.filter,object.xmin,object.ymin,object.xmax,object.ymax,object.cors,object.environment) :MapServiceEstadosCount(this.state.year,object.filter,object.xmin,object.ymin,object.xmax,object.ymax,object.cors,object.environment)))).map(result => result.json()))
+            let conteo = await Promise.all((await Promise.all(poligon.map(object => this.state.level === 1 ? MapServiceInsusCount(this.state.year, object.filter, object.xmin, object.ymin, object.xmax, object.ymax, object.corsEnabled, object.environment) : MapServiceEstadosCount(this.state.year, object.filter, object.xmin, object.ymin, object.xmax, object.ymax, object.corsEnabled, object.environment)))).map(result => result.json()))
             nShades = conteo[0] > 2 ? conteo[0] : 2;
             ramp = colormap({
                 colormap: 'autumn',
                 nshades: nShades,
-                format:'hex',
+                format: 'hex',
             });
-            let hilos = conteo[0]/pgsize + ((conteo[0]%pgsize>0)?1:0)
+            let hilos = conteo[0] / pgsize + ((conteo[0] % pgsize > 0) ? 1 : 0)
             let rows = []
-            for(var i = 0; i < hilos; i++){
-                rows.push(this.state.level === 1 ?MapServiceInsusGet(this.state.isMontos,this.state.year,i,pgsize,this.state.filter,transform[0],transform[1],transform[2],transform[3],false,Environments.DEV) :MapServiceMexicoGet(this.state.isMontos,this.state.year,i, pgsize,this.state.filter,transform[0],transform[1],transform[2],transform[3],false,Environments.DEV))
+            for (var i = 0; i < hilos; i++) {
+                rows.push(this.state.level === 1 ? MapServiceInsusGet(this.state.isMontos, this.state.year, i, pgsize, this.state.filter, transform[0], transform[1], transform[2], transform[3], corsEnabled, environment) : MapServiceMexicoGet(this.state.isMontos, this.state.year, i, pgsize, this.state.filter, transform[0], transform[1], transform[2], transform[3], corsEnabled, environment))
             }
             let results = await Promise.all((await Promise.all(rows)).map(result => result.json()))
-            let ag = results.map(data => data.map((geo: { the_geom: any; }) => new WKT().readFeature(geo.the_geom,{dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'}) ))
-            ag.map((data,array) => data.map((geo: { setProperties: (arg0: { id: any; cvegeo: any; importe_t: any; max: any; min: any; }) => any; }, index:number) => geo.setProperties({id:results[array][index].id, cvegeo: results[array][index].cvegeo, importe_t: results[array][index].importe_t,max: results[array][index].max,min: results[array][index].min})  ))
+            let ag = results.map(data => data.map((geo: { the_geom: any; }) => new WKT().readFeature(geo.the_geom, {
+                dataProjection: 'EPSG:4326',
+                featureProjection: 'EPSG:3857'
+            })))
+            ag.map((data, array) => data.map((geo: { setProperties: (arg0: { id: any; cvegeo: any; importe_t: any; max: any; min: any; }) => any; }, index: number) => geo.setProperties({
+                id: results[array][index].id,
+                cvegeo: results[array][index].cvegeo,
+                importe_t: results[array][index].importe_t,
+                max: results[array][index].max,
+                min: results[array][index].min
+            })))
             let arrayFinal = [];
-            for(let i = 0; i < ag.length; i ++){
-                for(let j = 0; j < ag[i].length; j++){
+            for (let i = 0; i < ag.length; i++) {
+                for (let j = 0; j < ag[i].length; j++) {
                     arrayFinal.push(ag[i][j])
                 }
             }
-            return arrayFinal;
-    }
 
-    handleSubmit()
-        .then(
-            (wkt) =>{
-                agaveLayer.getSource().clear()
-                agaveLayer.getSource().addFeatures(wkt)
-                actualizarLayers(map)
-            }
-        )
-}
+            return arrayFinal;
+        }
+
+        handleSubmit()
+            .then(
+                (wkt) => {
+                    agaveLayer.getSource().clear()
+                    agaveLayer.getSource().addFeatures(wkt)
+                    actualizarLayers(map)
+                }
+            )
+    }
 
     updateMap() {
         this.olmap.setView(new OlView({
             center: this.state.center,
             zoom: this.state.zoom,
-            minZoom:this.state.zoom,
-            maxZoom:this.state.level === 1 ? 17:this.state.zoom +2 ,
-            extent:this.state.extent,
+            minZoom: this.state.zoom,
+            maxZoom: this.state.level === 1 ? 17 : this.state.level === 3 ? 14 : this.state.zoom + 2,
+            extent: this.state.extent,
         }))
-        
+
     }
 
     componentDidMount() {
         console.log("mount")
         this.updateMap();
+        this.props.callbackLoading(true)
         this.showEstados(this.olmap);
         this.olmap.setTarget("map");
 
@@ -259,10 +298,70 @@ export default class PublicMap extends Component<any, PublicMapState> {
         this.olmap.on("moveend", () => {
             let center = this.olmap.getView().getCenter();
             let zoom = this.olmap.getView().getZoom();
-            this.setState({ center, zoom });
+            this.setState({center, zoom});
             this.showEstados(this.olmap)
         });
 
+        this.olmap.on('click', (event: any) => {
+            if (this.state.capas !== null) {
+                if (capasCall[3] === 1) {
+                    let url = bases.o3.getFeatureInfoUrl(event.coordinate, this.olmap.getView().getResolution(), this.olmap.getView().getProjection(), {
+                        'INFO_FORMAT': 'text/javascript',
+                        'propertyName': ' nombre_ofe,precio,precio_min,precio_max,viviendas',
+                        'QUERY_LAYERS': 'geonode:a__00_OFERTA_VIVIENDA'
+                    })
+                    if (typeof url === "string") {
+                        fetchJsonp(url, {
+                            jsonpCallbackFunction: 'parseResponse',
+                        })
+                            .then(r => r.json())
+                            .then((data) => {
+                                let feature = data.features[0];
+                                this.props.featureMapaCallback(feature)
+                            })
+                    }
+                }
+                if (capasCall[4] === 1) {
+                    if (capasCall[3] === 1) {
+                        setTimeout(() => {
+                            let url2 = bases.o4.getFeatureInfoUrl(event.coordinate, this.olmap.getView().getResolution(), this.olmap.getView().getProjection(), {
+                                'INFO_FORMAT': 'text/javascript',
+                                'propertyName': 'nombre_ofe,programa,tipologia,idg,co2,viviendas',
+                                'QUERY_LAYERS': 'geonode:a__00_SISEVIVE_RUV'
+                            })
+                            if (typeof url2 === "string") {
+                                fetchJsonp(url2, {
+                                    jsonpCallbackFunction: 'parseResponse',
+                                })
+                                    .then(r => r.json())
+                                    .then((data) => {
+                                        let feature = data.features[0];
+                                        this.props.featureSiseviveMapaCallback(feature)
+                                    }).catch()
+                            }
+                        }, 3000);
+                    } else {
+                        let url2 = bases.o4.getFeatureInfoUrl(event.coordinate, this.olmap.getView().getResolution(), this.olmap.getView().getProjection(), {
+                            'INFO_FORMAT': 'text/javascript',
+                            'propertyName': 'nombre_ofe,programa,tipologia,idg,co2,viviendas',
+                            'QUERY_LAYERS': 'geonode:a__00_SISEVIVE_RUV'
+                        })
+                        if (typeof url2 === "string") {
+                            fetchJsonp(url2, {
+                                jsonpCallbackFunction: 'parseResponse',
+                            })
+                                .then(r => r.json())
+                                .then((data) => {
+                                    let feature = data.features[0];
+                                    this.props.featureSiseviveMapaCallback(feature)
+                                })
+                        }
+                    }
+
+                }
+            }
+
+        });
         this.olmap.on('pointermove', (event: any) => {
             if (this.olmap.hasFeatureAtPixel(event.pixel)) {
                 this.olmap.getViewport().style.cursor = 'pointer';
@@ -271,39 +370,57 @@ export default class PublicMap extends Component<any, PublicMapState> {
             }
         });
 
-        this.selectedFeatures.on('add', () =>{
+        this.selectedFeatures.on('add', () => {
             console.log("ADD")
-            this.props.cultivoCallback({id:this.selectedFeatures.item(0).getProperties().id,cve_geo:this.selectedFeatures.item(0).getProperties().cvegeo,type:this.state.filter,level:this.state.level,extent:this.selectedFeatures.item(0).getGeometry().getExtent(),center:getCenter(this.selectedFeatures.item(0).getGeometry().getExtent())})
+            this.props.cultivoCallback({
+                id: this.selectedFeatures.item(0).getProperties().id,
+                cve_geo: this.selectedFeatures.item(0).getProperties().cvegeo,
+                type: this.state.filter,
+                level: this.state.level,
+                extent: this.selectedFeatures.item(0).getGeometry().getExtent(),
+                center: getCenter(this.selectedFeatures.item(0).getGeometry().getExtent())
+            })
         });
-        this.selectedFeatures.on('remove',() =>{
+        this.selectedFeatures.on('remove', () => {
             console.log("REMOVE")
             this.props.cultivoCallback(undefined);
         })
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log("UNMOUNT")
         this.olmap.dispose()
     }
-    shouldComponentUpdate(nextProps:any, nextState:any) {
+
+    shouldComponentUpdate(nextProps: any, nextState: any) {
         //let center = this.olmap.getView().getCenter();
         //let zoom = this.olmap.getView().getZoom();
         //let isUpdate = !(center === nextState.center && zoom === nextState.zoom)
+        console.log("SHOULD")
+
+        actualizarLayers(this.olmap)
         let isUpdate = nextProps.information.cve_geo !== this.state.filter
-        console.log(this.props.information)
         return isUpdate;
     }
 
 
-    componentDidUpdate(props:any){
+    componentDidUpdate(props: any) {
+        console.log("UPDATE")
         this.props.cultivoCallback(undefined);
-        this.setState({filter:props.information.cve_geo,level:props.information.level,extent:props.information.extent,center:props.information.center,zoom:(props.information.level === 2? 6.2 : props.information.level === 1? 8.2 : 5.2)})
+        this.setState({
+            filter: props.information.cve_geo,
+            level: props.information.level,
+            extent: props.information.extent,
+            center: props.information.center,
+            zoom: (props.information.level === 2 ? 6.2 : props.information.level === 1 ? 8.2 : 3.2)
+        })
+        this.props.callbackLoading(true)
         this.showEstados(this.olmap)
+        actualizarLayers(this.olmap)
         this.updateMap();
     }
 
     render() {
-
         return (
             <Fragment>
                 <div id="map">
@@ -314,5 +431,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
         );
     }
 }
+
+
 
 

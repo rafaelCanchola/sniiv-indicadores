@@ -1,11 +1,16 @@
 import {Environments} from "../redux/reducers/environment";
 
 const ALFRESCO_URL = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/'
-const LOCAL_URL = 'http://localhost:8080/api/'
+const MY_URL = 'http://localhost:8084/gis-api/'
+const LOCAL_URL = 'http://172.16.15.94:8083/gis-api/'
+const DV_URL = 'https://dev-sniiv.sedatu.gob.mx/gis-api/'
+const QA_URL = 'https://qa-sniiv.sedatu.gob.mx/gis-api/'
+const PR_URL = 'https://sniiv.sedatu.gob.mx/gis-api/'
 const SNIIV_URL = 'https://sniiv.sedatu.gob.mx/'
 const SNIIV_QA_URL = 'https://qa-sniiv.sedatu.gob.mx/'
 const SNIIV_LOCAL_URL = 'http://localhost:3000/'
 const SNIIV_CORS_SERVER = 'https://sniiv-cors.herokuapp.com/'
+const LOCAL_CORS_SERVER = 'http://172.16.15.94:8080/'
 const SNIIV_API_GET_LAST_YEAR = 'api/IndicadoresAPI/GetLastYear'
 const SNIIV_API_GET_LAST_TRIMESTRE = 'api/IndicadoresAPI/GetLastTrimestre/'
 const HTTP_METHOD_GET = 'GET'
@@ -20,12 +25,23 @@ const API_POLI_MEXICO_GET= "poligonosmexico"
 const API_POLI_LOAD = "uploadchargepoli"
 const API_PNV_LOAD = "uploadpnv"
 const API_PNV_REPORTE_LOAD = "uploadpnvreporte"
+const API_REPORTE_MENSUAL_LOAD = "uploadreportemensual"
 const API_POLI_INSUS_INFO = "predioidentify"
 const API_POLI_INSUS_PERIODO = "periodo"
 const API_POLI_INSUS_PERIODO_ALL = "allPeriodos"
 
+const AlfrescoEndpointsSelector={
+    1 : API_POLI_LOAD,
+    2 : API_PNV_LOAD,
+    3 : API_PNV_REPORTE_LOAD,
+    4 : API_REPORTE_MENSUAL_LOAD
+}
 function FetchUrl(apiRoute:string){
     return fetch( apiRoute, {method: HTTP_METHOD_GET, mode:CORS, referrerPolicy:REFERRER_POLICY,})
+}
+
+export function FetchProxyUrl(apiRoute:string){
+    return fetch( SNIIV_CORS_SERVER+apiRoute, {method: HTTP_METHOD_GET, mode:CORS, referrerPolicy:REFERRER_POLICY,})
 }
 
 function FetchGetJson(apiRoute:string){
@@ -37,7 +53,7 @@ function FetchPostJson(apiRoute:string,data:any){
 }
 
 function MapServiceUrl(name:string, cors:boolean, environment:Environments){
-    return (cors ? SNIIV_CORS_SERVER : '') + (environment === Environments.QA? SNIIV_QA_URL : LOCAL_URL) + name;
+    return (cors ? (environment === Environments.QA? LOCAL_CORS_SERVER :  SNIIV_CORS_SERVER ): '') + (environment === Environments.QA? QA_URL : environment === Environments.DEV? MY_URL: PR_URL) + name;
 }
 
 export function AlfrescoUrl(object:string, name:string, cors:boolean){
@@ -78,8 +94,14 @@ export function PnvCsvPost(formData:any, cors:boolean, environment:Environments)
 export function PnvReportePost(formData:any, cors:boolean, environment:Environments){
     return FetchPostJson(MapServiceUrl(API_PNV_REPORTE_LOAD,cors,environment),formData)
 }
+
+export function AbstractPost(type:number,formData:any, cors:boolean, environment:Environments){
+    // @ts-ignore
+    return FetchPostJson(MapServiceUrl(AlfrescoEndpointsSelector[type],cors,environment),formData)
+}
+
 export function SniivUrl(name:string, cors:boolean, environment:Environments){
-    return (cors ? SNIIV_CORS_SERVER : '') + (environment === Environments.QA? SNIIV_QA_URL : environment === Environments.DEV? SNIIV_LOCAL_URL : SNIIV_URL) + name;
+    return (cors ? (environment === Environments.QA? LOCAL_CORS_SERVER :  SNIIV_CORS_SERVER ) : '') + (environment === Environments.QA? SNIIV_QA_URL : environment === Environments.DEV? SNIIV_LOCAL_URL : SNIIV_URL) + name;
 }
 
 export async function FetchSyncronized(objects:any[]){

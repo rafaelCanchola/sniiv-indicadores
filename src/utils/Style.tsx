@@ -13,6 +13,12 @@ export const useStyles = makeStyles((theme:Theme) =>
         root:{
             margin: theme.spacing(2),
         },
+        rootmargin:{
+            margin: theme.spacing(2),
+        },
+        rootmargin0:{
+            margin: theme.spacing(0),
+        },
         paper:{
             padding: theme.spacing(2),
             textAlign:"center",
@@ -125,6 +131,21 @@ export const useStyles = makeStyles((theme:Theme) =>
             color:theme.palette.text.secondary,
             fontFamily:'Montserrat',
             textAlign:'center'
+        },
+        textCardLegend:{
+            fontSize:10.5,
+            color:theme.palette.text.secondary,
+            fontFamily:'Montserrat',
+        },
+        textCardLegendSmall:{
+            fontSize:8.5,
+            color:theme.palette.text.secondary,
+            fontFamily:'Montserrat',
+        },textCardLegendBold:{
+            fontSize:8.5,
+            color:theme.palette.text.secondary,
+            fontFamily:'Montserrat',
+            fontWeight:'bold'
         },
         textCardBlack:{
             fontSize:10,

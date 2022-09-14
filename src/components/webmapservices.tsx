@@ -30,6 +30,51 @@ export const b4 =
 export const o1 =
     new TileWMS({
         params: {
+            layers: 'geonode:a__00_PCUs_2018',
+            srs:'EPSG:4326',
+            tiled:'true'
+        },
+        url:'https://ide.sedatu.gob.mx:8080/ows',
+        //projection:'EPSG:3857',
+        serverType:'geoserver'
+    })
+export const o2 =
+    new TileWMS({
+        params: {
+            layers: 'geonode:a__00_POB_IND_INEGI_20102',
+            srs:'EPSG:4326',
+            tiled:'true'
+        },
+        url:'https://ide.sedatu.gob.mx:8080/ows',
+        //projection:'EPSG:3857',
+        serverType:'geoserver'
+    })
+export const o3 =
+    new TileWMS({
+        params: {
+            layers: 'geonode:a__00_OFERTA_VIVIENDA',
+            srs:'EPSG:4326',
+            tiled:'true'
+        },
+        url:'https://ide.sedatu.gob.mx:8080/ows',
+        //projection:'EPSG:3857',
+        serverType:'geoserver'
+    })
+export const o4 =
+    new TileWMS({
+        params: {
+            layers: 'geonode:a__00_SISEVIVE_RUV',
+            srs:'EPSG:4326',
+            tiled:'true'
+        },
+        url:'https://ide.sedatu.gob.mx:8080/ows',
+        //projection:'EPSG:3857',
+        serverType:'geoserver'
+    })
+
+export const o10 =
+    new TileWMS({
+        params: {
             layers: "estados_mapas_dinamicos,estados_mapas_dinamicos_textos",
         },
         url:'http://187.191.53.158/cgi-bin/mapserv?map=/var/www/maps/siisec.map',

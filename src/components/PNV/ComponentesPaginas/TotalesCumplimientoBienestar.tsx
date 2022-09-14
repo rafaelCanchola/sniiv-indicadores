@@ -25,6 +25,7 @@ interface CumplimientoProps {
     data: any;
     fichaPie:any
     periodo: string;
+    periodoTrimestral: string
     seccion: string;
     years:any,
     callBack:any,
@@ -173,6 +174,7 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                     <Grid item xs={12} sm={12} md={3} >
                         <Paper elevation={0} className={classes.paperImage3}>
                             <h2 className={classes.textColor}>{props.titleTrimestral}</h2>
+                            <h4 className={classes.textColor}>{props.periodoTrimestral}</h4>
                             <a href={props.informe[0].url} target={"_blank"} rel={"noreferrer"}><img src={trimestral} className={classes.imagePNV} alt={"Reporte trimestral"} /></a>
                             </Paper>
                     </Grid>

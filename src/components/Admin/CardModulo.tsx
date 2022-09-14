@@ -13,7 +13,7 @@ import {useBlogTextInfoContentStyles} from '@mui-treasury/styles/textInfoContent
 import {useOverShadowStyles} from '@mui-treasury/styles/shadow/over';
 import {useStyles} from "../../utils/Style";
 import {Alert, AlertTitle} from "@material-ui/lab";
-import {MapServiceInsusPost, PnvCsvPost, PnvReportePost} from "../FetchMethods";
+import {AbstractPost, MapServiceInsusPost, PnvCsvPost, PnvReportePost} from "../FetchMethods";
 import {Environments} from "../../redux/reducers/environment";
 import Loader from "react-loader-spinner";
 import {connect} from "react-redux";
@@ -21,6 +21,7 @@ import {connect} from "react-redux";
 interface CardProps{
     subtitle: string,
     title: string,
+    endpoint:number,
     image: any,
     more1: string,
     more2: string,
@@ -36,6 +37,7 @@ interface BlogProps{
     more1: string,
     more2: string,
     type: number,
+    endpoint:number,
     styles:any,
     classStyles:any,
     buttonStyles:any,
@@ -127,20 +129,15 @@ class CardBlog extends Component<BlogProps, any>{
         const formData = new FormData();
         formData.append('file', this.state.selectedFile);
         this.setState({disabled:true,loader:true,resultState:0})
-        this.props.type == 1 ? MapServiceInsusPost(formData,this.props.corsEnabled,this.props.environment) : this.props.type == 2 ? PnvCsvPost(formData,this.props.corsEnabled,this.props.environment) : PnvReportePost(formData,this.props.corsEnabled,this.props.environment)
+        AbstractPost(this.props.endpoint,formData,this.props.corsEnabled,this.props.environment)
             .then((result) => {
                 this.setState({selectedFile:undefined,loader:false,resultState:result.status})
-                switch(this.state.resultState){
-                    case 200:
-                        this.setState({resultMsg:""})
-                        break;
-                }
                 setTimeout(() => {
                     this.setState({resultState:0})
                 }, 2500);
 
             }).catch((error)=>{
-            this.setState({selectedFile:undefined,loader:false,resultState:error.status})
+                this.setState({selectedFile:undefined,loader:false,resultState:error.status})
             setTimeout(() => {
                 this.setState({resultState:0})
             }, 2500);
@@ -155,11 +152,13 @@ class CardBlog extends Component<BlogProps, any>{
                 case 400:
                     return (<>Error al subir el archivo  — <strong>Existe un problema con la creación de las carpetas.</strong></>)
                 case 401:
-                    return (<>Error con el nombre — <strong>Es necesario subir el archivo con el formato correcto.</strong></>)
+                    return (<>Error con el nombre — <strong>Es necesario subir el archivo con el formato de nombre correcto.</strong></>)
                 case 402:
                     return (<>Error al subir el archivo  — <strong>Existe un problema con la comunicación con Alfresco.</strong></>)
+                case 405:
+                    return (<>Error con el formato — <strong>Los archivos no son validos.</strong></>)
                 case 408:
-                    return (<>Error con el archivo — <strong>Los campos del archivo no son los correctos o el periodo ya existe.</strong></>)
+                    return (<>Error con el archivo — <strong>Los campos del archivo no son los correctos, la proyección o el periodo ya existe.</strong></>)
                 case 411:
                     return (<>Error con la respuesta — <strong>Hay un error en la respuesta de Alfresco.</strong></>)
                 case 500:
@@ -249,7 +248,7 @@ function CardModulo(props:CardProps) {
     } = useBlogTextInfoContentStyles();
     const shadowStyles = useOverShadowStyles();
 
-    return(<CardBlog environment={props.environment} corsEnabled={props.corsEnabled} title={props.title} subtitle={props.subtitle} more1={props.more1} more2={props.more2} type={props.type} image={props.image} styles={styles} classStyles={classStyles} buttonStyles={buttonStyles} contentStyles={contentStyles} shadowStyles={shadowStyles} />)
+    return(<CardBlog endpoint={props.endpoint} environment={props.environment} corsEnabled={props.corsEnabled} title={props.title} subtitle={props.subtitle} more1={props.more1} more2={props.more2} type={props.type} image={props.image} styles={styles} classStyles={classStyles} buttonStyles={buttonStyles} contentStyles={contentStyles} shadowStyles={shadowStyles} />)
 }
 
 const mapStateToProps = (state:any) => {

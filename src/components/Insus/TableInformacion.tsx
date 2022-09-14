@@ -17,7 +17,7 @@ const StyledTableCell = withStyles((theme) => ({
         color: theme.palette.common.white,
     },
     body: {
-        fontSize: 14,
+        fontSize: 13,
     },
 
 }))(TableCell);
@@ -80,7 +80,7 @@ class TableInformacion extends Component<any, any> {
     }
 
     componentDidMount() {
-        MapServiceInsusPoliInfo(this.state.isMontos,this.state.year,this.state.id,this.state.level,false,Environments.DEV)
+        MapServiceInsusPoliInfo(this.state.isMontos,this.state.year,this.state.id,this.state.level,this.props.corsEnabled,this.props.environment)
             .then(r => r.json())
             .then(r => {
                 //@ts-ignore
@@ -94,10 +94,9 @@ class TableInformacion extends Component<any, any> {
                 <Table className={this.state.classes.table} aria-label="customized table" size={"small"}>
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell className={this.state.classes.button} align="center">Nombre</StyledTableCell>
-                            <StyledTableCell className={this.state.classes.button} align="center">Datos</StyledTableCell>
-
+                            <StyledTableCell className={this.state.classes.button} align="center" colSpan={2}>INSUS-PRAH</StyledTableCell>
                         </TableRow>
+
                     </TableHead>
                     <TableBody>
                         {this.state.rows.map((row: any) => (
@@ -124,5 +123,5 @@ export default function MyTable(props:any){
     const callbackClass = (childData:any) =>{
         props.callBack(childData);
     }
-    return (<TableInformacion classes={classes} cultivo={props.cultivo} callback={callbackClass} year={props.year} isMontos={props.isMontos}/>)
+    return (<TableInformacion classes={classes} cultivo={props.cultivo} callback={callbackClass} year={props.year} isMontos={props.isMontos} environment={props.environment} cors={props.corsEnabled}/>)
 }

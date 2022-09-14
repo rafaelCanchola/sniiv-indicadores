@@ -5,8 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import {alpha, makeStyles} from "@material-ui/core/styles";
 import authService from "./authService";
 import sniiv from "../../assets/images/sniiv-sed.png";
 
@@ -44,7 +43,9 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+
+        backgroundColor: "transparent"
     },
 
     paper: {
@@ -64,12 +65,40 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
-        backgroundColor: '#325b4f'
+        backgroundColor: '#b99560'
     },
     font:{
         fontFamily:'Montserrat',
+        color:'white'
     }
 }));
+
+const useStylesReddit = makeStyles((theme) => ({
+    root: {
+        border: '1px solid #e2e2e1',
+        overflow: 'hidden',
+        borderRadius: 4,
+        backgroundColor: '#fcfcfb',
+        transition: theme.transitions.create(['border-color', 'box-shadow']),
+        '&:hover': {
+            backgroundColor: '#ffe',
+        },
+        '&$focused': {
+            backgroundColor: '#fff',
+            boxShadow: `${alpha('#b99560', 0.25)} 0 0 0 2px`,
+            borderColor: '#b99560',
+            color:'#b99560',
+            textColor:'#b99560'
+        },
+    },
+    focused: {},
+}));
+
+function RedditTextField(props:any) {
+    const classes = useStylesReddit();
+
+    return <TextField InputProps={{ classes, disableUnderline: true }} {...props} />;
+}
 
 export default function SignInSide(props:any) {
 
@@ -80,6 +109,7 @@ export default function SignInSide(props:any) {
     }
 
     const classes = useStyles();
+
 
     const [account, setAccount] = React.useState({username:"",password:""});
 
@@ -113,25 +143,12 @@ export default function SignInSide(props:any) {
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
             {/* <Grid item xs={false} sm={4} md={7} className={classes.image} /> */}
-            <Grid
-                className={classes.size}
-                item
-                xs={12}
-                sm={8}
-                md={5}
-                component={Paper}
-                elevation={1}
-                square
-            >
-                <div className={classes.paper}>
+            <Grid component={Paper} className={classes.size} item xs={12} sm={8} md={5} square>
                     <img src={sniivImg} alt={"sniiv"} className={classes.imageSedatu}/>
-                    <Typography component="h1" variant="h5" className={classes.font}>
-                        Bienvenido
-                    </Typography>
                     <form className={classes.form} noValidate>
-                        <TextField
-                            onChange={(event)=>handelAccount("username",event)}
-                            variant="outlined"
+                        <RedditTextField
+                            onChange={(event:any)=>handelAccount("username",event)}
+                            variant="filled"
                             margin="normal"
                             required
                             fullWidth
@@ -139,11 +156,10 @@ export default function SignInSide(props:any) {
                             label="Usuario"
                             name="username"
                             autoFocus
-                            className={classes.font}
                         />
-                        <TextField
-                            onChange={(event)=>handelAccount("password",event)}
-                            variant="outlined"
+                        <RedditTextField
+                            onChange={(event: any)=>handelAccount("password",event)}
+                            variant="filled"
                             margin="normal"
                             required
                             fullWidth
@@ -152,7 +168,6 @@ export default function SignInSide(props:any) {
                             type="password"
                             id="password"
                             autoComplete="current-password"
-                            className={classes.font}
                         />
                         <Button
                             type="submit"
@@ -167,7 +182,6 @@ export default function SignInSide(props:any) {
                         <Box mt={5}>
                         </Box>
                     </form>
-                </div>
             </Grid>
         </Grid>
     );
