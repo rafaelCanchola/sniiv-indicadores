@@ -46,8 +46,7 @@ interface PublicMapState{
     level:number,
     year:number,
     isMontos:boolean,
-    reiniciar:boolean,
-    isPolygon:boolean
+    reiniciar:boolean
 }
 
 let appliedLayers: BaseLayer[];
@@ -233,8 +232,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
             year: this.props.year,
             isMontos: this.props.isMontos,
             reiniciar: this.props.reiniciar,
-            capas: this.props.capas,
-            isPolygon:this.props.information.isPolygon
+            capas: this.props.capas
         };//filter:"MEX",level:3 };//filter:"21156",level:1 };//filter:"MEX",level:3 };//filter:"26",level:2 };
         this.olmap = new OlMap({
             view: new OlView({
