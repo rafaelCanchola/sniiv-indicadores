@@ -34,7 +34,7 @@ import {Feature, Overlay} from "ol";
 import fetchJsonp from "fetch-jsonp";
 import {connect} from "react-redux";
 import loader from "../../assets/images/loading-23.gif";
-import {Geometry} from "ol/geom";
+import {Geometry, Point} from "ol/geom";
 
 interface PublicMapState{
     semaphore:boolean,
@@ -93,46 +93,44 @@ const mapLayers: BaseLayer[] = [
 ]
 
 let styleCache:any = {};
-let distanceInput = 10;
-let minDistanceInput = 5;
+let distanceInput = 30;
+let minDistanceInput = 15;
 
-let clusterLayer = new OlLayerVector({
-    opacity:0.6,
-    source: new Cluster({
-        distance: distanceInput,
-        minDistance: minDistanceInput,
-        source: new VectorSource({features:undefined})
-    }),
-    style: function (feature) {
-        const size = feature.get('features');
-        let style = styleCache[size];
-        const importe = feature.get('importe_t');
-        const max = feature.get('max');
-        const min = feature.get('min');
-        let color = getColor(importe,max,min)
-        if (!style) {
-            style = new Style({
-                image: new CircleStyle({
-                    radius: 10,
-                    stroke: new Stroke({
-                        color:"#000", width:2
+function clusterLayer(myFeatures:any){
+    return new OlLayerVector({
+        source: new Cluster({
+            distance: distanceInput,
+            minDistance: minDistanceInput,
+            source: myFeatures
+        }),
+        style: function (feature) {
+
+            const size = feature.get("features").length;
+            let style = styleCache[size];
+            if (!style) {
+                style = new Style({
+                    image: new CircleStyle({
+                        radius: 10,
+                        stroke: new Stroke({
+                            color:"#fff", width:2
+                        }),
+                        fill: new Fill({
+                            color: "#164f2f",
+                        }),
                     }),
-                    fill: new Fill({
-                        color: color,
+                    text: new Text({
+                        text: size.toString(),
+                        fill: new Fill({
+                            color: '#fff',
+                        }),
                     }),
-                }),
-                text: new Text({
-                    text: size.toString(),
-                    fill: new Fill({
-                        color: '#555',
-                    }),
-                }),
-            });
-            styleCache[size] = style;
-        }
-        return style;
-    },
-});
+                });
+                styleCache[size] = style;
+            }
+            return style;
+        },
+    });
+}
 
 let agaveLayer = new OlLayerVector({
     opacity:0.4,
@@ -166,7 +164,7 @@ function getColor(importe_t:number,min:number,max:number) {
     return ramp[index];
 }
 
-function actualizarLayers(sup:any){
+function actualizarLayers(sup:any,cluster:any){
     appliedLayers.map(layer => sup.removeLayer(layer));
     appliedLayers = [mapLayers[counterLayers-1]]//,(capasCall[0] === 1 && mapLayers[4]),capasCall[1],capasCall[2],capasCall[3],capasCall[4]]
     if(capasCall[0] === 1){
@@ -176,8 +174,10 @@ function actualizarLayers(sup:any){
         appliedLayers.push(mapLayers[5])
     }
     if(capasCall[1] === 1){
-        appliedLayers.push(agaveLayer)
-        appliedLayers.push(clusterLayer)
+        appliedLayers.push(agaveLayer);
+        if(cluster != null){
+            appliedLayers.push(cluster);
+        }
     }
     if(capasCall[3] === 1){
         appliedLayers.push(mapLayers[6])
@@ -187,6 +187,7 @@ function actualizarLayers(sup:any){
     }
     appliedLayers.map(layer => sup.addLayer(layer))
 }
+
 
 class CambioCapaBase extends Control {
     constructor(opt_options:any) {
@@ -211,7 +212,7 @@ class CambioCapaBase extends Control {
         if(counterLayers === 5){
             counterLayers = 1;
         }
-        actualizarLayers(this.getMap())
+        actualizarLayers(this.getMap(),null)
     };
 }
 
@@ -283,6 +284,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
             }
             let clusterResults = this.state.level === 1 ? await Promise.all((await Promise.all(clusterRows)).map(result => (result != null)?result.json():null)) :null
             let results = await Promise.all((await Promise.all(rows)).map(result => result.json()))
+            //let clusterAg = clusterResults != null ? clusterResults.map(data => data.map((geo: { x: any;y:any; }) => new Feature(new Point([geo.x,geo.y])))) : null
             let clusterAg = clusterResults != null ? clusterResults.map(data => data.map((geo: { the_geom: any; }) => new WKT().readFeature(geo.the_geom, {
                     dataProjection: 'EPSG:4326',
                     featureProjection: 'EPSG:3857'
@@ -291,16 +293,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
                 dataProjection: 'EPSG:4326',
                 featureProjection: 'EPSG:3857'
             })))
-            if(clusterAg != null){
-                clusterAg.map((data, array) => data.map((geo: { setProperties: (arg0: {id: any; cvegeo: any; importe_t: any; max: any; min: any; features: any;  }) => any; }, index: number) => geo.setProperties({
-                    features:clusterAg?.length != undefined ?clusterAg?.length-1 :null,
-                    id: results[array][index].id,
-                    cvegeo: results[array][index].cvegeo,
-                    importe_t: results[array][index].importe_t,
-                    max: results[array][index].max,
-                    min: results[array][index].min
-                })))
-            }
+
             ag.map((data, array) => data.map((geo: { setProperties: (arg0: { id: any; cvegeo: any; importe_t: any; max: any; min: any; }) => any; }, index: number) => geo.setProperties({
                 id: results[array][index].id,
                 cvegeo: results[array][index].cvegeo,
@@ -314,9 +307,9 @@ export default class PublicMap extends Component<any, PublicMapState> {
                     arrayFinal.push(ag[i][j])
                 }
             }
-            let clusterFinal = null;
+
+            let clusterFinal = [];
             if(clusterAg != null){
-                clusterFinal = [];
                 for (let i = 0; i < clusterAg.length; i++) {
                     for (let j = 0; j < clusterAg[i].length; j++) {
                         clusterFinal.push(clusterAg[i][j])
@@ -331,14 +324,17 @@ export default class PublicMap extends Component<any, PublicMapState> {
         handleSubmit()
             .then(
                 (arrays) => {
+                    let cluster = null;
                     agaveLayer.getSource()?.clear()
-                    clusterLayer.getSource()?.clear()
                     if(arrays[0] != null){
                         agaveLayer.getSource()?.addFeatures(arrays[0])
                     }if(arrays[1] != null){
-                        clusterLayer.getSource()?.addFeatures(arrays[1])
+                        cluster = clusterLayer(new VectorSource({features:arrays[1]}))
+                        // @ts-ignore
+                        //clusterLayer.setSource(new VectorSource({features:arrays[1]}))
+                        //clusterLayer.getSource()?.addFeatures(arrays[1])
                     }
-                    actualizarLayers(map)
+                    actualizarLayers(map,cluster)
                 }
             )
     }
@@ -369,19 +365,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
         });
 
         this.olmap.on('click', (event: any) => {
-            clusterLayer.getFeatures(event.pixel).then((clickedFeatures) => {
-                console.log("cluster")
-                if(clickedFeatures.length){
-                    const features = clickedFeatures[0].get('features');
-                    console.log(features)
-                    if(features.length > 1){
-                        const extent = boundingExtent(
-                            features.map((r:any) => r.getGeometry().getCoordinates())
-                        );
-                        this.olmap.getView().fit(extent,{duration:1000,padding:[50,50,50,50]});
-                    }
-                }
-            });
+
             if (this.state.capas !== null) {
                 if (capasCall[3] === 1) {
                     let url = bases.o3.getFeatureInfoUrl(event.coordinate, this.olmap.getView().getResolution(), this.olmap.getView().getProjection(), {
@@ -476,7 +460,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
         //let zoom = this.olmap.getView().getZoom();
         //let isUpdate = !(center === nextState.center && zoom === nextState.zoom)
 
-        actualizarLayers(this.olmap)
+        actualizarLayers(this.olmap,null)
         let isUpdate = nextProps.information.cve_geo !== this.state.filter
         return isUpdate;
     }
@@ -493,7 +477,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
         })
         this.props.callbackLoading(true)
         this.showEstados(this.olmap)
-        actualizarLayers(this.olmap)
+        actualizarLayers(this.olmap,null)
         this.updateMap();
     }
 
