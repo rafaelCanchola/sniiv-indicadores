@@ -130,8 +130,8 @@ class PrahDashboard extends Component<any, any>{
             allYears: [],
             featureMapa:null,
             featureSiseviveMapa:null,
-            cultivo: {id:0,cve_geo:"",type:0,level:1,center:[],extent:[]},
-            changePoli : {id:0,cve_geo:"MEX",level:3,center:[-11397253.55045682,2806837.5334897055],extent:[-14288915.653663361,1650678.179152118,-8405591.44725028,3962996.887827293]}
+            cultivo: {id:0,cve_geo:"",type:0,level:1,center:[],extent:[],isPolygon:false},
+            changePoli : {id:0,cve_geo:"MEX",level:3,center:[-11397253.55045682,2806837.5334897055],extent:[-14288915.653663361,1650678.179152118,-8405591.44725028,3962996.887827293],isPolygon:false}
         }
     }
     handleCallback(childData:any){
@@ -161,7 +161,8 @@ class PrahDashboard extends Component<any, any>{
                 cve_geo: "MEX",
                 level: 3,
                 center: [-11397253.55045682, 2806837.5334897055],
-                extent: [-14288915.653663361, 1650678.179152118, -8405591.44725028, 3962996.887827293]
+                extent: [-14288915.653663361, 1650678.179152118, -8405591.44725028, 3962996.887827293],
+                isPolygon: false
             }})
     }
 

@@ -68,8 +68,8 @@ export function MapServiceEstadosCount(year:number,filter:string,xmin:number,ymi
     return FetchGetJson(MapServiceUrl(API_POLI_MEXICO_COUNT+'?&year='+year+'&filter='+filter+ '&xmin=' + xmin + '&xmax=' + xmax + '&ymin=' + ymin + '&ymax=' + ymax,cors,environment));
 }
 
-export function MapServiceInsusGet(isMontos:boolean,year:number,pgnumber:number, pgsize:number, filter:string,xmin:number,ymin:number,xmax:number,ymax:number, cors:boolean, environment:Environments){
-    return FetchGetJson(MapServiceUrl(API_POLI_INSUS_GET+'?&isMontos='+isMontos+'&year='+year+'&filter='+filter+ '&pgnumber=' + pgnumber + '&pgsize=' + pgsize + '&xmin=' + xmin + '&xmax=' + xmax + '&ymin=' + ymin + '&ymax=' + ymax,cors,environment))
+export function MapServiceInsusGet(isMontos:boolean,year:number,pgnumber:number, pgsize:number, filter:string,xmin:number,ymin:number,xmax:number,ymax:number, isPolygon:boolean, cors:boolean, environment:Environments){
+    return FetchGetJson(MapServiceUrl(API_POLI_INSUS_GET+'?&isMontos='+isMontos+'&year='+year+'&filter='+filter+ '&pgnumber=' + pgnumber + '&pgsize=' + pgsize + '&xmin=' + xmin + '&xmax=' + xmax + '&ymin=' + ymin + '&ymax=' + ymax+ '&isPoligono=' + isPolygon,cors,environment))
 }
 
 export function MapServiceMexicoGet(isMontos:boolean,year:number,pgnumber:number, pgsize:number, filter:string,xmin:number,ymin:number,xmax:number,ymax:number, cors:boolean, environment:Environments){
