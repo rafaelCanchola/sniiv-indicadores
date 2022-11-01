@@ -93,7 +93,7 @@ const mapLayers: BaseLayer[] = [
 ]
 
 let styleCache:any = {};
-let distanceInput = 30;
+let distanceInput = 40;
 let minDistanceInput = 15;
 
 function clusterLayer(myFeatures:any){
@@ -435,14 +435,24 @@ export default class PublicMap extends Component<any, PublicMapState> {
 
         this.selectedFeatures.on('add', () => {
             console.log("ADD")
-            this.props.cultivoCallback({
-                id: this.selectedFeatures.item(0).getProperties().id,
-                cve_geo: this.selectedFeatures.item(0).getProperties().cvegeo,
-                type: this.state.filter,
-                level: this.state.level,
-                extent: this.selectedFeatures.item(0).getGeometry()?.getExtent(),
-                center: getCenter(this.selectedFeatures.item(0).getGeometry()!.getExtent())
-            })
+            if(this.selectedFeatures.item(0).getProperties().id != null){
+                this.props.cultivoCallback({
+                    id: this.selectedFeatures.item(0).getProperties().id,
+                    cve_geo: this.selectedFeatures.item(0).getProperties().cvegeo,
+                    type: this.state.filter,
+                    level: this.state.level,
+                    extent: this.selectedFeatures.item(0).getGeometry()?.getExtent(),
+                    center: getCenter(this.selectedFeatures.item(0).getGeometry()!.getExtent())
+                })
+            }else{
+                if (this.selectedFeatures.item(0).getProperties().features.length > 1) {
+                    const extent = boundingExtent(
+                        this.selectedFeatures.item(0).getProperties().features.map((r:any) => r.getGeometry().getCoordinates())
+                    );
+                    this.olmap.getView().fit(extent, {duration: 1000, padding: [150, 150,150, 150]});
+
+                }
+            }
         });
         this.selectedFeatures.on('remove', () => {
             console.log("REMOVE")
