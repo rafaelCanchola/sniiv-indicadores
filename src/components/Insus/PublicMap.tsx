@@ -490,7 +490,6 @@ export default class PublicMap extends Component<any, PublicMapState> {
             extent: props.information.extent,
             center: props.information.center,
             zoom: (props.information.level === 2 ? 6.2 : props.information.level === 1 ? 8.2 : 3.2),
-            isPolygon:props.information.isPolygon,
         })
         this.props.callbackLoading(true)
         this.showEstados(this.olmap)
