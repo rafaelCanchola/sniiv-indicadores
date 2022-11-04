@@ -10,11 +10,13 @@ import Paper from '@material-ui/core/Paper';
 import {Button, withStyles} from "@material-ui/core";
 import {MapServiceInsusPoliInfo} from "../FetchMethods";
 import {Environments} from "../../redux/reducers/environment";
+import Slider from "@material-ui/core/Slider";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: '#164f2f',
         color: theme.palette.common.white,
+        fontFamily:'Montserrat'
     },
     body: {
         fontSize: 13,
@@ -35,10 +37,19 @@ const useStyles = makeStyles({
         padding:1,
     },
     button:{
-        fontSize:10
-    }
-});
+        fontSize:10,
 
+        fontFamily:'Montserrat'
+
+    },
+    buttonReturn:{
+        fontSize:10,
+        backgroundColor: '#164f2f',
+        color: 'white',
+    fontFamily:'Montserrat'
+    },
+
+});
 
 
 class TableInformacion extends Component<any, any> {
@@ -47,6 +58,7 @@ class TableInformacion extends Component<any, any> {
         super(props);
         this.handleCallBack = this.handleCallBack.bind(this)
         this.returnEstatal = this.returnEstatal.bind(this)
+        this.valueCallBack = this.valueCallBack.bind(this)
         this.state = {
             id : this.props.cultivo.id,
             cve: this.props.cultivo.cve_geo,
@@ -56,7 +68,8 @@ class TableInformacion extends Component<any, any> {
             classes: this.props.classes,
             year: this.props.year,
             isMontos:this.props.isMontos,
-            rows: [{name:"",data:""}]
+            rows: [{name:"",data:""}],
+            value: 0
         }
 
     }
@@ -78,6 +91,10 @@ class TableInformacion extends Component<any, any> {
     returnEstatal(){
         this.props.callback({id:0,cve_geo:"MEX",level:3,center:[-11397253.55045682,2806837.5334897055],extent:[-14288915.653663361,1750678.179152118,-8505591.44725028,3862996.887827293]})
     }
+    valueCallBack(){
+        this.props.valueCallback(this.state.value)
+    }
+
 
     componentDidMount() {
         MapServiceInsusPoliInfo(this.state.isMontos,this.state.year,this.state.id,this.state.level,this.props.corsEnabled,this.props.environment)
@@ -85,6 +102,8 @@ class TableInformacion extends Component<any, any> {
             .then(r => {
                 //@ts-ignore
                 this.setState({ rows: r.map(campo => this.createData(campo.alias,campo.value)) })
+                this.setState({value:r[r.length-((this.state.level === 1) ? ((this.state.isMontos)?2:1):1)].value})
+                this.valueCallBack()
             })
     }
     render() {
@@ -111,9 +130,10 @@ class TableInformacion extends Component<any, any> {
                 </Table>
             </TableContainer>
 
-                {this.state.level != 3 && <><br/><Button color="default"  size="small" className={this.state.classes.button} id={"return"} onClick={this.returnEstatal} variant="contained"  component="span" >Regresar</Button></>}
+
+                {this.state.level != 3 && <><br/><Button color="default"  size="small" className={this.state.classes.buttonReturn} id={"return"} onClick={this.returnEstatal} variant="contained"  component="span" >Regresar</Button></>}
                 <br/><br/>
-                {this.state.level != 1 && <Button color="default" size="small" className={this.state.classes.button} id={"submit"} onClick={this.handleCallBack} variant="contained"  component="span" >Ver información {this.state.level===3?"municipal":this.state.level===2?"por polígono":""}</Button>}
+                {this.state.level != 1 && <Button color="default" size="small" className={this.state.classes.buttonReturn} id={"submit"} onClick={this.handleCallBack} variant="contained"  component="span" >Ver información {this.state.level===3?"municipal":this.state.level===2?"por polígono":""}</Button>}
             </div>
         );
     }
@@ -123,5 +143,8 @@ export default function MyTable(props:any){
     const callbackClass = (childData:any) =>{
         props.callBack(childData);
     }
-    return (<TableInformacion classes={classes} cultivo={props.cultivo} callback={callbackClass} year={props.year} isMontos={props.isMontos} environment={props.environment} cors={props.corsEnabled}/>)
+    const callbackValue = (childData:any) => {
+        props.valueCallback(childData);
+    }
+    return (<TableInformacion classes={classes} cultivo={props.cultivo} valueCallback={callbackValue} callback={callbackClass} year={props.year} isMontos={props.isMontos} environment={props.environment} cors={props.corsEnabled}/>)
 }

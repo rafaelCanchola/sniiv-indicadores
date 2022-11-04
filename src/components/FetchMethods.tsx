@@ -29,6 +29,8 @@ const API_REPORTE_MENSUAL_LOAD = "uploadreportemensual"
 const API_POLI_INSUS_INFO = "predioidentify"
 const API_POLI_INSUS_PERIODO = "periodo"
 const API_POLI_INSUS_PERIODO_ALL = "allPeriodos"
+const API_POLI_MEXICO_RANGES = "poligonosmexicomaxmin"
+const API_POLI_INSUS_RANGES = "poligonosinsusmaxmin"
 
 const AlfrescoEndpointsSelector={
     1 : API_POLI_LOAD,
@@ -39,46 +41,36 @@ const AlfrescoEndpointsSelector={
 function FetchUrl(apiRoute:string){
     return fetch( apiRoute, {method: HTTP_METHOD_GET, mode:CORS, referrerPolicy:REFERRER_POLICY,})
 }
-
 export function FetchProxyUrl(apiRoute:string){
     return fetch( SNIIV_CORS_SERVER+apiRoute, {method: HTTP_METHOD_GET, mode:CORS, referrerPolicy:REFERRER_POLICY,})
 }
-
 function FetchGetJson(apiRoute:string){
     return fetch( apiRoute, {method: HTTP_METHOD_GET, headers: {'Content-Type': TYPE_JSON},})
 }
-
 function FetchPostJson(apiRoute:string,data:any){
     return fetch( apiRoute, {method: HTTP_METHOD_POST, body: data, headers: {'Access-Control-Allow-Origin': '*'},})
 }
-
 function MapServiceUrl(name:string, cors:boolean, environment:Environments){
     return (cors ? (environment === Environments.QA? LOCAL_CORS_SERVER :  SNIIV_CORS_SERVER ): '') + (environment === Environments.QA? QA_URL : environment === Environments.DEV? MY_URL: PR_URL) + name;
 }
-
 export function AlfrescoUrl(object:string, name:string, cors:boolean){
     return (cors ? SNIIV_CORS_SERVER : '') + ALFRESCO_URL + object + '/content/' + name + '?a=true'
 }
-
 export function MapServiceInsusCount(year:number,filter:string,xmin:number,ymin:number,xmax:number,ymax:number, cors:boolean, environment:Environments){
     return FetchGetJson(MapServiceUrl(API_POLI_INSUS_COUNT+'?&year='+year+'&filter='+filter+ '&xmin=' + xmin + '&xmax=' + xmax + '&ymin=' + ymin + '&ymax=' + ymax,cors,environment));
 }
-
 export function MapServiceEstadosCount(year:number,filter:string,xmin:number,ymin:number,xmax:number,ymax:number, cors:boolean, environment:Environments){
     return FetchGetJson(MapServiceUrl(API_POLI_MEXICO_COUNT+'?&year='+year+'&filter='+filter+ '&xmin=' + xmin + '&xmax=' + xmax + '&ymin=' + ymin + '&ymax=' + ymax,cors,environment));
 }
-
 export function MapServiceInsusGet(isMontos:boolean,year:number,pgnumber:number, pgsize:number, filter:string,xmin:number,ymin:number,xmax:number,ymax:number, isPolygon:boolean, cors:boolean, environment:Environments){
     return FetchGetJson(MapServiceUrl(API_POLI_INSUS_GET+'?&isMontos='+isMontos+'&year='+year+'&filter='+filter+ '&pgnumber=' + pgnumber + '&pgsize=' + pgsize + '&xmin=' + xmin + '&xmax=' + xmax + '&ymin=' + ymin + '&ymax=' + ymax+ '&isPoligono=' + isPolygon,cors,environment))
 }
-
 export function MapServiceMexicoGet(isMontos:boolean,year:number,pgnumber:number, pgsize:number, filter:string,xmin:number,ymin:number,xmax:number,ymax:number, cors:boolean, environment:Environments){
     return FetchGetJson(MapServiceUrl(API_POLI_MEXICO_GET+'?&isMontos='+isMontos+'&year='+year+'&filter='+filter+ '&pgnumber=' + pgnumber + '&pgsize=' + pgsize + '&xmin=' + xmin + '&xmax=' + xmax + '&ymin=' + ymin + '&ymax=' + ymax,cors,environment))
 }
 export function MapServiceInsusPoliInfo(isMontos:boolean,year:number,idPoli:number,level:number, cors:boolean, environment:Environments){
     return FetchGetJson(MapServiceUrl(API_POLI_INSUS_INFO+'?&isMontos='+isMontos+'&year='+year+'&id='+idPoli+'&level='+level,cors,environment))
 }
-
 export function MapServiceInsusPost(formData:any, cors:boolean, environment:Environments){
     return FetchPostJson(MapServiceUrl(API_POLI_LOAD,cors,environment),formData)
 }
@@ -87,6 +79,12 @@ export function MapServiceInsusGetPeriodo(cors:boolean, environment:Environments
 }
 export function MapServiceInsusGetAllPeriodos(cors:boolean, environment:Environments){
     return FetchGetJson(MapServiceUrl(API_POLI_INSUS_PERIODO_ALL,cors,environment))
+}
+export function MapServiceInsusGetRanges(isMontos:boolean,year:number,filter:string,xmin:number,ymin:number,xmax:number,ymax:number,cors:boolean, environment:Environments){
+    return FetchGetJson(MapServiceUrl(API_POLI_INSUS_RANGES+'?&isMontos='+isMontos+'&year='+year+'&filter='+filter+ '&xmin=' + xmin + '&xmax=' + xmax + '&ymin=' + ymin + '&ymax=' + ymax,cors,environment))
+}
+export function MapServiceMexicoGetRanges(isMontos:boolean,year:number,filter:string,xmin:number,ymin:number,xmax:number,ymax:number,cors:boolean, environment:Environments){
+    return FetchGetJson(MapServiceUrl(API_POLI_MEXICO_RANGES+'?&isMontos='+isMontos+'&year='+year+'&filter='+filter+ '&xmin=' + xmin + '&xmax=' + xmax + '&ymin=' + ymin + '&ymax=' + ymax,cors,environment))
 }
 export function PnvCsvPost(formData:any, cors:boolean, environment:Environments){
     return FetchPostJson(MapServiceUrl(API_PNV_LOAD,cors,environment),formData)

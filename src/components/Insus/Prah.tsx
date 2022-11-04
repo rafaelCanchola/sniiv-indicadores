@@ -1,6 +1,7 @@
 import PublicMap from "./PublicMap";
 import TableInformacion from "./TableInformacion";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import Slider from "@material-ui/core/Slider"
 import React, {Component, Fragment} from "react";
 import {
     Button,
@@ -29,6 +30,7 @@ import OfertaFeature from "./Legends/OfertaFeature";
 import loader from "../../assets/images/loading-23.gif";
 import * as bases from "../webmapservices";
 import fetchJsonp from "fetch-jsonp";
+import MyRangePrah from "./RangePrah";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -66,6 +68,12 @@ const useStyles = makeStyles((theme:Theme) =>
             left: "75%",
             width: "20%"
         },
+        tableRange:{
+            position: "absolute",
+            bottom: "35%",
+            left: "80%",
+            width: "15%",
+        },
         tableOferta:{
             position: "absolute",
             bottom: "-33%",
@@ -85,6 +93,7 @@ const useStyles = makeStyles((theme:Theme) =>
             backgroundColor: '#325b4f',
             color:'#fff'
         },
+
     })
 );
 
@@ -95,6 +104,7 @@ class PrahDashboard extends Component<any, any>{
         this.handleLevelCallback = this.handleLevelCallback.bind(this)
         this.handleFeatureCallback = this.handleFeatureCallback.bind(this)
         this.handleSiseviveFeatureCallback = this.handleSiseviveFeatureCallback.bind(this)
+        this.handleValueCallback = this.handleValueCallback.bind(this)
         this.returnShape = this.returnShape.bind(this)
         this.changeYear = this.changeYear.bind(this)
         this.changeSelector = this.changeSelector.bind(this)
@@ -130,12 +140,17 @@ class PrahDashboard extends Component<any, any>{
             allYears: [],
             featureMapa:null,
             featureSiseviveMapa:null,
+            valueTable:1,
             cultivo: {id:0,cve_geo:"",type:0,level:1,center:[],extent:[]},
             changePoli : {id:0,cve_geo:"MEX",level:3,center:[-11397253.55045682,2806837.5334897055],extent:[-14288915.653663361,1650678.179152118,-8405591.44725028,3962996.887827293]}
         }
     }
     handleCallback(childData:any){
         this.setState({cultivo:childData})
+    }
+
+    handleValueCallback(childData:any){
+        this.setState({valueTable:childData})
     }
 
     handleLevelCallback(childData:any){
@@ -289,12 +304,12 @@ class PrahDashboard extends Component<any, any>{
                 <Grid container spacing={3} >
                     <Grid item xs={12}>
                         <CardBanner subtitle={"Módulo de análisis geoespacial."}
-                                title={"Módulo Geoespacial"}
-                                image={inicioImg}
-                                more1={''}
-                                more2={''}
-                                isMobile={this.state.isMobile}
-                                isBig={false}/>
+                                    title={"Módulo Geoespacial"}
+                                    image={inicioImg}
+                                    more1={''}
+                                    more2={''}
+                                    isMobile={this.state.isMobile}
+                                    isBig={false}/>
                     </Grid>
                 </Grid>
                 <Grid container spacing={0} >
@@ -321,27 +336,27 @@ class PrahDashboard extends Component<any, any>{
 
                     </Grid>
                 </Grid>
-                    {this.state.insus &&
-                    <Grid container spacing={0} className={this.state.classes.tableinsus}>
-                        <Grid item md={3}></Grid>
-                        <Grid item xs={12} md={3}>
-                            <Paper elevation={3} className={this.state.classes.paper}>
-                                <FormControl fullWidth>
-                                    <InputLabel id="demo-simple-select-label" className={this.state.classes.text}>Periodo</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={this.state.year}
-                                        label="Year"
-                                        onChange={this.changeYear}
-                                        className={this.state.classes.text}
-                                    >
-                                        {this.state.allYears.map((yr:any) =>
-                                            <MenuItem value={yr.anio}>{yr.anio}</MenuItem>
-                                        )}
-                                    </Select>
-                                </FormControl>
-                            </Paper>
+                {this.state.insus &&
+                <Grid container spacing={0} className={this.state.classes.tableinsus}>
+                    <Grid item md={3}></Grid>
+                    <Grid item xs={12} md={3}>
+                        <Paper elevation={3} className={this.state.classes.paper}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label" className={this.state.classes.text}>Periodo</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={this.state.year}
+                                    label="Year"
+                                    onChange={this.changeYear}
+                                    className={this.state.classes.text}
+                                >
+                                    {this.state.allYears.map((yr:any) =>
+                                        <MenuItem value={yr.anio}>{yr.anio}</MenuItem>
+                                    )}
+                                </Select>
+                            </FormControl>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} md={3}>
                         <Paper elevation={3} className={this.state.classes.paper}>
@@ -361,19 +376,25 @@ class PrahDashboard extends Component<any, any>{
                             </FormControl>
                         </Paper>
                     </Grid>
-                    </Grid>}
+                </Grid>}
                 <Grid container spacing={3} alignItems={'center'}>
                     <Grid item xs={12} md={12} key={this.state.reiniciar}>
+                        <div>
+                        </div>
                         {this.state.year != 0 &&
-                            <div >
-                                {(this.state.isLoading && this.state.capas[1] === 1)  &&
-                                    <img alt={"loader"} src={loader} style={{zIndex: 100,width:'65%',left:'15%', top:'60%',position:'absolute'}}/>}
-                                <br/><br/><PublicMap callbackLoading={this.handleCallbackLoading} environment={this.props.environment} corsEnabled={this.props.corsEnabled}loadingCallback={this.handleCallbackLoading} featureSiseviveMapaCallback={this.handleSiseviveFeatureCallback} featureMapaCallback={this.handleFeatureCallback} capas={this.state.capas} cultivoCallback={this.handleCallback} information={this.state.changePoli} year={this.state.year} isMontos={this.state.isMontos} reiniciar={this.state.reiniciar}/>
-                                {this.state.featureMapa != null && <div key={"mapa"} className={this.state.featureSiseviveMapa != null ?this.state.classes.tableOferta : this.state.classes.tableSisevive}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureMapa.properties}/></Paper></div>}
-                                {this.state.featureSiseviveMapa != null && <div key={"sisevive"} className={this.state.classes.tableSisevive}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureSiseviveMapa.properties}/></Paper></div>}
-                                {this.state.insus && <div key={"insus"} className={this.state.classes.table}>{this.state.cultivo === undefined ? <Paper key={"mapa2"} elevation={3} className={this.state.classes.paper}>Selecciona un {this.state.changePoli.level == 3 ? "estado":this.state.changePoli.level == 2 ?"municipio" : "poligono"} para ver su información.{this.state.changePoli.level != 3 && <><br/><br/><Button color="default"  size="small" className={this.state.classes.button} id={"return"} onClick={this.returnShape} variant="contained"  component="span" >Regresar</Button></>}</Paper>:this.state.cultivo.id === 0 ? <Paper key={"mapa1"} elevation={3} className={this.state.classes.paper}>Selecciona un estado para ver su información.{this.state.cultivo.cve_geo}</Paper>:<Paper key={"mapa3"} elevation={3} className={this.state.classes.paper2}><TableInformacion callBack={this.handleLevelCallback}cultivo={this.state.cultivo} year={this.state.year} isMontos={this.state.isMontos} environment={this.props.environment} corsEnabled={this.props.corsEnabled}/></Paper>}</div>}
-                            </div>
+                        <div >
+                            {(this.state.isLoading && this.state.capas[1] === 1)  &&
+                            <img alt={"loader"} src={loader} style={{zIndex: 100,width:'65%',left:'15%', top:'60%',position:'absolute'}}/>}
+                            <br/><br/><PublicMap callbackLoading={this.handleCallbackLoading} environment={this.props.environment} corsEnabled={this.props.corsEnabled}loadingCallback={this.handleCallbackLoading} featureSiseviveMapaCallback={this.handleSiseviveFeatureCallback} featureMapaCallback={this.handleFeatureCallback} capas={this.state.capas} cultivoCallback={this.handleCallback} information={this.state.changePoli} year={this.state.year} isMontos={this.state.isMontos} reiniciar={this.state.reiniciar}/>
+                            {this.state.featureMapa != null && <div key={"mapa"} className={this.state.featureSiseviveMapa != null ?this.state.classes.tableOferta : this.state.classes.tableSisevive}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureMapa.properties}/></Paper></div>}
+                            {this.state.featureSiseviveMapa != null && <div key={"sisevive"} className={this.state.classes.tableSisevive}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureSiseviveMapa.properties}/></Paper></div>}
+                            {this.state.insus && <div key={"insus"} className={this.state.classes.table}>{this.state.cultivo === undefined ? <Paper key={"mapa2"} elevation={3} className={this.state.classes.paper}>Selecciona un {this.state.changePoli.level == 3 ? "estado":this.state.changePoli.level == 2 ?"municipio" : "poligono"} para ver su información.{this.state.changePoli.level != 3 && <><br/><br/><Button color="default"  size="small" className={this.state.classes.button} id={"return"} onClick={this.returnShape} variant="contained"  component="span" >Regresar</Button></>}</Paper>:this.state.cultivo.id === 0 ? <Paper key={"mapa1"} elevation={3} className={this.state.classes.paper}>Selecciona un estado para ver su información.{this.state.cultivo.cve_geo}</Paper>:<Paper key={"mapa3"} elevation={3} className={this.state.classes.paper2}><TableInformacion valueCallback={this.handleValueCallback} callBack={this.handleLevelCallback}cultivo={this.state.cultivo} year={this.state.year} isMontos={this.state.isMontos} environment={this.props.environment} corsEnabled={this.props.corsEnabled}/></Paper>}</div>}
+                            {this.state.insus && <div key={"range"} className={this.state.classes.tableRange}><MyRangePrah valueTable={this.state.cultivo === undefined || this.state.cultivo.id === 0 ?0:this.state.valueTable} cultivo={this.state.changePoli} year={this.state.year} isMontos={this.state.isMontos} environment={this.props.environment} corsEnabled={this.props.corsEnabled}/></div>}
+                        </div>
                         }
+                    </Grid>
+                    <Grid item xs={6}>
+
                     </Grid>
                 </Grid>
 

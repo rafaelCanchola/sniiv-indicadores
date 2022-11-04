@@ -243,7 +243,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
                 extent: this.state.extent,
             }),
             //@ts-ignore
-            controls: defaultControls().extend([new CambioCapaBase(), new ScaleLine(), new MousePosition()]),
+            controls: defaultControls().extend([new CambioCapaBase(), new ScaleLine()]),//, new MousePosition()]),
 
         });
         capasCall = this.props.capas;
