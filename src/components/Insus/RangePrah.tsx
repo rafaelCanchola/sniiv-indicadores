@@ -110,7 +110,7 @@ class RangePrah extends Component<any, any> {
 
     render() {
         return (
-            <div style={{background:'white', paddingTop:'2%',paddingLeft:'20%',paddingRight:'20%',
+            <div style={{background:'transparent', paddingTop:'2%',paddingLeft:'20%',paddingRight:'20%',
                 fontFamily:'Montserrat'}}>
                 <Slider
                 classes={{

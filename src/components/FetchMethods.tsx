@@ -2,7 +2,7 @@ import {Environments} from "../redux/reducers/environment";
 
 const ALFRESCO_URL = 'https://sistemas.sedatu.gob.mx/repositorio/proxy/alfresco-noauth/api/internal/shared/node/'
 const LOCAL_URL = 'http://172.16.15.94:8083/gis-api/'
-const MY_URL = 'http://localhost:8084/gis-api/'
+const MY_URL = 'http://localhost:8084/gis-api/' //LOCAL_URL
 const DV_URL = 'https://dev-sniiv.sedatu.gob.mx/gis-api/'
 const QA_URL = 'https://qa-sniiv.sedatu.gob.mx/gis-api/'
 const PR_URL = 'https://sniiv.sedatu.gob.mx/gis-api/'

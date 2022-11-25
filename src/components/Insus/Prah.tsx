@@ -31,6 +31,7 @@ import loader from "../../assets/images/loading-23.gif";
 import * as bases from "../webmapservices";
 import fetchJsonp from "fetch-jsonp";
 import MyRangePrah from "./RangePrah";
+import {MobileSize} from "../../utils/Utils";
 
 const useStyles = makeStyles((theme:Theme) =>
     createStyles({
@@ -58,19 +59,12 @@ const useStyles = makeStyles((theme:Theme) =>
         },
 
         tableinsus:{
-            position: "absolute",
-            center: true,
-            zIndex:1
         },
         table:{
-            position: "absolute",
-            bottom: "-30%",
-            left: "75%",
-            width: "20%"
         },
         tableRange:{
             position: "absolute",
-            bottom: "35%",
+            bottom: "28%",
             left: "80%",
             width: "15%",
         },
@@ -142,7 +136,8 @@ class PrahDashboard extends Component<any, any>{
             featureSiseviveMapa:null,
             valueTable:1,
             cultivo: {id:0,cve_geo:"",type:0,level:1,center:[],extent:[]},
-            changePoli : {id:0,cve_geo:"MEX",level:3,center:[-11397253.55045682,2806837.5334897055],extent:[-14288915.653663361,1650678.179152118,-8405591.44725028,3962996.887827293]}
+            changePoli : {id:0,cve_geo:"MEX",level:3,center:[-11397253.55045682,2806837.5334897055],extent:[-14288915.653663361,1650678.179152118,-8405591.44725028,3962996.887827293]},
+            isMobile: this.props.isMobile,
         }
     }
     handleCallback(childData:any){
@@ -314,7 +309,7 @@ class PrahDashboard extends Component<any, any>{
                 </Grid>
                 <Grid container spacing={0} >
                     <Grid item xs={12}>
-                        <ButtonGroup disableElevation variant="contained" fullWidth={true}>
+                        <ButtonGroup disableElevation variant="contained" fullWidth={true} orientation={this.state.isMobile?"vertical":"horizontal"}>
                             <Button onClick={this.buttonInsus} className={this.state.insus && this.state.classes.submit}><div className={this.state.classes.text}>Insus-PRAH</div></Button>
                             <Button onClick={this.buttonIndigena} className={this.state.indigena && this.state.classes.submit} variant="contained"><div className={this.state.classes.text}>{"Población indígena"} </div><RefreshIcon onMouseEnter={handleClick} /></Button>
                             <Button onClick={this.buttonPcu}className={this.state.pcu && this.state.classes.submit} variant="contained"><div className={this.state.classes.text}>{"Perímetros de Contención Urbana"}</div><RefreshIcon onMouseOver={handleClickPcu}/></Button>
@@ -337,48 +332,56 @@ class PrahDashboard extends Component<any, any>{
                     </Grid>
                 </Grid>
                 {this.state.insus &&
-                <Grid container spacing={0} className={this.state.classes.tableinsus}>
-                    <Grid item md={3}></Grid>
-                    <Grid item xs={12} md={3}>
-                        <Paper elevation={3} className={this.state.classes.paper}>
-                            <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label" className={this.state.classes.text}>Periodo</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={this.state.year}
-                                    label="Year"
-                                    onChange={this.changeYear}
-                                    className={this.state.classes.text}
-                                >
-                                    {this.state.allYears.map((yr:any) =>
-                                        <MenuItem value={yr.anio}>{yr.anio}</MenuItem>
-                                    )}
-                                </Select>
-                            </FormControl>
-                        </Paper>
+                <Fragment>
+                    <br/>
+                    <Grid container spacing={0} className={this.state.classes.tableinsus}>
+                        <Grid item xs={12} md={3}></Grid>
+                        <Grid item xs={12} md={3}>
+                            <Paper elevation={3} className={this.state.classes.paper}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label" className={this.state.classes.text}>Periodo</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={this.state.year}
+                                        label="Year"
+                                        onChange={this.changeYear}
+                                        className={this.state.classes.text}
+                                    >
+                                        {this.state.allYears.map((yr:any) =>
+                                            <MenuItem value={yr.anio}>{yr.anio}</MenuItem>
+                                        )}
+                                    </Select>
+                                </FormControl>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} md={3}>
+                            <Paper elevation={3} className={this.state.classes.paper}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label-2"className={this.state.classes.text}>Selector</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label-2"
+                                        id="demo-simple-select-2"
+                                        value={this.state.isMontos ? 0 : 1}
+                                        label="Seleccion"
+                                        onChange={this.changeSelector}
+                                        className={this.state.classes.text}
+                                    >
+                                        <MenuItem value={0}>Montos</MenuItem>
+                                        <MenuItem value={1}>Acciones</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} md={3}>
+                            <MyRangePrah valueTable={this.state.cultivo === undefined || this.state.cultivo.id === 0 ?0:this.state.valueTable} cultivo={this.state.changePoli} year={this.state.year} isMontos={this.state.isMontos} environment={this.props.environment} corsEnabled={this.props.corsEnabled}/>
+                        </Grid>
+
                     </Grid>
-                    <Grid item xs={12} md={3}>
-                        <Paper elevation={3} className={this.state.classes.paper}>
-                            <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label-2"className={this.state.classes.text}>Selector</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label-2"
-                                    id="demo-simple-select-2"
-                                    value={this.state.isMontos ? 0 : 1}
-                                    label="Seleccion"
-                                    onChange={this.changeSelector}
-                                    className={this.state.classes.text}
-                                >
-                                    <MenuItem value={0}>Montos</MenuItem>
-                                    <MenuItem value={1}>Acciones</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Paper>
-                    </Grid>
-                </Grid>}
-                <Grid container spacing={3} alignItems={'center'}>
-                    <Grid item xs={12} md={12} key={this.state.reiniciar}>
+                </Fragment>
+                }
+                <Grid container spacing={1} alignItems={'center'}>
+                    <Grid item xs={12} md={this.state.insus? 10:12} key={this.state.reiniciar}>
                         <div>
                         </div>
                         {this.state.year != 0 &&
@@ -386,16 +389,15 @@ class PrahDashboard extends Component<any, any>{
                             {(this.state.isLoading && this.state.capas[1] === 1)  &&
                             <img alt={"loader"} src={loader} style={{zIndex: 100,width:'65%',left:'15%', top:'60%',position:'absolute'}}/>}
                             <br/><br/><PublicMap callbackLoading={this.handleCallbackLoading} environment={this.props.environment} corsEnabled={this.props.corsEnabled}loadingCallback={this.handleCallbackLoading} featureSiseviveMapaCallback={this.handleSiseviveFeatureCallback} featureMapaCallback={this.handleFeatureCallback} capas={this.state.capas} cultivoCallback={this.handleCallback} information={this.state.changePoli} year={this.state.year} isMontos={this.state.isMontos} reiniciar={this.state.reiniciar}/>
-                            {this.state.featureMapa != null && <div key={"mapa"} className={this.state.featureSiseviveMapa != null ?this.state.classes.tableOferta : this.state.classes.tableSisevive}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureMapa.properties}/></Paper></div>}
-                            {this.state.featureSiseviveMapa != null && <div key={"sisevive"} className={this.state.classes.tableSisevive}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureSiseviveMapa.properties}/></Paper></div>}
-                            {this.state.insus && <div key={"insus"} className={this.state.classes.table}>{this.state.cultivo === undefined ? <Paper key={"mapa2"} elevation={3} className={this.state.classes.paper}>Selecciona un {this.state.changePoli.level == 3 ? "estado":this.state.changePoli.level == 2 ?"municipio" : "poligono"} para ver su información.{this.state.changePoli.level != 3 && <><br/><br/><Button color="default"  size="small" className={this.state.classes.button} id={"return"} onClick={this.returnShape} variant="contained"  component="span" >Regresar</Button></>}</Paper>:this.state.cultivo.id === 0 ? <Paper key={"mapa1"} elevation={3} className={this.state.classes.paper}>Selecciona un estado para ver su información.{this.state.cultivo.cve_geo}</Paper>:<Paper key={"mapa3"} elevation={3} className={this.state.classes.paper2}><TableInformacion valueCallback={this.handleValueCallback} callBack={this.handleLevelCallback}cultivo={this.state.cultivo} year={this.state.year} isMontos={this.state.isMontos} environment={this.props.environment} corsEnabled={this.props.corsEnabled}/></Paper>}</div>}
-                            {this.state.insus && <div key={"range"} className={this.state.classes.tableRange}><MyRangePrah valueTable={this.state.cultivo === undefined || this.state.cultivo.id === 0 ?0:this.state.valueTable} cultivo={this.state.changePoli} year={this.state.year} isMontos={this.state.isMontos} environment={this.props.environment} corsEnabled={this.props.corsEnabled}/></div>}
-                        </div>
+                            {this.state.featureMapa != null && <div key={"mapa"} className={this.state.featureSiseviveMapa != null ?this.state.classes.table : this.state.classes.table}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureMapa.properties}/></Paper></div>}
+                            {this.state.featureSiseviveMapa != null && <div key={"sisevive"} className={this.state.classes.table}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureSiseviveMapa.properties}/></Paper></div>}
+                            </div>
                         }
                     </Grid>
-                    <Grid item xs={6}>
+                    {this.state.insus &&
+                    <Grid item xs={12} md={2} key={this.state.reiniciar}>
+                        <div key={"insus"} className={this.state.classes.table}>{this.state.cultivo === undefined ? <Paper key={"mapa2"} elevation={3} className={this.state.classes.paper}>Selecciona un {this.state.changePoli.level == 3 ? "estado":this.state.changePoli.level == 2 ?"municipio" : "poligono"} para ver su información.{this.state.changePoli.level != 3 && <><br/><br/><Button color="default"  size="small" className={this.state.classes.button} id={"return"} onClick={this.returnShape} variant="contained"  component="span" >Regresar</Button></>}</Paper>:this.state.cultivo.id === 0 ? <Paper key={"mapa1"} elevation={3} className={this.state.classes.paper}>Selecciona un estado para ver su información.{this.state.cultivo.cve_geo}</Paper>:<Paper key={"mapa3"} elevation={3} className={this.state.classes.paper2}><TableInformacion valueCallback={this.handleValueCallback} callBack={this.handleLevelCallback}cultivo={this.state.cultivo} year={this.state.year} isMontos={this.state.isMontos} environment={this.props.environment} corsEnabled={this.props.corsEnabled}/></Paper>}</div></Grid>}
 
-                    </Grid>
                 </Grid>
 
                 <Grid container spacing={3}>
@@ -414,7 +416,8 @@ class PrahDashboard extends Component<any, any>{
 function Prah(props:any){
     const {environment,corsEnabled} = props;
     const classes = useStyles();
-    return (<PrahDashboard classes={classes} environment={environment} corsEnabled={corsEnabled} />)
+    const isMobile = MobileSize();
+    return (<PrahDashboard isMobile={isMobile} classes={classes} environment={environment} corsEnabled={corsEnabled} />)
 }
 
 const mapStateToProps = (state:any) => {
