@@ -149,7 +149,8 @@ export default function TotalesCumplimientoBienestar(props:CumplimientoProps){
                         more1={'La evaluación permanente de este Programa permitirá avanzar, hacia 2024, en cinco principios impulsados por cada uno de sus objetivos: la persona al centro de todas las decisiones en el sector vivienda; el uso eficiente de los recursos públicos; la coordinación entre los distintos órdenes de gobierno y la colaboración amplia con todos los sectores de la sociedad; la rendición de cuentas y el combate a la corrupción, y la generación, por primera vez, de un modelo integral de ordenamiento territorial.'}
                         more2={'El seguimiento permanente del Programa Nacional de Vivienda 2021-2024, a través de un informe trimestral de resultados, permitirá identificar los avances en los cinco objetivos prioritarios que establece, o en consecuencia, identificar las áreas de oportunidad para su logro, a través de  los resultados de los programas de apoyo a la vivienda en términos del número de acciones realizadas y el monto invertido, y por otra parte, las estrategias que contribuyen al cumplimiento de dichos objetivos, tales como convenios, lineamientos, sistemas de información, capacitación, asesorías, acuerdos, desarrollo de nuevos productos, entre otros.'}
                         isMobile={isMobile}
-                        isBig={true}/>
+                        isBig={true}
+                        hasButton={true}/>
             <Paper className={classes.paperContainer3}>
             <div className={classes.root}>
                 <Grid container spacing={2} alignItems={'center'} >

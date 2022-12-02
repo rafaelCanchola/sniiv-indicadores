@@ -1,4 +1,5 @@
 export const enum Environments {
+    LOC ='LOCAL',
     DEV = 'DEV',
     QA = 'QA',
     PR = 'PR'

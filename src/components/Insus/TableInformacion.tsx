@@ -131,7 +131,8 @@ class TableInformacion extends Component<any, any> {
             </TableContainer>
 
 
-                {this.state.level != 3 && <><br/><Button color="default"  size="small" className={this.state.classes.buttonReturn} id={"return"} onClick={this.returnEstatal} variant="contained"  component="span" >Regresar</Button></>}
+                {//this.state.level != 3 && <><br/><Button color="default"  size="small" className={this.state.classes.buttonReturn} id={"return"} onClick={this.returnEstatal} variant="contained"  component="span" >Regresar</Button></>
+                     }
                 <br/><br/>
                 {this.state.level != 1 && <Button color="default" size="small" className={this.state.classes.buttonReturn} id={"submit"} onClick={this.handleCallBack} variant="contained"  component="span" >Ver información {this.state.level===3?"municipal":this.state.level===2?"por polígono":""}</Button>}
             </div>

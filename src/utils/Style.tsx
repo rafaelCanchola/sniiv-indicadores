@@ -226,7 +226,7 @@ export const useStyles = makeStyles((theme:Theme) =>
             boxShadow: 'none',
             position: 'relative',
             minWidth: 200,
-            minHeight: 500,
+            minHeight: 340,
             '&:after': {
                 content: '""',
                 display: 'block',

@@ -8,8 +8,9 @@ const QA_URL = 'https://qa-sniiv.sedatu.gob.mx/gis-api/'
 const PR_URL = 'https://sniiv.sedatu.gob.mx/gis-api/'
 const SNIIV_URL = 'https://sniiv.sedatu.gob.mx/'
 const SNIIV_QA_URL = 'https://qa-sniiv.sedatu.gob.mx/'
+const SNIIV_DV_URL = 'https://dev-sniiv.sedatu.gob.mx/'
 const SNIIV_LOCAL_URL = 'http://localhost:3000/'
-const SNIIV_CORS_SERVER = 'https://sniiv-cors.herokuapp.com/'
+const SNIIV_CORS_SERVER = 'https://sniiv-cors.onrender.com/'
 const LOCAL_CORS_SERVER = 'http://172.16.15.94:8080/'
 const SNIIV_API_GET_LAST_YEAR = 'api/IndicadoresAPI/GetLastYear'
 const SNIIV_API_GET_LAST_TRIMESTRE = 'api/IndicadoresAPI/GetLastTrimestre/'
@@ -38,6 +39,20 @@ const AlfrescoEndpointsSelector={
     3 : API_PNV_REPORTE_LOAD,
     4 : API_REPORTE_MENSUAL_LOAD
 }
+
+const EnvironmentGisUrlSelector={
+    LOCAL : LOCAL_URL,//MY_URL,
+    DEV : DV_URL,
+    QA : QA_URL,
+    PR : PR_URL
+}
+
+const EnvironmentSniivUrlSelector={
+    LOCAL : SNIIV_LOCAL_URL,
+    DEV : SNIIV_DV_URL,
+    QA : SNIIV_QA_URL,
+    PR : SNIIV_URL
+}
 function FetchUrl(apiRoute:string){
     return fetch( apiRoute, {method: HTTP_METHOD_GET, mode:CORS, referrerPolicy:REFERRER_POLICY,})
 }
@@ -51,7 +66,7 @@ function FetchPostJson(apiRoute:string,data:any){
     return fetch( apiRoute, {method: HTTP_METHOD_POST, body: data, headers: {'Access-Control-Allow-Origin': '*'},})
 }
 function MapServiceUrl(name:string, cors:boolean, environment:Environments){
-    return (cors ? (environment === Environments.QA? LOCAL_CORS_SERVER :  SNIIV_CORS_SERVER ): '') + (environment === Environments.QA? QA_URL : environment === Environments.DEV? MY_URL: PR_URL) + name;
+    return (cors ? (environment === Environments.QA? LOCAL_CORS_SERVER :  SNIIV_CORS_SERVER ): '') + (EnvironmentGisUrlSelector[environment]) + name;
 }
 export function AlfrescoUrl(object:string, name:string, cors:boolean){
     return (cors ? SNIIV_CORS_SERVER : '') + ALFRESCO_URL + object + '/content/' + name + '?a=true'
@@ -99,7 +114,7 @@ export function AbstractPost(type:number,formData:any, cors:boolean, environment
 }
 
 export function SniivUrl(name:string, cors:boolean, environment:Environments){
-    return (cors ? (environment === Environments.QA? LOCAL_CORS_SERVER :  SNIIV_CORS_SERVER ) : '') + (environment === Environments.QA? SNIIV_QA_URL : environment === Environments.DEV? SNIIV_LOCAL_URL : SNIIV_URL) + name;
+    return (cors ? (environment === Environments.QA? LOCAL_CORS_SERVER :  SNIIV_CORS_SERVER ) : '') + (EnvironmentSniivUrlSelector[environment]) + name;
 }
 
 export async function FetchSyncronized(objects:any[]){
@@ -118,5 +133,11 @@ export async function GetYearTrimestre(cors:boolean,environmentProd:Environments
 export async function GetLastTrimestre(year:number,cors:boolean,environmentProd:Environments){
     let trimestre = await FetchSyncronized([SniivUrl(SNIIV_API_GET_LAST_TRIMESTRE+year,cors,environmentProd)])
     return trimestre[0].trimestre;
+}
+
+export function SniivEnvironmentUrl(cors:boolean,environmentProd:Environments){
+    // @ts-ignore
+    return (cors ? SNIIV_CORS_SERVER : '') + EnvironmentSniivUrlSelector[environmentProd]
+
 }
 

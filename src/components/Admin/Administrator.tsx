@@ -41,7 +41,8 @@ class Administrator extends Component<any, any>{
                                 more1={''}
                                 more2={''}
                                 isMobile={this.state.isMobile}
-                                isBig={false}/>
+                                isBig={false}
+                                hasButton={false}/>
                 </Grid>
             </Grid>
                 <Paper className={this.props.classes.paperContainer3}>

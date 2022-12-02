@@ -137,12 +137,14 @@ export default function ObjetivoPNV(props:any){
 
     return(
         <Fragment>
-            <CardBanner isBig={true}
-                        isMobile={isMobile}
-                        subtitle={'El Programa Nacional de Vivienda es un programa especial derivado del Plan Nacional de Desarrollo 2019-2024.'}
-                        title={'¿Qué es el Programa Nacional de Vivienda?'} image={bienestar2}
-                        more1={'El Programa Nacional de Vivienda 2021-2024 es el instrumento de planeación de la política nacional de vivienda. Este programa es pionero al integrar por primera vez el derecho humano del acceso a la vivienda adecuada, que considera los siguientes siete elementos establecidos por ONU-Hábitat: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad, habitabilidad, accesibilidad; ubicación y adecuación cultural.'}
-                        more2={'El Programa está compuesto por cinco objetivos prioritarios: 21 estrategias prioritarias y 113 acciones puntuales cuyo cumpliento se realizará en conjunto entre la Comisión Nacional de Vivienda (CONAVI), el Fondo de la Vivienda del Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado (FOVISSSTE), el Instituto del Fondo Nacional de la Vivienda para los Trabajadores (INFONAVIT), Sociedad Hipotecaria Federal (SHF) y la Secretaría de Desarrollo Agrario, Territorial y Urbano (SEDATU) y, el Instituto Nacional de Suelo Sustentable (INSUS).'} />
+            <CardBanner
+                hasButton={true}
+                isBig={true}
+                isMobile={isMobile}
+                subtitle={'El Programa Nacional de Vivienda es un programa especial derivado del Plan Nacional de Desarrollo 2019-2024.'}
+                title={'¿Qué es el Programa Nacional de Vivienda?'} image={bienestar2}
+                more1={'El Programa Nacional de Vivienda 2021-2024 es el instrumento de planeación de la política nacional de vivienda. Este programa es pionero al integrar por primera vez el derecho humano del acceso a la vivienda adecuada, que considera los siguientes siete elementos establecidos por ONU-Hábitat: seguridad de la tenencia; disponibilidad de servicios, materiales, instalaciones e infraestructura; asequibilidad, habitabilidad, accesibilidad; ubicación y adecuación cultural.'}
+                more2={'El Programa está compuesto por cinco objetivos prioritarios: 21 estrategias prioritarias y 113 acciones puntuales cuyo cumpliento se realizará en conjunto entre la Comisión Nacional de Vivienda (CONAVI), el Fondo de la Vivienda del Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado (FOVISSSTE), el Instituto del Fondo Nacional de la Vivienda para los Trabajadores (INFONAVIT), Sociedad Hipotecaria Federal (SHF) y la Secretaría de Desarrollo Agrario, Territorial y Urbano (SEDATU) y, el Instituto Nacional de Suelo Sustentable (INSUS).'} />
             <Paper className={classes.paperContainer4}>
                 <div className={classes.root}>
                     <Grid container spacing={3}>

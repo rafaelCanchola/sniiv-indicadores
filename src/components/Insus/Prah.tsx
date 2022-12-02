@@ -1,7 +1,6 @@
 import PublicMap from "./PublicMap";
 import TableInformacion from "./TableInformacion";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import Slider from "@material-ui/core/Slider"
 import React, {Component, Fragment} from "react";
 import {
     Button,
@@ -21,15 +20,11 @@ import {connect} from "react-redux";
 import CardBanner from "../PNV/MUIComponents/CardBanner";
 import RefreshIcon from "@material-ui/icons/Info";
 import PobIndigena from "./Legends/PobIndigena";
-import {Point} from "ol/geom";
-import Leyenda from "../PNV/MUIComponents/Leyenda";
 import PcuLegend from "./Legends/PcuLegend";
 import OfertaLegend from "./Legends/OfertaLegend";
 import SiseviveLegend from "./Legends/SiseviveLegend";
 import OfertaFeature from "./Legends/OfertaFeature";
 import loader from "../../assets/images/loading-23.gif";
-import * as bases from "../webmapservices";
-import fetchJsonp from "fetch-jsonp";
 import MyRangePrah from "./RangePrah";
 import {MobileSize} from "../../utils/Utils";
 
@@ -137,6 +132,7 @@ class PrahDashboard extends Component<any, any>{
             valueTable:1,
             cultivo: {id:0,cve_geo:"",type:0,level:1,center:[],extent:[]},
             changePoli : {id:0,cve_geo:"MEX",level:3,center:[-11397253.55045682,2806837.5334897055],extent:[-14288915.653663361,1650678.179152118,-8405591.44725028,3962996.887827293]},
+            levelPoli:{id:0,cve_geo:"MEX",level:3,center:[-11397253.55045682,2806837.5334897055],extent:[-14288915.653663361,1650678.179152118,-8405591.44725028,3962996.887827293]},
             isMobile: this.props.isMobile,
         }
     }
@@ -149,7 +145,9 @@ class PrahDashboard extends Component<any, any>{
     }
 
     handleLevelCallback(childData:any){
+        let cachedData = childData;
         this.setState({changePoli:childData})
+        this.setState({levelPoli:cachedData})
     }
 
     handleFeatureCallback(childData:any){
@@ -167,11 +165,11 @@ class PrahDashboard extends Component<any, any>{
     }
     returnShape(){
         this.setState({changePoli:{
-                id: 0,
-                cve_geo: "MEX",
-                level: 3,
-                center: [-11397253.55045682, 2806837.5334897055],
-                extent: [-14288915.653663361, 1650678.179152118, -8405591.44725028, 3962996.887827293]
+                id: this.state.changePoli.level == 1 ? this.state.levelPoli.id: 0,
+                cve_geo: this.state.changePoli.level == 1 ? this.state.levelPoli.cve_geo:"MEX",
+                level: this.state.changePoli.level == 1 ? 2:3,
+                center: this.state.changePoli.level == 1 ? this.state.levelPoli.center: [-11397253.55045682, 2806837.5334897055],
+                extent: this.state.changePoli.level == 1 ? this.state.levelPoli.extent:[-14288915.653663361, 1650678.179152118, -8405591.44725028, 3962996.887827293]
             }})
     }
 
@@ -291,9 +289,15 @@ class PrahDashboard extends Component<any, any>{
         const openVive = Boolean(this.state.anchorElVive);
         const idVive = openVive ? 'simple-popover' : undefined;
 
-        const timeout = () => {setTimeout(() => {
-            this.setState({loading:false})
-        }, 2000);}
+        const LevelMapSelector={
+            1 : "poligono",
+            2 : "municipio",
+            3 : "estado"
+        }
+        function selectLevelMap(type:number){
+            // @ts-ignore
+            return LevelMapSelector[type];
+        }
         return(
             <div className={this.state.classes.root}>
                 <Grid container spacing={3} >
@@ -304,7 +308,8 @@ class PrahDashboard extends Component<any, any>{
                                     more1={''}
                                     more2={''}
                                     isMobile={this.state.isMobile}
-                                    isBig={false}/>
+                                    isBig={false}
+                                    hasButton={true}/>
                     </Grid>
                 </Grid>
                 <Grid container spacing={0} >
@@ -381,7 +386,7 @@ class PrahDashboard extends Component<any, any>{
                 </Fragment>
                 }
                 <Grid container spacing={1} alignItems={'center'}>
-                    <Grid item xs={12} md={this.state.insus? 10:12} key={this.state.reiniciar}>
+                    <Grid item xs={12} md={10} key={this.state.reiniciar}>
                         <div>
                         </div>
                         {this.state.year != 0 &&
@@ -389,14 +394,24 @@ class PrahDashboard extends Component<any, any>{
                             {(this.state.isLoading && this.state.capas[1] === 1)  &&
                             <img alt={"loader"} src={loader} style={{zIndex: 100,width:'65%',left:'15%', top:'60%',position:'absolute'}}/>}
                             <br/><br/><PublicMap callbackLoading={this.handleCallbackLoading} environment={this.props.environment} corsEnabled={this.props.corsEnabled}loadingCallback={this.handleCallbackLoading} featureSiseviveMapaCallback={this.handleSiseviveFeatureCallback} featureMapaCallback={this.handleFeatureCallback} capas={this.state.capas} cultivoCallback={this.handleCallback} information={this.state.changePoli} year={this.state.year} isMontos={this.state.isMontos} reiniciar={this.state.reiniciar}/>
-                            {this.state.featureMapa != null && <div key={"mapa"} className={this.state.featureSiseviveMapa != null ?this.state.classes.table : this.state.classes.table}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureMapa.properties}/></Paper></div>}
-                            {this.state.featureSiseviveMapa != null && <div key={"sisevive"} className={this.state.classes.table}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureSiseviveMapa.properties}/></Paper></div>}
-                            </div>
+                        </div>
                         }
                     </Grid>
                     {this.state.insus &&
-                    <Grid item xs={12} md={2} key={this.state.reiniciar}>
-                        <div key={"insus"} className={this.state.classes.table}>{this.state.cultivo === undefined ? <Paper key={"mapa2"} elevation={3} className={this.state.classes.paper}>Selecciona un {this.state.changePoli.level == 3 ? "estado":this.state.changePoli.level == 2 ?"municipio" : "poligono"} para ver su información.{this.state.changePoli.level != 3 && <><br/><br/><Button color="default"  size="small" className={this.state.classes.button} id={"return"} onClick={this.returnShape} variant="contained"  component="span" >Regresar</Button></>}</Paper>:this.state.cultivo.id === 0 ? <Paper key={"mapa1"} elevation={3} className={this.state.classes.paper}>Selecciona un estado para ver su información.{this.state.cultivo.cve_geo}</Paper>:<Paper key={"mapa3"} elevation={3} className={this.state.classes.paper2}><TableInformacion valueCallback={this.handleValueCallback} callBack={this.handleLevelCallback}cultivo={this.state.cultivo} year={this.state.year} isMontos={this.state.isMontos} environment={this.props.environment} corsEnabled={this.props.corsEnabled}/></Paper>}</div></Grid>}
+                    <Grid item xs={12} md={2} key={this.state.reiniciar+"1"}>
+                        <div key={"insus"} className={this.state.classes.table}>
+                            <Paper key={"mapa2"} elevation={3} className={this.state.classes.paper}>
+                                {this.state.cultivo === undefined ?
+                                    "Selecciona un "+selectLevelMap(this.state.changePoli.level) +" para ver su información.":
+                                    this.state.cultivo.id === 0 ?
+                                        "Selecciona un estado para ver su información.":
+                                        <TableInformacion valueCallback={this.handleValueCallback} callBack={this.handleLevelCallback}cultivo={this.state.cultivo} year={this.state.year} isMontos={this.state.isMontos} environment={this.props.environment} corsEnabled={this.props.corsEnabled}/>}
+                                {this.state.changePoli.level != 3 && <><br/><br/><Button color="default"  size="small" className={this.state.classes.button} id={"return"} onClick={this.returnShape} variant="contained"  component="span" >Regresar</Button></>}
+                            </Paper>
+                        </div>
+                    </Grid>}
+                    {this.state.featureMapa != null && <Grid item xs={12}> <div key={"mapa"} className={this.state.isMobile ? this.state.classes.table:this.state.featureSiseviveMapa != null ?this.state.classes.tableOferta : this.state.classes.tableSisevive}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureMapa.properties}/></Paper></div></Grid>}
+                    {this.state.featureSiseviveMapa != null && <Grid item xs={12}><div key={"sisevive"} className={this.state.isMobile ? this.state.classes.table :this.state.classes.tableSisevive}><Paper elevation={3} className={this.state.classes.paper}><OfertaFeature feature={this.state.featureSiseviveMapa.properties}/></Paper></div></Grid>}
 
                 </Grid>
 

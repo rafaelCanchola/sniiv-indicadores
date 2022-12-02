@@ -7,7 +7,7 @@ import OlStyle from "ol/style/Style";
 import WKT from "ol/format/WKT";
 import ScaleLine from "ol/control/ScaleLine";
 import MousePosition from "ol/control/MousePosition";
-import {Control, defaults as defaultControls} from 'ol/control';
+import {Attribution, Control, defaults as defaultControls} from 'ol/control';
 import {boundingExtent, getCenter} from 'ol/extent';
 import * as bases from '../webmapservices';
 
@@ -35,10 +35,10 @@ import fetchJsonp from "fetch-jsonp";
 import {connect} from "react-redux";
 import loader from "../../assets/images/loading-23.gif";
 import {Geometry, Point} from "ol/geom";
+import ResizeObserver from 'rc-resize-observer';
 
 interface PublicMapState{
-    semaphore:boolean,
-    center:[],
+    center:number[],
     extent:[],
     capas:[],
     zoom:any,
@@ -143,16 +143,8 @@ let agaveLayer = new OlLayerVector({
         },
     source: new VectorSource({features:undefined})
 });
-const element = document.getElementById('popup');
 
-const popup = new Overlay({
-    // @ts-ignore
-    element: element,
-    positioning: 'bottom-center',
-    stopEvent: false,
-    offset: [0, -10],
-});
-
+let globalClusterLayer: any;
 
 function clamp(value:number, low:number, high:number) {
     return Math.max(low, Math.min(value, high));
@@ -164,7 +156,7 @@ function getColor(importe_t:number,min:number,max:number) {
     return ramp[index];
 }
 
-function actualizarLayers(sup:any,cluster:any){
+function actualizarLayers(sup:any){
     appliedLayers.map(layer => sup.removeLayer(layer));
     appliedLayers = [mapLayers[counterLayers-1]]//,(capasCall[0] === 1 && mapLayers[4]),capasCall[1],capasCall[2],capasCall[3],capasCall[4]]
     if(capasCall[0] === 1){
@@ -175,8 +167,8 @@ function actualizarLayers(sup:any,cluster:any){
     }
     if(capasCall[1] === 1){
         appliedLayers.push(agaveLayer);
-        if(cluster != null){
-            appliedLayers.push(cluster);
+        if(globalClusterLayer != null){
+            appliedLayers.push(globalClusterLayer);
         }
     }
     if(capasCall[3] === 1){
@@ -212,7 +204,7 @@ class CambioCapaBase extends Control {
         if(counterLayers === 5){
             counterLayers = 1;
         }
-        actualizarLayers(this.getMap(),null)
+        actualizarLayers(this.getMap())
     };
 }
 
@@ -223,23 +215,12 @@ export default class PublicMap extends Component<any, PublicMapState> {
 
     constructor(props: any) {
         super(props);
-        this.state = {
-            semaphore: true,
-            extent: this.props.information.extent,
-            center: this.props.information.center,
-            zoom: 4.2,
-            filter: this.props.information.cve_geo,
-            level: this.props.information.level,
-            year: this.props.year,
-            isMontos: this.props.isMontos,
-            reiniciar: this.props.reiniciar,
-            capas: this.props.capas
-        };//filter:"MEX",level:3 };//filter:"21156",level:1 };//filter:"MEX",level:3 };//filter:"26",level:2 };
+        this.state = this.getInitialState();
+        //filter:"MEX",level:3 };//filter:"21156",level:1 };//filter:"MEX",level:3 };//filter:"26",level:2 };
         this.olmap = new OlMap({
             view: new OlView({
-                //center: this.state.center,
-                zoom: 4.2,
-                maxZoom: this.state.zoom,
+                center: this.state.center,
+                zoom: this.state.zoom,
                 extent: this.state.extent,
             }),
             //@ts-ignore
@@ -250,9 +231,21 @@ export default class PublicMap extends Component<any, PublicMapState> {
         this.olmap.addInteraction(this.select)
         appliedLayers = [mapLayers[0]];
         this.olmap.addLayer(appliedLayers[0]);
-
     }
 
+    getInitialState(){
+        return {
+            extent: this.props.information.extent,
+            center: this.props.information.center,
+            zoom: 4.2,
+            filter: this.props.information.cve_geo,
+            level: this.props.information.level,
+            year: this.props.year,
+            isMontos: this.props.isMontos,
+            reiniciar: this.props.reiniciar,
+            capas: this.props.capas
+        }
+    }
     showEstados(map: any) {
         const pgsize = 3000;
         const {environment, corsEnabled} = this.props
@@ -268,7 +261,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
                 environment: environment,
                 corsEnabled: corsEnabled
             }]
-            let conteo = await Promise.all((await Promise.all(poligon.map(object => this.state.level === 1 ? MapServiceInsusCount(this.state.year, object.filter, object.xmin, object.ymin, object.xmax, object.ymax, object.corsEnabled, object.environment) : MapServiceEstadosCount(this.state.year, object.filter, object.xmin, object.ymin, object.xmax, object.ymax, object.corsEnabled, object.environment)))).map(result => result.json()))
+            let conteo = await Promise.all((await Promise.all(poligon.map(object => this.state.level === 1 ? MapServiceInsusCount(this.state.year, object.filter, object.xmin, object.ymin, object.xmax, object.ymax, object.corsEnabled, object.environment) : MapServiceEstadosCount(this.state.year, object.filter==="MEX"? object.filter : object.filter.substring(0,2), object.xmin, object.ymin, object.xmax, object.ymax, object.corsEnabled, object.environment)))).map(result => result.json()))
             nShades = conteo[0] > 2 ? conteo[0] : 2;
             ramp = colormap({
                 colormap: 'autumn',
@@ -279,7 +272,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
             let rows = []
             let clusterRows=[]
             for (var i = 0; i < hilos; i++) {
-                rows.push(this.state.level === 1 ? MapServiceInsusGet(this.state.isMontos, this.state.year, i, pgsize, this.state.filter, transform[0], transform[1], transform[2], transform[3],true, corsEnabled, environment) : MapServiceMexicoGet(this.state.isMontos, this.state.year, i, pgsize, this.state.filter, transform[0], transform[1], transform[2], transform[3], corsEnabled, environment))
+                rows.push(this.state.level === 1 ? MapServiceInsusGet(this.state.isMontos, this.state.year, i, pgsize, this.state.filter, transform[0], transform[1], transform[2], transform[3],true, corsEnabled, environment) : MapServiceMexicoGet(this.state.isMontos, this.state.year, i, pgsize, this.state.filter==="MEX"? this.state.filter : this.state.filter.substring(0,2), transform[0], transform[1], transform[2], transform[3], corsEnabled, environment))
                 clusterRows.push(this.state.level === 1 ? MapServiceInsusGet(this.state.isMontos,this.state.year,i,pgsize,this.state.filter,transform[0], transform[1], transform[2], transform[3],false, corsEnabled,environment): null)
             }
             let clusterResults = this.state.level === 1 ? await Promise.all((await Promise.all(clusterRows)).map(result => (result != null)?result.json():null)) :null
@@ -324,38 +317,51 @@ export default class PublicMap extends Component<any, PublicMapState> {
         handleSubmit()
             .then(
                 (arrays) => {
-                    let cluster = null;
+                    let clusterArray = [];
                     agaveLayer.getSource()?.clear()
                     if(arrays[0] != null){
                         agaveLayer.getSource()?.addFeatures(arrays[0])
-                    }if(arrays[1] != null){
-                        cluster = clusterLayer(new VectorSource({features:arrays[1]}))
+                    }
+                    if(arrays[1].length > 0){
+                        clusterArray = arrays[1]
+                        globalClusterLayer = clusterLayer(new VectorSource({features:clusterArray}))
+                        //this.updateMap(arrays[1][0].getGeometry().getExtent(),getCenter(arrays[1][0].getGeometry().getExtent()))
+
+                        // @ts-ignore
+                            //this.setState({extent:arrays[1][0].getGeometry().getExtent(),center:getCenter(arrays[1][0].getGeometry().getExtent())})
+
                         // @ts-ignore
                         //clusterLayer.setSource(new VectorSource({features:arrays[1]}))
                         //clusterLayer.getSource()?.addFeatures(arrays[1])
+                    }else{
+                        globalClusterLayer = null;
                     }
-                    actualizarLayers(map,cluster)
+
+                    //this.updateMap(clusterArray.length >= 1 ?clusterArray[0].getGeometry().getExtent():[],clusterArray.length >= 1 ?getCenter(clusterArray[0].getGeometry().getExtent()):[])
+
+                    actualizarLayers(map)
                 }
             )
     }
 
-    updateMap() {
+    updateMap(clusterExtent:[] = [],clusterCenter:number[] =[]) {
         this.olmap.setView(new OlView({
-            center: this.state.center,
-            zoom: this.state.zoom,
-            minZoom: this.state.zoom - 1,
-            maxZoom: this.state.level === 1 ? 17 : this.state.level === 3 ? 14 : this.state.zoom + 2,
-            extent: this.state.extent,
+            center:this.state.center,
+            zoom: this.state.zoom ,
+            minZoom: this.state.zoom - (this.state.level === 1 ? 3 : 1 ),
+            maxZoom: (this.state.level === 1 || this.state.level === 3) ? 15 :  this.state.zoom + 3,
+            extent:this.state.extent,
         }))
-
     }
 
     componentDidMount() {
-        this.updateMap();
+        //this.updateMap();
         this.props.callbackLoading(true)
         this.showEstados(this.olmap);
+        this.updateMap()
         this.olmap.setTarget("map");
 
+        
         // Listen to map changes
         this.olmap.on("moveend", () => {
             let center = this.olmap.getView().getCenter();
@@ -434,18 +440,18 @@ export default class PublicMap extends Component<any, PublicMapState> {
         });
 
         this.selectedFeatures.on('add', () => {
-            console.log("ADD")
+            console.log("ADD"+this.state.level)
             if(this.selectedFeatures.item(0).getProperties().id != null){
                 this.props.cultivoCallback({
                     id: this.selectedFeatures.item(0).getProperties().id,
                     cve_geo: this.selectedFeatures.item(0).getProperties().cvegeo,
                     type: this.state.filter,
                     level: this.state.level,
-                    extent: this.selectedFeatures.item(0).getGeometry()?.getExtent(),
-                    center: getCenter(this.selectedFeatures.item(0).getGeometry()!.getExtent())
+                    extent: this.state.level == 3 ? this.selectedFeatures.item(0).getGeometry()?.getExtent():this.state.extent ,
+                    center: this.state.level == 3 ? getCenter(this.selectedFeatures.item(0).getGeometry()!.getExtent()):this.state.center
                 })
             }else{
-                if (this.selectedFeatures.item(0).getProperties().features.length > 1) {
+                if (this.selectedFeatures.item(0).getProperties().features.length >= 1) {
                     const extent = boundingExtent(
                         this.selectedFeatures.item(0).getProperties().features.map((r:any) => r.getGeometry().getCoordinates())
                     );
@@ -462,6 +468,7 @@ export default class PublicMap extends Component<any, PublicMapState> {
 
     componentWillUnmount() {
         console.log("UNMOUNT")
+        this.setState(this.getInitialState());
         this.olmap.dispose()
     }
 
@@ -469,9 +476,8 @@ export default class PublicMap extends Component<any, PublicMapState> {
         //let center = this.olmap.getView().getCenter();
         //let zoom = this.olmap.getView().getZoom();
         //let isUpdate = !(center === nextState.center && zoom === nextState.zoom)
-
-        actualizarLayers(this.olmap,null)
-        let isUpdate = nextProps.information.cve_geo !== this.state.filter
+        actualizarLayers(this.olmap)
+        let isUpdate = nextProps.information.cve_geo !== this.state.filter || nextProps.information.level !== this.state.level
         return isUpdate;
     }
 
@@ -483,22 +489,19 @@ export default class PublicMap extends Component<any, PublicMapState> {
             level: props.information.level,
             extent: props.information.extent,
             center: props.information.center,
-            zoom: (props.information.level === 2 ? 6.2 : props.information.level === 1 ? 8.2 : 3.2),
+            zoom: ((props.information.level === 2 || props.information.level === 1 )? 6.2 : 3.2),//props.information.level === 1 ? 9.2 : 3.2),
         })
         this.props.callbackLoading(true)
         this.showEstados(this.olmap)
-        actualizarLayers(this.olmap,null)
+        actualizarLayers(this.olmap)
         this.updateMap();
+
     }
 
     render() {
         return (
-            <Fragment>
-                <div id="map">
-                </div>
-            </Fragment>
-
-
+            <div id="map">
+            </div>
         );
     }
 }

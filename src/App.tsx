@@ -48,7 +48,7 @@ function App() {
             component:Inicio,
             exact:true
         },{
-            path:'/dashboard/insus',
+            path:'/oferta/mapa',
             sidebarName:'.',
             icon:<HomeIcon fontSize={'large'} className={classes.icon}/>,
             component:Prah,
